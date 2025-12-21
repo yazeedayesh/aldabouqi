@@ -1036,18 +1036,17 @@
 <!-- faq-area-end -->
 
 <script>
-const form = document.getElementById('contactForm');
-const messageEl = document.getElementById('formMessage');
+const form = document.querySelector('.it-contact-form-box form');
 
 form.addEventListener('submit', async function(e) {
-  e.preventDefault();
+  e.preventDefault(); // يمنع إعادة تحميل الصفحة
 
   const data = {
-    name: form.name.value,
-    email: form.email.value,
-    phone: form.phone.value,
-    subject: form.subject.value,
-    message: form.message.value
+    name: form.querySelector('input[placeholder="الاسم الكامل*"]').value,
+    email: form.querySelector('input[placeholder="البريد الإلكتروني*"]').value,
+    phone: form.querySelector('input[placeholder="الهاتف*"]').value,
+    subject: form.querySelector('select').value,
+    message: form.querySelector('textarea').value
   };
 
   try {
@@ -1061,17 +1060,17 @@ form.addEventListener('submit', async function(e) {
     });
 
     if (response.ok) {
-      messageEl.textContent = "تم إرسال رسالتك بنجاح!";
+      alert('تم إرسال رسالتك بنجاح!');
       form.reset();
     } else {
-      const resData = await response.json();
-      messageEl.textContent = resData.error || "حدث خطأ أثناء الإرسال.";
+      alert('حدث خطأ أثناء الإرسال.');
     }
-  } catch (error) {
-    messageEl.textContent = "حدث خطأ أثناء الإرسال.";
+  } catch {
+    alert('حدث خطأ أثناء الإرسال.');
   }
 });
 </script>
+
 
    
 <!-- choose-area-start -->
