@@ -16142,7 +16142,7 @@ input[type=radio] {
 @supports (padding: max(0px)) {
    .center-contact-bar {
       bottom: max(20px, calc(env(safe-area-inset-bottom) + 10px));
-      left: max(20%, calc(env(safe-area-inset-left) ));
+      left: max(50%, calc(env(safe-area-inset-left) ));
       padding-left: max(12px, calc(env(safe-area-inset-left) + 12px));
       padding-right: max(12px, calc(env(safe-area-inset-right) + 12px));
    }
