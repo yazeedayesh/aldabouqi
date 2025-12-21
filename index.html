@@ -971,10 +971,11 @@
             </div>
          </div>
          <div class="col-xl-5 col-lg-6">
+            <div class="col-xl-5 col-lg-6">
   <div class="it-contact-form-box">
     <h4 class="it-contact-form-title text-white mb-10">استفسر الآن</h4>
     <p>سوف نرد عليك في غضون 24 ساعة.</p>
-    <form id="contact-form" action="https://formspree.io/f/xyzegrly" method="POST">
+    <form action="https://formspree.io/f/xyzegrly" method="POST">
       <div class="it-contact-input-wrap">
         <div class="row gx-20">
           <div class="col-sm-6 mb-20">
@@ -994,14 +995,12 @@
           </div>
           <div class="col-sm-6 mb-20">
             <div class="it-contact-input-box">
-              <div class="postbox__select">
-                <select name="subject" required>
-                  <option value="">الموضوع*</option>
-                  <option value="شراء أثاث مستعمل">شراء أثاث مستعمل</option>
-                  <option value="بيع أثاث مستعمل">بيع أثاث مستعمل</option>
-                  <option value="استفسار عن الأثاث">استفسار عن الأثاث</option>
-                </select>
-              </div>
+              <select name="subject" required>
+                <option value="">الموضوع*</option>
+                <option value="شراء أثاث مستعمل">شراء أثاث مستعمل</option>
+                <option value="بيع أثاث مستعمل">بيع أثاث مستعمل</option>
+                <option value="استفسار عن الأثاث">استفسار عن الأثاث</option>
+              </select>
             </div>
           </div>
           <div class="col-sm-12 mb-40">
@@ -1023,47 +1022,16 @@
             </i>
           </button>
         </div>
-        <p id="form-status" style="color:white; margin-top:10px;"></p>
       </div>
     </form>
   </div>
 </div>
+
       </div>
    </div>
 </div>
 <!-- faq-area-end -->
-<script>
-const form = document.getElementById('contact-form');
-const status = document.getElementById('form-status');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const data = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (response.ok) {
-      status.style.color = 'lightgreen';
-      status.innerText = 'تم إرسال رسالتك بنجاح! سوف نرد عليك قريباً.';
-      form.reset();
-    } else {
-      const result = await response.json();
-      status.style.color = 'red';
-      status.innerText = result.error || 'حدث خطأ أثناء الإرسال، حاول مرة أخرى.';
-    }
-  } catch (err) {
-    status.style.color = 'red';
-    status.innerText = 'حدث خطأ أثناء الإرسال، تحقق من اتصالك بالإنترنت.';
-  }
-});
-</script>
+   
 <!-- choose-area-start -->
 <div class="it-choose-2-area it-choose-2-border pt-130 pb-130">
    <div class="container">
