@@ -971,68 +971,99 @@
             </div>
          </div>
          <div class="col-xl-5 col-lg-6">
-            <div class="it-contact-form-box">
-               <h4 class="it-contact-form-title text-white mb-10">استفسر الآن</h4>
-               <p>سوف نرد عليك في غضون 24 ساعة.</p>
-               <form action="https://formspree.io/f/xyzegrly" method="POST">
-   <div class="it-contact-input-wrap">
-      <div class="row gx-20">
-         <div class="col-sm-6 mb-20">
+  <div class="it-contact-form-box">
+    <h4 class="it-contact-form-title text-white mb-10">استفسر الآن</h4>
+    <p>سوف نرد عليك في غضون 24 ساعة.</p>
+    <form id="contact-form" action="https://formspree.io/f/xyzegrly" method="POST">
+      <div class="it-contact-input-wrap">
+        <div class="row gx-20">
+          <div class="col-sm-6 mb-20">
             <div class="it-contact-input-box">
-               <input type="text" name="name" placeholder="الاسم الكامل*" required>
+              <input type="text" name="name" placeholder="الاسم الكامل*" required>
             </div>
-         </div>
-         <div class="col-sm-6 mb-20">
+          </div>
+          <div class="col-sm-6 mb-20">
             <div class="it-contact-input-box">
-               <input type="email" name="email" placeholder="البريد الإلكتروني*" required>
+              <input type="email" name="email" placeholder="البريد الإلكتروني*" required>
             </div>
-         </div>
-         <div class="col-sm-6 mb-20">
+          </div>
+          <div class="col-sm-6 mb-20">
             <div class="it-contact-input-box">
-               <input type="text" name="phone" placeholder="الهاتف*" required>
+              <input type="text" name="phone" placeholder="الهاتف*" required>
             </div>
-         </div>
-         <div class="col-sm-6 mb-20">
+          </div>
+          <div class="col-sm-6 mb-20">
             <div class="it-contact-input-box">
-               <div class="postbox__select">
-                  <select name="subject" required>
-                     <option value="">الموضوع*</option>
-                     <option value="شراء أثاث مستعمل">شراء أثاث مستعمل</option>
-                     <option value="بيع أثاث مستعمل">بيع أثاث مستعمل</option>
-                     <option value="استفسار عن الأثاث">استفسار عن الأثاث</option>
-                  </select>
-               </div>
+              <div class="postbox__select">
+                <select name="subject" required>
+                  <option value="">الموضوع*</option>
+                  <option value="شراء أثاث مستعمل">شراء أثاث مستعمل</option>
+                  <option value="بيع أثاث مستعمل">بيع أثاث مستعمل</option>
+                  <option value="استفسار عن الأثاث">استفسار عن الأثاث</option>
+                </select>
+              </div>
             </div>
-         </div>
-         <div class="col-sm-12 mb-40">
+          </div>
+          <div class="col-sm-12 mb-40">
             <div class="it-contact-input-box">
-               <textarea name="message" placeholder="اكتب رسالتك*" required></textarea>
+              <textarea name="message" placeholder="اكتب رسالتك*" required></textarea>
             </div>
-         </div>
-      </div>
-      <div class="it-contact-btn">
-         <button type="submit" class="it-btn-orange white-bg">
+          </div>
+        </div>
+        <div class="it-contact-btn">
+          <button type="submit" class="it-btn-orange white-bg">
             <span>
-               <span class="text-1">إرسال الآن</span>
-               <span class="text-2">إرسال الآن</span>
+              <span class="text-1">إرسال الآن</span>
+              <span class="text-2">إرسال الآن</span>
             </span>
             <i>
-               <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z" fill="black" />
-               </svg>
+              <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z" fill="black" />
+              </svg>
             </i>
-         </button>
+          </button>
+        </div>
+        <p id="form-status" style="color:white; margin-top:10px;"></p>
       </div>
-   </div>
-</form>
-
-            </div>
-         </div>
+    </form>
+  </div>
+</div>
       </div>
    </div>
 </div>
 <!-- faq-area-end -->
+<script>
+const form = document.getElementById('contact-form');
+const status = document.getElementById('form-status');
 
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      status.style.color = 'lightgreen';
+      status.innerText = 'تم إرسال رسالتك بنجاح! سوف نرد عليك قريباً.';
+      form.reset();
+    } else {
+      const result = await response.json();
+      status.style.color = 'red';
+      status.innerText = result.error || 'حدث خطأ أثناء الإرسال، حاول مرة أخرى.';
+    }
+  } catch (err) {
+    status.style.color = 'red';
+    status.innerText = 'حدث خطأ أثناء الإرسال، تحقق من اتصالك بالإنترنت.';
+  }
+});
+</script>
 <!-- choose-area-start -->
 <div class="it-choose-2-area it-choose-2-border pt-130 pb-130">
    <div class="container">
