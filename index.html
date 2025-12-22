@@ -49,17 +49,52 @@
    <!-- Place favicon.ico in the root directory -->
    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/aldabouqi-logo.webp">
 
-   <!-- CSS here -->
-   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-   <link rel="stylesheet" href="assets/css/slick.css">
-   <link rel="stylesheet" href="assets/css/custom-animation.css">
-   <link rel="stylesheet" href="assets/css/nice-select.css">
-   <link rel="stylesheet" href="assets/css/swiper-bundle.css">
-   <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
-   <link rel="stylesheet" href="assets/css/magnific-popup.css">
-   <link rel="stylesheet" href="assets/css/spacing.css">
-   <link rel="stylesheet" href="assets/css/main.css">
-   <link rel="stylesheet" href="assets/css/rtl.css">
+   <!-- ⚡ PERFORMANCE FIX 1: Preload LCP Image (السلايدر الرئيسي) -->
+   <link rel="preload" as="image" href="uploads/sliders/furniture-ede498e0.webp" fetchpriority="high">
+   
+   <!-- ⚡ PERFORMANCE FIX 2: Preload Critical Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+   <!-- ⚡ PERFORMANCE FIX 3: Critical CSS Inline (above-the-fold styles) -->
+   <style>
+   /* Critical CSS - Above the fold only */
+   *{margin:0;padding:0;box-sizing:border-box}
+   body{font-family:system-ui,-apple-system,sans-serif;direction:rtl}
+   .slider-area{position:relative;min-height:500px;background:#f5f5f5}
+   .slider-area img{width:100%;height:auto;display:block}
+   .tp-slider-wrapper{position:relative;overflow:hidden}
+   </style>
+
+   <!-- ⚡ PERFORMANCE FIX 4: Load non-critical CSS asynchronously -->
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/rtl.css" media="print" onload="this.media='all'">
+   
+   <!-- Defer non-critical CSS -->
+   <link rel="stylesheet" href="assets/css/slick.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/custom-animation.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/nice-select.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/swiper-bundle.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/magnific-popup.css" media="print" onload="this.media='all'">
+   <link rel="stylesheet" href="assets/css/spacing.css" media="print" onload="this.media='all'">
+   
+   <!-- ⚡ PERFORMANCE FIX 5: Font Awesome - load only icons you need OR defer -->
+   <link rel="stylesheet" href="assets/css/font-awesome-pro.css" media="print" onload="this.media='all'">
+   
+   <!-- Fallback for browsers without JS -->
+   <noscript>
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="assets/css/slick.css">
+      <link rel="stylesheet" href="assets/css/custom-animation.css">
+      <link rel="stylesheet" href="assets/css/nice-select.css">
+      <link rel="stylesheet" href="assets/css/swiper-bundle.css">
+      <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
+      <link rel="stylesheet" href="assets/css/magnific-popup.css">
+      <link rel="stylesheet" href="assets/css/spacing.css">
+      <link rel="stylesheet" href="assets/css/main.css">
+      <link rel="stylesheet" href="assets/css/rtl.css">
+   </noscript>
 
    <!-- Schema.org Structured Data -->
    <script type="application/ld+json">
