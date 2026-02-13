@@ -15676,15 +15676,17 @@ input[type=radio] {
 }
 
 /* ============================================ */
-/* FOOTER CONTACT BUTTONS - ULTRA PROFESSIONAL */
-/* MAXIMUM RESPONSIVENESS & VISIBILITY */
+/* SOCIAL MEDIA ICONS - ULTRA PROFESSIONAL */
+/* IMPROVED POSITIONING & TOUCH OPTIMIZATION */
 /* ============================================ */
 
 /* ============================================ */
-/* FOOTER CONTAINER */
+/* SOCIAL MEDIA CONTAINER */
 /* ============================================ */
 
-.footer-contact-section {
+.footer-social-section,
+.social-media-links,
+.footer-social-links {
    /* Layout */
    display: -webkit-box;
    display: -webkit-flex;
@@ -15702,18 +15704,20 @@ input[type=radio] {
    -ms-flex-wrap: wrap;
    flex-wrap: wrap;
    
-   /* Spacing */
-   padding: 1.5rem 1rem;
+   /* Spacing - رفع للأعلى */
+   padding: 1.5rem 1rem 2rem 1rem;
    margin: 0 auto;
    width: 100%;
    max-width: 100%;
 }
 
 /* ============================================ */
-/* BASE BUTTON STYLES */
+/* SOCIAL MEDIA ICON LINKS */
 /* ============================================ */
 
-.footer-contact-btn {
+.social-icon,
+.social-link,
+.footer-social-icon {
    /* Layout */
    display: -webkit-inline-box;
    display: -webkit-inline-flex;
@@ -15727,28 +15731,24 @@ input[type=radio] {
    -webkit-justify-content: center;
    -ms-flex-pack: center;
    justify-content: center;
-   gap: 0.625rem;
    
-   /* Spacing */
-   padding: 0.9375rem 2rem;
-   margin: 0;
+   /* Size - حجم أكبر للضغط السهل */
+   width: 3.25rem;
+   height: 3.25rem;
+   min-width: 3.25rem;
+   min-height: 3.25rem;
    
    /* Visual */
-   border-radius: 3rem;
-   border: 2.5px solid transparent;
-   background: transparent;
+   border-radius: 50%;
+   border: 2.5px solid rgba(255, 255, 255, 0.2);
+   background: rgba(255, 255, 255, 0.08);
    position: relative;
-   overflow: hidden;
+   overflow: visible;
    
    /* Typography */
-   font-family: -apple-system, BlinkMacSystemFont, 'Cairo', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
-   font-size: 1.0625rem;
-   font-weight: 700;
-   line-height: 1.3;
-   letter-spacing: 0.02em;
+   font-size: 1.375rem;
+   color: #ffffff;
    text-decoration: none;
-   text-align: center;
-   white-space: nowrap;
    
    /* Interaction */
    cursor: pointer;
@@ -15759,24 +15759,22 @@ input[type=radio] {
    -webkit-tap-highlight-color: transparent;
    touch-action: manipulation;
    
-   /* Constraints */
-   min-height: 3.25rem;
-   min-width: 10rem;
-   
    /* Performance */
    -webkit-backface-visibility: hidden;
    backface-visibility: hidden;
    -webkit-transform: translateZ(0);
    transform: translateZ(0);
-   will-change: transform, box-shadow, border-color;
+   will-change: transform, background, border-color;
    
    /* Transitions */
    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover Effect Background */
-.footer-contact-btn::before {
+/* Hover Background Effect */
+.social-icon::before,
+.social-link::before,
+.footer-social-icon::before {
    content: '';
    position: absolute;
    top: 0;
@@ -15784,6 +15782,7 @@ input[type=radio] {
    right: 0;
    bottom: 0;
    border-radius: inherit;
+   background: rgba(255, 255, 255, 0.15);
    opacity: 0;
    transition: opacity 0.3s ease;
    -webkit-transition: opacity 0.3s ease;
@@ -15791,130 +15790,235 @@ input[type=radio] {
    z-index: 0;
 }
 
-/* Content Layer */
-.footer-contact-btn svg,
-.footer-contact-btn span,
-.footer-contact-btn i {
+/* Icon Content */
+.social-icon i,
+.social-icon svg,
+.social-link i,
+.social-link svg,
+.footer-social-icon i,
+.footer-social-icon svg {
    position: relative;
    z-index: 1;
-}
-
-.footer-contact-btn svg,
-.footer-contact-btn i {
-   -ms-flex-negative: 0;
-   flex-shrink: 0;
-   width: 1.375rem;
-   height: 1.375rem;
+   font-size: inherit;
    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================ */
-/* PHONE BUTTON (اتصل الآن) */
+/* INSTAGRAM ICON */
 /* ============================================ */
 
-.footer-phone-btn {
-   border-color: #3b82f6;
-   color: #ffffff;
-   background: #3b82f6;
-   box-shadow: 
-      0 0.25rem 0.875rem rgba(59, 130, 246, 0.25),
-      0 0.125rem 0.375rem rgba(59, 130, 246, 0.15);
+.social-icon.instagram,
+.social-link.instagram,
+.footer-social-icon.instagram,
+a[href*="instagram"] .social-icon,
+a[href*="instagram"].social-icon,
+a[href*="instagram"].social-link {
+   border-color: #E4405F;
+   color: #E4405F;
 }
 
-.footer-phone-btn::before {
-   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+.social-icon.instagram::before,
+.social-link.instagram::before,
+.footer-social-icon.instagram::before,
+a[href*="instagram"] .social-icon::before,
+a[href*="instagram"].social-icon::before {
+   background: linear-gradient(135deg, #833AB4 0%, #E4405F 50%, #FCAF45 100%);
 }
 
-.footer-phone-btn svg,
-.footer-phone-btn i {
-   color: #ffffff;
-}
-
-/* Hover State - Desktop */
+/* Hover - Desktop */
 @media (hover: hover) and (pointer: fine) {
-   .footer-phone-btn:hover {
-      background: #2563eb;
-      border-color: #2563eb;
-      transform: translateY(-0.1875rem) scale(1.02);
-      -webkit-transform: translateY(-0.1875rem) scale(1.02);
-      box-shadow: 
-         0 0.5rem 1.25rem rgba(59, 130, 246, 0.35),
-         0 0.25rem 0.625rem rgba(59, 130, 246, 0.2);
+   .social-icon.instagram:hover,
+   .social-link.instagram:hover,
+   a[href*="instagram"].social-icon:hover {
+      background: linear-gradient(135deg, #833AB4 0%, #E4405F 50%, #FCAF45 100%);
+      border-color: #E4405F;
+      color: #ffffff;
+      transform: translateY(-0.25rem) scale(1.08);
+      -webkit-transform: translateY(-0.25rem) scale(1.08);
+      box-shadow: 0 0.5rem 1.25rem rgba(228, 64, 95, 0.35);
    }
    
-   .footer-phone-btn:hover::before {
-      opacity: 1;
-   }
-   
-   .footer-phone-btn:hover svg,
-   .footer-phone-btn:hover i {
-      transform: scale(1.15) rotate(-8deg);
-      -webkit-transform: scale(1.15) rotate(-8deg);
+   .social-icon.instagram:hover i,
+   .social-icon.instagram:hover svg,
+   a[href*="instagram"].social-icon:hover i {
+      transform: rotate(10deg) scale(1.1);
+      -webkit-transform: rotate(10deg) scale(1.1);
    }
 }
 
-/* Active State */
-.footer-phone-btn:active {
-   transform: scale(0.97);
-   -webkit-transform: scale(0.97);
-   box-shadow: 
-      0 0.125rem 0.375rem rgba(59, 130, 246, 0.3),
-      0 0.0625rem 0.1875rem rgba(59, 130, 246, 0.15);
+/* ============================================ */
+/* X (TWITTER) ICON */
+/* ============================================ */
+
+.social-icon.twitter,
+.social-icon.x,
+.social-link.twitter,
+.social-link.x,
+a[href*="twitter"] .social-icon,
+a[href*="x.com"] .social-icon,
+a[href*="twitter"].social-icon,
+a[href*="x.com"].social-icon {
+   border-color: #000000;
+   color: #000000;
+   background: rgba(255, 255, 255, 0.95);
+}
+
+/* Hover - Desktop */
+@media (hover: hover) and (pointer: fine) {
+   .social-icon.twitter:hover,
+   .social-icon.x:hover,
+   a[href*="twitter"].social-icon:hover,
+   a[href*="x.com"].social-icon:hover {
+      background: #000000;
+      border-color: #000000;
+      color: #ffffff;
+      transform: translateY(-0.25rem) scale(1.08);
+      -webkit-transform: translateY(-0.25rem) scale(1.08);
+      box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.35);
+   }
+   
+   .social-icon.twitter:hover i,
+   .social-icon.x:hover i,
+   a[href*="twitter"].social-icon:hover i,
+   a[href*="x.com"].social-icon:hover i {
+      transform: rotate(-10deg) scale(1.1);
+      -webkit-transform: rotate(-10deg) scale(1.1);
+   }
 }
 
 /* ============================================ */
-/* WHATSAPP BUTTON */
+/* FACEBOOK ICON */
 /* ============================================ */
 
-.footer-whatsapp-btn {
+.social-icon.facebook,
+.social-link.facebook,
+a[href*="facebook"] .social-icon,
+a[href*="facebook"].social-icon {
+   border-color: #1877F2;
+   color: #1877F2;
+}
+
+.social-icon.facebook::before,
+a[href*="facebook"].social-icon::before {
+   background: #1877F2;
+}
+
+/* Hover - Desktop */
+@media (hover: hover) and (pointer: fine) {
+   .social-icon.facebook:hover,
+   a[href*="facebook"].social-icon:hover {
+      background: #1877F2;
+      border-color: #1877F2;
+      color: #ffffff;
+      transform: translateY(-0.25rem) scale(1.08);
+      -webkit-transform: translateY(-0.25rem) scale(1.08);
+      box-shadow: 0 0.5rem 1.25rem rgba(24, 119, 242, 0.35);
+   }
+   
+   .social-icon.facebook:hover i,
+   a[href*="facebook"].social-icon:hover i {
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+   }
+}
+
+/* ============================================ */
+/* WHATSAPP ICON */
+/* ============================================ */
+
+.social-icon.whatsapp,
+.social-link.whatsapp,
+a[href*="whatsapp"] .social-icon,
+a[href*="wa.me"] .social-icon,
+a[href*="whatsapp"].social-icon,
+a[href*="wa.me"].social-icon {
    border-color: #25D366;
-   color: #ffffff;
+   color: #25D366;
+}
+
+.social-icon.whatsapp::before,
+a[href*="whatsapp"].social-icon::before,
+a[href*="wa.me"].social-icon::before {
    background: #25D366;
-   box-shadow: 
-      0 0.25rem 0.875rem rgba(37, 211, 102, 0.25),
-      0 0.125rem 0.375rem rgba(37, 211, 102, 0.15);
 }
 
-.footer-whatsapp-btn::before {
-   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
-}
-
-.footer-whatsapp-btn svg,
-.footer-whatsapp-btn i {
-   color: #ffffff;
-}
-
-/* Hover State - Desktop */
+/* Hover - Desktop */
 @media (hover: hover) and (pointer: fine) {
-   .footer-whatsapp-btn:hover {
-      background: #128C7E;
-      border-color: #128C7E;
-      transform: translateY(-0.1875rem) scale(1.02);
-      -webkit-transform: translateY(-0.1875rem) scale(1.02);
-      box-shadow: 
-         0 0.5rem 1.25rem rgba(37, 211, 102, 0.35),
-         0 0.25rem 0.625rem rgba(37, 211, 102, 0.2);
+   .social-icon.whatsapp:hover,
+   a[href*="whatsapp"].social-icon:hover,
+   a[href*="wa.me"].social-icon:hover {
+      background: #25D366;
+      border-color: #25D366;
+      color: #ffffff;
+      transform: translateY(-0.25rem) scale(1.08);
+      -webkit-transform: translateY(-0.25rem) scale(1.08);
+      box-shadow: 0 0.5rem 1.25rem rgba(37, 211, 102, 0.35);
    }
    
-   .footer-whatsapp-btn:hover::before {
-      opacity: 1;
-   }
-   
-   .footer-whatsapp-btn:hover svg,
-   .footer-whatsapp-btn:hover i {
-      transform: scale(1.15) rotate(8deg);
-      -webkit-transform: scale(1.15) rotate(8deg);
+   .social-icon.whatsapp:hover i,
+   a[href*="whatsapp"].social-icon:hover i,
+   a[href*="wa.me"].social-icon:hover i {
+      transform: rotate(15deg) scale(1.1);
+      -webkit-transform: rotate(15deg) scale(1.1);
    }
 }
 
-/* Active State */
-.footer-whatsapp-btn:active {
-   transform: scale(0.97);
-   -webkit-transform: scale(0.97);
-   box-shadow: 
-      0 0.125rem 0.375rem rgba(37, 211, 102, 0.3),
-      0 0.0625rem 0.1875rem rgba(37, 211, 102, 0.15);
+/* ============================================ */
+/* LINKEDIN ICON */
+/* ============================================ */
+
+.social-icon.linkedin,
+.social-link.linkedin,
+a[href*="linkedin"] .social-icon,
+a[href*="linkedin"].social-icon {
+   border-color: #0A66C2;
+   color: #0A66C2;
+}
+
+.social-icon.linkedin::before,
+a[href*="linkedin"].social-icon::before {
+   background: #0A66C2;
+}
+
+/* Hover - Desktop */
+@media (hover: hover) and (pointer: fine) {
+   .social-icon.linkedin:hover,
+   a[href*="linkedin"].social-icon:hover {
+      background: #0A66C2;
+      border-color: #0A66C2;
+      color: #ffffff;
+      transform: translateY(-0.25rem) scale(1.08);
+      -webkit-transform: translateY(-0.25rem) scale(1.08);
+      box-shadow: 0 0.5rem 1.25rem rgba(10, 102, 194, 0.35);
+   }
+}
+
+/* ============================================ */
+/* ACTIVE STATE - ALL ICONS */
+/* ============================================ */
+
+.social-icon:active,
+.social-link:active,
+.footer-social-icon:active {
+   transform: scale(0.94);
+   -webkit-transform: scale(0.94);
+}
+
+/* ============================================ */
+/* EXPANDED TOUCH AREA */
+/* ============================================ */
+
+.social-icon::after,
+.social-link::after,
+.footer-social-icon::after {
+   content: '';
+   position: absolute;
+   top: -0.75rem;
+   left: -0.75rem;
+   right: -0.75rem;
+   bottom: -0.75rem;
+   z-index: -1;
 }
 
 /* ============================================ */
@@ -15922,24 +16026,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 3840px) {
-   .footer-contact-section {
-      padding: 2.5rem 1.5rem;
-      gap: 1.5rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 2.5rem 1.5rem 3rem 1.5rem;
+      gap: 1.75rem;
    }
    
-   .footer-contact-btn {
-      padding: 1.375rem 3rem;
-      font-size: 1.5rem;
-      min-height: 4.5rem;
-      min-width: 14rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 5rem;
+      height: 5rem;
+      min-width: 5rem;
+      min-height: 5rem;
+      font-size: 2.25rem;
       border-width: 3.5px;
-      gap: 1rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 2.25rem;
-      height: 2.25rem;
    }
 }
 
@@ -15948,24 +16050,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 2560px) and (max-width: 3839px) {
-   .footer-contact-section {
-      padding: 2.25rem 1.375rem;
-      gap: 1.375rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 2.25rem 1.375rem 2.75rem 1.375rem;
+      gap: 1.5rem;
    }
    
-   .footer-contact-btn {
-      padding: 1.25rem 2.75rem;
-      font-size: 1.375rem;
-      min-height: 4.25rem;
-      min-width: 13rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 4.5rem;
+      height: 4.5rem;
+      min-width: 4.5rem;
+      min-height: 4.5rem;
+      font-size: 2rem;
       border-width: 3px;
-      gap: 0.875rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 2rem;
-      height: 2rem;
    }
 }
 
@@ -15974,23 +16074,21 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1920px) and (max-width: 2559px) {
-   .footer-contact-section {
-      padding: 2rem 1.25rem;
-      gap: 1.25rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 2rem 1.25rem 2.5rem 1.25rem;
+      gap: 1.375rem;
    }
    
-   .footer-contact-btn {
-      padding: 1.125rem 2.5rem;
-      font-size: 1.25rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 4rem;
+      height: 4rem;
+      min-width: 4rem;
       min-height: 4rem;
-      min-width: 12rem;
-      gap: 0.75rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.75rem;
-      height: 1.75rem;
+      font-size: 1.75rem;
    }
 }
 
@@ -15999,22 +16097,21 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1440px) and (max-width: 1919px) {
-   .footer-contact-section {
-      padding: 1.875rem 1.125rem;
-      gap: 1.125rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.875rem 1.125rem 2.375rem 1.125rem;
+      gap: 1.25rem;
    }
    
-   .footer-contact-btn {
-      padding: 1.0625rem 2.25rem;
-      font-size: 1.125rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.75rem;
+      height: 3.75rem;
+      min-width: 3.75rem;
       min-height: 3.75rem;
-      min-width: 11.5rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.625rem;
-      height: 1.625rem;
+      font-size: 1.625rem;
    }
 }
 
@@ -16023,22 +16120,21 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1200px) and (max-width: 1439px) {
-   .footer-contact-section {
-      padding: 1.75rem 1rem;
-      gap: 1rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.75rem 1rem 2.25rem 1rem;
+      gap: 1.125rem;
    }
    
-   .footer-contact-btn {
-      padding: 1rem 2.125rem;
-      font-size: 1.0625rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      min-width: 3.5rem;
       min-height: 3.5rem;
-      min-width: 11rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.5rem;
-      height: 1.5rem;
+      font-size: 1.5rem;
    }
 }
 
@@ -16047,22 +16143,21 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1024px) and (max-width: 1199px) {
-   .footer-contact-section {
-      padding: 1.625rem 1rem;
-      gap: 0.9375rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.625rem 1rem 2.125rem 1rem;
+      gap: 1rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.9375rem 2rem;
-      font-size: 1rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.375rem;
+      height: 3.375rem;
+      min-width: 3.375rem;
       min-height: 3.375rem;
-      min-width: 10.5rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.4375rem;
-      height: 1.4375rem;
+      font-size: 1.4375rem;
    }
 }
 
@@ -16071,22 +16166,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 900px) and (max-width: 1023px) {
-   .footer-contact-section {
-      padding: 1.5rem 0.9375rem;
-      gap: 0.875rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.5rem 0.9375rem 2rem 0.9375rem;
+      gap: 0.9375rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.875rem 1.875rem;
-      font-size: 0.9375rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.25rem;
+      height: 3.25rem;
+      min-width: 3.25rem;
       min-height: 3.25rem;
-      min-width: 10rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.375rem;
-      height: 1.375rem;
+      font-size: 1.375rem;
+      border-width: 2.5px;
    }
 }
 
@@ -16095,22 +16190,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 768px) and (max-width: 899px) {
-   .footer-contact-section {
-      padding: 1.5rem 0.875rem;
-      gap: 0.875rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.5rem 0.875rem 2rem 0.875rem;
+      gap: 0.9375rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.875rem 1.75rem;
-      font-size: 0.9375rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.25rem;
+      height: 3.25rem;
+      min-width: 3.25rem;
       min-height: 3.25rem;
-      min-width: 9.5rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.375rem;
-      height: 1.375rem;
+      font-size: 1.375rem;
+      border-width: 2.5px;
    }
 }
 
@@ -16119,23 +16214,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 640px) and (max-width: 767px) {
-   .footer-contact-section {
-      padding: 1.375rem 0.875rem;
-      gap: 0.8125rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.375rem 0.875rem 1.875rem 0.875rem;
+      gap: 0.875rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.8125rem 1.625rem;
-      font-size: 0.9375rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.125rem;
+      height: 3.125rem;
+      min-width: 3.125rem;
       min-height: 3.125rem;
-      min-width: 9rem;
+      font-size: 1.3125rem;
       border-width: 2.5px;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.3125rem;
-      height: 1.3125rem;
    }
 }
 
@@ -16144,23 +16238,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 540px) and (max-width: 639px) {
-   .footer-contact-section {
-      padding: 1.25rem 0.8125rem;
-      gap: 0.75rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.25rem 0.8125rem 1.75rem 0.8125rem;
+      gap: 0.8125rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.8125rem 1.5rem;
-      font-size: 0.9375rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
       min-height: 3rem;
-      min-width: 8.5rem;
+      font-size: 1.25rem;
       border-width: 2.5px;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.25rem;
-      height: 1.25rem;
    }
 }
 
@@ -16169,24 +16262,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 430px) and (max-width: 539px) {
-   .footer-contact-section {
-      padding: 1.125rem 0.75rem;
-      gap: 0.6875rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.125rem 0.75rem 1.625rem 0.75rem;
+      gap: 0.75rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.75rem 1.375rem;
-      font-size: 0.875rem;
-      min-height: 2.875rem;
-      min-width: 8rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
+      min-height: 3rem;
+      font-size: 1.25rem;
       border-width: 2.5px;
-      gap: 0.5rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.1875rem;
-      height: 1.1875rem;
    }
 }
 
@@ -16196,24 +16287,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 390px) and (max-width: 429px) {
-   .footer-contact-section {
-      padding: 1.0625rem 0.6875rem;
-      gap: 0.625rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1.0625rem 0.6875rem 1.5625rem 0.6875rem;
+      gap: 0.6875rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.75rem 1.25rem;
-      font-size: 0.875rem;
-      min-height: 2.75rem;
-      min-width: 7.5rem;
-      border-width: 2.5px;
-      gap: 0.5rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.1875rem;
-      height: 1.1875rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 2.875rem;
+      height: 2.875rem;
+      min-width: 2.875rem;
+      min-height: 2.875rem;
+      font-size: 1.1875rem;
+      border-width: 2px;
    }
 }
 
@@ -16223,24 +16312,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 360px) and (max-width: 389px) {
-   .footer-contact-section {
-      padding: 1rem 0.625rem;
-      gap: 0.5625rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 1rem 0.625rem 1.5rem 0.625rem;
+      gap: 0.625rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.6875rem 1.125rem;
-      font-size: 0.8125rem;
-      min-height: 2.625rem;
-      min-width: 7rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      font-size: 1.125rem;
       border-width: 2px;
-      gap: 0.4375rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.125rem;
-      height: 1.125rem;
    }
 }
 
@@ -16250,24 +16337,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 320px) and (max-width: 359px) {
-   .footer-contact-section {
-      padding: 0.9375rem 0.5625rem;
-      gap: 0.5rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 0.9375rem 0.5625rem 1.4375rem 0.5625rem;
+      gap: 0.5625rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.625rem 1rem;
-      font-size: 0.8125rem;
-      min-height: 2.5rem;
-      min-width: 6.5rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 2.625rem;
+      height: 2.625rem;
+      min-width: 2.625rem;
+      min-height: 2.625rem;
+      font-size: 1.0625rem;
       border-width: 2px;
-      gap: 0.4375rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.0625rem;
-      height: 1.0625rem;
    }
 }
 
@@ -16277,30 +16362,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (max-width: 319px) {
-   .footer-contact-section {
-      padding: 0.875rem 0.5rem;
-      gap: 0.4375rem;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-      flex-direction: column;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 0.875rem 0.5rem 1.375rem 0.5rem;
+      gap: 0.5rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.5625rem 0.9375rem;
-      font-size: 0.75rem;
-      min-height: 2.375rem;
-      min-width: 100%;
-      max-width: 16rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      font-size: 1rem;
       border-width: 2px;
-      gap: 0.375rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1rem;
-      height: 1rem;
    }
 }
 
@@ -16308,52 +16385,22 @@ input[type=radio] {
 /* LANDSCAPE ORIENTATION */
 /* ============================================ */
 
-/* Tablet Landscape */
-@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) and (max-height: 600px) {
-   .footer-contact-section {
-      padding: 1rem 0.875rem;
-      gap: 0.75rem;
-   }
-   
-   .footer-contact-btn {
-      padding: 0.6875rem 1.5rem;
-      font-size: 0.875rem;
-      min-height: 2.75rem;
-   }
-}
-
-/* Mobile Landscape */
 @media (max-width: 767px) and (orientation: landscape) and (max-height: 428px) {
-   .footer-contact-section {
-      padding: 0.875rem 0.75rem;
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
+      padding: 0.875rem 0.75rem 1.25rem 0.75rem;
       gap: 0.625rem;
    }
    
-   .footer-contact-btn {
-      padding: 0.625rem 1.25rem;
-      font-size: 0.8125rem;
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
       min-height: 2.5rem;
-      min-width: 7rem;
-   }
-   
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
-      width: 1.125rem;
-      height: 1.125rem;
-   }
-}
-
-/* Extreme Landscape */
-@media (orientation: landscape) and (max-height: 375px) {
-   .footer-contact-section {
-      padding: 0.75rem 0.625rem;
-      gap: 0.5rem;
-   }
-   
-   .footer-contact-btn {
-      padding: 0.5rem 1.125rem;
-      font-size: 0.75rem;
-      min-height: 2.25rem;
+      font-size: 1rem;
    }
 }
 
@@ -16362,48 +16409,30 @@ input[type=radio] {
 /* ============================================ */
 
 @media (hover: none) and (pointer: coarse) {
-   /* Ensure proper touch targets */
-   .footer-contact-btn {
-      min-height: 3rem;
-      min-width: 8rem;
-      padding: 0.875rem 1.5rem;
+   /* منطقة لمس أكبر */
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      width: 3.25rem;
+      height: 3.25rem;
+      min-width: 3.25rem;
+      min-height: 3.25rem;
    }
    
-   /* Remove hover effects */
-   .footer-contact-btn:hover {
+   /* إزالة hover effects */
+   .social-icon:hover,
+   .social-link:hover,
+   .footer-social-icon:hover {
       transform: none;
       -webkit-transform: none;
    }
    
-   .footer-contact-btn:hover::before {
-      opacity: 0;
-   }
-   
-   .footer-contact-btn:hover svg,
-   .footer-contact-btn:hover i {
-      transform: none;
-      -webkit-transform: none;
-   }
-   
-   /* Enhanced active state */
-   .footer-contact-btn:active {
-      transform: scale(0.96);
-      -webkit-transform: scale(0.96);
-   }
-   
-   .footer-contact-btn:active::before {
-      opacity: 0.5;
-   }
-   
-   /* Expand touch area */
-   .footer-contact-btn::after {
-      content: '';
-      position: absolute;
-      top: -0.625rem;
-      left: -0.625rem;
-      right: -0.625rem;
-      bottom: -0.625rem;
-      z-index: -1;
+   /* Active state محسّن */
+   .social-icon:active,
+   .social-link:active,
+   .footer-social-icon:active {
+      transform: scale(0.92);
+      -webkit-transform: scale(0.92);
    }
 }
 
@@ -16412,106 +16441,12 @@ input[type=radio] {
 /* ============================================ */
 
 @supports (padding: max(0px)) {
-   .footer-contact-section {
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
       padding-left: max(1rem, calc(env(safe-area-inset-left) + 1rem));
       padding-right: max(1rem, calc(env(safe-area-inset-right) + 1rem));
-      padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem));
-   }
-}
-
-/* ============================================ */
-/* SPECIFIC DEVICE OPTIMIZATIONS */
-/* ============================================ */
-
-/* iPhone X/XS/11 Pro */
-@media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-   .footer-contact-btn {
-      font-size: 0.875rem;
-      padding: 0.75rem 1.25rem;
-      min-height: 2.75rem;
-   }
-}
-
-/* iPhone XR/11 */
-@media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
-   .footer-contact-btn {
-      font-size: 0.875rem;
-      padding: 0.75rem 1.375rem;
-      min-height: 2.875rem;
-   }
-}
-
-/* iPhone 12/13/14 Pro */
-@media (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
-   .footer-contact-btn {
-      font-size: 0.875rem;
-      padding: 0.75rem 1.25rem;
-      min-height: 2.75rem;
-   }
-}
-
-/* iPhone 14/15 Pro Max */
-@media (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
-   .footer-contact-btn {
-      font-size: 0.875rem;
-      padding: 0.75rem 1.375rem;
-      min-height: 2.875rem;
-   }
-}
-
-/* iPad */
-@media (device-width: 768px) and (device-height: 1024px) {
-   .footer-contact-btn {
-      font-size: 0.9375rem;
-      padding: 0.875rem 1.75rem;
-      min-height: 3.25rem;
-   }
-}
-
-/* iPad Pro 11" */
-@media (device-width: 834px) and (device-height: 1194px) {
-   .footer-contact-btn {
-      font-size: 1rem;
-      padding: 0.9375rem 1.875rem;
-      min-height: 3.375rem;
-   }
-}
-
-/* iPad Pro 12.9" */
-@media (device-width: 1024px) and (device-height: 1366px) {
-   .footer-contact-btn {
-      font-size: 1.0625rem;
-      padding: 1rem 2rem;
-      min-height: 3.5rem;
-   }
-}
-
-/* ============================================ */
-/* FOLDABLE DEVICES */
-/* ============================================ */
-
-/* Galaxy Fold (Folded) */
-@media (min-width: 280px) and (max-width: 320px) {
-   .footer-contact-section {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      gap: 0.625rem;
-   }
-   
-   .footer-contact-btn {
-      width: 100%;
-      max-width: 16rem;
-   }
-}
-
-/* Galaxy Fold (Unfolded) */
-@media (min-width: 717px) and (max-width: 884px) and (orientation: portrait) {
-   .footer-contact-btn {
-      padding: 0.875rem 1.75rem;
-      font-size: 0.9375rem;
+      padding-bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
    }
 }
 
@@ -16520,187 +16455,60 @@ input[type=radio] {
 /* ============================================ */
 
 @media (prefers-color-scheme: dark) {
-   .footer-phone-btn {
-      background: #3b82f6;
-      border-color: #3b82f6;
-      box-shadow: 
-         0 0.25rem 0.875rem rgba(59, 130, 246, 0.3),
-         0 0.125rem 0.375rem rgba(59, 130, 246, 0.2);
-   }
-   
-   .footer-whatsapp-btn {
-      background: #25D366;
-      border-color: #25D366;
-      box-shadow: 
-         0 0.25rem 0.875rem rgba(37, 211, 102, 0.3),
-         0 0.125rem 0.375rem rgba(37, 211, 102, 0.2);
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
    }
 }
 
 /* ============================================ */
-/* HIGH DPI DISPLAYS (Retina) */
-/* ============================================ */
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-   .footer-contact-btn {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-   }
-}
-
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-   .footer-contact-btn {
-      border-width: 0.833px;
-   }
-}
-
-/* ============================================ */
-/* ACCESSIBILITY - REDUCED MOTION */
+/* ACCESSIBILITY */
 /* ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-   .footer-contact-btn,
-   .footer-contact-btn::before,
-   .footer-contact-btn svg,
-   .footer-contact-btn i {
+   .social-icon,
+   .social-icon::before,
+   .social-icon i,
+   .social-link,
+   .footer-social-icon {
       animation: none !important;
-      -webkit-animation: none !important;
       transition: none !important;
-      -webkit-transition: none !important;
    }
 }
-
-/* ============================================ */
-/* HIGH CONTRAST MODE */
-/* ============================================ */
 
 @media (prefers-contrast: high) {
-   .footer-contact-btn {
+   .social-icon,
+   .social-link,
+   .footer-social-icon {
       border-width: 4px;
-      font-weight: 800;
-   }
-}
-
-@media (prefers-contrast: more) {
-   .footer-phone-btn {
-      background: #1d4ed8;
-      border-color: #1d4ed8;
-   }
-   
-   .footer-whatsapp-btn {
-      background: #128C7E;
-      border-color: #128C7E;
    }
 }
 
 /* ============================================ */
-/* FORCED COLORS MODE */
+/* PERFORMANCE */
 /* ============================================ */
 
-@media (forced-colors: active) {
-   .footer-contact-btn {
-      border: 3px solid CanvasText;
-      forced-color-adjust: none;
-   }
+.social-icon,
+.social-link,
+.footer-social-icon,
+.social-icon::before,
+.social-icon i {
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+   -webkit-transform: translateZ(0);
+   transform: translateZ(0);
 }
 
 /* ============================================ */
-/* PRINT STYLES */
+/* PRINT */
 /* ============================================ */
 
 @media print {
-   .footer-contact-section {
+   .footer-social-section,
+   .social-media-links,
+   .footer-social-links {
       display: none !important;
-   }
-}
-
-/* ============================================ */
-/* PERFORMANCE OPTIMIZATIONS */
-/* ============================================ */
-
-.footer-contact-btn,
-.footer-contact-btn::before,
-.footer-contact-btn svg,
-.footer-contact-btn i {
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
-   -webkit-perspective: 1000px;
-   perspective: 1000px;
-   -webkit-transform: translateZ(0);
-   transform: translateZ(0);
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Prevent tap highlight */
-.footer-contact-btn {
-   -webkit-tap-highlight-color: transparent;
-   -webkit-tap-highlight-color: rgba(0,0,0,0);
-}
-
-/* ============================================ */
-/* ULTRA-WIDE MONITORS (21:9) */
-/* ============================================ */
-
-@media (min-aspect-ratio: 21/9) {
-   .footer-contact-section {
-      max-width: 85%;
-      margin: 0 auto;
-   }
-}
-
-@media (min-aspect-ratio: 32/9) {
-   .footer-contact-section {
-      max-width: 75%;
-      margin: 0 auto;
-   }
-}
-
-/* ============================================ */
-/* BROWSER SPECIFIC FIXES */
-/* ============================================ */
-
-/* Safari */
-@supports (-webkit-touch-callout: none) {
-   .footer-contact-btn {
-      -webkit-font-smoothing: antialiased;
-   }
-}
-
-/* Firefox */
-@-moz-document url-prefix() {
-   .footer-contact-btn {
-      -moz-osx-font-smoothing: grayscale;
-   }
-}
-
-/* Internet Explorer 11 */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-   .footer-contact-btn {
-      display: inline-block;
-   }
-   
-   .footer-contact-section {
-      text-align: center;
-   }
-}
-
-/* ============================================ */
-/* STACKING BUTTONS ON VERY SMALL SCREENS */
-/* ============================================ */
-
-@media (max-width: 480px) {
-   .footer-contact-section {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-      flex-direction: column;
-   }
-   
-   .footer-contact-btn {
-      width: 100%;
-      max-width: 20rem;
    }
 }
