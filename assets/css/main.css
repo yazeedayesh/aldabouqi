@@ -15676,22 +15676,15 @@ input[type=radio] {
 }
 
 /* ============================================ */
-/* ULTRA PROFESSIONAL CONTACT BAR */
-/* MAXIMUM RESPONSIVENESS & COMPATIBILITY */
+/* FOOTER CONTACT BUTTONS - ULTRA PROFESSIONAL */
+/* MAXIMUM RESPONSIVENESS & VISIBILITY */
 /* ============================================ */
 
 /* ============================================ */
-/* BASE STYLES - FOUNDATION */
+/* FOOTER CONTAINER */
 /* ============================================ */
 
-.center-contact-bar {
-   /* Positioning */
-   position: fixed;
-   bottom: 2rem;
-   left: 50%;
-   transform: translateX(-50%);
-   -webkit-transform: translateX(-50%);
-   
+.footer-contact-section {
    /* Layout */
    display: -webkit-box;
    display: -webkit-flex;
@@ -15705,44 +15698,22 @@ input[type=radio] {
    -webkit-justify-content: center;
    -ms-flex-pack: center;
    justify-content: center;
-   gap: 0.5rem;
+   gap: 1rem;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
    
-   /* Visual */
-   background: rgba(255, 255, 255, 0.98);
-   backdrop-filter: saturate(180%) blur(20px);
-   -webkit-backdrop-filter: saturate(180%) blur(20px);
-   padding: 0.625rem 1rem;
-   border-radius: 3.75rem;
-   
-   /* Shadow & Border */
-   box-shadow: 
-      0 0.625rem 2.5rem rgba(0, 0, 0, 0.08),
-      0 0.25rem 1rem rgba(0, 0, 0, 0.06),
-      0 0 0 1px rgba(0, 0, 0, 0.04),
-      0 0.125rem 0.25rem rgba(0, 0, 0, 0.04);
-   border: 1px solid rgba(0, 0, 0, 0.06);
-   
-   /* Constraints */
-   max-width: 90%;
-   z-index: 9999;
-   
-   /* Performance */
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
-   -webkit-perspective: 1000px;
-   perspective: 1000px;
-   will-change: transform;
-   
-   /* Transitions */
-   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-   -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   /* Spacing */
+   padding: 1.5rem 1rem;
+   margin: 0 auto;
+   width: 100%;
+   max-width: 100%;
 }
 
 /* ============================================ */
-/* CONTACT ITEMS - BASE */
+/* BASE BUTTON STYLES */
 /* ============================================ */
 
-.contact-item {
+.footer-contact-btn {
    /* Layout */
    display: -webkit-inline-box;
    display: -webkit-inline-flex;
@@ -15756,29 +15727,28 @@ input[type=radio] {
    -webkit-justify-content: center;
    -ms-flex-pack: center;
    justify-content: center;
-   gap: 0.5rem;
+   gap: 0.625rem;
    
    /* Spacing */
-   padding: 0.75rem 1.375rem;
+   padding: 0.9375rem 2rem;
    margin: 0;
    
    /* Visual */
-   background: rgba(255, 255, 255, 0.95);
-   border-radius: 3.125rem;
-   border: 2px solid transparent;
+   border-radius: 3rem;
+   border: 2.5px solid transparent;
+   background: transparent;
+   position: relative;
+   overflow: hidden;
    
    /* Typography */
-   font-family: -apple-system, BlinkMacSystemFont, 'Cairo', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', Arial, sans-serif;
-   font-size: 0.9375rem;
+   font-family: -apple-system, BlinkMacSystemFont, 'Cairo', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+   font-size: 1.0625rem;
    font-weight: 700;
-   line-height: 1.2;
-   letter-spacing: 0.01em;
-   color: #000000;
+   line-height: 1.3;
+   letter-spacing: 0.02em;
    text-decoration: none;
+   text-align: center;
    white-space: nowrap;
-   
-   /* Effects */
-   box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
    
    /* Interaction */
    cursor: pointer;
@@ -15790,25 +15760,23 @@ input[type=radio] {
    touch-action: manipulation;
    
    /* Constraints */
-   min-height: 3rem;
-   min-width: 3rem;
+   min-height: 3.25rem;
+   min-width: 10rem;
    
    /* Performance */
-   position: relative;
-   overflow: hidden;
    -webkit-backface-visibility: hidden;
    backface-visibility: hidden;
    -webkit-transform: translateZ(0);
    transform: translateZ(0);
-   will-change: transform, box-shadow;
+   will-change: transform, box-shadow, border-color;
    
    /* Transitions */
-   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Background Effect Layer */
-.contact-item::before {
+/* Hover Effect Background */
+.footer-contact-btn::before {
    content: '';
    position: absolute;
    top: 0;
@@ -15817,164 +15785,136 @@ input[type=radio] {
    bottom: 0;
    border-radius: inherit;
    opacity: 0;
-   transition: opacity 0.25s ease;
-   -webkit-transition: opacity 0.25s ease;
+   transition: opacity 0.3s ease;
+   -webkit-transition: opacity 0.3s ease;
    pointer-events: none;
    z-index: 0;
 }
 
 /* Content Layer */
-.contact-item svg,
-.contact-item span {
+.footer-contact-btn svg,
+.footer-contact-btn span,
+.footer-contact-btn i {
    position: relative;
    z-index: 1;
 }
 
-/* ============================================ */
-/* WHATSAPP SPECIFIC STYLING */
-/* ============================================ */
-
-.whatsapp-item {
-   border-color: #25D366;
-   background: rgba(255, 255, 255, 0.95);
-}
-
-.whatsapp-item::before {
-   background: -webkit-linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-   background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-}
-
-.whatsapp-item svg {
-   color: #25D366;
-   width: 1.375rem;
-   height: 1.375rem;
+.footer-contact-btn svg,
+.footer-contact-btn i {
    -ms-flex-negative: 0;
    flex-shrink: 0;
-   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Hover State - Desktop Only */
-@media (hover: hover) and (pointer: fine) {
-   .whatsapp-item:hover {
-      border-color: #128C7E;
-      color: #075E54;
-      transform: translateY(-0.125rem);
-      -webkit-transform: translateY(-0.125rem);
-      box-shadow: 
-         0 0.375rem 0.875rem rgba(37, 211, 102, 0.15),
-         0 0.125rem 0.375rem rgba(37, 211, 102, 0.1);
-   }
-   
-   .whatsapp-item:hover::before {
-      opacity: 1;
-   }
-   
-   .whatsapp-item:hover svg {
-      color: #075E54;
-      transform: scale(1.1) rotate(5deg);
-      -webkit-transform: scale(1.1) rotate(5deg);
-   }
-}
-
-/* Active State */
-.whatsapp-item:active {
-   transform: scale(0.96);
-   -webkit-transform: scale(0.96);
-}
-
-.whatsapp-item:active::before {
-   opacity: 0.8;
+   width: 1.375rem;
+   height: 1.375rem;
+   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================ */
-/* PHONE SPECIFIC STYLING */
+/* PHONE BUTTON (اتصل الآن) */
 /* ============================================ */
 
-.phone-item {
+.footer-phone-btn {
    border-color: #3b82f6;
-   background: rgba(255, 255, 255, 0.95);
+   color: #ffffff;
+   background: #3b82f6;
+   box-shadow: 
+      0 0.25rem 0.875rem rgba(59, 130, 246, 0.25),
+      0 0.125rem 0.375rem rgba(59, 130, 246, 0.15);
 }
 
-.phone-item::before {
-   background: -webkit-linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+.footer-phone-btn::before {
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
 }
 
-.phone-item svg {
-   color: #3b82f6;
-   width: 1.375rem;
-   height: 1.375rem;
-   -ms-flex-negative: 0;
-   flex-shrink: 0;
-   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+.footer-phone-btn svg,
+.footer-phone-btn i {
+   color: #ffffff;
 }
 
-/* Hover State - Desktop Only */
+/* Hover State - Desktop */
 @media (hover: hover) and (pointer: fine) {
-   .phone-item:hover {
+   .footer-phone-btn:hover {
+      background: #2563eb;
       border-color: #2563eb;
-      color: #1d4ed8;
-      transform: translateY(-0.125rem);
-      -webkit-transform: translateY(-0.125rem);
+      transform: translateY(-0.1875rem) scale(1.02);
+      -webkit-transform: translateY(-0.1875rem) scale(1.02);
       box-shadow: 
-         0 0.375rem 0.875rem rgba(59, 130, 246, 0.15),
-         0 0.125rem 0.375rem rgba(59, 130, 246, 0.1);
+         0 0.5rem 1.25rem rgba(59, 130, 246, 0.35),
+         0 0.25rem 0.625rem rgba(59, 130, 246, 0.2);
    }
    
-   .phone-item:hover::before {
+   .footer-phone-btn:hover::before {
       opacity: 1;
    }
    
-   .phone-item:hover svg {
-      color: #1d4ed8;
-      transform: scale(1.1) rotate(-5deg);
-      -webkit-transform: scale(1.1) rotate(-5deg);
+   .footer-phone-btn:hover svg,
+   .footer-phone-btn:hover i {
+      transform: scale(1.15) rotate(-8deg);
+      -webkit-transform: scale(1.15) rotate(-8deg);
    }
 }
 
 /* Active State */
-.phone-item:active {
-   transform: scale(0.96);
-   -webkit-transform: scale(0.96);
-}
-
-.phone-item:active::before {
-   opacity: 0.8;
-}
-
-/* ============================================ */
-/* DIVIDER */
-/* ============================================ */
-
-.contact-divider {
-   width: 2px;
-   height: 1.75rem;
-   -ms-flex-negative: 0;
-   flex-shrink: 0;
-   margin: 0 0.375rem;
-   background: -webkit-linear-gradient(top, 
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.12) 50%,
-      rgba(0, 0, 0, 0) 100%
-   );
-   background: linear-gradient(to bottom, 
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.12) 50%,
-      rgba(0, 0, 0, 0) 100%
-   );
+.footer-phone-btn:active {
+   transform: scale(0.97);
+   -webkit-transform: scale(0.97);
+   box-shadow: 
+      0 0.125rem 0.375rem rgba(59, 130, 246, 0.3),
+      0 0.0625rem 0.1875rem rgba(59, 130, 246, 0.15);
 }
 
 /* ============================================ */
-/* TEXT STYLING */
+/* WHATSAPP BUTTON */
 /* ============================================ */
 
-.contact-item span {
-   display: inline-block;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-   text-rendering: optimizeLegibility;
+.footer-whatsapp-btn {
+   border-color: #25D366;
+   color: #ffffff;
+   background: #25D366;
+   box-shadow: 
+      0 0.25rem 0.875rem rgba(37, 211, 102, 0.25),
+      0 0.125rem 0.375rem rgba(37, 211, 102, 0.15);
+}
+
+.footer-whatsapp-btn::before {
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+.footer-whatsapp-btn svg,
+.footer-whatsapp-btn i {
+   color: #ffffff;
+}
+
+/* Hover State - Desktop */
+@media (hover: hover) and (pointer: fine) {
+   .footer-whatsapp-btn:hover {
+      background: #128C7E;
+      border-color: #128C7E;
+      transform: translateY(-0.1875rem) scale(1.02);
+      -webkit-transform: translateY(-0.1875rem) scale(1.02);
+      box-shadow: 
+         0 0.5rem 1.25rem rgba(37, 211, 102, 0.35),
+         0 0.25rem 0.625rem rgba(37, 211, 102, 0.2);
+   }
+   
+   .footer-whatsapp-btn:hover::before {
+      opacity: 1;
+   }
+   
+   .footer-whatsapp-btn:hover svg,
+   .footer-whatsapp-btn:hover i {
+      transform: scale(1.15) rotate(8deg);
+      -webkit-transform: scale(1.15) rotate(8deg);
+   }
+}
+
+/* Active State */
+.footer-whatsapp-btn:active {
+   transform: scale(0.97);
+   -webkit-transform: scale(0.97);
+   box-shadow: 
+      0 0.125rem 0.375rem rgba(37, 211, 102, 0.3),
+      0 0.0625rem 0.1875rem rgba(37, 211, 102, 0.15);
 }
 
 /* ============================================ */
@@ -15982,30 +15922,24 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 3840px) {
-   .center-contact-bar {
-      bottom: 3.5rem;
-      padding: 1rem 1.75rem;
-      gap: 0.75rem;
-      border-width: 2px;
+   .footer-contact-section {
+      padding: 2.5rem 1.5rem;
+      gap: 1.5rem;
    }
    
-   .contact-item {
-      padding: 1.125rem 2rem;
-      font-size: 1.25rem;
-      min-height: 4rem;
-      border-width: 3px;
-      gap: 0.75rem;
+   .footer-contact-btn {
+      padding: 1.375rem 3rem;
+      font-size: 1.5rem;
+      min-height: 4.5rem;
+      min-width: 14rem;
+      border-width: 3.5px;
+      gap: 1rem;
    }
    
-   .contact-item svg {
-      width: 2rem;
-      height: 2rem;
-   }
-   
-   .contact-divider {
-      height: 2.5rem;
-      width: 3px;
-      margin: 0 0.625rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 2.25rem;
+      height: 2.25rem;
    }
 }
 
@@ -16014,29 +15948,24 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 2560px) and (max-width: 3839px) {
-   .center-contact-bar {
-      bottom: 3rem;
-      padding: 0.875rem 1.5rem;
-      gap: 0.625rem;
+   .footer-contact-section {
+      padding: 2.25rem 1.375rem;
+      gap: 1.375rem;
    }
    
-   .contact-item {
-      padding: 1rem 1.75rem;
-      font-size: 1.125rem;
-      min-height: 3.75rem;
-      border-width: 2.5px;
-      gap: 0.625rem;
+   .footer-contact-btn {
+      padding: 1.25rem 2.75rem;
+      font-size: 1.375rem;
+      min-height: 4.25rem;
+      min-width: 13rem;
+      border-width: 3px;
+      gap: 0.875rem;
    }
    
-   .contact-item svg {
-      width: 1.75rem;
-      height: 1.75rem;
-   }
-   
-   .contact-divider {
-      height: 2.25rem;
-      width: 2.5px;
-      margin: 0 0.5rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 2rem;
+      height: 2rem;
    }
 }
 
@@ -16045,27 +15974,23 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1920px) and (max-width: 2559px) {
-   .center-contact-bar {
-      bottom: 2.5rem;
-      padding: 0.8125rem 1.375rem;
-      gap: 0.5625rem;
+   .footer-contact-section {
+      padding: 2rem 1.25rem;
+      gap: 1.25rem;
    }
    
-   .contact-item {
-      padding: 0.9375rem 1.625rem;
-      font-size: 1.0625rem;
-      min-height: 3.5rem;
-      gap: 0.5625rem;
+   .footer-contact-btn {
+      padding: 1.125rem 2.5rem;
+      font-size: 1.25rem;
+      min-height: 4rem;
+      min-width: 12rem;
+      gap: 0.75rem;
    }
    
-   .contact-item svg {
-      width: 1.625rem;
-      height: 1.625rem;
-   }
-   
-   .contact-divider {
-      height: 2.125rem;
-      margin: 0 0.4375rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.75rem;
+      height: 1.75rem;
    }
 }
 
@@ -16074,24 +15999,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1440px) and (max-width: 1919px) {
-   .center-contact-bar {
-      bottom: 2.25rem;
-      padding: 0.75rem 1.25rem;
+   .footer-contact-section {
+      padding: 1.875rem 1.125rem;
+      gap: 1.125rem;
    }
    
-   .contact-item {
-      padding: 0.875rem 1.5rem;
-      font-size: 1rem;
-      min-height: 3.25rem;
+   .footer-contact-btn {
+      padding: 1.0625rem 2.25rem;
+      font-size: 1.125rem;
+      min-height: 3.75rem;
+      min-width: 11.5rem;
    }
    
-   .contact-item svg {
-      width: 1.5rem;
-      height: 1.5rem;
-   }
-   
-   .contact-divider {
-      height: 2rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.625rem;
+      height: 1.625rem;
    }
 }
 
@@ -16100,24 +16023,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1200px) and (max-width: 1439px) {
-   .center-contact-bar {
-      bottom: 2rem;
-      padding: 0.6875rem 1.125rem;
+   .footer-contact-section {
+      padding: 1.75rem 1rem;
+      gap: 1rem;
    }
    
-   .contact-item {
-      padding: 0.8125rem 1.375rem;
-      font-size: 0.9375rem;
-      min-height: 3rem;
+   .footer-contact-btn {
+      padding: 1rem 2.125rem;
+      font-size: 1.0625rem;
+      min-height: 3.5rem;
+      min-width: 11rem;
    }
    
-   .contact-item svg {
-      width: 1.375rem;
-      height: 1.375rem;
-   }
-   
-   .contact-divider {
-      height: 1.875rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.5rem;
+      height: 1.5rem;
    }
 }
 
@@ -16126,27 +16047,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 1024px) and (max-width: 1199px) {
-   .center-contact-bar {
-      bottom: 1.875rem;
-      padding: 0.625rem 1rem;
-      max-width: 92%;
+   .footer-contact-section {
+      padding: 1.625rem 1rem;
+      gap: 0.9375rem;
    }
    
-   .contact-item {
-      padding: 0.75rem 1.25rem;
-      font-size: 0.875rem;
-      min-height: 2.875rem;
-      gap: 0.4375rem;
+   .footer-contact-btn {
+      padding: 0.9375rem 2rem;
+      font-size: 1rem;
+      min-height: 3.375rem;
+      min-width: 10.5rem;
    }
    
-   .contact-item svg {
-      width: 1.3125rem;
-      height: 1.3125rem;
-   }
-   
-   .contact-divider {
-      height: 1.75rem;
-      margin: 0 0.3125rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.4375rem;
+      height: 1.4375rem;
    }
 }
 
@@ -16155,26 +16071,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 900px) and (max-width: 1023px) {
-   .center-contact-bar {
-      bottom: 1.75rem;
-      padding: 0.5625rem 0.9375rem;
-      max-width: 94%;
+   .footer-contact-section {
+      padding: 1.5rem 0.9375rem;
+      gap: 0.875rem;
    }
    
-   .contact-item {
-      padding: 0.6875rem 1.125rem;
-      font-size: 0.875rem;
-      min-height: 2.75rem;
-      gap: 0.4375rem;
+   .footer-contact-btn {
+      padding: 0.875rem 1.875rem;
+      font-size: 0.9375rem;
+      min-height: 3.25rem;
+      min-width: 10rem;
    }
    
-   .contact-item svg {
-      width: 1.25rem;
-      height: 1.25rem;
-   }
-   
-   .contact-divider {
-      height: 1.625rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.375rem;
+      height: 1.375rem;
    }
 }
 
@@ -16183,26 +16095,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 768px) and (max-width: 899px) {
-   .center-contact-bar {
-      bottom: 1.625rem;
-      padding: 0.5625rem 0.875rem;
-      max-width: 95%;
+   .footer-contact-section {
+      padding: 1.5rem 0.875rem;
+      gap: 0.875rem;
    }
    
-   .contact-item {
-      padding: 0.625rem 1.0625rem;
-      font-size: 0.875rem;
-      min-height: 2.75rem;
-      gap: 0.4375rem;
+   .footer-contact-btn {
+      padding: 0.875rem 1.75rem;
+      font-size: 0.9375rem;
+      min-height: 3.25rem;
+      min-width: 9.5rem;
    }
    
-   .contact-item svg {
-      width: 1.25rem;
-      height: 1.25rem;
-   }
-   
-   .contact-divider {
-      height: 1.625rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.375rem;
+      height: 1.375rem;
    }
 }
 
@@ -16211,27 +16119,23 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 640px) and (max-width: 767px) {
-   .center-contact-bar {
-      bottom: 1.5rem;
-      padding: 0.5rem 0.8125rem;
-      max-width: 96%;
+   .footer-contact-section {
+      padding: 1.375rem 0.875rem;
+      gap: 0.8125rem;
    }
    
-   .contact-item {
-      padding: 0.625rem 1rem;
-      font-size: 0.875rem;
-      min-height: 2.75rem;
-      gap: 0.375rem;
+   .footer-contact-btn {
+      padding: 0.8125rem 1.625rem;
+      font-size: 0.9375rem;
+      min-height: 3.125rem;
+      min-width: 9rem;
+      border-width: 2.5px;
    }
    
-   .contact-item svg {
-      width: 1.1875rem;
-      height: 1.1875rem;
-   }
-   
-   .contact-divider {
-      height: 1.5rem;
-      margin: 0 0.25rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.3125rem;
+      height: 1.3125rem;
    }
 }
 
@@ -16240,28 +16144,23 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 540px) and (max-width: 639px) {
-   .center-contact-bar {
-      bottom: 1.375rem;
-      padding: 0.5rem 0.75rem;
-      max-width: 96%;
+   .footer-contact-section {
+      padding: 1.25rem 0.8125rem;
+      gap: 0.75rem;
    }
    
-   .contact-item {
-      padding: 0.5625rem 0.9375rem;
-      font-size: 0.8125rem;
-      min-height: 2.625rem;
-      gap: 0.375rem;
-      border-width: 2px;
+   .footer-contact-btn {
+      padding: 0.8125rem 1.5rem;
+      font-size: 0.9375rem;
+      min-height: 3rem;
+      min-width: 8.5rem;
+      border-width: 2.5px;
    }
    
-   .contact-item svg {
-      width: 1.125rem;
-      height: 1.125rem;
-   }
-   
-   .contact-divider {
-      height: 1.5rem;
-      margin: 0 0.25rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.25rem;
+      height: 1.25rem;
    }
 }
 
@@ -16270,28 +16169,24 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 430px) and (max-width: 539px) {
-   .center-contact-bar {
-      bottom: 1.25rem;
-      padding: 0.4375rem 0.6875rem;
-      max-width: 97%;
+   .footer-contact-section {
+      padding: 1.125rem 0.75rem;
+      gap: 0.6875rem;
    }
    
-   .contact-item {
-      padding: 0.5625rem 0.875rem;
-      font-size: 0.8125rem;
-      min-height: 2.625rem;
-      gap: 0.375rem;
-      border-width: 2px;
+   .footer-contact-btn {
+      padding: 0.75rem 1.375rem;
+      font-size: 0.875rem;
+      min-height: 2.875rem;
+      min-width: 8rem;
+      border-width: 2.5px;
+      gap: 0.5rem;
    }
    
-   .contact-item svg {
-      width: 1.125rem;
-      height: 1.125rem;
-   }
-   
-   .contact-divider {
-      height: 1.4375rem;
-      margin: 0 0.1875rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.1875rem;
+      height: 1.1875rem;
    }
 }
 
@@ -16301,200 +16196,164 @@ input[type=radio] {
 /* ============================================ */
 
 @media (min-width: 390px) and (max-width: 429px) {
-   .center-contact-bar {
-      bottom: 1.125rem;
-      padding: 0.4375rem 0.625rem;
-      max-width: 97%;
+   .footer-contact-section {
+      padding: 1.0625rem 0.6875rem;
+      gap: 0.625rem;
    }
    
-   .contact-item {
-      padding: 0.5rem 0.8125rem;
-      font-size: 0.8125rem;
-      min-height: 2.5rem;
-      gap: 0.3125rem;
-      border-width: 2px;
+   .footer-contact-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      min-height: 2.75rem;
+      min-width: 7.5rem;
+      border-width: 2.5px;
+      gap: 0.5rem;
    }
    
-   .contact-item svg {
-      width: 1.0625rem;
-      height: 1.0625rem;
-   }
-   
-   .contact-divider {
-      height: 1.375rem;
-      margin: 0 0.1875rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.1875rem;
+      height: 1.1875rem;
    }
 }
 
 /* ============================================ */
 /* SMALL MOBILE (360px - 389px) */
-/* Galaxy S Series, Pixel */
+/* Galaxy S Series */
 /* ============================================ */
 
 @media (min-width: 360px) and (max-width: 389px) {
-   .center-contact-bar {
-      bottom: 1rem;
-      padding: 0.375rem 0.5625rem;
-      max-width: 98%;
+   .footer-contact-section {
+      padding: 1rem 0.625rem;
+      gap: 0.5625rem;
    }
    
-   .contact-item {
-      padding: 0.5rem 0.75rem;
+   .footer-contact-btn {
+      padding: 0.6875rem 1.125rem;
       font-size: 0.8125rem;
-      min-height: 2.5rem;
-      gap: 0.3125rem;
+      min-height: 2.625rem;
+      min-width: 7rem;
       border-width: 2px;
+      gap: 0.4375rem;
    }
    
-   .contact-item svg {
-      width: 1.0625rem;
-      height: 1.0625rem;
-   }
-   
-   .contact-divider {
-      height: 1.375rem;
-      margin: 0 0.1875rem;
-      width: 1.5px;
-   }
-}
-
-/* ============================================ */
-/* EXTRA SMALL MOBILE (320px - 359px) */
-/* iPhone SE, older devices */
-/* ============================================ */
-
-@media (min-width: 320px) and (max-width: 359px) {
-   .center-contact-bar {
-      bottom: 0.875rem;
-      padding: 0.3125rem 0.5rem;
-      max-width: 98%;
-   }
-   
-   .contact-item {
-      padding: 0.4375rem 0.6875rem;
-      font-size: 0.75rem;
-      min-height: 2.375rem;
-      gap: 0.3125rem;
-      border-width: 1.5px;
-   }
-   
-   .contact-item svg {
-      width: 1rem;
-      height: 1rem;
-   }
-   
-   .contact-divider {
-      height: 1.25rem;
-      margin: 0 0.1875rem;
-      width: 1.5px;
-   }
-}
-
-/* ============================================ */
-/* ULTRA COMPACT (280px - 319px) */
-/* Very old devices, Galaxy Fold inner */
-/* ============================================ */
-
-@media (max-width: 319px) {
-   .center-contact-bar {
-      bottom: 0.75rem;
-      padding: 0.25rem 0.4375rem;
-      max-width: 99%;
-   }
-   
-   .contact-item {
-      padding: 0.375rem 0.625rem;
-      font-size: 0.6875rem;
-      min-height: 2.25rem;
-      gap: 0.25rem;
-      border-width: 1.5px;
-   }
-   
-   .contact-item svg {
-      width: 0.9375rem;
-      height: 0.9375rem;
-   }
-   
-   .contact-divider {
-      height: 1.125rem;
-      margin: 0 0.125rem;
-      width: 1px;
-   }
-}
-
-/* ============================================ */
-/* LANDSCAPE ORIENTATION - ALL DEVICES */
-/* ============================================ */
-
-/* Large Landscape (1024px+) */
-@media (min-width: 1024px) and (orientation: landscape) and (max-height: 768px) {
-   .center-contact-bar {
-      bottom: 1.25rem;
-      padding: 0.5rem 0.875rem;
-   }
-   
-   .contact-item {
-      padding: 0.625rem 1rem;
-      font-size: 0.875rem;
-      min-height: 2.5rem;
-   }
-}
-
-/* Tablet Landscape (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) and (max-height: 600px) {
-   .center-contact-bar {
-      bottom: 1rem;
-      padding: 0.4375rem 0.75rem;
-   }
-   
-   .contact-item {
-      padding: 0.5rem 0.875rem;
-      font-size: 0.8125rem;
-      min-height: 2.375rem;
-   }
-   
-   .contact-item svg {
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
       width: 1.125rem;
       height: 1.125rem;
    }
 }
 
-/* Mobile Landscape (below 768px) */
-@media (max-width: 767px) and (orientation: landscape) and (max-height: 428px) {
-   .center-contact-bar {
-      bottom: 0.75rem;
-      padding: 0.375rem 0.625rem;
+/* ============================================ */
+/* EXTRA SMALL MOBILE (320px - 359px) */
+/* iPhone SE */
+/* ============================================ */
+
+@media (min-width: 320px) and (max-width: 359px) {
+   .footer-contact-section {
+      padding: 0.9375rem 0.5625rem;
+      gap: 0.5rem;
    }
    
-   .contact-item {
-      padding: 0.4375rem 0.75rem;
-      font-size: 0.75rem;
-      min-height: 2.25rem;
-      gap: 0.25rem;
+   .footer-contact-btn {
+      padding: 0.625rem 1rem;
+      font-size: 0.8125rem;
+      min-height: 2.5rem;
+      min-width: 6.5rem;
+      border-width: 2px;
+      gap: 0.4375rem;
    }
    
-   .contact-item svg {
-      width: 1rem;
-      height: 1rem;
-   }
-   
-   .contact-divider {
-      height: 1.25rem;
-      margin: 0 0.1875rem;
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.0625rem;
+      height: 1.0625rem;
    }
 }
 
-/* Extreme Landscape (very narrow height) */
-@media (orientation: landscape) and (max-height: 375px) {
-   .center-contact-bar {
-      bottom: 0.625rem;
-      padding: 0.3125rem 0.5rem;
+/* ============================================ */
+/* ULTRA COMPACT (280px - 319px) */
+/* Galaxy Fold */
+/* ============================================ */
+
+@media (max-width: 319px) {
+   .footer-contact-section {
+      padding: 0.875rem 0.5rem;
+      gap: 0.4375rem;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
    }
    
-   .contact-item {
-      padding: 0.375rem 0.625rem;
-      font-size: 0.6875rem;
-      min-height: 2rem;
+   .footer-contact-btn {
+      padding: 0.5625rem 0.9375rem;
+      font-size: 0.75rem;
+      min-height: 2.375rem;
+      min-width: 100%;
+      max-width: 16rem;
+      border-width: 2px;
+      gap: 0.375rem;
+   }
+   
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1rem;
+      height: 1rem;
+   }
+}
+
+/* ============================================ */
+/* LANDSCAPE ORIENTATION */
+/* ============================================ */
+
+/* Tablet Landscape */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) and (max-height: 600px) {
+   .footer-contact-section {
+      padding: 1rem 0.875rem;
+      gap: 0.75rem;
+   }
+   
+   .footer-contact-btn {
+      padding: 0.6875rem 1.5rem;
+      font-size: 0.875rem;
+      min-height: 2.75rem;
+   }
+}
+
+/* Mobile Landscape */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 428px) {
+   .footer-contact-section {
+      padding: 0.875rem 0.75rem;
+      gap: 0.625rem;
+   }
+   
+   .footer-contact-btn {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.8125rem;
+      min-height: 2.5rem;
+      min-width: 7rem;
+   }
+   
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
+      width: 1.125rem;
+      height: 1.125rem;
+   }
+}
+
+/* Extreme Landscape */
+@media (orientation: landscape) and (max-height: 375px) {
+   .footer-contact-section {
+      padding: 0.75rem 0.625rem;
+      gap: 0.5rem;
+   }
+   
+   .footer-contact-btn {
+      padding: 0.5rem 1.125rem;
+      font-size: 0.75rem;
+      min-height: 2.25rem;
    }
 }
 
@@ -16504,40 +16363,40 @@ input[type=radio] {
 
 @media (hover: none) and (pointer: coarse) {
    /* Ensure proper touch targets */
-   .contact-item {
-      min-height: 2.75rem;
-      min-width: 2.75rem;
-      padding: 0.625rem 1rem;
+   .footer-contact-btn {
+      min-height: 3rem;
+      min-width: 8rem;
+      padding: 0.875rem 1.5rem;
    }
    
-   /* Remove hover effects on touch devices */
-   .contact-item:hover {
+   /* Remove hover effects */
+   .footer-contact-btn:hover {
       transform: none;
       -webkit-transform: none;
-      box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
    }
    
-   .contact-item:hover::before {
+   .footer-contact-btn:hover::before {
       opacity: 0;
    }
    
-   .contact-item:hover svg {
+   .footer-contact-btn:hover svg,
+   .footer-contact-btn:hover i {
       transform: none;
       -webkit-transform: none;
    }
    
-   /* Enhanced active state for touch */
-   .contact-item:active {
-      transform: scale(0.94);
-      -webkit-transform: scale(0.94);
+   /* Enhanced active state */
+   .footer-contact-btn:active {
+      transform: scale(0.96);
+      -webkit-transform: scale(0.96);
    }
    
-   .contact-item:active::before {
-      opacity: 0.6;
+   .footer-contact-btn:active::before {
+      opacity: 0.5;
    }
    
    /* Expand touch area */
-   .contact-item::after {
+   .footer-contact-btn::after {
       content: '';
       position: absolute;
       top: -0.625rem;
@@ -16553,115 +16412,106 @@ input[type=radio] {
 /* ============================================ */
 
 @supports (padding: max(0px)) {
-   .center-contact-bar {
-      bottom: max(1.25rem, calc(env(safe-area-inset-bottom) + 0.75rem));
-      left: max(50%, calc(env(safe-area-inset-left) + 50%));
+   .footer-contact-section {
       padding-left: max(1rem, calc(env(safe-area-inset-left) + 1rem));
       padding-right: max(1rem, calc(env(safe-area-inset-right) + 1rem));
+      padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem));
    }
 }
 
+/* ============================================ */
+/* SPECIFIC DEVICE OPTIMIZATIONS */
+/* ============================================ */
+
 /* iPhone X/XS/11 Pro */
 @media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-   .center-contact-bar {
-      bottom: calc(env(safe-area-inset-bottom) + 1rem);
+   .footer-contact-btn {
+      font-size: 0.875rem;
+      padding: 0.75rem 1.25rem;
+      min-height: 2.75rem;
    }
 }
 
 /* iPhone XR/11 */
 @media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
-   .center-contact-bar {
-      bottom: calc(env(safe-area-inset-bottom) + 1rem);
-   }
-}
-
-/* iPhone 12/13 Mini */
-@media (device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
-   .center-contact-bar {
-      bottom: calc(env(safe-area-inset-bottom) + 0.875rem);
+   .footer-contact-btn {
+      font-size: 0.875rem;
+      padding: 0.75rem 1.375rem;
+      min-height: 2.875rem;
    }
 }
 
 /* iPhone 12/13/14 Pro */
 @media (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
-   .center-contact-bar {
-      bottom: calc(env(safe-area-inset-bottom) + 1rem);
+   .footer-contact-btn {
+      font-size: 0.875rem;
+      padding: 0.75rem 1.25rem;
+      min-height: 2.75rem;
    }
 }
 
 /* iPhone 14/15 Pro Max */
 @media (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
-   .center-contact-bar {
-      bottom: calc(env(safe-area-inset-bottom) + 1.125rem);
+   .footer-contact-btn {
+      font-size: 0.875rem;
+      padding: 0.75rem 1.375rem;
+      min-height: 2.875rem;
+   }
+}
+
+/* iPad */
+@media (device-width: 768px) and (device-height: 1024px) {
+   .footer-contact-btn {
+      font-size: 0.9375rem;
+      padding: 0.875rem 1.75rem;
+      min-height: 3.25rem;
+   }
+}
+
+/* iPad Pro 11" */
+@media (device-width: 834px) and (device-height: 1194px) {
+   .footer-contact-btn {
+      font-size: 1rem;
+      padding: 0.9375rem 1.875rem;
+      min-height: 3.375rem;
+   }
+}
+
+/* iPad Pro 12.9" */
+@media (device-width: 1024px) and (device-height: 1366px) {
+   .footer-contact-btn {
+      font-size: 1.0625rem;
+      padding: 1rem 2rem;
+      min-height: 3.5rem;
    }
 }
 
 /* ============================================ */
-/* BROWSER SPECIFIC FIXES */
+/* FOLDABLE DEVICES */
 /* ============================================ */
 
-/* Safari Specific */
-@supports (-webkit-touch-callout: none) {
-   .center-contact-bar {
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
+/* Galaxy Fold (Folded) */
+@media (min-width: 280px) and (max-width: 320px) {
+   .footer-contact-section {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      gap: 0.625rem;
    }
    
-   .contact-item {
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+   .footer-contact-btn {
+      width: 100%;
+      max-width: 16rem;
    }
 }
 
-/* Firefox */
-@-moz-document url-prefix() {
-   .center-contact-bar {
-      background: rgba(255, 255, 255, 0.98);
-   }
-}
-
-/* Edge/Chrome */
-@supports (-ms-ime-align: auto) {
-   .center-contact-bar {
-      background: rgba(255, 255, 255, 0.98);
-   }
-}
-
-/* Internet Explorer 11 */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-   .center-contact-bar {
-      background: #ffffff;
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#faffffff,endColorstr=#faffffff);
-   }
-   
-   .contact-item {
-      display: inline-block;
-      vertical-align: middle;
-   }
-   
-   .contact-divider {
-      display: inline-block;
-      vertical-align: middle;
-   }
-}
-
-/* ============================================ */
-/* HIGH DPI DISPLAYS (Retina) */
-/* ============================================ */
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-   .center-contact-bar {
-      border-width: 0.5px;
-   }
-   
-   .contact-item {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-   }
-}
-
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-   .contact-item {
-      border-width: 0.667px;
+/* Galaxy Fold (Unfolded) */
+@media (min-width: 717px) and (max-width: 884px) and (orientation: portrait) {
+   .footer-contact-btn {
+      padding: 0.875rem 1.75rem;
+      font-size: 0.9375rem;
    }
 }
 
@@ -16670,45 +16520,38 @@ input[type=radio] {
 /* ============================================ */
 
 @media (prefers-color-scheme: dark) {
-   .center-contact-bar {
-      background: rgba(20, 20, 20, 0.98);
-      border-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 
-         0 0.625rem 2.5rem rgba(0, 0, 0, 0.4),
-         0 0.25rem 1rem rgba(0, 0, 0, 0.3),
-         0 0 0 1px rgba(255, 255, 255, 0.08);
-   }
-   
-   .contact-item {
-      color: #ffffff;
-      background: rgba(35, 35, 35, 0.95);
-      box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.3);
-   }
-   
-   .whatsapp-item {
-      border-color: #25D366;
-      background: rgba(37, 211, 102, 0.08);
-   }
-   
-   .whatsapp-item::before {
-      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(18, 140, 126, 0.2) 100%);
-   }
-   
-   .phone-item {
+   .footer-phone-btn {
+      background: #3b82f6;
       border-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.08);
+      box-shadow: 
+         0 0.25rem 0.875rem rgba(59, 130, 246, 0.3),
+         0 0.125rem 0.375rem rgba(59, 130, 246, 0.2);
    }
    
-   .phone-item::before {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%);
+   .footer-whatsapp-btn {
+      background: #25D366;
+      border-color: #25D366;
+      box-shadow: 
+         0 0.25rem 0.875rem rgba(37, 211, 102, 0.3),
+         0 0.125rem 0.375rem rgba(37, 211, 102, 0.2);
    }
-   
-   .contact-divider {
-      background: linear-gradient(to bottom, 
-         rgba(255, 255, 255, 0) 0%,
-         rgba(255, 255, 255, 0.2) 50%,
-         rgba(255, 255, 255, 0) 100%
-      );
+}
+
+/* ============================================ */
+/* HIGH DPI DISPLAYS (Retina) */
+/* ============================================ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+   .footer-contact-btn {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+   }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+   .footer-contact-btn {
+      border-width: 0.833px;
    }
 }
 
@@ -16717,19 +16560,10 @@ input[type=radio] {
 /* ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-   *,
-   *::before,
-   *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-   }
-   
-   .center-contact-bar,
-   .contact-item,
-   .contact-item svg,
-   .contact-item::before {
+   .footer-contact-btn,
+   .footer-contact-btn::before,
+   .footer-contact-btn svg,
+   .footer-contact-btn i {
       animation: none !important;
       -webkit-animation: none !important;
       transition: none !important;
@@ -16742,46 +16576,32 @@ input[type=radio] {
 /* ============================================ */
 
 @media (prefers-contrast: high) {
-   .center-contact-bar {
-      border: 2px solid currentColor;
-   }
-   
-   .contact-item {
-      border-width: 3px;
+   .footer-contact-btn {
+      border-width: 4px;
       font-weight: 800;
    }
 }
 
 @media (prefers-contrast: more) {
-   .contact-item {
-      background: #ffffff;
-      color: #000000;
-      border-width: 3px;
+   .footer-phone-btn {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
    }
    
-   .center-contact-bar {
-      background: #ffffff;
+   .footer-whatsapp-btn {
+      background: #128C7E;
+      border-color: #128C7E;
    }
 }
 
 /* ============================================ */
-/* FORCED COLORS MODE (Windows High Contrast) */
+/* FORCED COLORS MODE */
 /* ============================================ */
 
 @media (forced-colors: active) {
-   .center-contact-bar {
-      border: 2px solid CanvasText;
-      background: Canvas;
-   }
-   
-   .contact-item {
-      border: 2px solid CanvasText;
-      color: CanvasText;
+   .footer-contact-btn {
+      border: 3px solid CanvasText;
       forced-color-adjust: none;
-   }
-   
-   .contact-divider {
-      background: CanvasText;
    }
 }
 
@@ -16790,7 +16610,7 @@ input[type=radio] {
 /* ============================================ */
 
 @media print {
-   .center-contact-bar {
+   .footer-contact-section {
       display: none !important;
    }
 }
@@ -16799,11 +16619,10 @@ input[type=radio] {
 /* PERFORMANCE OPTIMIZATIONS */
 /* ============================================ */
 
-/* GPU Acceleration */
-.center-contact-bar,
-.contact-item,
-.contact-item svg,
-.contact-item::before {
+.footer-contact-btn,
+.footer-contact-btn::before,
+.footer-contact-btn svg,
+.footer-contact-btn i {
    -webkit-backface-visibility: hidden;
    backface-visibility: hidden;
    -webkit-perspective: 1000px;
@@ -16814,149 +16633,74 @@ input[type=radio] {
    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Prevent text selection */
-.contact-item,
-.contact-item span {
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   -webkit-touch-callout: none;
-}
-
 /* Prevent tap highlight */
-.contact-item {
+.footer-contact-btn {
    -webkit-tap-highlight-color: transparent;
    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 /* ============================================ */
-/* FOLDABLE DEVICES */
-/* ============================================ */
-
-/* Galaxy Fold (Folded) */
-@media (min-width: 280px) and (max-width: 320px) {
-   .center-contact-bar {
-      bottom: 0.75rem;
-      padding: 0.3125rem 0.5rem;
-      max-width: 99%;
-   }
-   
-   .contact-item {
-      padding: 0.4375rem 0.625rem;
-      font-size: 0.6875rem;
-      min-height: 2.25rem;
-   }
-}
-
-/* Galaxy Fold (Unfolded) */
-@media (min-width: 717px) and (max-width: 884px) and (orientation: portrait) {
-   .center-contact-bar {
-      bottom: 1.5rem;
-      padding: 0.5625rem 0.875rem;
-   }
-   
-   .contact-item {
-      padding: 0.6875rem 1.0625rem;
-      font-size: 0.875rem;
-   }
-}
-
-/* Surface Duo */
-@media (min-width: 540px) and (max-width: 720px) and (orientation: portrait) {
-   .center-contact-bar {
-      bottom: 1.375rem;
-      padding: 0.5rem 0.8125rem;
-   }
-}
-
-/* ============================================ */
-/* SPECIFIC DEVICE OPTIMIZATIONS */
-/* ============================================ */
-
-/* iPhone 6/7/8 */
-@media (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
-   .contact-item {
-      font-size: 0.8125rem;
-      padding: 0.5rem 0.8125rem;
-   }
-}
-
-/* iPhone 6/7/8 Plus */
-@media (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
-   .contact-item {
-      font-size: 0.875rem;
-      padding: 0.5625rem 0.9375rem;
-   }
-}
-
-/* iPad (all generations) */
-@media (device-width: 768px) and (device-height: 1024px) {
-   .center-contact-bar {
-      bottom: 1.875rem;
-      padding: 0.625rem 1rem;
-   }
-   
-   .contact-item {
-      padding: 0.75rem 1.125rem;
-      font-size: 0.9375rem;
-   }
-}
-
-/* iPad Pro 11" */
-@media (device-width: 834px) and (device-height: 1194px) {
-   .center-contact-bar {
-      bottom: 2rem;
-      padding: 0.6875rem 1.125rem;
-   }
-   
-   .contact-item {
-      padding: 0.8125rem 1.25rem;
-      font-size: 0.9375rem;
-   }
-}
-
-/* iPad Pro 12.9" */
-@media (device-width: 1024px) and (device-height: 1366px) {
-   .center-contact-bar {
-      bottom: 2.25rem;
-      padding: 0.75rem 1.25rem;
-   }
-   
-   .contact-item {
-      padding: 0.875rem 1.375rem;
-      font-size: 1rem;
-   }
-}
-
-/* ============================================ */
-/* ULTRA-WIDE MONITORS (21:9 and wider) */
+/* ULTRA-WIDE MONITORS (21:9) */
 /* ============================================ */
 
 @media (min-aspect-ratio: 21/9) {
-   .center-contact-bar {
+   .footer-contact-section {
       max-width: 85%;
+      margin: 0 auto;
    }
 }
 
 @media (min-aspect-ratio: 32/9) {
-   .center-contact-bar {
+   .footer-contact-section {
       max-width: 75%;
+      margin: 0 auto;
    }
 }
 
 /* ============================================ */
-/* VERTICAL MONITORS (Portrait Desktop) */
+/* BROWSER SPECIFIC FIXES */
 /* ============================================ */
 
-@media (min-width: 1024px) and (orientation: portrait) {
-   .center-contact-bar {
-      bottom: 2rem;
-      padding: 0.75rem 1.25rem;
+/* Safari */
+@supports (-webkit-touch-callout: none) {
+   .footer-contact-btn {
+      -webkit-font-smoothing: antialiased;
+   }
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+   .footer-contact-btn {
+      -moz-osx-font-smoothing: grayscale;
+   }
+}
+
+/* Internet Explorer 11 */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+   .footer-contact-btn {
+      display: inline-block;
    }
    
-   .contact-item {
-      padding: 0.875rem 1.5rem;
-      font-size: 1rem;
+   .footer-contact-section {
+      text-align: center;
+   }
+}
+
+/* ============================================ */
+/* STACKING BUTTONS ON VERY SMALL SCREENS */
+/* ============================================ */
+
+@media (max-width: 480px) {
+   .footer-contact-section {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+   }
+   
+   .footer-contact-btn {
+      width: 100%;
+      max-width: 20rem;
    }
 }
