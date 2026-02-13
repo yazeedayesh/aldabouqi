@@ -15675,709 +15675,340 @@ input[type=radio] {
    }
 }
 
-/* ============================================ */
-/* SOCIAL MEDIA ICONS - ULTRA PROFESSIONAL */
-/* IMPROVED POSITIONING & TOUCH OPTIMIZATION */
-/* ============================================ */
-
-/* ============================================ */
-/* SOCIAL MEDIA CONTAINER */
-/* ============================================ */
-
-.footer-social-section,
-.social-media-links,
-.footer-social-links {
-   /* Layout */
+/* Contact Items */
+.contact-item {
    display: -webkit-box;
-   display: -webkit-flex;
    display: -ms-flexbox;
    display: flex;
    -webkit-box-align: center;
-   -webkit-align-items: center;
    -ms-flex-align: center;
    align-items: center;
-   -webkit-box-pack: center;
-   -webkit-justify-content: center;
-   -ms-flex-pack: center;
-   justify-content: center;
-   gap: 1rem;
-   -ms-flex-wrap: wrap;
-   flex-wrap: wrap;
-   
-   /* Spacing - رفع للأعلى */
-   padding: 1.5rem 1rem 2rem 1rem;
-   margin: 0 auto;
-   width: 100%;
-   max-width: 100%;
-}
-
-/* ============================================ */
-/* SOCIAL MEDIA ICON LINKS */
-/* ============================================ */
-
-.social-icon,
-.social-link,
-.footer-social-icon {
-   /* Layout */
-   display: -webkit-inline-box;
-   display: -webkit-inline-flex;
-   display: -ms-inline-flexbox;
-   display: inline-flex;
-   -webkit-box-align: center;
-   -webkit-align-items: center;
-   -ms-flex-align: center;
-   align-items: center;
-   -webkit-box-pack: center;
-   -webkit-justify-content: center;
-   -ms-flex-pack: center;
-   justify-content: center;
-   
-   /* Size - حجم أكبر للضغط السهل */
-   width: 3.25rem;
-   height: 3.25rem;
-   min-width: 3.25rem;
-   min-height: 3.25rem;
-   
-   /* Visual */
-   border-radius: 50%;
-   border: 2.5px solid rgba(255, 255, 255, 0.2);
-   background: rgba(255, 255, 255, 0.08);
-   position: relative;
-   overflow: visible;
-   
-   /* Typography */
-   font-size: 1.375rem;
-   color: #ffffff;
+   gap: 8px;
+   padding: 10px 20px;
+   border-radius: 50px;
    text-decoration: none;
-   
-   /* Interaction */
-   cursor: pointer;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   -webkit-tap-highlight-color: transparent;
-   touch-action: manipulation;
-   
-   /* Performance */
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
-   -webkit-transform: translateZ(0);
-   transform: translateZ(0);
-   will-change: transform, background, border-color;
-   
-   /* Transitions */
+   font-weight: 600;
+   font-size: 14px;
    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   color: #1a1a1a;
+   position: relative;
+   overflow: hidden;
+   -webkit-tap-highlight-color: transparent;
 }
 
-/* Hover Background Effect */
-.social-icon::before,
-.social-link::before,
-.footer-social-icon::before {
+.contact-item::before {
    content: '';
    position: absolute;
    top: 0;
    left: 0;
-   right: 0;
-   bottom: 0;
-   border-radius: inherit;
-   background: rgba(255, 255, 255, 0.15);
+   width: 100%;
+   height: 100%;
    opacity: 0;
-   transition: opacity 0.3s ease;
-   -webkit-transition: opacity 0.3s ease;
-   pointer-events: none;
-   z-index: 0;
+   transition: opacity 0.3s;
+   -webkit-transition: opacity 0.3s;
+   border-radius: 50px;
 }
 
-/* Icon Content */
-.social-icon i,
-.social-icon svg,
-.social-link i,
-.social-link svg,
-.footer-social-icon i,
-.footer-social-icon svg {
+/* WhatsApp Styling */
+.whatsapp-item svg {
+   color: #25D366;
+   transition: all 0.3s;
+   -webkit-transition: all 0.3s;
+}
+
+.whatsapp-item::before {
+   background: -webkit-linear-gradient(315deg, #e8f5e9 0%, #c8e6c9 100%);
+   background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.whatsapp-item:hover {
+   color: #128C7E;
+   transform: translateY(-2px);
+   -webkit-transform: translateY(-2px);
+}
+
+.whatsapp-item:hover::before {
+   opacity: 1;
+}
+
+.whatsapp-item:hover svg {
+   transform: scale(1.1) rotate(5deg);
+   -webkit-transform: scale(1.1) rotate(5deg);
+   color: #128C7E;
+}
+
+/* Phone Styling */
+.phone-item svg {
+   color: #3b82f6;
+   transition: all 0.3s;
+   -webkit-transition: all 0.3s;
+}
+
+.phone-item::before {
+   background: -webkit-linear-gradient(315deg, #eff6ff 0%, #dbeafe 100%);
+   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.phone-item:hover {
+   color: #2563eb;
+   transform: translateY(-2px);
+   -webkit-transform: translateY(-2px);
+}
+
+.phone-item:hover::before {
+   opacity: 1;
+}
+
+.phone-item:hover svg {
+   transform: scale(1.1) rotate(-5deg);
+   -webkit-transform: scale(1.1) rotate(-5deg);
+   color: #2563eb;
+}
+
+/* Divider */
+.contact-divider {
+   width: 1px;
+   height: 24px;
+   background: -webkit-linear-gradient(top, 
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0) 100%
+   );
+   background: linear-gradient(to bottom, 
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0) 100%
+   );
+   margin: 0 4px;
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
+}
+
+/* Icon & Text Alignment */
+.contact-item svg {
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
    position: relative;
    z-index: 1;
-   font-size: inherit;
-   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-   -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-item span {
+   position: relative;
+   z-index: 1;
+   white-space: nowrap;
+   font-family: -apple-system, BlinkMacSystemFont, 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Active State */
+.contact-item:active {
+   transform: translateY(0) scale(0.98);
+   -webkit-transform: translateY(0) scale(0.98);
 }
 
 /* ============================================ */
-/* INSTAGRAM ICON */
+/* DESKTOP SCREENS */
 /* ============================================ */
 
-.social-icon.instagram,
-.social-link.instagram,
-.footer-social-icon.instagram,
-a[href*="instagram"] .social-icon,
-a[href*="instagram"].social-icon,
-a[href*="instagram"].social-link {
-   border-color: #E4405F;
-   color: #E4405F;
-}
-
-.social-icon.instagram::before,
-.social-link.instagram::before,
-.footer-social-icon.instagram::before,
-a[href*="instagram"] .social-icon::before,
-a[href*="instagram"].social-icon::before {
-   background: linear-gradient(135deg, #833AB4 0%, #E4405F 50%, #FCAF45 100%);
-}
-
-/* Hover - Desktop */
-@media (hover: hover) and (pointer: fine) {
-   .social-icon.instagram:hover,
-   .social-link.instagram:hover,
-   a[href*="instagram"].social-icon:hover {
-      background: linear-gradient(135deg, #833AB4 0%, #E4405F 50%, #FCAF45 100%);
-      border-color: #E4405F;
-      color: #ffffff;
-      transform: translateY(-0.25rem) scale(1.08);
-      -webkit-transform: translateY(-0.25rem) scale(1.08);
-      box-shadow: 0 0.5rem 1.25rem rgba(228, 64, 95, 0.35);
+@media (min-width: 1920px) {
+   .center-contact-bar {
+      bottom: 40px;
+      padding: 10px 14px;
    }
    
-   .social-icon.instagram:hover i,
-   .social-icon.instagram:hover svg,
-   a[href*="instagram"].social-icon:hover i {
-      transform: rotate(10deg) scale(1.1);
-      -webkit-transform: rotate(10deg) scale(1.1);
-   }
-}
-
-/* ============================================ */
-/* X (TWITTER) ICON */
-/* ============================================ */
-
-.social-icon.twitter,
-.social-icon.x,
-.social-link.twitter,
-.social-link.x,
-a[href*="twitter"] .social-icon,
-a[href*="x.com"] .social-icon,
-a[href*="twitter"].social-icon,
-a[href*="x.com"].social-icon {
-   border-color: #000000;
-   color: #000000;
-   background: rgba(255, 255, 255, 0.95);
-}
-
-/* Hover - Desktop */
-@media (hover: hover) and (pointer: fine) {
-   .social-icon.twitter:hover,
-   .social-icon.x:hover,
-   a[href*="twitter"].social-icon:hover,
-   a[href*="x.com"].social-icon:hover {
-      background: #000000;
-      border-color: #000000;
-      color: #ffffff;
-      transform: translateY(-0.25rem) scale(1.08);
-      -webkit-transform: translateY(-0.25rem) scale(1.08);
-      box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.35);
+   .contact-item {
+      padding: 12px 24px;
+      font-size: 15px;
+      gap: 10px;
    }
    
-   .social-icon.twitter:hover i,
-   .social-icon.x:hover i,
-   a[href*="twitter"].social-icon:hover i,
-   a[href*="x.com"].social-icon:hover i {
-      transform: rotate(-10deg) scale(1.1);
-      -webkit-transform: rotate(-10deg) scale(1.1);
-   }
-}
-
-/* ============================================ */
-/* FACEBOOK ICON */
-/* ============================================ */
-
-.social-icon.facebook,
-.social-link.facebook,
-a[href*="facebook"] .social-icon,
-a[href*="facebook"].social-icon {
-   border-color: #1877F2;
-   color: #1877F2;
-}
-
-.social-icon.facebook::before,
-a[href*="facebook"].social-icon::before {
-   background: #1877F2;
-}
-
-/* Hover - Desktop */
-@media (hover: hover) and (pointer: fine) {
-   .social-icon.facebook:hover,
-   a[href*="facebook"].social-icon:hover {
-      background: #1877F2;
-      border-color: #1877F2;
-      color: #ffffff;
-      transform: translateY(-0.25rem) scale(1.08);
-      -webkit-transform: translateY(-0.25rem) scale(1.08);
-      box-shadow: 0 0.5rem 1.25rem rgba(24, 119, 242, 0.35);
+   .contact-item svg {
+      width: 22px;
+      height: 22px;
    }
    
-   .social-icon.facebook:hover i,
-   a[href*="facebook"].social-icon:hover i {
-      transform: scale(1.1);
-      -webkit-transform: scale(1.1);
+   .contact-divider {
+      height: 28px;
    }
 }
 
-/* ============================================ */
-/* WHATSAPP ICON */
-/* ============================================ */
-
-.social-icon.whatsapp,
-.social-link.whatsapp,
-a[href*="whatsapp"] .social-icon,
-a[href*="wa.me"] .social-icon,
-a[href*="whatsapp"].social-icon,
-a[href*="wa.me"].social-icon {
-   border-color: #25D366;
-   color: #25D366;
-}
-
-.social-icon.whatsapp::before,
-a[href*="whatsapp"].social-icon::before,
-a[href*="wa.me"].social-icon::before {
-   background: #25D366;
-}
-
-/* Hover - Desktop */
-@media (hover: hover) and (pointer: fine) {
-   .social-icon.whatsapp:hover,
-   a[href*="whatsapp"].social-icon:hover,
-   a[href*="wa.me"].social-icon:hover {
-      background: #25D366;
-      border-color: #25D366;
-      color: #ffffff;
-      transform: translateY(-0.25rem) scale(1.08);
-      -webkit-transform: translateY(-0.25rem) scale(1.08);
-      box-shadow: 0 0.5rem 1.25rem rgba(37, 211, 102, 0.35);
-   }
-   
-   .social-icon.whatsapp:hover i,
-   a[href*="whatsapp"].social-icon:hover i,
-   a[href*="wa.me"].social-icon:hover i {
-      transform: rotate(15deg) scale(1.1);
-      -webkit-transform: rotate(15deg) scale(1.1);
-   }
-}
-
-/* ============================================ */
-/* LINKEDIN ICON */
-/* ============================================ */
-
-.social-icon.linkedin,
-.social-link.linkedin,
-a[href*="linkedin"] .social-icon,
-a[href*="linkedin"].social-icon {
-   border-color: #0A66C2;
-   color: #0A66C2;
-}
-
-.social-icon.linkedin::before,
-a[href*="linkedin"].social-icon::before {
-   background: #0A66C2;
-}
-
-/* Hover - Desktop */
-@media (hover: hover) and (pointer: fine) {
-   .social-icon.linkedin:hover,
-   a[href*="linkedin"].social-icon:hover {
-      background: #0A66C2;
-      border-color: #0A66C2;
-      color: #ffffff;
-      transform: translateY(-0.25rem) scale(1.08);
-      -webkit-transform: translateY(-0.25rem) scale(1.08);
-      box-shadow: 0 0.5rem 1.25rem rgba(10, 102, 194, 0.35);
-   }
-}
-
-/* ============================================ */
-/* ACTIVE STATE - ALL ICONS */
-/* ============================================ */
-
-.social-icon:active,
-.social-link:active,
-.footer-social-icon:active {
-   transform: scale(0.94);
-   -webkit-transform: scale(0.94);
-}
-
-/* ============================================ */
-/* EXPANDED TOUCH AREA */
-/* ============================================ */
-
-.social-icon::after,
-.social-link::after,
-.footer-social-icon::after {
-   content: '';
-   position: absolute;
-   top: -0.75rem;
-   left: -0.75rem;
-   right: -0.75rem;
-   bottom: -0.75rem;
-   z-index: -1;
-}
-
-/* ============================================ */
-/* 8K & ULTRA WIDE DISPLAYS (3840px+) */
-/* ============================================ */
-
-@media (min-width: 3840px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 2.5rem 1.5rem 3rem 1.5rem;
-      gap: 1.75rem;
-   }
-   
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 5rem;
-      height: 5rem;
-      min-width: 5rem;
-      min-height: 5rem;
-      font-size: 2.25rem;
-      border-width: 3.5px;
-   }
-}
-
-/* ============================================ */
-/* 4K DISPLAYS (2560px - 3839px) */
-/* ============================================ */
-
-@media (min-width: 2560px) and (max-width: 3839px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 2.25rem 1.375rem 2.75rem 1.375rem;
-      gap: 1.5rem;
-   }
-   
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 4.5rem;
-      height: 4.5rem;
-      min-width: 4.5rem;
-      min-height: 4.5rem;
-      font-size: 2rem;
-      border-width: 3px;
-   }
-}
-
-/* ============================================ */
-/* ULTRA WIDE DESKTOP (1920px - 2559px) */
-/* ============================================ */
-
-@media (min-width: 1920px) and (max-width: 2559px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 2rem 1.25rem 2.5rem 1.25rem;
-      gap: 1.375rem;
-   }
-   
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 4rem;
-      height: 4rem;
-      min-width: 4rem;
-      min-height: 4rem;
-      font-size: 1.75rem;
-   }
-}
-
-/* ============================================ */
-/* LARGE DESKTOP (1440px - 1919px) */
-/* ============================================ */
-
+/* Large Desktop */
 @media (min-width: 1440px) and (max-width: 1919px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.875rem 1.125rem 2.375rem 1.125rem;
-      gap: 1.25rem;
+   .center-contact-bar {
+      bottom: 35px;
+      padding: 9px 13px;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.75rem;
-      height: 3.75rem;
-      min-width: 3.75rem;
-      min-height: 3.75rem;
-      font-size: 1.625rem;
+   .contact-item {
+      padding: 11px 22px;
+      font-size: 14px;
    }
 }
 
-/* ============================================ */
-/* STANDARD DESKTOP (1200px - 1439px) */
-/* ============================================ */
-
+/* Standard Desktop */
 @media (min-width: 1200px) and (max-width: 1439px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.75rem 1rem 2.25rem 1rem;
-      gap: 1.125rem;
+   .center-contact-bar {
+      bottom: 30px;
+      padding: 8px 12px;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      min-width: 3.5rem;
-      min-height: 3.5rem;
-      font-size: 1.5rem;
+   .contact-item {
+      padding: 10px 20px;
+      font-size: 14px;
    }
 }
 
 /* ============================================ */
-/* LAPTOP (1024px - 1199px) */
+/* TABLETS */
 /* ============================================ */
 
+/* Tablet Landscape */
 @media (min-width: 1024px) and (max-width: 1199px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.625rem 1rem 2.125rem 1rem;
-      gap: 1rem;
+   .center-contact-bar {
+      bottom: 28px;
+      padding: 8px 11px;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.375rem;
-      height: 3.375rem;
-      min-width: 3.375rem;
-      min-height: 3.375rem;
-      font-size: 1.4375rem;
+   .contact-item {
+      padding: 9px 18px;
+      font-size: 13px;
+      gap: 7px;
+   }
+   
+   .contact-item svg {
+      width: 18px;
+      height: 18px;
+   }
+   
+   .contact-divider {
+      height: 22px;
+   }
+}
+
+/* Tablet Portrait */
+@media (min-width: 768px) and (max-width: 1023px) {
+   .center-contact-bar {
+      bottom: 25px;
+      padding: 7px 10px;
+   }
+   
+   .contact-item {
+      padding: 9px 16px;
+      font-size: 13px;
+      gap: 6px;
+   }
+   
+   .contact-item svg {
+      width: 17px;
+      height: 17px;
+   }
+   
+   .contact-divider {
+      height: 20px;
    }
 }
 
 /* ============================================ */
-/* TABLET LANDSCAPE (900px - 1023px) */
+/* MOBILE DEVICES */
 /* ============================================ */
 
-@media (min-width: 900px) and (max-width: 1023px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.5rem 0.9375rem 2rem 0.9375rem;
-      gap: 0.9375rem;
+/* Large Mobile */
+@media (min-width: 576px) and (max-width: 767px) {
+   .center-contact-bar {
+      bottom: 20px;
+      padding: 6px 9px;
+      max-width: 92%;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.25rem;
-      height: 3.25rem;
-      min-width: 3.25rem;
-      min-height: 3.25rem;
-      font-size: 1.375rem;
-      border-width: 2.5px;
+   .contact-item {
+      padding: 8px 15px;
+      font-size: 12px;
+      gap: 6px;
+   }
+   
+   .contact-item svg {
+      width: 16px;
+      height: 16px;
+   }
+   
+   .contact-divider {
+      height: 18px;
+      margin: 0 3px;
    }
 }
 
-/* ============================================ */
-/* TABLET PORTRAIT (768px - 899px) */
-/* ============================================ */
-
-@media (min-width: 768px) and (max-width: 899px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.5rem 0.875rem 2rem 0.875rem;
-      gap: 0.9375rem;
+/* Standard Mobile */
+@media (min-width: 400px) and (max-width: 575px) {
+   .center-contact-bar {
+      bottom: 18px;
+      padding: 6px 8px;
+      max-width: 94%;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.25rem;
-      height: 3.25rem;
-      min-width: 3.25rem;
-      min-height: 3.25rem;
-      font-size: 1.375rem;
-      border-width: 2.5px;
+   .contact-item {
+      padding: 7px 13px;
+      font-size: 12px;
+      gap: 5px;
+   }
+   
+   .contact-item svg {
+      width: 15px;
+      height: 15px;
+   }
+   
+   .contact-divider {
+      height: 18px;
+      margin: 0 2px;
    }
 }
 
-/* ============================================ */
-/* SMALL TABLET (640px - 767px) */
-/* ============================================ */
-
-@media (min-width: 640px) and (max-width: 767px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.375rem 0.875rem 1.875rem 0.875rem;
-      gap: 0.875rem;
+/* Small Mobile */
+@media (min-width: 360px) and (max-width: 399px) {
+   .center-contact-bar {
+      bottom: 15px;
+      padding: 5px 7px;
+      max-width: 95%;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.125rem;
-      height: 3.125rem;
-      min-width: 3.125rem;
-      min-height: 3.125rem;
-      font-size: 1.3125rem;
-      border-width: 2.5px;
+   .contact-item {
+      padding: 6px 11px;
+      font-size: 11px;
+      gap: 5px;
+   }
+   
+   .contact-item svg {
+      width: 14px;
+      height: 14px;
+   }
+   
+   .contact-divider {
+      height: 16px;
+      margin: 0 2px;
    }
 }
 
-/* ============================================ */
-/* LARGE MOBILE (540px - 639px) */
-/* ============================================ */
-
-@media (min-width: 540px) and (max-width: 639px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.25rem 0.8125rem 1.75rem 0.8125rem;
-      gap: 0.8125rem;
+/* Extra Small Mobile (iPhone SE, old Androids) */
+@media (max-width: 359px) {
+   .center-contact-bar {
+      bottom: 12px;
+      padding: 4px 6px;
+      max-width: 96%;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3rem;
-      height: 3rem;
-      min-width: 3rem;
-      min-height: 3rem;
-      font-size: 1.25rem;
-      border-width: 2.5px;
-   }
-}
-
-/* ============================================ */
-/* STANDARD MOBILE (430px - 539px) */
-/* ============================================ */
-
-@media (min-width: 430px) and (max-width: 539px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.125rem 0.75rem 1.625rem 0.75rem;
-      gap: 0.75rem;
+   .contact-item {
+      padding: 5px 9px;
+      font-size: 10px;
+      gap: 4px;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3rem;
-      height: 3rem;
-      min-width: 3rem;
-      min-height: 3rem;
-      font-size: 1.25rem;
-      border-width: 2.5px;
-   }
-}
-
-/* ============================================ */
-/* COMPACT MOBILE (390px - 429px) */
-/* iPhone 13/14/15 Pro */
-/* ============================================ */
-
-@media (min-width: 390px) and (max-width: 429px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1.0625rem 0.6875rem 1.5625rem 0.6875rem;
-      gap: 0.6875rem;
+   .contact-item svg {
+      width: 13px;
+      height: 13px;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 2.875rem;
-      height: 2.875rem;
-      min-width: 2.875rem;
-      min-height: 2.875rem;
-      font-size: 1.1875rem;
-      border-width: 2px;
-   }
-}
-
-/* ============================================ */
-/* SMALL MOBILE (360px - 389px) */
-/* Galaxy S Series */
-/* ============================================ */
-
-@media (min-width: 360px) and (max-width: 389px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 1rem 0.625rem 1.5rem 0.625rem;
-      gap: 0.625rem;
-   }
-   
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 2.75rem;
-      height: 2.75rem;
-      min-width: 2.75rem;
-      min-height: 2.75rem;
-      font-size: 1.125rem;
-      border-width: 2px;
-   }
-}
-
-/* ============================================ */
-/* EXTRA SMALL MOBILE (320px - 359px) */
-/* iPhone SE */
-/* ============================================ */
-
-@media (min-width: 320px) and (max-width: 359px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 0.9375rem 0.5625rem 1.4375rem 0.5625rem;
-      gap: 0.5625rem;
-   }
-   
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 2.625rem;
-      height: 2.625rem;
-      min-width: 2.625rem;
-      min-height: 2.625rem;
-      font-size: 1.0625rem;
-      border-width: 2px;
-   }
-}
-
-/* ============================================ */
-/* ULTRA COMPACT (280px - 319px) */
-/* Galaxy Fold */
-/* ============================================ */
-
-@media (max-width: 319px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 0.875rem 0.5rem 1.375rem 0.5rem;
-      gap: 0.5rem;
-   }
-   
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      min-width: 2.5rem;
-      min-height: 2.5rem;
-      font-size: 1rem;
-      border-width: 2px;
+   .contact-divider {
+      height: 14px;
+      margin: 0 2px;
    }
 }
 
@@ -16385,22 +16016,48 @@ a[href*="linkedin"].social-icon::before {
 /* LANDSCAPE ORIENTATION */
 /* ============================================ */
 
-@media (max-width: 767px) and (orientation: landscape) and (max-height: 428px) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding: 0.875rem 0.75rem 1.25rem 0.75rem;
-      gap: 0.625rem;
+@media (max-width: 1024px) and (orientation: landscape) {
+   .center-contact-bar {
+      bottom: 15px;
+      padding: 5px 8px;
    }
    
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      min-width: 2.5rem;
-      min-height: 2.5rem;
-      font-size: 1rem;
+   .contact-item {
+      padding: 6px 14px;
+      font-size: 11px;
+   }
+   
+   .contact-item svg {
+      width: 15px;
+      height: 15px;
+   }
+   
+   .contact-divider {
+      height: 16px;
+   }
+}
+
+@media (max-width: 896px) and (orientation: landscape) {
+   .center-contact-bar {
+      bottom: 12px;
+      padding: 4px 7px;
+   }
+   
+   .contact-item {
+      padding: 5px 12px;
+      font-size: 10px;
+   }
+}
+
+@media (max-width: 667px) and (orientation: landscape) {
+   .center-contact-bar {
+      bottom: 10px;
+      padding: 4px 6px;
+   }
+   
+   .contact-item {
+      padding: 4px 10px;
+      font-size: 10px;
    }
 }
 
@@ -16409,30 +16066,71 @@ a[href*="linkedin"].social-icon::before {
 /* ============================================ */
 
 @media (hover: none) and (pointer: coarse) {
-   /* منطقة لمس أكبر */
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      width: 3.25rem;
-      height: 3.25rem;
-      min-width: 3.25rem;
-      min-height: 3.25rem;
+   .contact-item {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 16px;
    }
    
-   /* إزالة hover effects */
-   .social-icon:hover,
-   .social-link:hover,
-   .footer-social-icon:hover {
+   .contact-item:hover {
       transform: none;
       -webkit-transform: none;
    }
    
-   /* Active state محسّن */
-   .social-icon:active,
-   .social-link:active,
-   .footer-social-icon:active {
-      transform: scale(0.92);
-      -webkit-transform: scale(0.92);
+   .contact-item:hover svg {
+      transform: none;
+      -webkit-transform: none;
+   }
+   
+   .contact-item:hover::before {
+      opacity: 0;
+   }
+   
+   .contact-item:active {
+      transform: scale(0.96);
+      -webkit-transform: scale(0.96);
+   }
+   
+   .contact-item:active::before {
+      opacity: 0.5;
+   }
+}
+
+/* ============================================ */
+/* BROWSER SPECIFIC FIXES */
+/* ============================================ */
+
+/* Safari iOS */
+@supports (-webkit-touch-callout: none) {
+   .center-contact-bar {
+      -webkit-backdrop-filter: blur(20px);
+   }
+}
+
+/* Firefox */
+@-moz-document url-prefix() {
+   .center-contact-bar {
+      background: rgba(255, 255, 255, 0.95);
+   }
+}
+
+/* Edge */
+@supports (-ms-ime-align: auto) {
+   .center-contact-bar {
+      background: rgba(255, 255, 255, 0.95);
+   }
+}
+
+/* IE11 Fallback */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+   .center-contact-bar {
+      background: #ffffff;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f7ffffff,endColorstr=#f7ffffff);
+   }
+   
+   .contact-item {
+      display: inline-block;
+      vertical-align: middle;
    }
 }
 
@@ -16440,13 +16138,78 @@ a[href*="linkedin"].social-icon::before {
 /* SAFE AREAS (Notched Devices) */
 /* ============================================ */
 
+/* iPhone X, XS, 11, 12, 13, 14, 15 */
 @supports (padding: max(0px)) {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
-      padding-left: max(1rem, calc(env(safe-area-inset-left) + 1rem));
-      padding-right: max(1rem, calc(env(safe-area-inset-right) + 1rem));
-      padding-bottom: max(2rem, calc(env(safe-area-inset-bottom) + 1.5rem));
+   .center-contact-bar {
+      bottom: max(20px, calc(env(safe-area-inset-bottom) + 10px));
+      left: max(30%, calc(env(safe-area-inset-left) ));
+      padding-left: max(12px, calc(env(safe-area-inset-left) + 12px));
+      padding-right: max(12px, calc(env(safe-area-inset-right) + 12px));
+   }
+}
+
+/* ============================================ */
+/* PERFORMANCE OPTIMIZATION */
+/* ============================================ */
+
+.center-contact-bar,
+.contact-item,
+.contact-item svg {
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+   -webkit-transform: translateZ(0);
+   transform: translateZ(0);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+.center-contact-bar {
+   will-change: transform;
+}
+
+.contact-item {
+   will-change: transform, background;
+}
+
+/* Prevent text selection */
+.contact-item,
+.contact-item span {
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   -webkit-touch-callout: none;
+}
+
+/* Prevent tap highlight on mobile */
+.contact-item {
+   -webkit-tap-highlight-color: transparent;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* ============================================ */
+/* HIGH DPI DISPLAYS (Retina) */
+/* ============================================ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+   .center-contact-bar {
+      border-width: 0.5px;
+   }
+}
+
+/* ============================================ */
+/* REDUCED MOTION (Accessibility) */
+/* ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+   .center-contact-bar,
+   .contact-item,
+   .contact-item svg,
+   .contact-item::before {
+      animation: none !important;
+      -webkit-animation: none !important;
+      transition: none !important;
+      -webkit-transition: none !important;
    }
 }
 
@@ -16455,60 +16218,47 @@ a[href*="linkedin"].social-icon::before {
 /* ============================================ */
 
 @media (prefers-color-scheme: dark) {
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.25);
+   .center-contact-bar {
+      background: rgba(30, 30, 30, 0.95);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                  0 2px 8px rgba(0, 0, 0, 0.2);
+   }
+   
+   .contact-item {
+      color: #f5f5f5;
+   }
+   
+   .whatsapp-item::before {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(18, 140, 126, 0.2) 100%);
+   }
+   
+   .phone-item::before {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%);
    }
 }
 
 /* ============================================ */
-/* ACCESSIBILITY */
-/* ============================================ */
-
-@media (prefers-reduced-motion: reduce) {
-   .social-icon,
-   .social-icon::before,
-   .social-icon i,
-   .social-link,
-   .footer-social-icon {
-      animation: none !important;
-      transition: none !important;
-   }
-}
-
-@media (prefers-contrast: high) {
-   .social-icon,
-   .social-link,
-   .footer-social-icon {
-      border-width: 4px;
-   }
-}
-
-/* ============================================ */
-/* PERFORMANCE */
-/* ============================================ */
-
-.social-icon,
-.social-link,
-.footer-social-icon,
-.social-icon::before,
-.social-icon i {
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
-   -webkit-transform: translateZ(0);
-   transform: translateZ(0);
-}
-
-/* ============================================ */
-/* PRINT */
+/* PRINT STYLES */
 /* ============================================ */
 
 @media print {
-   .footer-social-section,
-   .social-media-links,
-   .footer-social-links {
+   .center-contact-bar {
       display: none !important;
+   }
+}
+
+/* ============================================ */
+/* FORCED COLORS MODE (Windows High Contrast) */
+/* ============================================ */
+
+@media (forced-colors: active) {
+   .center-contact-bar {
+      border: 2px solid CanvasText;
+   }
+   
+   .contact-item {
+      border: 1px solid CanvasText;
+      forced-color-adjust: none;
    }
 }
