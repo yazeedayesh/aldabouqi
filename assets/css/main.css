@@ -15675,389 +15675,826 @@ input[type=radio] {
    }
 }
 
-/* Contact Items */
-.contact-item {
+/* ============================================ */
+/* ULTRA PROFESSIONAL CONTACT BAR */
+/* MAXIMUM RESPONSIVENESS & COMPATIBILITY */
+/* ============================================ */
+
+/* ============================================ */
+/* BASE STYLES - FOUNDATION */
+/* ============================================ */
+
+.center-contact-bar {
+   /* Positioning */
+   position: fixed;
+   bottom: 2rem;
+   left: 50%;
+   transform: translateX(-50%);
+   -webkit-transform: translateX(-50%);
+   
+   /* Layout */
    display: -webkit-box;
+   display: -webkit-flex;
    display: -ms-flexbox;
    display: flex;
    -webkit-box-align: center;
+   -webkit-align-items: center;
    -ms-flex-align: center;
    align-items: center;
-   gap: 8px;
-   padding: 10px 20px;
-   border-radius: 50px;
-   text-decoration: none;
-   font-weight: 600;
-   font-size: 14px;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   gap: 0.5rem;
+   
+   /* Visual */
+   background: rgba(255, 255, 255, 0.98);
+   backdrop-filter: saturate(180%) blur(20px);
+   -webkit-backdrop-filter: saturate(180%) blur(20px);
+   padding: 0.625rem 1rem;
+   border-radius: 3.75rem;
+   
+   /* Shadow & Border */
+   box-shadow: 
+      0 0.625rem 2.5rem rgba(0, 0, 0, 0.08),
+      0 0.25rem 1rem rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(0, 0, 0, 0.04),
+      0 0.125rem 0.25rem rgba(0, 0, 0, 0.04);
+   border: 1px solid rgba(0, 0, 0, 0.06);
+   
+   /* Constraints */
+   max-width: 90%;
+   z-index: 9999;
+   
+   /* Performance */
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+   -webkit-perspective: 1000px;
+   perspective: 1000px;
+   will-change: transform;
+   
+   /* Transitions */
    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-   color: #1a1a1a;
-   position: relative;
-   overflow: hidden;
-   -webkit-tap-highlight-color: transparent;
 }
 
+/* ============================================ */
+/* CONTACT ITEMS - BASE */
+/* ============================================ */
+
+.contact-item {
+   /* Layout */
+   display: -webkit-inline-box;
+   display: -webkit-inline-flex;
+   display: -ms-inline-flexbox;
+   display: inline-flex;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   gap: 0.5rem;
+   
+   /* Spacing */
+   padding: 0.75rem 1.375rem;
+   margin: 0;
+   
+   /* Visual */
+   background: rgba(255, 255, 255, 0.95);
+   border-radius: 3.125rem;
+   border: 2px solid transparent;
+   
+   /* Typography */
+   font-family: -apple-system, BlinkMacSystemFont, 'Cairo', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', Arial, sans-serif;
+   font-size: 0.9375rem;
+   font-weight: 700;
+   line-height: 1.2;
+   letter-spacing: 0.01em;
+   color: #000000;
+   text-decoration: none;
+   white-space: nowrap;
+   
+   /* Effects */
+   box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
+   
+   /* Interaction */
+   cursor: pointer;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   -webkit-tap-highlight-color: transparent;
+   touch-action: manipulation;
+   
+   /* Constraints */
+   min-height: 3rem;
+   min-width: 3rem;
+   
+   /* Performance */
+   position: relative;
+   overflow: hidden;
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+   -webkit-transform: translateZ(0);
+   transform: translateZ(0);
+   will-change: transform, box-shadow;
+   
+   /* Transitions */
+   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Background Effect Layer */
 .contact-item::before {
    content: '';
    position: absolute;
    top: 0;
    left: 0;
-   width: 100%;
-   height: 100%;
+   right: 0;
+   bottom: 0;
+   border-radius: inherit;
    opacity: 0;
-   transition: opacity 0.3s;
-   -webkit-transition: opacity 0.3s;
-   border-radius: 50px;
+   transition: opacity 0.25s ease;
+   -webkit-transition: opacity 0.25s ease;
+   pointer-events: none;
+   z-index: 0;
 }
 
-/* WhatsApp Styling */
-.whatsapp-item svg {
-   color: #25D366;
-   transition: all 0.3s;
-   -webkit-transition: all 0.3s;
+/* Content Layer */
+.contact-item svg,
+.contact-item span {
+   position: relative;
+   z-index: 1;
+}
+
+/* ============================================ */
+/* WHATSAPP SPECIFIC STYLING */
+/* ============================================ */
+
+.whatsapp-item {
+   border-color: #25D366;
+   background: rgba(255, 255, 255, 0.95);
 }
 
 .whatsapp-item::before {
-   background: -webkit-linear-gradient(315deg, #e8f5e9 0%, #c8e6c9 100%);
+   background: -webkit-linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
 }
 
-.whatsapp-item:hover {
-   color: #128C7E;
-   transform: translateY(-2px);
-   -webkit-transform: translateY(-2px);
+.whatsapp-item svg {
+   color: #25D366;
+   width: 1.375rem;
+   height: 1.375rem;
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
+   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.whatsapp-item:hover::before {
-   opacity: 1;
+/* Hover State - Desktop Only */
+@media (hover: hover) and (pointer: fine) {
+   .whatsapp-item:hover {
+      border-color: #128C7E;
+      color: #075E54;
+      transform: translateY(-0.125rem);
+      -webkit-transform: translateY(-0.125rem);
+      box-shadow: 
+         0 0.375rem 0.875rem rgba(37, 211, 102, 0.15),
+         0 0.125rem 0.375rem rgba(37, 211, 102, 0.1);
+   }
+   
+   .whatsapp-item:hover::before {
+      opacity: 1;
+   }
+   
+   .whatsapp-item:hover svg {
+      color: #075E54;
+      transform: scale(1.1) rotate(5deg);
+      -webkit-transform: scale(1.1) rotate(5deg);
+   }
 }
 
-.whatsapp-item:hover svg {
-   transform: scale(1.1) rotate(5deg);
-   -webkit-transform: scale(1.1) rotate(5deg);
-   color: #128C7E;
+/* Active State */
+.whatsapp-item:active {
+   transform: scale(0.96);
+   -webkit-transform: scale(0.96);
 }
 
-/* Phone Styling */
-.phone-item svg {
-   color: #3b82f6;
-   transition: all 0.3s;
-   -webkit-transition: all 0.3s;
+.whatsapp-item:active::before {
+   opacity: 0.8;
+}
+
+/* ============================================ */
+/* PHONE SPECIFIC STYLING */
+/* ============================================ */
+
+.phone-item {
+   border-color: #3b82f6;
+   background: rgba(255, 255, 255, 0.95);
 }
 
 .phone-item::before {
-   background: -webkit-linear-gradient(315deg, #eff6ff 0%, #dbeafe 100%);
+   background: -webkit-linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
 }
 
-.phone-item:hover {
-   color: #2563eb;
-   transform: translateY(-2px);
-   -webkit-transform: translateY(-2px);
+.phone-item svg {
+   color: #3b82f6;
+   width: 1.375rem;
+   height: 1.375rem;
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
+   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+   -webkit-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.phone-item:hover::before {
-   opacity: 1;
+/* Hover State - Desktop Only */
+@media (hover: hover) and (pointer: fine) {
+   .phone-item:hover {
+      border-color: #2563eb;
+      color: #1d4ed8;
+      transform: translateY(-0.125rem);
+      -webkit-transform: translateY(-0.125rem);
+      box-shadow: 
+         0 0.375rem 0.875rem rgba(59, 130, 246, 0.15),
+         0 0.125rem 0.375rem rgba(59, 130, 246, 0.1);
+   }
+   
+   .phone-item:hover::before {
+      opacity: 1;
+   }
+   
+   .phone-item:hover svg {
+      color: #1d4ed8;
+      transform: scale(1.1) rotate(-5deg);
+      -webkit-transform: scale(1.1) rotate(-5deg);
+   }
 }
 
-.phone-item:hover svg {
-   transform: scale(1.1) rotate(-5deg);
-   -webkit-transform: scale(1.1) rotate(-5deg);
-   color: #2563eb;
+/* Active State */
+.phone-item:active {
+   transform: scale(0.96);
+   -webkit-transform: scale(0.96);
 }
 
-/* Divider */
+.phone-item:active::before {
+   opacity: 0.8;
+}
+
+/* ============================================ */
+/* DIVIDER */
+/* ============================================ */
+
 .contact-divider {
-   width: 1px;
-   height: 24px;
+   width: 2px;
+   height: 1.75rem;
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
+   margin: 0 0.375rem;
    background: -webkit-linear-gradient(top, 
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.12) 50%,
       rgba(0, 0, 0, 0) 100%
    );
    background: linear-gradient(to bottom, 
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.12) 50%,
       rgba(0, 0, 0, 0) 100%
    );
-   margin: 0 4px;
-   -ms-flex-negative: 0;
-   flex-shrink: 0;
 }
 
-/* Icon & Text Alignment */
-.contact-item svg {
-   -ms-flex-negative: 0;
-   flex-shrink: 0;
-   position: relative;
-   z-index: 1;
-}
+/* ============================================ */
+/* TEXT STYLING */
+/* ============================================ */
 
 .contact-item span {
-   position: relative;
-   z-index: 1;
-   white-space: nowrap;
-   font-family: -apple-system, BlinkMacSystemFont, 'Cairo', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-}
-
-/* Active State */
-.contact-item:active {
-   transform: translateY(0) scale(0.98);
-   -webkit-transform: translateY(0) scale(0.98);
+   display: inline-block;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   text-rendering: optimizeLegibility;
 }
 
 /* ============================================ */
-/* DESKTOP SCREENS */
+/* 8K & ULTRA WIDE DISPLAYS (3840px+) */
 /* ============================================ */
 
-@media (min-width: 1920px) {
+@media (min-width: 3840px) {
    .center-contact-bar {
-      bottom: 40px;
-      padding: 10px 14px;
+      bottom: 3.5rem;
+      padding: 1rem 1.75rem;
+      gap: 0.75rem;
+      border-width: 2px;
    }
    
    .contact-item {
-      padding: 12px 24px;
-      font-size: 15px;
-      gap: 10px;
+      padding: 1.125rem 2rem;
+      font-size: 1.25rem;
+      min-height: 4rem;
+      border-width: 3px;
+      gap: 0.75rem;
    }
    
    .contact-item svg {
-      width: 22px;
-      height: 22px;
+      width: 2rem;
+      height: 2rem;
    }
    
    .contact-divider {
-      height: 28px;
+      height: 2.5rem;
+      width: 3px;
+      margin: 0 0.625rem;
    }
 }
 
-/* Large Desktop */
+/* ============================================ */
+/* 4K DISPLAYS (2560px - 3839px) */
+/* ============================================ */
+
+@media (min-width: 2560px) and (max-width: 3839px) {
+   .center-contact-bar {
+      bottom: 3rem;
+      padding: 0.875rem 1.5rem;
+      gap: 0.625rem;
+   }
+   
+   .contact-item {
+      padding: 1rem 1.75rem;
+      font-size: 1.125rem;
+      min-height: 3.75rem;
+      border-width: 2.5px;
+      gap: 0.625rem;
+   }
+   
+   .contact-item svg {
+      width: 1.75rem;
+      height: 1.75rem;
+   }
+   
+   .contact-divider {
+      height: 2.25rem;
+      width: 2.5px;
+      margin: 0 0.5rem;
+   }
+}
+
+/* ============================================ */
+/* ULTRA WIDE DESKTOP (1920px - 2559px) */
+/* ============================================ */
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+   .center-contact-bar {
+      bottom: 2.5rem;
+      padding: 0.8125rem 1.375rem;
+      gap: 0.5625rem;
+   }
+   
+   .contact-item {
+      padding: 0.9375rem 1.625rem;
+      font-size: 1.0625rem;
+      min-height: 3.5rem;
+      gap: 0.5625rem;
+   }
+   
+   .contact-item svg {
+      width: 1.625rem;
+      height: 1.625rem;
+   }
+   
+   .contact-divider {
+      height: 2.125rem;
+      margin: 0 0.4375rem;
+   }
+}
+
+/* ============================================ */
+/* LARGE DESKTOP (1440px - 1919px) */
+/* ============================================ */
+
 @media (min-width: 1440px) and (max-width: 1919px) {
    .center-contact-bar {
-      bottom: 35px;
-      padding: 9px 13px;
+      bottom: 2.25rem;
+      padding: 0.75rem 1.25rem;
    }
    
    .contact-item {
-      padding: 11px 22px;
-      font-size: 14px;
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+      min-height: 3.25rem;
+   }
+   
+   .contact-item svg {
+      width: 1.5rem;
+      height: 1.5rem;
+   }
+   
+   .contact-divider {
+      height: 2rem;
    }
 }
 
-/* Standard Desktop */
+/* ============================================ */
+/* STANDARD DESKTOP (1200px - 1439px) */
+/* ============================================ */
+
 @media (min-width: 1200px) and (max-width: 1439px) {
    .center-contact-bar {
-      bottom: 30px;
-      padding: 8px 12px;
+      bottom: 2rem;
+      padding: 0.6875rem 1.125rem;
    }
    
    .contact-item {
-      padding: 10px 20px;
-      font-size: 14px;
+      padding: 0.8125rem 1.375rem;
+      font-size: 0.9375rem;
+      min-height: 3rem;
+   }
+   
+   .contact-item svg {
+      width: 1.375rem;
+      height: 1.375rem;
+   }
+   
+   .contact-divider {
+      height: 1.875rem;
    }
 }
 
 /* ============================================ */
-/* TABLETS */
+/* LAPTOP (1024px - 1199px) */
 /* ============================================ */
 
-/* Tablet Landscape */
 @media (min-width: 1024px) and (max-width: 1199px) {
    .center-contact-bar {
-      bottom: 28px;
-      padding: 8px 11px;
-   }
-   
-   .contact-item {
-      padding: 9px 18px;
-      font-size: 13px;
-      gap: 7px;
-   }
-   
-   .contact-item svg {
-      width: 18px;
-      height: 18px;
-   }
-   
-   .contact-divider {
-      height: 22px;
-   }
-}
-
-/* Tablet Portrait */
-@media (min-width: 768px) and (max-width: 1023px) {
-   .center-contact-bar {
-      bottom: 25px;
-      padding: 7px 10px;
-   }
-   
-   .contact-item {
-      padding: 9px 16px;
-      font-size: 13px;
-      gap: 6px;
-   }
-   
-   .contact-item svg {
-      width: 17px;
-      height: 17px;
-   }
-   
-   .contact-divider {
-      height: 20px;
-   }
-}
-
-/* ============================================ */
-/* MOBILE DEVICES */
-/* ============================================ */
-
-/* Large Mobile */
-@media (min-width: 576px) and (max-width: 767px) {
-   .center-contact-bar {
-      bottom: 20px;
-      padding: 6px 9px;
+      bottom: 1.875rem;
+      padding: 0.625rem 1rem;
       max-width: 92%;
    }
    
    .contact-item {
-      padding: 8px 15px;
-      font-size: 12px;
-      gap: 6px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      min-height: 2.875rem;
+      gap: 0.4375rem;
    }
    
    .contact-item svg {
-      width: 16px;
-      height: 16px;
+      width: 1.3125rem;
+      height: 1.3125rem;
    }
    
    .contact-divider {
-      height: 18px;
-      margin: 0 3px;
+      height: 1.75rem;
+      margin: 0 0.3125rem;
    }
 }
 
-/* Standard Mobile */
-@media (min-width: 400px) and (max-width: 575px) {
+/* ============================================ */
+/* TABLET LANDSCAPE (900px - 1023px) */
+/* ============================================ */
+
+@media (min-width: 900px) and (max-width: 1023px) {
    .center-contact-bar {
-      bottom: 18px;
-      padding: 6px 8px;
+      bottom: 1.75rem;
+      padding: 0.5625rem 0.9375rem;
       max-width: 94%;
    }
    
    .contact-item {
-      padding: 7px 13px;
-      font-size: 12px;
-      gap: 5px;
+      padding: 0.6875rem 1.125rem;
+      font-size: 0.875rem;
+      min-height: 2.75rem;
+      gap: 0.4375rem;
    }
    
    .contact-item svg {
-      width: 15px;
-      height: 15px;
+      width: 1.25rem;
+      height: 1.25rem;
    }
    
    .contact-divider {
-      height: 18px;
-      margin: 0 2px;
+      height: 1.625rem;
    }
 }
 
-/* Small Mobile */
-@media (min-width: 360px) and (max-width: 399px) {
+/* ============================================ */
+/* TABLET PORTRAIT (768px - 899px) */
+/* ============================================ */
+
+@media (min-width: 768px) and (max-width: 899px) {
    .center-contact-bar {
-      bottom: 15px;
-      padding: 5px 7px;
+      bottom: 1.625rem;
+      padding: 0.5625rem 0.875rem;
       max-width: 95%;
    }
    
    .contact-item {
-      padding: 6px 11px;
-      font-size: 11px;
-      gap: 5px;
+      padding: 0.625rem 1.0625rem;
+      font-size: 0.875rem;
+      min-height: 2.75rem;
+      gap: 0.4375rem;
    }
    
    .contact-item svg {
-      width: 14px;
-      height: 14px;
+      width: 1.25rem;
+      height: 1.25rem;
    }
    
    .contact-divider {
-      height: 16px;
-      margin: 0 2px;
+      height: 1.625rem;
    }
 }
 
-/* Extra Small Mobile (iPhone SE, old Androids) */
-@media (max-width: 359px) {
+/* ============================================ */
+/* SMALL TABLET (640px - 767px) */
+/* ============================================ */
+
+@media (min-width: 640px) and (max-width: 767px) {
    .center-contact-bar {
-      bottom: 12px;
-      padding: 4px 6px;
+      bottom: 1.5rem;
+      padding: 0.5rem 0.8125rem;
       max-width: 96%;
    }
    
    .contact-item {
-      padding: 5px 9px;
-      font-size: 10px;
-      gap: 4px;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      min-height: 2.75rem;
+      gap: 0.375rem;
    }
    
    .contact-item svg {
-      width: 13px;
-      height: 13px;
+      width: 1.1875rem;
+      height: 1.1875rem;
    }
    
    .contact-divider {
-      height: 14px;
-      margin: 0 2px;
+      height: 1.5rem;
+      margin: 0 0.25rem;
    }
 }
 
 /* ============================================ */
-/* LANDSCAPE ORIENTATION */
+/* LARGE MOBILE (540px - 639px) */
 /* ============================================ */
 
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 540px) and (max-width: 639px) {
    .center-contact-bar {
-      bottom: 15px;
-      padding: 5px 8px;
+      bottom: 1.375rem;
+      padding: 0.5rem 0.75rem;
+      max-width: 96%;
    }
    
    .contact-item {
-      padding: 6px 14px;
-      font-size: 11px;
+      padding: 0.5625rem 0.9375rem;
+      font-size: 0.8125rem;
+      min-height: 2.625rem;
+      gap: 0.375rem;
+      border-width: 2px;
    }
    
    .contact-item svg {
-      width: 15px;
-      height: 15px;
+      width: 1.125rem;
+      height: 1.125rem;
    }
    
    .contact-divider {
-      height: 16px;
+      height: 1.5rem;
+      margin: 0 0.25rem;
    }
 }
 
-@media (max-width: 896px) and (orientation: landscape) {
+/* ============================================ */
+/* STANDARD MOBILE (430px - 539px) */
+/* ============================================ */
+
+@media (min-width: 430px) and (max-width: 539px) {
    .center-contact-bar {
-      bottom: 12px;
-      padding: 4px 7px;
+      bottom: 1.25rem;
+      padding: 0.4375rem 0.6875rem;
+      max-width: 97%;
    }
    
    .contact-item {
-      padding: 5px 12px;
-      font-size: 10px;
+      padding: 0.5625rem 0.875rem;
+      font-size: 0.8125rem;
+      min-height: 2.625rem;
+      gap: 0.375rem;
+      border-width: 2px;
+   }
+   
+   .contact-item svg {
+      width: 1.125rem;
+      height: 1.125rem;
+   }
+   
+   .contact-divider {
+      height: 1.4375rem;
+      margin: 0 0.1875rem;
    }
 }
 
-@media (max-width: 667px) and (orientation: landscape) {
+/* ============================================ */
+/* COMPACT MOBILE (390px - 429px) */
+/* iPhone 13/14/15 Pro */
+/* ============================================ */
+
+@media (min-width: 390px) and (max-width: 429px) {
    .center-contact-bar {
-      bottom: 10px;
-      padding: 4px 6px;
+      bottom: 1.125rem;
+      padding: 0.4375rem 0.625rem;
+      max-width: 97%;
    }
    
    .contact-item {
-      padding: 4px 10px;
-      font-size: 10px;
+      padding: 0.5rem 0.8125rem;
+      font-size: 0.8125rem;
+      min-height: 2.5rem;
+      gap: 0.3125rem;
+      border-width: 2px;
+   }
+   
+   .contact-item svg {
+      width: 1.0625rem;
+      height: 1.0625rem;
+   }
+   
+   .contact-divider {
+      height: 1.375rem;
+      margin: 0 0.1875rem;
+   }
+}
+
+/* ============================================ */
+/* SMALL MOBILE (360px - 389px) */
+/* Galaxy S Series, Pixel */
+/* ============================================ */
+
+@media (min-width: 360px) and (max-width: 389px) {
+   .center-contact-bar {
+      bottom: 1rem;
+      padding: 0.375rem 0.5625rem;
+      max-width: 98%;
+   }
+   
+   .contact-item {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8125rem;
+      min-height: 2.5rem;
+      gap: 0.3125rem;
+      border-width: 2px;
+   }
+   
+   .contact-item svg {
+      width: 1.0625rem;
+      height: 1.0625rem;
+   }
+   
+   .contact-divider {
+      height: 1.375rem;
+      margin: 0 0.1875rem;
+      width: 1.5px;
+   }
+}
+
+/* ============================================ */
+/* EXTRA SMALL MOBILE (320px - 359px) */
+/* iPhone SE, older devices */
+/* ============================================ */
+
+@media (min-width: 320px) and (max-width: 359px) {
+   .center-contact-bar {
+      bottom: 0.875rem;
+      padding: 0.3125rem 0.5rem;
+      max-width: 98%;
+   }
+   
+   .contact-item {
+      padding: 0.4375rem 0.6875rem;
+      font-size: 0.75rem;
+      min-height: 2.375rem;
+      gap: 0.3125rem;
+      border-width: 1.5px;
+   }
+   
+   .contact-item svg {
+      width: 1rem;
+      height: 1rem;
+   }
+   
+   .contact-divider {
+      height: 1.25rem;
+      margin: 0 0.1875rem;
+      width: 1.5px;
+   }
+}
+
+/* ============================================ */
+/* ULTRA COMPACT (280px - 319px) */
+/* Very old devices, Galaxy Fold inner */
+/* ============================================ */
+
+@media (max-width: 319px) {
+   .center-contact-bar {
+      bottom: 0.75rem;
+      padding: 0.25rem 0.4375rem;
+      max-width: 99%;
+   }
+   
+   .contact-item {
+      padding: 0.375rem 0.625rem;
+      font-size: 0.6875rem;
+      min-height: 2.25rem;
+      gap: 0.25rem;
+      border-width: 1.5px;
+   }
+   
+   .contact-item svg {
+      width: 0.9375rem;
+      height: 0.9375rem;
+   }
+   
+   .contact-divider {
+      height: 1.125rem;
+      margin: 0 0.125rem;
+      width: 1px;
+   }
+}
+
+/* ============================================ */
+/* LANDSCAPE ORIENTATION - ALL DEVICES */
+/* ============================================ */
+
+/* Large Landscape (1024px+) */
+@media (min-width: 1024px) and (orientation: landscape) and (max-height: 768px) {
+   .center-contact-bar {
+      bottom: 1.25rem;
+      padding: 0.5rem 0.875rem;
+   }
+   
+   .contact-item {
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      min-height: 2.5rem;
+   }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) and (max-height: 600px) {
+   .center-contact-bar {
+      bottom: 1rem;
+      padding: 0.4375rem 0.75rem;
+   }
+   
+   .contact-item {
+      padding: 0.5rem 0.875rem;
+      font-size: 0.8125rem;
+      min-height: 2.375rem;
+   }
+   
+   .contact-item svg {
+      width: 1.125rem;
+      height: 1.125rem;
+   }
+}
+
+/* Mobile Landscape (below 768px) */
+@media (max-width: 767px) and (orientation: landscape) and (max-height: 428px) {
+   .center-contact-bar {
+      bottom: 0.75rem;
+      padding: 0.375rem 0.625rem;
+   }
+   
+   .contact-item {
+      padding: 0.4375rem 0.75rem;
+      font-size: 0.75rem;
+      min-height: 2.25rem;
+      gap: 0.25rem;
+   }
+   
+   .contact-item svg {
+      width: 1rem;
+      height: 1rem;
+   }
+   
+   .contact-divider {
+      height: 1.25rem;
+      margin: 0 0.1875rem;
+   }
+}
+
+/* Extreme Landscape (very narrow height) */
+@media (orientation: landscape) and (max-height: 375px) {
+   .center-contact-bar {
+      bottom: 0.625rem;
+      padding: 0.3125rem 0.5rem;
+   }
+   
+   .contact-item {
+      padding: 0.375rem 0.625rem;
+      font-size: 0.6875rem;
+      min-height: 2rem;
    }
 }
 
@@ -16066,15 +16503,22 @@ input[type=radio] {
 /* ============================================ */
 
 @media (hover: none) and (pointer: coarse) {
+   /* Ensure proper touch targets */
    .contact-item {
-      min-height: 44px;
-      min-width: 44px;
-      padding: 8px 16px;
+      min-height: 2.75rem;
+      min-width: 2.75rem;
+      padding: 0.625rem 1rem;
    }
    
+   /* Remove hover effects on touch devices */
    .contact-item:hover {
       transform: none;
       -webkit-transform: none;
+      box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
+   }
+   
+   .contact-item:hover::before {
+      opacity: 0;
    }
    
    .contact-item:hover svg {
@@ -16082,55 +16526,25 @@ input[type=radio] {
       -webkit-transform: none;
    }
    
-   .contact-item:hover::before {
-      opacity: 0;
-   }
-   
+   /* Enhanced active state for touch */
    .contact-item:active {
-      transform: scale(0.96);
-      -webkit-transform: scale(0.96);
+      transform: scale(0.94);
+      -webkit-transform: scale(0.94);
    }
    
    .contact-item:active::before {
-      opacity: 0.5;
-   }
-}
-
-/* ============================================ */
-/* BROWSER SPECIFIC FIXES */
-/* ============================================ */
-
-/* Safari iOS */
-@supports (-webkit-touch-callout: none) {
-   .center-contact-bar {
-      -webkit-backdrop-filter: blur(20px);
-   }
-}
-
-/* Firefox */
-@-moz-document url-prefix() {
-   .center-contact-bar {
-      background: rgba(255, 255, 255, 0.95);
-   }
-}
-
-/* Edge */
-@supports (-ms-ime-align: auto) {
-   .center-contact-bar {
-      background: rgba(255, 255, 255, 0.95);
-   }
-}
-
-/* IE11 Fallback */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-   .center-contact-bar {
-      background: #ffffff;
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f7ffffff,endColorstr=#f7ffffff);
+      opacity: 0.6;
    }
    
-   .contact-item {
-      display: inline-block;
-      vertical-align: middle;
+   /* Expand touch area */
+   .contact-item::after {
+      content: '';
+      position: absolute;
+      top: -0.625rem;
+      left: -0.625rem;
+      right: -0.625rem;
+      bottom: -0.625rem;
+      z-index: -1;
    }
 }
 
@@ -16138,53 +16552,96 @@ input[type=radio] {
 /* SAFE AREAS (Notched Devices) */
 /* ============================================ */
 
-/* iPhone X, XS, 11, 12, 13, 14, 15 */
 @supports (padding: max(0px)) {
    .center-contact-bar {
-      bottom: max(20px, calc(env(safe-area-inset-bottom) + 10px));
-      left: max(30%, calc(env(safe-area-inset-left) ));
-      padding-left: max(12px, calc(env(safe-area-inset-left) + 12px));
-      padding-right: max(12px, calc(env(safe-area-inset-right) + 12px));
+      bottom: max(1.25rem, calc(env(safe-area-inset-bottom) + 0.75rem));
+      left: max(50%, calc(env(safe-area-inset-left) + 50%));
+      padding-left: max(1rem, calc(env(safe-area-inset-left) + 1rem));
+      padding-right: max(1rem, calc(env(safe-area-inset-right) + 1rem));
+   }
+}
+
+/* iPhone X/XS/11 Pro */
+@media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+   .center-contact-bar {
+      bottom: calc(env(safe-area-inset-bottom) + 1rem);
+   }
+}
+
+/* iPhone XR/11 */
+@media (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+   .center-contact-bar {
+      bottom: calc(env(safe-area-inset-bottom) + 1rem);
+   }
+}
+
+/* iPhone 12/13 Mini */
+@media (device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) {
+   .center-contact-bar {
+      bottom: calc(env(safe-area-inset-bottom) + 0.875rem);
+   }
+}
+
+/* iPhone 12/13/14 Pro */
+@media (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+   .center-contact-bar {
+      bottom: calc(env(safe-area-inset-bottom) + 1rem);
+   }
+}
+
+/* iPhone 14/15 Pro Max */
+@media (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
+   .center-contact-bar {
+      bottom: calc(env(safe-area-inset-bottom) + 1.125rem);
    }
 }
 
 /* ============================================ */
-/* PERFORMANCE OPTIMIZATION */
+/* BROWSER SPECIFIC FIXES */
 /* ============================================ */
 
-.center-contact-bar,
-.contact-item,
-.contact-item svg {
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
-   -webkit-transform: translateZ(0);
-   transform: translateZ(0);
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+/* Safari Specific */
+@supports (-webkit-touch-callout: none) {
+   .center-contact-bar {
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+   }
+   
+   .contact-item {
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+   }
 }
 
-.center-contact-bar {
-   will-change: transform;
+/* Firefox */
+@-moz-document url-prefix() {
+   .center-contact-bar {
+      background: rgba(255, 255, 255, 0.98);
+   }
 }
 
-.contact-item {
-   will-change: transform, background;
+/* Edge/Chrome */
+@supports (-ms-ime-align: auto) {
+   .center-contact-bar {
+      background: rgba(255, 255, 255, 0.98);
+   }
 }
 
-/* Prevent text selection */
-.contact-item,
-.contact-item span {
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   -webkit-touch-callout: none;
-}
-
-/* Prevent tap highlight on mobile */
-.contact-item {
-   -webkit-tap-highlight-color: transparent;
-   -webkit-tap-highlight-color: rgba(0,0,0,0);
+/* Internet Explorer 11 */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+   .center-contact-bar {
+      background: #ffffff;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#faffffff,endColorstr=#faffffff);
+   }
+   
+   .contact-item {
+      display: inline-block;
+      vertical-align: middle;
+   }
+   
+   .contact-divider {
+      display: inline-block;
+      vertical-align: middle;
+   }
 }
 
 /* ============================================ */
@@ -16195,13 +16652,80 @@ input[type=radio] {
    .center-contact-bar {
       border-width: 0.5px;
    }
+   
+   .contact-item {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+   }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+   .contact-item {
+      border-width: 0.667px;
+   }
 }
 
 /* ============================================ */
-/* REDUCED MOTION (Accessibility) */
+/* DARK MODE SUPPORT */
+/* ============================================ */
+
+@media (prefers-color-scheme: dark) {
+   .center-contact-bar {
+      background: rgba(20, 20, 20, 0.98);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 
+         0 0.625rem 2.5rem rgba(0, 0, 0, 0.4),
+         0 0.25rem 1rem rgba(0, 0, 0, 0.3),
+         0 0 0 1px rgba(255, 255, 255, 0.08);
+   }
+   
+   .contact-item {
+      color: #ffffff;
+      background: rgba(35, 35, 35, 0.95);
+      box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.3);
+   }
+   
+   .whatsapp-item {
+      border-color: #25D366;
+      background: rgba(37, 211, 102, 0.08);
+   }
+   
+   .whatsapp-item::before {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(18, 140, 126, 0.2) 100%);
+   }
+   
+   .phone-item {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.08);
+   }
+   
+   .phone-item::before {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%);
+   }
+   
+   .contact-divider {
+      background: linear-gradient(to bottom, 
+         rgba(255, 255, 255, 0) 0%,
+         rgba(255, 255, 255, 0.2) 50%,
+         rgba(255, 255, 255, 0) 100%
+      );
+   }
+}
+
+/* ============================================ */
+/* ACCESSIBILITY - REDUCED MOTION */
 /* ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
+   *,
+   *::before,
+   *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+   }
+   
    .center-contact-bar,
    .contact-item,
    .contact-item svg,
@@ -16214,27 +16738,50 @@ input[type=radio] {
 }
 
 /* ============================================ */
-/* DARK MODE SUPPORT */
+/* HIGH CONTRAST MODE */
 /* ============================================ */
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-contrast: high) {
    .center-contact-bar {
-      background: rgba(30, 30, 30, 0.95);
-      border-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
-                  0 2px 8px rgba(0, 0, 0, 0.2);
+      border: 2px solid currentColor;
    }
    
    .contact-item {
-      color: #f5f5f5;
+      border-width: 3px;
+      font-weight: 800;
+   }
+}
+
+@media (prefers-contrast: more) {
+   .contact-item {
+      background: #ffffff;
+      color: #000000;
+      border-width: 3px;
    }
    
-   .whatsapp-item::before {
-      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2) 0%, rgba(18, 140, 126, 0.2) 100%);
+   .center-contact-bar {
+      background: #ffffff;
+   }
+}
+
+/* ============================================ */
+/* FORCED COLORS MODE (Windows High Contrast) */
+/* ============================================ */
+
+@media (forced-colors: active) {
+   .center-contact-bar {
+      border: 2px solid CanvasText;
+      background: Canvas;
    }
    
-   .phone-item::before {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%);
+   .contact-item {
+      border: 2px solid CanvasText;
+      color: CanvasText;
+      forced-color-adjust: none;
+   }
+   
+   .contact-divider {
+      background: CanvasText;
    }
 }
 
@@ -16249,16 +16796,167 @@ input[type=radio] {
 }
 
 /* ============================================ */
-/* FORCED COLORS MODE (Windows High Contrast) */
+/* PERFORMANCE OPTIMIZATIONS */
 /* ============================================ */
 
-@media (forced-colors: active) {
+/* GPU Acceleration */
+.center-contact-bar,
+.contact-item,
+.contact-item svg,
+.contact-item::before {
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+   -webkit-perspective: 1000px;
+   perspective: 1000px;
+   -webkit-transform: translateZ(0);
+   transform: translateZ(0);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text selection */
+.contact-item,
+.contact-item span {
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   -webkit-touch-callout: none;
+}
+
+/* Prevent tap highlight */
+.contact-item {
+   -webkit-tap-highlight-color: transparent;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* ============================================ */
+/* FOLDABLE DEVICES */
+/* ============================================ */
+
+/* Galaxy Fold (Folded) */
+@media (min-width: 280px) and (max-width: 320px) {
    .center-contact-bar {
-      border: 2px solid CanvasText;
+      bottom: 0.75rem;
+      padding: 0.3125rem 0.5rem;
+      max-width: 99%;
    }
    
    .contact-item {
-      border: 1px solid CanvasText;
-      forced-color-adjust: none;
+      padding: 0.4375rem 0.625rem;
+      font-size: 0.6875rem;
+      min-height: 2.25rem;
+   }
+}
+
+/* Galaxy Fold (Unfolded) */
+@media (min-width: 717px) and (max-width: 884px) and (orientation: portrait) {
+   .center-contact-bar {
+      bottom: 1.5rem;
+      padding: 0.5625rem 0.875rem;
+   }
+   
+   .contact-item {
+      padding: 0.6875rem 1.0625rem;
+      font-size: 0.875rem;
+   }
+}
+
+/* Surface Duo */
+@media (min-width: 540px) and (max-width: 720px) and (orientation: portrait) {
+   .center-contact-bar {
+      bottom: 1.375rem;
+      padding: 0.5rem 0.8125rem;
+   }
+}
+
+/* ============================================ */
+/* SPECIFIC DEVICE OPTIMIZATIONS */
+/* ============================================ */
+
+/* iPhone 6/7/8 */
+@media (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+   .contact-item {
+      font-size: 0.8125rem;
+      padding: 0.5rem 0.8125rem;
+   }
+}
+
+/* iPhone 6/7/8 Plus */
+@media (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+   .contact-item {
+      font-size: 0.875rem;
+      padding: 0.5625rem 0.9375rem;
+   }
+}
+
+/* iPad (all generations) */
+@media (device-width: 768px) and (device-height: 1024px) {
+   .center-contact-bar {
+      bottom: 1.875rem;
+      padding: 0.625rem 1rem;
+   }
+   
+   .contact-item {
+      padding: 0.75rem 1.125rem;
+      font-size: 0.9375rem;
+   }
+}
+
+/* iPad Pro 11" */
+@media (device-width: 834px) and (device-height: 1194px) {
+   .center-contact-bar {
+      bottom: 2rem;
+      padding: 0.6875rem 1.125rem;
+   }
+   
+   .contact-item {
+      padding: 0.8125rem 1.25rem;
+      font-size: 0.9375rem;
+   }
+}
+
+/* iPad Pro 12.9" */
+@media (device-width: 1024px) and (device-height: 1366px) {
+   .center-contact-bar {
+      bottom: 2.25rem;
+      padding: 0.75rem 1.25rem;
+   }
+   
+   .contact-item {
+      padding: 0.875rem 1.375rem;
+      font-size: 1rem;
+   }
+}
+
+/* ============================================ */
+/* ULTRA-WIDE MONITORS (21:9 and wider) */
+/* ============================================ */
+
+@media (min-aspect-ratio: 21/9) {
+   .center-contact-bar {
+      max-width: 85%;
+   }
+}
+
+@media (min-aspect-ratio: 32/9) {
+   .center-contact-bar {
+      max-width: 75%;
+   }
+}
+
+/* ============================================ */
+/* VERTICAL MONITORS (Portrait Desktop) */
+/* ============================================ */
+
+@media (min-width: 1024px) and (orientation: portrait) {
+   .center-contact-bar {
+      bottom: 2rem;
+      padding: 0.75rem 1.25rem;
+   }
+   
+   .contact-item {
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
    }
 }
