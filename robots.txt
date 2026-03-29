@@ -1,32 +1,40 @@
 # Robots.txt for www.aldabouqi.com
-# شركة الدابوقي لشراء الأثاث المستعمل في عمان
+
 User-agent: *
 Allow: /
-# Disallow specific directories
 Disallow: /cgi-bin/
 Disallow: /tmp/
 Disallow: /private/
 Disallow: /admin/
 Disallow: /.git/
-# Allow specific resources
+Disallow: /cdn-cgi/
+
 Allow: /assets/css/
 Allow: /assets/js/
 Allow: /assets/img/
 Allow: /assets/fonts/
-# Sitemap Location
+
 Sitemap: https://www.aldabouqi.com/sitemap.xml
-# Specific rules for Google
+
 User-agent: Googlebot
 Allow: /
+
+User-agent: Googlebot
 Crawl-delay: 5
-# Specific rules for Bing
+
 User-agent: Bingbot
 Allow: /
+
+User-agent: Bingbot
 Crawl-delay: 5
-# Block bad bots
+
 User-agent: MJ12bot
 Disallow: /
+
 User-agent: AhrefsBot
+Allow: /
 Crawl-delay: 30
+
 User-agent: SemrushBot
+Allow: /
 Crawl-delay: 30
