@@ -38,6 +38,14 @@
       <priority>0.7</priority>
    </url>
 
+
+   <url>
+      <loc>https://www.aldabouqi.com/coverage-areas</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.85</priority>
+   </url>
+
    <url>
       <loc>https://www.aldabouqi.com/partner</loc>
       <lastmod>2026-08-05</lastmod>
@@ -64,6 +72,62 @@
       <lastmod>2026-08-05</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-khalda</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-shafa-badran</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-tlaa-al-ali</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-shmeisani</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-abdoun</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-jubaiha</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-sweileh</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
+   </url>
+
+   <url>
+      <loc>https://www.aldabouqi.com/buy-used-furniture-abdali</loc>
+      <lastmod>2026-08-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.75</priority>
    </url>
 
 </urlset>
