@@ -256,3 +256,17 @@
 	
 	 
 })(jQuery);
+
+/* Email obfuscation - يحمي الإيميل من بوتات جمع السبام */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.wn-mail').forEach(function (el) {
+    var u = el.getAttribute('data-mail-u');
+    var d = el.getAttribute('data-mail-d');
+    if (u && d) {
+      el.setAttribute('href', 'mailto:' + u + '@' + d);
+      if (el.classList.contains('wn-mail-text')) {
+        el.textContent = u + '@' + d;
+      }
+    }
+  });
+});
