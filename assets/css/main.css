@@ -49,21 +49,21 @@
   /**
   @font family declaration
   */
-  --it-ff-body: 'DM Sans', serif;
-  --it-ff-heading: 'Plus Jakarta Sans' sans-serif;
-  --it-ff-poppins: 'Poppins Sans' sans-serif;
+  --it-ff-body: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif;
+  --it-ff-heading: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+  --it-ff-poppins: 'Tajawal', sans-serif;
   --it-ff-fontawesome: Font Awesome 6 Pro;
   /**
   @color declaration
   */
   --it-common-white: #ffffff;
-  --it-common-black: #091216;
-  --it-common-black-2: #313537;
-  --it-heading-primary: #091216;
+  --it-common-black: #0A1628;
+  --it-common-black-2: #101F36;
+  --it-heading-primary: #0A1628;
   --it-gray-1: #F3F3F3;
   --it-gray-2: #F4F4F4;
-  --it-text-body: #797979;
-  --it-theme-1: #246c8b;
+  --it-text-body: #5b6472;
+  --it-theme-1: #C9922F;
 }
 
 @media (min-width: 1400px) {
@@ -1149,7 +1149,7 @@ input[type=color] {
   visibility: visible;
 }
 .body-overlay:hover {
-  cursor: url(../img/cross-out.html), pointer;
+  cursor: url(../img/cross-out.svg), pointer;
 }
 
 .it-instagram img {
@@ -7352,7 +7352,7 @@ body .ui-tooltip {
   right: 0;
   width: 1px;
   height: 100%;
-  background: linear-gradient(180deg, rgba(224, 59, 59, 0) 0%, #e03b3b 50%, rgba(224, 59, 59, 0) 100%);
+  background: linear-gradient(180deg, rgba(224, 59, 59, 0) 0%, #C9922F 50%, rgba(224, 59, 59, 0) 100%);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .it-about-right .row [class*=col-]:first-child .it-about-funfact::after {
@@ -14267,10 +14267,10 @@ input[type=radio] {
   border: 1px solid #3C082C;
 }
 .it-shop-widget-checkbox-circle button.color-3 {
-  background-color: #E03B3B;
+  background-color: #C9922F;
 }
 .it-shop-widget-checkbox-circle button.color-3::after {
-  border: 1px solid #E03B3B;
+  border: 1px solid #C9922F;
 }
 .it-shop-widget-checkbox-circle button.color-4 {
   background-color: #420A0A;
@@ -14350,7 +14350,7 @@ input[type=radio] {
 }
 .it-shop-widget-checkbox-circle label::before {
   position: absolute;
-  content: url("../img/inner/icon/check.html");
+  content: url("../img/inner/icon/check.svg");
   top: 0px;
   left: 0;
   width: 18px;
