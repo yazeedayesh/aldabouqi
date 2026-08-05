@@ -61,11 +61,11 @@
    <!-- ⚡ PRECONNECT: Google Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
    <!-- CSS -->
    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-   <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
+   <link rel="stylesheet" href="assets/css/font-awesome-pro.css" media="print" onload="this.media='all'">
    <link rel="stylesheet" href="assets/css/main.css">
    <link rel="stylesheet" href="assets/css/rtl.css">
    
@@ -85,6 +85,7 @@
       <link rel="stylesheet" href="assets/css/swiper-bundle.css">
       <link rel="stylesheet" href="assets/css/magnific-popup.css">
       <link rel="stylesheet" href="assets/css/spacing.css">
+      <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
    </noscript>
 
    <!-- Schema.org Service Page -->
@@ -282,7 +283,7 @@
          </div>
          <div class="itoffcanvas__logo">
             <a href="/">
-               <img src="assets/img/logo/aldabouqi.webp" alt="غرف نوم مستعملة للبيع في عمان">
+               <img src="assets/img/logo/aldabouqi.webp" alt="غرف نوم مستعملة للبيع في عمان" width="200" height="98">
             </a>
          </div>
          <div class="itoffcanvas__text">
@@ -311,11 +312,11 @@
             </div>
             <div class="it-info-wrapper mb-20 d-flex align-items-center">
                <div class="itoffcanvas__info-icon">
-                  <a href="mailto:aldabouqi@outlook.com" aria-label="البريد الإلكتروني"><i class="fal fa-envelope"></i></a>
+                  <a class="wn-mail" data-mail-u="aldabouqi" data-mail-d="outlook.com" aria-label="البريد الإلكتروني"><i class="fal fa-envelope"></i></a>
                </div>
                <div class="itoffcanvas__info-address">
                   <span>البريد الالكتروني</span>
-                  <a href="mailto:aldabouqi@outlook.com">aldabouqi@outlook.com</a>
+                  <a class="wn-mail wn-mail-text" data-mail-u="aldabouqi" data-mail-d="outlook.com"></a>
                </div>
             </div>
          </div>
@@ -343,7 +344,7 @@
                               </div>
                               <div class="it-header-top-list-text">
                                  <span>البريد الالكتروني</span>
-                                 <a class="border-line-black" href="mailto:aldabouqi@outlook.com">aldabouqi@outlook.com</a>
+                                 <a class="wn-mail wn-mail-text border-line-black" data-mail-u="aldabouqi" data-mail-d="outlook.com"></a>
                               </div>
                            </div>
                         </li>
@@ -381,7 +382,7 @@
                               </div>
                               <div class="it-header-top-list-text">
                                  <span>موقعنا</span>
-                                 <a class="border-line-black" target="_blank">جميع مناطق عمان وضواحيها</a>
+                                 <a class="border-line-black" href="/coverage-areas">جميع مناطق عمان وضواحيها</a>
                               </div>
                            </div>
                         </li>
@@ -420,10 +421,10 @@
                <div class="row align-items-center">
                   <div class="col-xxl-2 col-xl-2 col-lg-6 col-md-6 col-6">
                      <div class="it-header-logo-2">
-                        <a href="/"><img src="assets/img/logo/aldabouqi.webp" alt="بيع أثاث منزلي مستعمل في عمان"></a>
+                        <a href="/"><img src="assets/img/logo/aldabouqi.webp" alt="بيع أثاث منزلي مستعمل في عمان" width="200" height="98"></a>
                      </div>
                      <div class="it-header-logo-red d-none">
-                        <a href="/"><img src="assets/img/logo/aldabouqi-black.webp" alt="شراء أثاث مستعمل للمكاتب في عمان"></a>
+                        <a href="/"><img src="assets/img/logo/aldabouqi-black.webp" alt="شراء أثاث مستعمل للمكاتب في عمان" width="200" height="98"></a>
                      </div>
                   </div>
                   <div class="col-xxl-7 col-xl-7 d-none d-xl-block">
@@ -999,6 +1000,8 @@
         </div>
      </div>
   </div>
+         </div>
+      </div>
 
 
          </main>
@@ -1014,14 +1017,14 @@
                         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-50 wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
                            <div class="it-footer-widget it-footer-col-2-1">
                               <div class="it-footer-widget-logo mb-20">
-                                 <a href="/"><img src="assets/img/logo/aldabouqi.webp" alt="شراء الأثاث المستعمل - شركة الدابوقي"></a>
+                                 <a href="/"><img src="assets/img/logo/aldabouqi.webp" alt="شراء الأثاث المستعمل - شركة الدابوقي" width="200" height="98"></a>
                               </div>
                               <div class="it-footer-widget-text">
                                  <p>شركة الدابوقي لشراء الاثاث المستعمل في عمان<br>على استعداد تام لشراء جميع انواع الاثاث المكتبي <br> تواصلوا معنا الان</p>
                               </div>
                               <div class="contact-buttons d-none d-md-flex">
                                  <!-- WhatsApp Button -->
-                                 <a href="https://wa.me/962796983994" target="_blank" class="it-btn-whatsapp">
+                                 <a href="https://wa.me/962796983994" target="_blank" rel="noopener noreferrer" class="it-btn-whatsapp">
                                     <span>
                                        <span class="text-1">WhatsApp</span>
                                        <span class="text-2">WhatsApp</span>
@@ -1093,7 +1096,7 @@
                                              <path d="M5.625 0C2.52375 0 0 2.54125 0 5.66562C0 10.105 5.09625 14.6887 5.31313 14.8812C5.4025 14.9606 5.51375 15 5.625 15C5.73625 15 5.8475 14.9606 5.93687 14.8819C6.15375 14.6888 11.25 10.105 11.25 5.66562C11.25 2.54125 8.72625 0 5.625 0ZM5.625 8.75C3.90188 8.75 2.5 7.34812 2.5 5.625C2.5 3.90188 3.90188 2.5 5.625 2.5C7.34812 2.5 8.75 3.90188 8.75 5.625C8.75 7.34812 7.34812 8.75 5.625 8.75Z" fill="currentcolor" />
                                           </svg>
                                        </span>
-                                       <a target="_blank" href="https://www.google.com/maps/dir///@24.4503253,17.1644279,4.17z?entry=ttu&amp;g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D">جميع مناطق عمان <br> الأردن</a>
+                                       <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/dir///@24.4503253,17.1644279,4.17z?entry=ttu&amp;g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D">جميع مناطق عمان <br> الأردن</a>
                                     </div>
                                     <div class="it-footer-widget-tel-box mb-20">
                                        <span>
@@ -1102,7 +1105,7 @@
                                              <path d="M10.2707 8.39702L16.9136 1.75344C16.5918 1.21986 16.1379 0.778202 15.5958 0.471072C15.0536 0.163943 14.4414 0.00170229 13.8183 0H3.63661C3.0135 0.00170229 2.40134 0.163943 1.85919 0.471072C1.31703 0.778202 0.863159 1.21986 0.541359 1.75344L7.18421 8.39702C7.59408 8.80524 8.14899 9.03444 8.72747 9.03444C9.30595 9.03444 9.86086 8.80524 10.2707 8.39702Z" fill="currentcolor" />
                                           </svg>
                                        </span>
-                                       <a href="mailto:aldabouqi@outlook.com">aldabouqi@outlook.com</a>
+                                       <a class="wn-mail wn-mail-text" data-mail-u="aldabouqi" data-mail-d="outlook.com"></a>
                                     </div>
                                     <div class="it-footer-widget-tel-box">
                                        <span>
