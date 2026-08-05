@@ -7144,8 +7144,8 @@ body .ui-tooltip {
 }
 @media (max-width: 767px) {
   .it-hero-3-title {
-    font-size: 54px;
-    margin-bottom: 20px;
+    font-size: 35px;
+    margin-bottom: 25px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
