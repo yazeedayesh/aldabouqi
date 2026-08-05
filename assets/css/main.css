@@ -5889,7 +5889,7 @@ body .ui-tooltip {
 }
 .it-header-menu > nav > ul > li > a {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 25px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   padding: 30px 0;
@@ -7119,8 +7119,8 @@ body .ui-tooltip {
   }
 }
 .it-hero-3-title {
-  font-weight: 500;
-  font-size: 75px;
+  font-weight: 800;
+  font-size: 130px;
   line-height: 1.04;
   position: relative;
   text-transform: uppercase;
