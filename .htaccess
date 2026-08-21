@@ -19,7 +19,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Fix: en assets path bug + dead /en city links
 # ===============================================
 RewriteRule ^en/assets/(.*)$ assets/$1 [L]
-RedirectMatch 301 ^/en/buy-used-furniture-(.+)$ /buy-used-furniture-$1
+RewriteRule ^en/buy-used-furniture-(.+)$ /buy-used-furniture-$1 [R=301,L]
 
 # ===============================================
 # Redirects للصفحات المكسورة (Broken Links Fix)
