@@ -16,6 +16,12 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ===============================================
+# Fix: en assets path bug + dead /en city links
+# ===============================================
+RewriteRule ^en/assets/(.*)$ assets/$1 [L]
+RedirectMatch 301 ^/en/buy-used-furniture-(.+)$ /buy-used-furniture-$1
+
+# ===============================================
 # Redirects للصفحات المكسورة (Broken Links Fix)
 # ===============================================
 
