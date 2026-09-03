@@ -147,7 +147,7 @@ export function ServiceJsonLd({
 export function BreadcrumbJsonLd({
   items,
 }: {
-  items: Array<{ name: string; path: string }>;
+  items: ReadonlyArray<{ name: string; path: string }>;
 }) {
   return (
     <JsonLd
@@ -168,7 +168,7 @@ export function BreadcrumbJsonLd({
 export function FaqJsonLd({
   items,
 }: {
-  items: Array<{ question: string; answer: string }>;
+  items: ReadonlyArray<{ question: string; answer: string }>;
 }) {
   return (
     <JsonLd
@@ -192,7 +192,7 @@ export function HowToJsonLd({
 }: {
   name: string;
   description: string;
-  steps: Array<{ name: string; text: string }>;
+  steps: ReadonlyArray<{ name: string; text: string }>;
 }) {
   return (
     <JsonLd
