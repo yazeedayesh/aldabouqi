@@ -6,7 +6,7 @@ import { BUSINESS, SITE_URL } from "@/lib/constants";
  * ported pages keep the same schema.org markup verbatim. Each component
  * renders a single <script type="application/ld+json"> tag.
  */
-function JsonLd({ data }: { data: Record<string, unknown> }) {
+export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"

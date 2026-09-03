@@ -28,6 +28,17 @@ export async function generateMetadata({
       template: `%s | ${BUSINESS.nameAr}`,
     },
     description: t("heroSubtitle"),
+    authors: [{ name: locale === "ar" ? BUSINESS.nameAr : BUSINESS.nameEn }],
+    robots: { index: true, follow: true },
+    verification: {
+      google: "iTDj6VEGfAhLNZV0aVEiw5f0phW2sxmnNcUFnsXrFiE",
+    },
+    other: {
+      "geo.region": "JO-AZ",
+      "geo.placename": BUSINESS.address.localityAr,
+      "geo.position": `${BUSINESS.geo.latitude};${BUSINESS.geo.longitude}`,
+      ICBM: `${BUSINESS.geo.latitude}, ${BUSINESS.geo.longitude}`,
+    },
   };
 }
 

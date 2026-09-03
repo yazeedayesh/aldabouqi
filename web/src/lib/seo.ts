@@ -11,6 +11,8 @@ type BuildMetadataInput = {
   /** Set false for ar-only pages (e.g. neighborhood pages) that have no /en counterpart. */
   hasEnglishVariant?: boolean;
   ogImage?: string;
+  /** Comma-separated, sourced verbatim from the current page's <meta name="keywords">. */
+  keywords?: string;
 };
 
 function localizedUrl(path: string, locale: Locale) {
@@ -31,6 +33,7 @@ export function buildMetadata({
   locale,
   hasEnglishVariant = true,
   ogImage,
+  keywords,
 }: BuildMetadataInput): Metadata {
   const canonical = localizedUrl(path, locale);
 
@@ -45,6 +48,7 @@ export function buildMetadata({
   return {
     title,
     description,
+    ...(keywords ? { keywords: keywords.split(",").map((k) => k.trim()) } : {}),
     alternates: {
       canonical,
       ...(hasEnglishVariant ? { languages } : {}),
