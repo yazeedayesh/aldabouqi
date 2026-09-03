@@ -1,0 +1,150 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "شراء أثاث منزلي مستعمل",
+    "name": "خدمة شراء الأثاث المنزلي المستعمل في عمان",
+    "description": "نشتري جميع أنواع الأثاث المنزلي المستعمل: غرف نوم، صالونات، طاولات طعام، كنب، خزائن ملابس، مكتبات، ديكورات منزلية وكل ما يتعلق بالمنزل بأفضل الأسعار في السوق الأردني",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "جميع مناطق عمان",
+        "addressLocality": "عمان",
+        "addressRegion": "عمان",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "عمان"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "JOD",
+      "description": "معاينة مجانية وتقييم احترافي للأثاث المنزلي المستعمل"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "خدماتنا",
+        "item": "https://www.aldabouqi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "شراء أثاث منزلي مستعمل",
+        "item": "https://www.aldabouqi.com/buy-used-home-furniture"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "هل تشترون جميع أنواع الأثاث المنزلي؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نشتري جميع أنواع الأثاث المنزلي بغض النظر عن نوعه أو حالته: غرف نوم، صالونات، طاولات طعام، كنب، خزائن ملابس، مكتبات، ديكورات منزلية، سجاد، ستائر وكل ما يتعلق بالمنزل. نقوم بتقييم كل قطعة على حدة وتقديم السعر المناسب بناءً على حالتها وجودتها."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "كيف يتم تحديد سعر الأثاث المستعمل؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نحدد السعر بناءً على عدة عوامل: نوع الأثاث (خشب، MDF، معدن)، حالته العامة (جديد، شبه جديد، مستعمل)، جودة التصنيع، الماركة إن وجدت، والطلب في السوق. فريقنا المتخصص لديه خبرة طويلة في التقييم ويضمن لك الحصول على سعر عادل ومنصف يعكس القيمة الحقيقية للأثاث."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل المعاينة مجانية؟ وهل هناك رسوم نقل؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، المعاينة مجانية تماماً في جميع مناطق عمان بدون أي تكلفة عليك. كما أن عملية النقل أيضاً مجانية - نحن نتحمل كافة تكاليف نقل الأثاث من موقعك بعد إتمام الصفقة. لا توجد أي رسوم خفية أو تكاليف إضافية."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "كم يستغرق من الوقت لإتمام عملية البيع؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "عملية البيع سريعة جداً! بعد اتصالك بنا، يمكننا تحديد موعد المعاينة في نفس اليوم أو اليوم التالي. المعاينة تستغرق عادة 15-30 دقيقة، وبعد الاتفاق على السعر نقوم بالدفع فوراً ونقل الأثاث في نفس اليوم أو حسب الموعد المناسب لك."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "كيف تبيع أثاثك المنزلي المستعمل للدابوقي",
+    "description": "خطوات بسيطة لبيع أثاثك المنزلي المستعمل بأفضل سعر",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "اتصل بنا أو أرسل صور الأثاث",
+        "text": "اتصل على رقمنا +962796983994 أو أرسل لنا صوراً للأثاث عبر الواتساب",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "معاينة مجانية في موقعك",
+        "text": "يزورك أحد خبرائنا في الموعد المحدد لمعاينة الأثاث بشكل شامل وتقديم تقييم دقيق",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "عرض السعر والتفاوض",
+        "text": "نقدم لك السعر المناسب بناءً على حالة الأثاث وجودته مع إمكانية التفاوض",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "الدفع الفوري ونقل الأثاث",
+        "text": "بعد الاتفاق نقوم بالدفع نقداً مباشرة ونتولى عملية النقل مجاناً",
+        "position": 4
+      }
+    ]
+  }
+]

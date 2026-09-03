@@ -1,0 +1,114 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "من نحن - شركة الدابوقي",
+    "description": "صفحة التعريف بشركة الدابوقي لشراء الأثاث المستعمل في عمان، رؤيتنا، رسالتنا، وقيمنا",
+    "url": "https://www.aldabouqi.com/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "legalName": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "url": "https://www.aldabouqi.com",
+      "logo": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "description": "شركة رائدة متخصصة في شراء جميع أنواع الأثاث المستعمل في عمان بأفضل الأسعار وأعلى معايير الاحترافية",
+      "foundingDate": "2015",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "جميع مناطق عمان",
+        "addressLocality": "عمان",
+        "addressRegion": "عمان",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "عمان",
+        "sameAs": "https://ar.wikipedia.org/wiki/عمان"
+      },
+      "sameAs": [
+        "https://www.facebook.com/aldabouqi/",
+        "https://x.com/aldabouqi_store",
+        "https://www.instagram.com/aldabouqi.used/"
+      ],
+      "slogan": "شريكك الموثوق في شراء الأثاث المستعمل",
+      "knowsAbout": [
+        "شراء الأثاث المستعمل",
+        "تقييم الأثاث",
+        "شراء الأجهزة الكهربائية المستعملة",
+        "شراء الأنتيكات",
+        "إفراغ المنازل"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "من نحن",
+        "item": "https://www.aldabouqi.com/about"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ما هي خدمات شركة الدابوقي؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نقدم خدمات شراء جميع أنواع الأثاث المستعمل، الأجهزة الكهربائية، الأنتيكات، وإفراغ المنازل بالكامل في جميع مناطق عمان."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "لماذا نختار شركة الدابوقي؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نتميز بالخبرة الطويلة، الأسعار العادلة والتنافسية، التقييم الاحترافي، الدفع الفوري، والثقة المطلقة في التعامل مع عملائنا."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ما هي مناطق خدمة الدابوقي؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نغطي جميع مناطق عمان بما في ذلك غرب عمان، شرق عمان، جنوب عمان، وشمال عمان."
+        }
+      }
+    ]
+  }
+]

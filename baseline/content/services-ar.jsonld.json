@@ -1,0 +1,137 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "خدماتنا - شركة الدابوقي",
+    "description": "خدمات شاملة لشراء جميع أنواع الأثاث المستعمل في عمان",
+    "url": "https://www.aldabouqi.com/services",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "جميع مناطق عمان",
+        "addressLocality": "عمان",
+        "addressRegion": "عمان",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "City",
+        "name": "عمان"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "خدمات شراء الأثاث المستعمل",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "شراء الأثاث المنزلي المستعمل",
+              "description": "شراء جميع أنواع الأثاث المنزلي بأفضل الأسعار"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "شراء الأثاث المكتبي المستعمل",
+              "description": "شراء الأثاث المكتبي والمعدات المكتبية"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "شراء الأجهزة الكهربائية المستعملة",
+              "description": "شراء جميع أنواع الأجهزة الكهربائية والإلكترونيات"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "شراء الأنتيكات والتحف",
+              "description": "تقييم وشراء الأنتيكات والقطع النادرة"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "إفراغ المنازل بالكامل",
+              "description": "خدمة شاملة لإفراغ وشراء محتويات المنازل الكاملة"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "خدماتنا",
+        "item": "https://www.aldabouqi.com/services"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ما هي الخدمات التي تقدمها شركة الدابوقي؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نقدم خدمات شاملة تشمل: شراء الأثاث المنزلي المستعمل، شراء الأثاث المكتبي، شراء الأجهزة الكهربائية المستعملة، شراء الأنتيكات والتحف، وخدمة إفراغ المنازل بالكامل في جميع مناطق عمان."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل تشترون جميع أنواع الأثاث؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نشتري جميع أنواع الأثاث المنزلي والمكتبي بغض النظر عن الحالة، بالإضافة إلى الأجهزة الكهربائية والأنتيكات."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "كيف تتم عملية التقييم والشراء؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نقوم بزيارة موقعك، معاينة الأثاث احترافياً، تقديم تقييم عادل وفوري، والدفع مباشرة نقداً بعد الاتفاق على السعر."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "ما هي مناطق الخدمة؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نغطي جميع مناطق عمان: غرب عمان، شرق عمان، جنوب عمان، وشمال عمان."
+        }
+      }
+    ]
+  }
+]

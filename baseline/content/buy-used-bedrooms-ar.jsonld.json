@@ -1,0 +1,158 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "شراء غرف نوم مستعملة",
+    "name": "خدمة شراء غرف النوم المستعملة في عمان",
+    "description": "نشتري جميع أنواع غرف النوم المستعملة: غرف نوم خشب طبيعي، MDF، تركي، صيني، إيطالي. نقدم أفضل الأسعار في السوق الأردني مع معاينة مجانية فورية وتقييم احترافي دقيق لحالة الغرفة وجودة الخشب والتصنيع",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "جميع مناطق عمان",
+        "addressLocality": "عمان",
+        "addressRegion": "عمان",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "عمان"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "JOD",
+      "description": "معاينة مجانية وتقييم احترافي لغرف النوم المستعملة"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "خدماتنا",
+        "item": "https://www.aldabouqi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "شراء غرف نوم مستعملة",
+        "item": "https://www.aldabouqi.com/buy-used-bedrooms"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "هل تشترون جميع أنواع غرف النوم المستعملة؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نشتري جميع أنواع غرف النوم المستعملة بغض النظر عن نوع الخشب أو بلد المنشأ: غرف نوم خشب طبيعي (زان، سنديان، جوز)، MDF بجميع أنواعه، تركي، صيني، إيطالي، ألماني. نقوم بتقييم كل غرفة بناءً على حالتها، جودة التصنيع، نوع الخشب، والماركة."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "كيف يتم تحديد سعر غرفة النوم المستعملة؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نحدد السعر بناءً على عدة عوامل: نوع الخشب (خشب طبيعي أغلى من MDF)، حالة الغرفة (جديدة، شبه جديدة، مستعملة)، جودة التصنيع والدهان، بلد المنشأ (تركي، صيني، محلي)، اكتمال القطع، وجود أضرار أو خدوش. فريقنا المتخصص يقوم بمعاينة دقيقة ويقدم لك سعراً عادلاً يعكس القيمة الحقيقية."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل تشترون غرف النوم غير المكتملة أو المكسورة؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نشتري غرف النوم حتى لو كانت غير مكتملة أو فيها قطع مكسورة. طبعاً السعر سيختلف حسب حالة الغرفة ونسبة الضرر، لكن نحن مستعدون للشراء. فريقنا يعاين الغرفة ويقدم سعراً مناسباً حسب ما هو موجود وقابل للاستخدام."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "كم يستغرق فك ونقل غرفة النوم؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "عملية الفك والنقل عادة تستغرق من ساعة إلى ساعتين حسب حجم الغرفة وموقعها. نحن نتولى كل شيء: الفك بطريقة احترافية للحفاظ على القطع، التغليف المناسب، والنقل بفريق متخصص ومعدات مناسبة. كل هذا مجاناً بدون أي تكلفة إضافية عليك."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "هل السعر قابل للتفاوض؟",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نحن دائماً منفتحون على التفاوض. نقدم السعر المبدئي بناءً على تقييمنا المهني، ونستمع لرأيك ونحاول الوصول لسعر عادل يرضي الطرفين. هدفنا بناء علاقة ثقة طويلة الأمد مع عملائنا، لذلك نحرص على تقديم أفضل عرض ممكن."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "كيف تبيع غرفة نومك المستعملة للدابوقي",
+    "description": "خطوات بسيطة لبيع غرفة نومك المستعملة بأفضل سعر",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "اتصل بنا أو أرسل صور الغرفة",
+        "text": "اتصل على رقمنا +962796983994 أو أرسل لنا صوراً واضحة لغرفة النوم من جميع الزوايا عبر الواتساب",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "معاينة مجانية في موقعك",
+        "text": "يزورك خبير متخصص في غرف النوم لمعاينة الغرفة بشكل دقيق وفحص جودة الخشب والتصنيع",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "تقييم دقيق وعرض السعر",
+        "text": "نقدم لك تقييماً مفصلاً وسعراً عادلاً بناءً على نوع الخشب، حالة الغرفة، وجودة التصنيع",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "الدفع الفوري والفك والنقل",
+        "text": "بعد الاتفاق نقوم بالدفع نقداً مباشرة ونتولى فك ونقل الغرفة مجاناً بفريق محترف",
+        "position": 4
+      }
+    ]
+  }
+]

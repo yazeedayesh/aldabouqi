@@ -1,0 +1,72 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "تواصل معنا - شركة الدابوقي",
+    "description": "صفحة التواصل مع شركة الدابوقي لشراء الأثاث المستعمل في عمان",
+    "url": "https://www.aldabouqi.com/contact",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi.webp",
+      "@id": "https://www.aldabouqi.com",
+      "url": "https://www.aldabouqi.com",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "جميع مناطق عمان",
+        "addressLocality": "عمان",
+        "addressRegion": "عمان",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/aldabouqi/",
+        "https://x.com/aldabouqi_store",
+        "https://www.instagram.com/aldabouqi.used/"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "عمان"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "تواصل معنا",
+        "item": "https://www.aldabouqi.com/contact"
+      }
+    ]
+  }
+]

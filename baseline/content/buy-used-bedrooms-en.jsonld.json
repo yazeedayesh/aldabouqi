@@ -1,0 +1,158 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Used Bedrooms",
+    "name": "Used Bedroom Buying Service in Amman",
+    "description": "We buy all types of used bedrooms: solid wood, MDF, Turkish, Chinese, Italian. We offer the best prices in the Jordanian market with an instant free inspection and accurate professional valuation of the room's condition, wood quality and craftsmanship",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Aldabouqi Company for Buying Used Furniture",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "All Amman areas",
+        "addressLocality": "Amman",
+        "addressRegion": "Amman",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Amman"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "JOD",
+      "description": "Free inspection and professional valuation for used bedrooms"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://www.aldabouqi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Used Bedrooms",
+        "item": "https://www.aldabouqi.com/buy-used-bedrooms"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you buy all types of used bedrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we buy all types of used bedrooms regardless of wood type or country of origin: solid wood (beech, oak, walnut), all kinds of MDF, Turkish, Chinese, Italian, German. We value every room based on its condition, craftsmanship quality, wood type, and brand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is the price of a used bedroom determined?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We set the price based on several factors: wood type (solid wood is worth more than MDF), the room's condition (new, like-new, used), the quality of craftsmanship and finish, country of origin (Turkish, Chinese, local), whether all pieces are complete, and any damage or scratches. Our specialist team carries out a careful inspection and offers you a fair price that reflects true value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you buy incomplete or damaged bedrooms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we buy bedrooms even if they're incomplete or have broken pieces. Naturally, the price will vary depending on the room's condition and the extent of the damage, but we're ready to buy. Our team inspects the room and offers a fair price based on what's usable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does disassembly and moving take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Disassembly and moving usually takes one to two hours depending on the room's size and location. We handle everything: professional disassembly to protect the pieces, proper packing, and moving with a specialized team and the right equipment. All of this is free, with no extra cost to you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the price negotiable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we're always open to negotiation. We give you an initial price based on our professional valuation, listen to your input, and try to reach a fair price that satisfies both sides. Our goal is to build long-term trust with our customers, so we always aim to offer the best deal possible."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to sell your used bedroom to Aldabouqi",
+    "description": "Simple steps to sell your used bedroom for the best price",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Call us or Send Room Photos",
+        "text": "Call us at +962796983994 or send us clear photos of the bedroom from every angle via WhatsApp",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Free Inspection at your location",
+        "text": "A bedroom specialist visits to carefully inspect the room and check the wood quality and craftsmanship",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Accurate Valuation and Price Offer",
+        "text": "We give you a detailed valuation and fair price based on wood type, room condition, and craftsmanship quality",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Instant Payment and Disassembly & Moving",
+        "text": "Once we agree, we pay cash immediately and handle disassembly and moving for free with a professional team",
+        "position": 4
+      }
+    ]
+  }
+]

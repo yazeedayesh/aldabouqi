@@ -1,0 +1,72 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Us - Aldabouqi Company",
+    "description": "Contact page for Aldabouqi, buyers of used furniture in Amman",
+    "url": "https://www.aldabouqi.com/contact",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Aldabouqi Company for Buying Used Furniture",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi.webp",
+      "@id": "https://www.aldabouqi.com",
+      "url": "https://www.aldabouqi.com",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "All Amman areas",
+        "addressLocality": "Amman",
+        "addressRegion": "Amman",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/aldabouqi/",
+        "https://x.com/aldabouqi_store",
+        "https://www.instagram.com/aldabouqi.used/"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Amman"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact Us",
+        "item": "https://www.aldabouqi.com/contact"
+      }
+    ]
+  }
+]

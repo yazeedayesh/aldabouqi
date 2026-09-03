@@ -1,0 +1,41 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy - Aldabouqi",
+    "description": "Privacy policy for the Aldabouqi used furniture buying website in Amman, Jordan",
+    "url": "https://www.aldabouqi.com/en/privacy-policy",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Aldabouqi",
+      "url": "https://www.aldabouqi.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Aldabouqi Used Furniture Buying Company",
+      "url": "https://www.aldabouqi.com",
+      "logo": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/en/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacy Policy",
+        "item": "https://www.aldabouqi.com/en/privacy-policy"
+      }
+    ]
+  }
+]

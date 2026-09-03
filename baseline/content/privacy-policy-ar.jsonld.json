@@ -1,0 +1,41 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "سياسة الخصوصية - شركة الدابوقي",
+    "description": "سياسة الخصوصية لموقع شركة الدابوقي لشراء الأثاث المستعمل في عمان",
+    "url": "https://www.aldabouqi.com/privacy-policy",
+    "inLanguage": "ar",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "الدابوقي",
+      "url": "https://www.aldabouqi.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+      "url": "https://www.aldabouqi.com",
+      "logo": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "الرئيسية",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "سياسة الخصوصية",
+        "item": "https://www.aldabouqi.com/privacy-policy"
+      }
+    ]
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Our Partner - Ayesh Showroom",
+    "description": "Complete services for buying all types of used furniture in Amman",
+    "url": "https://www.aldabouqi.com/partner",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Aldabouqi Company for Buying Used Furniture",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "All Amman areas",
+        "addressLocality": "Amman",
+        "addressRegion": "Amman",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "City",
+        "name": "Amman"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Used Furniture Buying Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Buying used home furniture",
+              "description": "Buying all types of home furniture at the best prices"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Buying used office furniture",
+              "description": "Buying office furniture and equipment"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Buying used appliances",
+              "description": "Buying all types of appliances and electronics"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Buying antiques and artifacts",
+              "description": "Valuing and buying antiques and rare pieces"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Full house clearance",
+              "description": "A complete service for clearing and buying an entire home's contents"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Our Partner",
+        "item": "https://www.aldabouqi.com/partner"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Ayesh Showroom offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer complete services including: buying used home furniture, office furniture, used appliances, antiques, and full house clearance across all Amman areas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you buy all types of furniture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we buy all types of home and office furniture regardless of condition, plus appliances and antiques."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the valuation and buying process work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We visit your location, professionally inspect the furniture, provide a fair, instant valuation, and pay cash immediately once we agree on a price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We cover all Amman areas: west, east, south, and north Amman."
+        }
+      }
+    ]
+  }
+]

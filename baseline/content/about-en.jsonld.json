@@ -1,0 +1,114 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Us - Aldabouqi Company",
+    "description": "Learn about Aldabouqi, buyers of used furniture in Amman — our vision, mission, and values",
+    "url": "https://www.aldabouqi.com/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Aldabouqi Company for Buying Used Furniture",
+      "legalName": "Aldabouqi Company for Buying Used Furniture",
+      "url": "https://www.aldabouqi.com",
+      "logo": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "description": "A leading company specializing in buying all types of used furniture in Amman at the best prices and highest standards of professionalism",
+      "foundingDate": "2015",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "All Amman areas",
+        "addressLocality": "Amman",
+        "addressRegion": "Amman",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Amman",
+        "sameAs": "https://ar.wikipedia.org/wiki/Amman"
+      },
+      "sameAs": [
+        "https://www.facebook.com/aldabouqi/",
+        "https://x.com/aldabouqi_store",
+        "https://www.instagram.com/aldabouqi.used/"
+      ],
+      "slogan": "Your trusted partner in buying used furniture",
+      "knowsAbout": [
+        "Buying used furniture",
+        "Furniture valuation",
+        "Buying used appliances",
+        "Buying antiques",
+        "House clearance"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Us",
+        "item": "https://www.aldabouqi.com/about"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Aldabouqi offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We buy all types of used furniture, appliances, antiques, and offer full house clearance across all Amman areas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why choose Aldabouqi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Years of experience, fair and competitive prices, professional valuation, instant payment, and complete trust with our customers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which areas of Amman do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We cover all areas of Amman, including west, east, south, and north Amman."
+        }
+      }
+    ]
+  }
+]

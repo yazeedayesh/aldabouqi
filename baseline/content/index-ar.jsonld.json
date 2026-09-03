@@ -1,0 +1,55 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "شركة الدابوقي لشراء الأثاث المستعمل",
+    "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi.webp",
+    "@id": "https://www.aldabouqi.com",
+    "url": "https://www.aldabouqi.com",
+    "telephone": "+962796983994",
+    "email": "aldabouqi@outlook.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "جميع مناطق عمان",
+      "addressLocality": "عمان",
+      "addressRegion": "عمان",
+      "postalCode": "11953",
+      "addressCountry": "JO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 31.9454,
+      "longitude": 35.9284
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": [
+      "https://www.facebook.com/aldabouqi/",
+      "https://x.com/aldabouqi_store",
+      "https://www.instagram.com/aldabouqi.used/"
+    ],
+    "priceRange": "$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "10"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "عمان"
+    },
+    "description": "شركة الدابوقي متخصصة في شراء الأثاث المستعمل في عمان بأفضل الأسعار. نقدم خدمات تقييم مجاني وسريع لجميع أنواع الأثاث المنزلي والمكتبي."
+  }
+]

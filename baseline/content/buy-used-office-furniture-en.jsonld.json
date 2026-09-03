@@ -1,0 +1,158 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Used Office Furniture",
+    "name": "Used Office Furniture Buying Service in Amman",
+    "description": "We buy all types of used office furniture: executive and staff desks, office chairs of every kind, filing cabinets, meeting tables, reception desks, counters, partitions, shelving, metal cabinets, and everything related to office and company fit-outs, at the best prices in the Jordanian market",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Aldabouqi Company for Buying Used Furniture",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "All Amman areas",
+        "addressLocality": "Amman",
+        "addressRegion": "Amman",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Amman"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "JOD",
+      "description": "Free inspection and professional valuation for used office furniture"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://www.aldabouqi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Used Office Furniture",
+        "item": "https://www.aldabouqi.com/buy-used-office-furniture"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you buy office furniture in bulk?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we specialize in buying office furniture in bulk. Whether you want to sell a single office's furniture or a full company's worth of dozens of desks and chairs, we're ready. We have the capacity and experience to handle any volume, and offer competitive prices for bulk quantities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is used office furniture valued?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We value office furniture based on several factors: material (wood, metal, plastic), brand if any, overall condition, craftsmanship quality, age, and market demand. Executive desks and ergonomic chairs from well-known brands get a higher valuation. Our team has years of experience valuing office furniture and ensures a fair price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you buy damaged or broken office furniture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we buy office furniture even if it has damage or broken pieces. The price will naturally be affected by the type and extent of damage, but we're still willing to buy. In some cases pieces can be repaired or parts reused, so don't hesitate to call us even if the furniture isn't in perfect condition."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does clearing a whole office or company take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the office or company's size and the amount of furniture. A small office (5-10 desks) may take 2-4 hours. A mid-size company (20-30 desks) may need a full workday. A large company may need two days or more. We bring an appropriately sized team and enough equipment to get the job done quickly and efficiently."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you buy office partitions and decor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we buy partitions of every kind: wood, aluminum, glass, MDF. We also buy office decor like shelving, metal cabinets, notice boards, side tables, reception units, and anything related to office setup. We value each piece and offer a fair price."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to sell your used office furniture to Aldabouqi",
+    "description": "Simple steps to sell your used office furniture for the best price",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Call us or Send Furniture Photos",
+        "text": "Call us at +962796983994 or send photos of the desks, chairs, and office furniture via WhatsApp",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Visit & Inspection at the office location",
+        "text": "Our specialist team visits to inspect the office furniture, catalog the pieces, and carefully assess their condition",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Complete Price Quote for furniture",
+        "text": "We give you a complete price quote for all the office furniture, with room to negotiate",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Instant Payment and Free Moving",
+        "text": "Once we agree, we pay cash immediately and handle moving all the furniture for free",
+        "position": 4
+      }
+    ]
+  }
+]

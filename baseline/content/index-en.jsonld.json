@@ -1,0 +1,72 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Aldabouqi Company for Buying Used Furniture",
+    "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi.webp",
+    "@id": "https://www.aldabouqi.com/en",
+    "url": "https://www.aldabouqi.com/en",
+    "telephone": "+962796983994",
+    "email": "aldabouqi@outlook.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "All Amman areas",
+      "addressLocality": "Amman",
+      "addressRegion": "Amman",
+      "postalCode": "11953",
+      "addressCountry": "JO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 31.9454,
+      "longitude": 35.9284
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": [
+      "https://www.facebook.com/aldabouqi/",
+      "https://x.com/aldabouqi_store",
+      "https://www.instagram.com/aldabouqi.used/"
+    ],
+    "priceRange": "$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "10"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Amman"
+    },
+    "description": "Aldabouqi Company specializes in buying used furniture in Amman at the best prices. We offer fast, free valuation services for all types of home and office furniture."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Aldabouqi",
+    "alternateName": "Aldabouqi Company",
+    "url": "https://www.aldabouqi.com",
+    "logo": "https://www.aldabouqi.com/assets/img/logo/aldabouqi.webp",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+962796983994",
+      "contactType": "customer service",
+      "areaServed": "JO",
+      "availableLanguage": [
+        "ar"
+      ]
+    }
+  }
+]

@@ -1,0 +1,150 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Used Home Furniture",
+    "name": "Used Home Furniture Buying Service in Amman",
+    "description": "We buy all types of used home furniture: bedrooms, sofas, dining tables, cabinets, wardrobes, bookshelves, home decor and everything related to the home, at the best prices in the Jordanian market",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Aldabouqi Company for Buying Used Furniture",
+      "image": "https://www.aldabouqi.com/assets/img/logo/aldabouqi-logo.webp",
+      "telephone": "+962796983994",
+      "email": "aldabouqi@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "All Amman areas",
+        "addressLocality": "Amman",
+        "addressRegion": "Amman",
+        "postalCode": "11953",
+        "addressCountry": "JO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.9454,
+        "longitude": 35.9284
+      },
+      "url": "https://www.aldabouqi.com",
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Amman"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "JOD",
+      "description": "Free inspection and professional valuation for used home furniture"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.aldabouqi.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://www.aldabouqi.com/services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Used Home Furniture",
+        "item": "https://www.aldabouqi.com/buy-used-home-furniture"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you buy all types of home furniture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we buy all types of home furniture regardless of type or condition: bedrooms, sofas, dining tables, cabinets, wardrobes, bookshelves, home decor, carpets, curtains, and everything related to the home. We value each piece individually and offer a fair price based on its condition and quality."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is the price of used furniture determined?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We set the price based on several factors: furniture type (wood, MDF, metal), overall condition (new, like-new, used), craftsmanship quality, brand if any, and market demand. Our specialist team has years of valuation experience and ensures you get a fair price that reflects true value."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the inspection free? Are there any moving fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the inspection is completely free across all Amman areas, at no cost to you. Moving is free too — we cover all costs of moving the furniture from your location once the deal is done. There are no hidden fees or extra costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does the selling process take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The process is very fast! After you contact us, we can schedule an inspection the same day or the next. Inspection usually takes 15-30 minutes, and once we agree on a price, we pay instantly and move the furniture the same day or at a time that suits you."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to sell your used home furniture to Aldabouqi",
+    "description": "Simple steps to sell your used home furniture for the best price",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Call us or Send Furniture Photos",
+        "text": "Call us at +962796983994 or send us photos of the furniture via WhatsApp",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Free Inspection at your location",
+        "text": "One of our experts visits at the agreed time for a thorough inspection and accurate valuation",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Price Offer and Negotiation",
+        "text": "We offer a fair price based on the furniture's condition and quality, with room to negotiate",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Instant Payment and Furniture Moving",
+        "text": "Once we agree, we pay cash immediately and handle moving for free",
+        "position": 4
+      }
+    ]
+  }
+]
