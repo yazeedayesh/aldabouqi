@@ -1,0 +1,29 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Our Services",
+    "coverageAreas": "Coverage Areas",
+    "store": "Store",
+    "partner": "Our Partner",
+    "contact": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "switchLanguage": "العربية"
+  },
+  "cta": {
+    "whatsapp": "WhatsApp",
+    "call": "Call Now",
+    "whatsappDefaultMessage": "Hi, I'd like to ask about selling used furniture"
+  },
+  "footer": {
+    "tagline": "Aldabouqi specializes in buying used furniture in Amman at the best prices, with a free and fast valuation service for all types of home and office furniture.",
+    "quickLinks": "Quick Links",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved"
+  },
+  "home": {
+    "heroTitle": "Buy Used Furniture in Amman At the Best Prices & Fastest Service",
+    "heroSubtitle": "Looking for the best way to sell your used furniture? Free, fast valuation for all types of home and office furniture, with instant pickup across Amman."
+  }
+}

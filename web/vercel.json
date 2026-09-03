@@ -1,0 +1,366 @@
+{
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "redirects": [
+              {
+                        "source": "/en/buy-used-furniture-abdali.html",
+                        "destination": "/buy-used-furniture-abdali",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abdali",
+                        "destination": "/buy-used-furniture-abdali",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abdoun.html",
+                        "destination": "/buy-used-furniture-abdoun",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abdoun",
+                        "destination": "/buy-used-furniture-abdoun",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abu-alanda.html",
+                        "destination": "/buy-used-furniture-abu-alanda",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abu-alanda",
+                        "destination": "/buy-used-furniture-abu-alanda",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abu-nassir.html",
+                        "destination": "/buy-used-furniture-abu-nassir",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-abu-nassir",
+                        "destination": "/buy-used-furniture-abu-nassir",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-ain-al-basha.html",
+                        "destination": "/buy-used-furniture-ain-al-basha",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-ain-al-basha",
+                        "destination": "/buy-used-furniture-ain-al-basha",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-airport-road.html",
+                        "destination": "/buy-used-furniture-airport-road",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-airport-road",
+                        "destination": "/buy-used-furniture-airport-road",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-al-sarou.html",
+                        "destination": "/buy-used-furniture-al-sarou",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-al-sarou",
+                        "destination": "/buy-used-furniture-al-sarou",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-bayader.html",
+                        "destination": "/buy-used-furniture-bayader",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-bayader",
+                        "destination": "/buy-used-furniture-bayader",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-daboug.html",
+                        "destination": "/buy-used-furniture-daboug",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-daboug",
+                        "destination": "/buy-used-furniture-daboug",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-dahiyat-al-rashid.html",
+                        "destination": "/buy-used-furniture-dahiyat-al-rashid",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-dahiyat-al-rashid",
+                        "destination": "/buy-used-furniture-dahiyat-al-rashid",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-deir-ghbar.html",
+                        "destination": "/buy-used-furniture-deir-ghbar",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-deir-ghbar",
+                        "destination": "/buy-used-furniture-deir-ghbar",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-fuheis.html",
+                        "destination": "/buy-used-furniture-fuheis",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-fuheis",
+                        "destination": "/buy-used-furniture-fuheis",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-gardens.html",
+                        "destination": "/buy-used-furniture-gardens",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-gardens",
+                        "destination": "/buy-used-furniture-gardens",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-hashmi.html",
+                        "destination": "/buy-used-furniture-hashmi",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-hashmi",
+                        "destination": "/buy-used-furniture-hashmi",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-jabal-al-hussein.html",
+                        "destination": "/buy-used-furniture-jabal-al-hussein",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-jabal-al-hussein",
+                        "destination": "/buy-used-furniture-jabal-al-hussein",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-jabal-amman.html",
+                        "destination": "/buy-used-furniture-jabal-amman",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-jabal-amman",
+                        "destination": "/buy-used-furniture-jabal-amman",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-jubaiha.html",
+                        "destination": "/buy-used-furniture-jubaiha",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-jubaiha",
+                        "destination": "/buy-used-furniture-jubaiha",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-khalda.html",
+                        "destination": "/buy-used-furniture-khalda",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-khalda",
+                        "destination": "/buy-used-furniture-khalda",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-mahes.html",
+                        "destination": "/buy-used-furniture-mahes",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-mahes",
+                        "destination": "/buy-used-furniture-mahes",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-marj-al-hamam.html",
+                        "destination": "/buy-used-furniture-marj-al-hamam",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-marj-al-hamam",
+                        "destination": "/buy-used-furniture-marj-al-hamam",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-marka.html",
+                        "destination": "/buy-used-furniture-marka",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-marka",
+                        "destination": "/buy-used-furniture-marka",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-muqabalain.html",
+                        "destination": "/buy-used-furniture-muqabalain",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-muqabalain",
+                        "destination": "/buy-used-furniture-muqabalain",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-naour.html",
+                        "destination": "/buy-used-furniture-naour",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-naour",
+                        "destination": "/buy-used-furniture-naour",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-rabia.html",
+                        "destination": "/buy-used-furniture-rabia",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-rabia",
+                        "destination": "/buy-used-furniture-rabia",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-shafa-badran.html",
+                        "destination": "/buy-used-furniture-shafa-badran",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-shafa-badran",
+                        "destination": "/buy-used-furniture-shafa-badran",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-shmeisani.html",
+                        "destination": "/buy-used-furniture-shmeisani",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-shmeisani",
+                        "destination": "/buy-used-furniture-shmeisani",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-sports-city.html",
+                        "destination": "/buy-used-furniture-sports-city",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-sports-city",
+                        "destination": "/buy-used-furniture-sports-city",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-sweifieh.html",
+                        "destination": "/buy-used-furniture-sweifieh",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-sweifieh",
+                        "destination": "/buy-used-furniture-sweifieh",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-sweileh.html",
+                        "destination": "/buy-used-furniture-sweileh",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-sweileh",
+                        "destination": "/buy-used-furniture-sweileh",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-tabarbour.html",
+                        "destination": "/buy-used-furniture-tabarbour",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-tabarbour",
+                        "destination": "/buy-used-furniture-tabarbour",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-tlaa-al-ali.html",
+                        "destination": "/buy-used-furniture-tlaa-al-ali",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-tlaa-al-ali",
+                        "destination": "/buy-used-furniture-tlaa-al-ali",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-um-al-summaq.html",
+                        "destination": "/buy-used-furniture-um-al-summaq",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-um-al-summaq",
+                        "destination": "/buy-used-furniture-um-al-summaq",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-um-uthaina.html",
+                        "destination": "/buy-used-furniture-um-uthaina",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-um-uthaina",
+                        "destination": "/buy-used-furniture-um-uthaina",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-university-street.html",
+                        "destination": "/buy-used-furniture-university-street",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-university-street",
+                        "destination": "/buy-used-furniture-university-street",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-wadi-seer.html",
+                        "destination": "/buy-used-furniture-wadi-seer",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-wadi-seer",
+                        "destination": "/buy-used-furniture-wadi-seer",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-yajouz.html",
+                        "destination": "/buy-used-furniture-yajouz",
+                        "permanent": true
+              },
+              {
+                        "source": "/en/buy-used-furniture-yajouz",
+                        "destination": "/buy-used-furniture-yajouz",
+                        "permanent": true
+              }
+      ]
+}
