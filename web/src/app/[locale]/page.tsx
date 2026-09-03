@@ -29,6 +29,7 @@ function Hero() {
           <Button
             size="lg"
             className="bg-[#25D366] text-white hover:bg-[#1ebe57]"
+            nativeButton={false}
             render={
               <a
                 href={buildWhatsAppLink(cta("whatsappDefaultMessage"))}

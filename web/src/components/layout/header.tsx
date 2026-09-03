@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MessageCircle, Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
+import { MobileNav } from "@/components/layout/mobile-nav";
 import { BUSINESS, buildWhatsAppLink } from "@/lib/constants";
 
 export function Header() {
@@ -62,6 +63,7 @@ export function Header() {
             variant="outline"
             size="sm"
             className="hidden sm:inline-flex"
+            nativeButton={false}
             render={<a href={`tel:${BUSINESS.phoneE164}`} aria-label={cta("call")} />}
           >
             <Phone className="size-4" />
@@ -70,6 +72,7 @@ export function Header() {
           <Button
             size="sm"
             className="bg-[#25D366] text-white hover:bg-[#1ebe57]"
+            nativeButton={false}
             render={
               <a
                 href={buildWhatsAppLink(cta("whatsappDefaultMessage"))}
@@ -82,6 +85,7 @@ export function Header() {
             <MessageCircle className="size-4" />
             {cta("whatsapp")}
           </Button>
+          <MobileNav links={links} />
         </div>
       </div>
     </header>
