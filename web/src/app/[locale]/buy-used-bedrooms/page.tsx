@@ -66,9 +66,9 @@ const content = {
   en: {
     metaTitle: "Used Bedrooms in Amman | Best Prices - Wood, MDF, Turkish | Aldabouqi",
     metaDescription:
-      "We buy used bedrooms of every kind in Amman: wood, MDF, Turkish, Chinese at the best prices. Instant free inspection, professional valuation, cash payment. Call: 0796983994",
+      "We buy used bedrooms of every kind in Amman: wood, MDF, Turkish, Chinese, at the best prices. Instant free inspection, professional valuation, cash payment. Call: 0796983994",
     keywords:
-      "buy used bedrooms Amman, sell used bedrooms, wooden bedrooms, Turkish bedrooms for sale, MDF bedrooms, sell bedrooms in Amman, Aldabouqi bedrooms, Chinese bedrooms",
+      "used bedrooms Amman, sell used bedrooms, buy wooden bedrooms, Turkish bedrooms for sale, used MDF bedrooms, buy bedroom furniture, bedroom buying shops Amman, used Chinese bedrooms, Aldabouqi bedrooms",
     pageTitle: "Used Bedrooms",
     breadcrumbServices: "Services",
     serviceType: "Used Bedrooms Buying",

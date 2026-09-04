@@ -38,9 +38,9 @@ const content = {
   en: {
     metaTitle: "Our Partner Ayesh Showroom | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Ayesh Showroom, Aldabouqi's trusted partner — buying used furniture in Amman together. Competitive prices, instant valuation, cash payment. Contact us now.",
+      "Ayesh Showroom, Aldabouqi's trusted partner - we buy used furniture in partnership with Ayesh Showroom in Amman. Competitive prices, instant valuation, and cash payment. Call now to inquire.",
     keywords:
-      "used furniture buying services Amman, buy used home furniture, buy used office furniture, buy used appliances, buy antiques Amman, house clearance Amman, Ayesh services",
+      "furniture buying services Amman, buy used home furniture, buy office furniture, buy used appliances, buy antiques Amman, house clearance Amman, used furniture valuation, Ayesh services",
     pageTitle: "Ayesh Showroom for Buying Used Furniture",
     location: "Amman, Jordan",
     callCta: "Call Us Now",

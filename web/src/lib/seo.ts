@@ -46,9 +46,16 @@ export function buildMetadata({
     : {};
 
   return {
-    title,
+    // { absolute } bypasses the root [locale] layout's title.template
+    // ("%s | <business name>") — every page's title here already has its
+    // own " | ..." suffix sourced verbatim from the old site, so the
+    // template would otherwise double it up.
+    title: { absolute: title },
     description,
-    ...(keywords ? { keywords: keywords.split(",").map((k) => k.trim()) } : {}),
+    // Passed as the raw string, not split into an array: Next.js joins a
+    // keywords array with "," (no space) when serializing the meta tag,
+    // which doesn't match the old site's ", "-separated content verbatim.
+    ...(keywords ? { keywords } : {}),
     alternates: {
       canonical,
       ...(hasEnglishVariant ? { languages } : {}),

@@ -65,9 +65,9 @@ const content = {
   en: {
     metaTitle: "Used Home Furniture in Amman | Aldabouqi - Best Prices, Instant Service",
     metaDescription:
-      "We buy used home furniture in Amman: bedrooms, sofas, tables, cabinets. Free inspection, instant valuation, and cash payment at your location. Call now: 0796983994",
+      "We buy all types of used home furniture in Amman: bedrooms, sofas, tables, cabinets. Free inspection, professional valuation, instant cash payment. Call now: 0796983994",
     keywords:
-      "buy used home furniture Amman, sell used furniture, furniture buying shops, home furniture for sale, buying bedrooms, buying sofas, Aldabouqi",
+      "used home furniture Amman, sell used furniture, buy used furniture Jordan, furniture buying shops Amman, home furniture for sale, used bedrooms, used sofas, Aldabouqi, sell used sofa, used furniture Amman",
     pageTitle: "Used Home Furniture",
     breadcrumbServices: "Services",
     serviceType: "Used Home Furniture Buying",

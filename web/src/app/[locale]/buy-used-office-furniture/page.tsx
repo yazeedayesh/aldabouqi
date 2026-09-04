@@ -66,9 +66,9 @@ const content = {
   en: {
     metaTitle: "Used Office Furniture in Amman | Desks, Chairs, Cabinets | Aldabouqi",
     metaDescription:
-      "We buy all types of used office furniture in Amman: executive desks, chairs, filing cabinets, meeting tables. Free inspection and instant cash payment. Call: 0796983994",
+      "We buy all types of used office furniture in Amman: executive desks, chairs, filing cabinets, meeting tables, partitions. Free inspection and instant cash payment. Call: 0796983994",
     keywords:
-      "used office furniture Amman, desks for sale, office chairs, filing cabinets, office partitions, reception desks for sale, Aldabouqi, company furniture",
+      "used office furniture Amman, sell office furniture, buy used desks, office chairs for sale, used filing cabinets, company furniture for sale, used meeting tables, reception desks for sale, Aldabouqi, office furniture Amman",
     pageTitle: "Used Office Furniture",
     breadcrumbServices: "Services",
     serviceType: "Used Office Furniture Buying",

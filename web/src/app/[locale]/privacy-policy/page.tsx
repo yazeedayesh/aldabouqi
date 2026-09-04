@@ -31,7 +31,7 @@ const content = {
   en: {
     metaTitle: "Privacy Policy | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Aldabouqi's privacy policy: how we collect, use, and protect your data when you contact us via the form, WhatsApp, or phone, plus our cookies and analytics policy.",
+      "Aldabouqi's privacy policy: how we collect, use and protect your data when you contact us through our form, WhatsApp or phone, and our cookie and analytics policy.",
     pageTitle: "Privacy Policy",
     lastUpdated: "Last updated: August 21, 2026",
     intro:

@@ -32,7 +32,7 @@ const content = {
     metaDescription:
       "Get in touch with Aldabouqi, buyers of used furniture in Amman. Call us at 0796983994 or send a message for a fast, free valuation of your furniture. We serve every area of Amman.",
     keywords:
-      "contact Aldabouqi, sell used furniture Amman phone number, free furniture valuation, Aldabouqi website, get in touch",
+      "contact Aldabouqi, used furniture buyer number Amman, sell used furniture, free furniture valuation, Aldabouqi location, contact us",
     pageTitle: "Contact Information",
     breadcrumbLabel: "Contact Us",
     infoTitle: "Contact Information",

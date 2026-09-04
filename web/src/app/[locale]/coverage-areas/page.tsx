@@ -33,9 +33,9 @@ const content = {
   en: {
     metaTitle: "Coverage Areas | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Aldabouqi covers nearly every area of Amman: Khalda, Shafa Badran, Tlaa Al Ali, Shmeisani, Abdoun, Jubaiha, Sweileh, Abdali, and more. Pick your area and reach us directly.",
+      "Aldabouqi covers all Amman areas: Khalda, Shafa Badran, Tlaa Al Ali, Shmeisani, Abdoun, Jubaiha, Sweileh, Abdali and more. Pick your area and contact us directly.",
     keywords:
-      "used furniture buying areas Amman, sell used furniture Khalda, sell used furniture Tlaa Al Ali, sell used furniture Abdoun, Aldabouqi",
+      "used furniture buyer Amman areas, sell furniture Khalda, sell furniture Tlaa Al Ali, sell furniture Abdoun, Aldabouqi",
     pageTitle: "Coverage Areas",
     intro:
       "Aldabouqi buys used furniture in nearly every area of Amman. Pick your area below to see service details and how to reach us directly, or contact us if your area isn't listed and we'll confirm coverage.",

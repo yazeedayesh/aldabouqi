@@ -61,9 +61,9 @@ const content = {
   en: {
     metaTitle: "Our Services | Aldabouqi - Buying Used Furniture, Amman",
     metaDescription:
-      "Explore Aldabouqi's full range of used-furniture buying services in Amman: home and office furniture, appliances, antiques, and full house clearance. Free, professional valuation everywhere.",
+      "Discover Aldabouqi's complete used-furniture buying services in Amman: home and office furniture, appliances, antiques, and full house clearance. Free, professional valuation in every area.",
     keywords:
-      "used furniture buying services Amman, buy used home furniture, buy used office furniture, buy used appliances, buy antiques Amman, house clearance Amman, Aldabouqi services",
+      "furniture buying services Amman, buy used home furniture, buy office furniture, buy used appliances, buy antiques Amman, house clearance Amman, used furniture valuation, Aldabouqi services",
     pageTitle: "Our Services",
     introKicker: "Our complete services in",
     introTitle: "Buy Used Furniture in Amman",
