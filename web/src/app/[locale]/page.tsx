@@ -169,7 +169,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]">) {
     keywords: c.keywords,
     path: "/",
     locale: locale as Locale,
-    ogImage: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
+    ogImage: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
   });
 }
 

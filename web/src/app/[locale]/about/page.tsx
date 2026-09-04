@@ -105,7 +105,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/about">)
     keywords: c.keywords,
     path: "/about",
     locale: locale as Locale,
-    ogImage: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
+    ogImage: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
   });
 }
 
@@ -128,8 +128,8 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
             name: BUSINESS.nameAr,
             legalName: BUSINESS.nameAr,
             url: SITE_URL,
-            logo: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
-            image: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
+            logo: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
+            image: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
             description: c.intro.body,
             foundingDate: "2015",
             telephone: BUSINESS.phoneE164,

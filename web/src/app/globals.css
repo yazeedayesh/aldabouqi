@@ -46,29 +46,44 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* Warm "dark section" pair (footer, deep-toned bands) — deliberately
+     separate from --background/--foreground rather than reusing .dark,
+     since this site has no dark-mode toggle; it's one specific warm-dark
+     surface used in a handful of places, not a whole alternate theme. */
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-border: var(--ink-border);
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  /* Warm neutral palette (brief §4): cream background, espresso-charcoal
+     text/dark sections, gold/copper accent — replacing the stock shadcn
+     white/gray/black defaults this theme shipped with until now. */
+  --background: #faf6ef;
+  --foreground: #2a2318;
+  --card: #ffffff;
+  --card-foreground: #2a2318;
+  --popover: #ffffff;
+  --popover-foreground: #2a2318;
   /* Brand color, carried forward from the current site's main.css
      (--it-theme-1: #C9922F) so the redesign keeps the same identity. */
   --primary: #c9922f;
   --primary-foreground: #ffffff;
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: #0a1628;
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: #5b6472;
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: #0a1628;
+  --secondary: #f1e6d3;
+  --secondary-foreground: #2a2318;
+  --muted: #f1e6d3;
+  --muted-foreground: #6b5d4c;
+  --accent: #ecdcbc;
+  --accent-foreground: #2a2318;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: #e6d9c2;
+  --input: #e6d9c2;
   --ring: #c9922f;
+  --ink: #241d15;
+  --ink-foreground: #f3e9d8;
+  --ink-muted: #cabda3;
+  --ink-border: #4a3f2f;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

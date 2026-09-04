@@ -19,17 +19,17 @@ export function Footer() {
   ] as const;
 
   return (
-    <footer className="border-t border-border bg-secondary/40">
+    <footer className="bg-ink text-ink-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
         <div className="space-y-4">
           <Image
-            src="/img/logo/aldabouqi-logo.webp"
+            src="/img/logo/aldabouqi.webp"
             alt={BUSINESS.nameAr}
-            width={160}
-            height={48}
-            className="h-10 w-auto"
+            width={200}
+            height={98}
+            className="h-10 w-auto brightness-0 invert"
           />
-          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+          <p className="max-w-sm text-sm leading-relaxed text-ink-muted">
             {t("tagline")}
           </p>
           <div className="flex items-center gap-4 pt-2">
@@ -38,7 +38,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="text-muted-foreground hover:text-primary"
+              className="text-ink-muted hover:text-primary"
             >
               <FacebookIcon className="size-5" />
             </a>
@@ -47,7 +47,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="text-muted-foreground hover:text-primary"
+              className="text-ink-muted hover:text-primary"
             >
               <InstagramIcon className="size-5" />
             </a>
@@ -56,7 +56,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X"
-              className="text-muted-foreground hover:text-primary"
+              className="text-ink-muted hover:text-primary"
             >
               <XIcon className="size-5" />
             </a>
@@ -64,7 +64,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-foreground">
+          <h3 className="mb-4 font-heading text-sm font-semibold text-ink-foreground">
             {t("quickLinks")}
           </h3>
           <ul className="space-y-2 text-sm">
@@ -72,7 +72,7 @@ export function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-muted-foreground hover:text-primary"
+                  className="text-ink-muted hover:text-primary"
                 >
                   {link.label}
                 </Link>
@@ -82,10 +82,10 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="mb-4 text-sm font-semibold text-foreground">
+          <h3 className="mb-4 font-heading text-sm font-semibold text-ink-foreground">
             {t("contactUs")}
           </h3>
-          <ul className="space-y-3 text-sm text-muted-foreground">
+          <ul className="space-y-3 text-sm text-ink-muted">
             <li className="flex items-center gap-2">
               <Phone className="size-4 shrink-0 text-primary" />
               <a href={`tel:${BUSINESS.phoneE164}`} dir="ltr" className="hover:text-primary">
@@ -106,7 +106,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
+      <div className="border-t border-ink-border py-6 text-center text-xs text-ink-muted">
         © {new Date().getFullYear()} {BUSINESS.nameAr} — {t("rights")}
       </div>
     </footer>

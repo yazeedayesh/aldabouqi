@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/partner"
     keywords: c.keywords,
     path: "/partner",
     locale: locale as Locale,
-    ogImage: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
+    ogImage: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
   });
 }
 
@@ -93,7 +93,7 @@ export default async function PartnerPage({ params }: PageProps<"/[locale]/partn
           mainEntity: {
             "@type": "LocalBusiness",
             name: BUSINESS.nameAr,
-            image: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
+            image: `${SITE_URL}/img/logo/aldabouqi.webp`,
             telephone: BUSINESS.phoneE164,
             email: BUSINESS.email,
             address: {

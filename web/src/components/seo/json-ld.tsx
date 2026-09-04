@@ -110,7 +110,7 @@ export function ServiceJsonLd({
         provider: {
           "@type": "LocalBusiness",
           name: BUSINESS.nameAr,
-          image: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
+          image: `${SITE_URL}/img/logo/aldabouqi.webp`,
           telephone: BUSINESS.phoneE164,
           email: BUSINESS.email,
           address: defaultAddress,
@@ -218,7 +218,7 @@ export function ProductJsonLd({
         "@type": "Product",
         name,
         description,
-        image: images,
+        ...(images.length > 0 ? { image: images } : {}),
         url,
         ...(price != null
           ? {

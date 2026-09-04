@@ -27,10 +27,10 @@ export function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="shrink-0">
           <Image
-            src="/img/logo/aldabouqi-logo.webp"
+            src="/img/logo/aldabouqi.webp"
             alt={BUSINESS.nameAr}
-            width={160}
-            height={48}
+            width={200}
+            height={98}
             priority
             className="h-10 w-auto"
           />

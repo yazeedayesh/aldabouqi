@@ -8,6 +8,7 @@ import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
+import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, buildWhatsAppLink } from "@/lib/constants";
@@ -76,8 +77,10 @@ export default async function ProductDetailPage({
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div className="space-y-3">
           <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary/40">
-            {product.images[0] && (
+            {product.images[0] ? (
               <Image src={product.images[0]} alt={title} fill priority className="object-cover" />
+            ) : (
+              <ProductImagePlaceholder label={locale === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"} />
             )}
           </div>
           {product.images.length > 1 && (
