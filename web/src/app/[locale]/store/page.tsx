@@ -1,22 +1,14 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq } from "drizzle-orm";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getDb } from "@/db";
-import { products } from "@/db/schema";
+import { categories as categoriesTable, products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
 import { buildMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 300;
-
-const categories = [
-  { value: "bedrooms", ar: "غرف نوم", en: "Bedrooms" },
-  { value: "salons", ar: "صالونات", en: "Salons" },
-  { value: "offices", ar: "مكاتب", en: "Offices" },
-  { value: "appliances", ar: "أجهزة كهربائية", en: "Appliances" },
-  { value: "other", ar: "أخرى", en: "Other" },
-] as const;
 
 const content = {
   ar: {
@@ -51,14 +43,16 @@ export default async function StorePage({
   const c = content[locale as Locale];
 
   const activeCategory = typeof category === "string" ? category : undefined;
-  const isValidCategory = categories.some((cat) => cat.value === activeCategory);
+
+  const categories = await getDb().select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder));
+  const isValidCategory = categories.some((cat) => cat.slug === activeCategory);
 
   const rows = await getDb()
     .select()
     .from(products)
     .where(
       isValidCategory
-        ? and(eq(products.status, "available"), eq(products.category, activeCategory as (typeof categories)[number]["value"]))
+        ? and(eq(products.status, "available"), eq(products.category, activeCategory as string))
         : eq(products.status, "available")
     )
     .orderBy(desc(products.createdAt));
@@ -77,11 +71,11 @@ export default async function StorePage({
           </Link>
           {categories.map((cat) => (
             <Link
-              key={cat.value}
-              href={`/store?category=${cat.value}`}
-              className={`rounded-full border px-4 py-1.5 text-sm font-medium ${activeCategory === cat.value ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary hover:text-primary"}`}
+              key={cat.slug}
+              href={`/store?category=${cat.slug}`}
+              className={`rounded-full border px-4 py-1.5 text-sm font-medium ${activeCategory === cat.slug ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary hover:text-primary"}`}
             >
-              {locale === "en" ? cat.en : cat.ar}
+              {locale === "en" ? cat.nameEn : cat.nameAr}
             </Link>
           ))}
         </div>

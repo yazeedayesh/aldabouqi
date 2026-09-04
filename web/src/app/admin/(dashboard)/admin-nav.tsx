@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LogOut, Package, ShoppingCart } from "lucide-react";
+import { LayoutGrid, LogOut, Package, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/admin/products", label: "المنتجات", icon: Package },
+  { href: "/admin/categories", label: "الفئات", icon: LayoutGrid },
   { href: "/admin/orders", label: "الطلبات", icon: ShoppingCart },
 ] as const;
 

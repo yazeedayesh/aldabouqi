@@ -12,15 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { Product } from "@/db/schema";
-
-const categories = [
-  { value: "bedrooms", label: "غرف نوم" },
-  { value: "salons", label: "صالونات" },
-  { value: "offices", label: "مكاتب" },
-  { value: "appliances", label: "أجهزة كهربائية" },
-  { value: "other", label: "أخرى" },
-];
+import type { Category, Product } from "@/db/schema";
 
 const conditions = [
   { value: "excellent", label: "ممتازة" },
@@ -35,13 +27,13 @@ const statuses = [
   { value: "draft", label: "مسودة" },
 ];
 
-export function ProductForm({ product }: { product?: Product }) {
+export function ProductForm({ product, categories }: { product?: Product; categories: Category[] }) {
   const router = useRouter();
   const [images, setImages] = useState<string[]>(product?.images ?? []);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [category, setCategory] = useState(product?.category ?? "other");
+  const [category, setCategory] = useState(product?.category ?? categories[0]?.slug ?? "");
   const [condition, setCondition] = useState(product?.condition ?? "good");
   const [status, setStatus] = useState(product?.status ?? "available");
 
@@ -149,11 +141,15 @@ export function ProductForm({ product }: { product?: Product }) {
 
       <div className="grid gap-4 sm:grid-cols-4">
         <Field label="الفئة">
-          <Select items={categories} value={category} onValueChange={(v) => v && setCategory(v)}>
+          <Select
+            items={categories.map((c) => ({ value: c.slug, label: c.nameAr }))}
+            value={category}
+            onValueChange={(v) => v && setCategory(v)}
+          >
             <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
             <SelectContent>
               {categories.map((c) => (
-                <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                <SelectItem key={c.slug} value={c.slug}>{c.nameAr}</SelectItem>
               ))}
             </SelectContent>
           </Select>
