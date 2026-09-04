@@ -185,6 +185,57 @@ export function FaqJsonLd({
   );
 }
 
+const availabilityBySchemaStatus = {
+  available: "https://schema.org/InStock",
+  reserved: "https://schema.org/Reserved",
+  sold: "https://schema.org/SoldOut",
+  // Draft products 404 before rendering; included only so callers can pass
+  // Product["status"] straight through without a cast.
+  draft: "https://schema.org/OutOfStock",
+} as const;
+
+/** New — the current site has no store, so there's no prior markup to mirror. */
+export function ProductJsonLd({
+  name,
+  description,
+  images,
+  price,
+  status,
+  path,
+}: {
+  name: string;
+  description: string;
+  images: string[];
+  price: number | null;
+  status: keyof typeof availabilityBySchemaStatus;
+  path: string;
+}) {
+  const url = `${SITE_URL}${path}`;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name,
+        description,
+        image: images,
+        url,
+        ...(price != null
+          ? {
+              offers: {
+                "@type": "Offer",
+                url,
+                price,
+                priceCurrency: "JOD",
+                availability: availabilityBySchemaStatus[status],
+              },
+            }
+          : {}),
+      }}
+    />
+  );
+}
+
 export function HowToJsonLd({
   name,
   description,

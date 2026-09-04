@@ -8,6 +8,7 @@ import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
+import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, buildWhatsAppLink } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
@@ -56,6 +57,20 @@ export default async function ProductDetailPage({
 
   return (
     <>
+      <ProductJsonLd
+        name={title}
+        description={description}
+        images={product.images}
+        price={product.price}
+        status={product.status}
+        path={`/store/${slug}`}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: locale === "en" ? "Store" : "المتجر", path: "/store" },
+          { name: title, path: `/store/${slug}` },
+        ]}
+      />
       <PageHero title={title} crumbs={[{ href: "/store", label: locale === "en" ? "Store" : "المتجر" }, { href: `/store/${slug}`, label: title }]} />
 
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
