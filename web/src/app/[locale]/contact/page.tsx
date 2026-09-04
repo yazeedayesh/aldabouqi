@@ -106,6 +106,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
             },
             sameAs: [BUSINESS.social.facebook, BUSINESS.social.twitter, BUSINESS.social.instagram],
             areaServed: { "@type": "City", name: BUSINESS.address.localityAr },
+            priceRange: "$$",
           },
         }}
       />

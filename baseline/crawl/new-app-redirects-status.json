@@ -1,0 +1,902 @@
+[
+  {
+    "source": "/en/buy-used-furniture-abdali.html",
+    "expectedDestination": "/buy-used-furniture-abdali",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abdali",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abdali",
+    "expectedDestination": "/buy-used-furniture-abdali",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abdali",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abdoun.html",
+    "expectedDestination": "/buy-used-furniture-abdoun",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abdoun",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abdoun",
+    "expectedDestination": "/buy-used-furniture-abdoun",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abdoun",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abu-alanda.html",
+    "expectedDestination": "/buy-used-furniture-abu-alanda",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abu-alanda",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abu-alanda",
+    "expectedDestination": "/buy-used-furniture-abu-alanda",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abu-alanda",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abu-nassir.html",
+    "expectedDestination": "/buy-used-furniture-abu-nassir",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abu-nassir",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-abu-nassir",
+    "expectedDestination": "/buy-used-furniture-abu-nassir",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-abu-nassir",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-ain-al-basha.html",
+    "expectedDestination": "/buy-used-furniture-ain-al-basha",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-ain-al-basha",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-ain-al-basha",
+    "expectedDestination": "/buy-used-furniture-ain-al-basha",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-ain-al-basha",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-airport-road.html",
+    "expectedDestination": "/buy-used-furniture-airport-road",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-airport-road",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-airport-road",
+    "expectedDestination": "/buy-used-furniture-airport-road",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-airport-road",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-al-sarou.html",
+    "expectedDestination": "/buy-used-furniture-al-sarou",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-al-sarou",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-al-sarou",
+    "expectedDestination": "/buy-used-furniture-al-sarou",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-al-sarou",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-bayader.html",
+    "expectedDestination": "/buy-used-furniture-bayader",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-bayader",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-bayader",
+    "expectedDestination": "/buy-used-furniture-bayader",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-bayader",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-daboug.html",
+    "expectedDestination": "/buy-used-furniture-daboug",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-daboug",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-daboug",
+    "expectedDestination": "/buy-used-furniture-daboug",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-daboug",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-dahiyat-al-rashid.html",
+    "expectedDestination": "/buy-used-furniture-dahiyat-al-rashid",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-dahiyat-al-rashid",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-dahiyat-al-rashid",
+    "expectedDestination": "/buy-used-furniture-dahiyat-al-rashid",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-dahiyat-al-rashid",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-deir-ghbar.html",
+    "expectedDestination": "/buy-used-furniture-deir-ghbar",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-deir-ghbar",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-deir-ghbar",
+    "expectedDestination": "/buy-used-furniture-deir-ghbar",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-deir-ghbar",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-fuheis.html",
+    "expectedDestination": "/buy-used-furniture-fuheis",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-fuheis",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-fuheis",
+    "expectedDestination": "/buy-used-furniture-fuheis",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-fuheis",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-gardens.html",
+    "expectedDestination": "/buy-used-furniture-gardens",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-gardens",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-gardens",
+    "expectedDestination": "/buy-used-furniture-gardens",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-gardens",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-hashmi.html",
+    "expectedDestination": "/buy-used-furniture-hashmi",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-hashmi",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-hashmi",
+    "expectedDestination": "/buy-used-furniture-hashmi",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-hashmi",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-jabal-al-hussein.html",
+    "expectedDestination": "/buy-used-furniture-jabal-al-hussein",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-jabal-al-hussein",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-jabal-al-hussein",
+    "expectedDestination": "/buy-used-furniture-jabal-al-hussein",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-jabal-al-hussein",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-jabal-amman.html",
+    "expectedDestination": "/buy-used-furniture-jabal-amman",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-jabal-amman",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-jabal-amman",
+    "expectedDestination": "/buy-used-furniture-jabal-amman",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-jabal-amman",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-jubaiha.html",
+    "expectedDestination": "/buy-used-furniture-jubaiha",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-jubaiha",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-jubaiha",
+    "expectedDestination": "/buy-used-furniture-jubaiha",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-jubaiha",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-khalda.html",
+    "expectedDestination": "/buy-used-furniture-khalda",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-khalda",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-khalda",
+    "expectedDestination": "/buy-used-furniture-khalda",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-khalda",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-mahes.html",
+    "expectedDestination": "/buy-used-furniture-mahes",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-mahes",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-mahes",
+    "expectedDestination": "/buy-used-furniture-mahes",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-mahes",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-marj-al-hamam.html",
+    "expectedDestination": "/buy-used-furniture-marj-al-hamam",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-marj-al-hamam",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-marj-al-hamam",
+    "expectedDestination": "/buy-used-furniture-marj-al-hamam",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-marj-al-hamam",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-marka.html",
+    "expectedDestination": "/buy-used-furniture-marka",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-marka",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-marka",
+    "expectedDestination": "/buy-used-furniture-marka",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-marka",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-muqabalain.html",
+    "expectedDestination": "/buy-used-furniture-muqabalain",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-muqabalain",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-muqabalain",
+    "expectedDestination": "/buy-used-furniture-muqabalain",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-muqabalain",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-naour.html",
+    "expectedDestination": "/buy-used-furniture-naour",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-naour",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-naour",
+    "expectedDestination": "/buy-used-furniture-naour",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-naour",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-rabia.html",
+    "expectedDestination": "/buy-used-furniture-rabia",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-rabia",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-rabia",
+    "expectedDestination": "/buy-used-furniture-rabia",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-rabia",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-shafa-badran.html",
+    "expectedDestination": "/buy-used-furniture-shafa-badran",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-shafa-badran",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-shafa-badran",
+    "expectedDestination": "/buy-used-furniture-shafa-badran",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-shafa-badran",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-shmeisani.html",
+    "expectedDestination": "/buy-used-furniture-shmeisani",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-shmeisani",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-shmeisani",
+    "expectedDestination": "/buy-used-furniture-shmeisani",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-shmeisani",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-sports-city.html",
+    "expectedDestination": "/buy-used-furniture-sports-city",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-sports-city",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-sports-city",
+    "expectedDestination": "/buy-used-furniture-sports-city",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-sports-city",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-sweifieh.html",
+    "expectedDestination": "/buy-used-furniture-sweifieh",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-sweifieh",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-sweifieh",
+    "expectedDestination": "/buy-used-furniture-sweifieh",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-sweifieh",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-sweileh.html",
+    "expectedDestination": "/buy-used-furniture-sweileh",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-sweileh",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-sweileh",
+    "expectedDestination": "/buy-used-furniture-sweileh",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-sweileh",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-tabarbour.html",
+    "expectedDestination": "/buy-used-furniture-tabarbour",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-tabarbour",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-tabarbour",
+    "expectedDestination": "/buy-used-furniture-tabarbour",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-tabarbour",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-tlaa-al-ali.html",
+    "expectedDestination": "/buy-used-furniture-tlaa-al-ali",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-tlaa-al-ali",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-tlaa-al-ali",
+    "expectedDestination": "/buy-used-furniture-tlaa-al-ali",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-tlaa-al-ali",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-um-al-summaq.html",
+    "expectedDestination": "/buy-used-furniture-um-al-summaq",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-um-al-summaq",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-um-al-summaq",
+    "expectedDestination": "/buy-used-furniture-um-al-summaq",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-um-al-summaq",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-um-uthaina.html",
+    "expectedDestination": "/buy-used-furniture-um-uthaina",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-um-uthaina",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-um-uthaina",
+    "expectedDestination": "/buy-used-furniture-um-uthaina",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-um-uthaina",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-university-street.html",
+    "expectedDestination": "/buy-used-furniture-university-street",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-university-street",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-university-street",
+    "expectedDestination": "/buy-used-furniture-university-street",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-university-street",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-wadi-seer.html",
+    "expectedDestination": "/buy-used-furniture-wadi-seer",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-wadi-seer",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-wadi-seer",
+    "expectedDestination": "/buy-used-furniture-wadi-seer",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-wadi-seer",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-yajouz.html",
+    "expectedDestination": "/buy-used-furniture-yajouz",
+    "hopStatuses": [
+      308,
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-yajouz",
+    "landedOnExpectedPath": true,
+    "ok": true
+  },
+  {
+    "source": "/en/buy-used-furniture-yajouz",
+    "expectedDestination": "/buy-used-furniture-yajouz",
+    "hopStatuses": [
+      308,
+      200
+    ],
+    "finalStatus": 200,
+    "finalPath": "/buy-used-furniture-yajouz",
+    "landedOnExpectedPath": true,
+    "ok": true
+  }
+]
