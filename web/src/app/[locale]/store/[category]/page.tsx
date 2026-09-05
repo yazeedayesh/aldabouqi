@@ -6,8 +6,11 @@ import { getDb } from "@/db";
 import { categories as categoriesTable, products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
 import { StoreGridSection } from "@/components/store/store-grid-section";
-import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { FaqSection } from "@/components/sections/faq-section";
+import { BreadcrumbJsonLd, FaqJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
+import { categoryContent } from "@/lib/category-content";
+import { SITE_URL } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 300;
@@ -38,6 +41,7 @@ const content = {
     shopByCategory: "تسوّق حسب الفئة",
     all: "الكل",
     storeLabel: "المتجر",
+    faqTitle: "أسئلة شائعة",
   },
   en: {
     priceOnRequest: "Price on request",
@@ -46,6 +50,7 @@ const content = {
     shopByCategory: "Shop by Category",
     all: "All",
     storeLabel: "Store",
+    faqTitle: "Frequently Asked Questions",
   },
 } as const;
 
@@ -90,6 +95,8 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
   setRequestLocale(locale);
   const c = content[locale as Locale];
   const name = locale === "en" ? categoryRow.nameEn : categoryRow.nameAr;
+  const extra = categoryContent[categoryRow.slug];
+  const canonicalUrl = `${SITE_URL}${locale === "en" ? "/en" : ""}/store/${slug}`;
 
   const [allCategories, rows] = await Promise.all([
     getDb().select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder)),
@@ -100,6 +107,8 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
       .orderBy(desc(products.createdAt)),
   ]);
 
+  const faq = extra ? (locale === "en" ? extra.faqEn : extra.faqAr) : [];
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -108,13 +117,44 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
           { name, path: `/store/${slug}` },
         ]}
       />
+      {extra && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name,
+            url: canonicalUrl,
+            description: locale === "en" ? extra.introEn : extra.introAr,
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: rows.map((product, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `${SITE_URL}${locale === "en" ? "/en" : ""}/store/${categoryRow.slug}/${product.slug}`,
+                name: locale === "en" ? product.titleEn : product.titleAr,
+              })),
+            },
+          }}
+        />
+      )}
+      {faq.length > 0 && <FaqJsonLd items={faq} />}
       <PageHero
         title={name}
         crumbs={[
           { href: "/store", label: c.storeLabel },
           { href: `/store/${slug}`, label: name },
         ]}
+        image={
+          extra?.heroImage
+            ? { src: extra.heroImage.src, alt: locale === "en" ? extra.heroImage.altEn : extra.heroImage.altAr }
+            : undefined
+        }
       />
+      {extra && (
+        <section className="mx-auto max-w-4xl px-4 pt-16 sm:px-6 lg:px-8">
+          <p className="leading-relaxed text-muted-foreground">{locale === "en" ? extra.introEn : extra.introAr}</p>
+        </section>
+      )}
       <StoreGridSection
         locale={locale as Locale}
         categories={allCategories}
@@ -122,6 +162,7 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
         products={rows}
         content={c}
       />
+      {faq.length > 0 && <FaqSection title={c.faqTitle} items={faq} />}
     </>
   );
 }
