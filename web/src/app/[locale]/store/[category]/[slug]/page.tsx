@@ -84,7 +84,7 @@ export default async function ProductDetailPage({
       <BreadcrumbJsonLd
         items={[
           { name: locale === "en" ? "Store" : "المتجر", path: "/store" },
-          { name: categoryLabel, path: `/store?category=${category}` },
+          { name: categoryLabel, path: `/store/${category}` },
           { name: title, path: productPath },
         ]}
       />
@@ -92,7 +92,7 @@ export default async function ProductDetailPage({
         title={title}
         crumbs={[
           { href: "/store", label: locale === "en" ? "Store" : "المتجر" },
-          { href: `/store?category=${category}`, label: categoryLabel },
+          { href: `/store/${category}`, label: categoryLabel },
           { href: productPath, label: title },
         ]}
       />

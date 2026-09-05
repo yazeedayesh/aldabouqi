@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { ne } from "drizzle-orm";
 import { getDb } from "@/db";
-import { products } from "@/db/schema";
+import { categories, products } from "@/db/schema";
 import { areas } from "@/lib/areas";
 import { SITE_URL } from "@/lib/constants";
 
@@ -52,10 +52,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // unreachable — a transient DB outage must never take the whole sitemap
   // (and the build that generates it) down with it.
   try {
-    const liveProducts = await getDb()
-      .select({ slug: products.slug, category: products.category, updatedAt: products.updatedAt })
-      .from(products)
-      .where(ne(products.status, "draft"));
+    const [categoryRows, liveProducts] = await Promise.all([
+      getDb().select({ slug: categories.slug, updatedAt: categories.updatedAt }).from(categories),
+      getDb()
+        .select({ slug: products.slug, category: products.category, updatedAt: products.updatedAt })
+        .from(products)
+        .where(ne(products.status, "draft")),
+    ]);
+
+    // The 8 category landing pages (/store/{category}) — real indexed
+    // pages, not a ?category= filter, per the site owner's follow-up.
+    for (const category of categoryRows) {
+      entries.push(...bilingualEntry(`/store/${category.slug}`, category.updatedAt));
+    }
 
     for (const product of liveProducts) {
       entries.push(...bilingualEntry(`/store/${product.category}/${product.slug}`, product.updatedAt));
