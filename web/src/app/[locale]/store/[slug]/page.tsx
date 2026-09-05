@@ -1,17 +1,18 @@
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import Image from "next/image";
-import { MessageCircle, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
-import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
+import { ProductGallery } from "@/components/store/product-gallery";
+import { ProductWhatsAppCta } from "@/components/store/product-whatsapp-cta";
+import { InterestToggleButton } from "@/components/store/interest-toggle-button";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
-import { BUSINESS, buildWhatsAppLink } from "@/lib/constants";
+import { BUSINESS } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 300;
@@ -33,9 +34,15 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/store/[s
 
   const title = locale === "en" ? product.titleEn : product.titleAr;
   const description = locale === "en" ? product.descriptionEn : product.descriptionAr;
+  // Price appended only when known — "price on request" is never spelled out
+  // in the <title> itself (brief §10.2).
+  const pageTitle =
+    product.price != null
+      ? `${title} - ${product.price} ${locale === "en" ? "JOD" : "د.أ"} | ${BUSINESS.nameAr}`
+      : `${title} | ${BUSINESS.nameAr}`;
 
   return buildMetadata({
-    title: `${title} | ${BUSINESS.nameAr}`,
+    title: pageTitle,
     description,
     path: `/store/${slug}`,
     locale: locale as Locale,
@@ -75,24 +82,12 @@ export default async function ProductDetailPage({
       <PageHero title={title} crumbs={[{ href: "/store", label: locale === "en" ? "Store" : "المتجر" }, { href: `/store/${slug}`, label: title }]} />
 
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="space-y-3">
-          <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary/40">
-            {product.images[0] ? (
-              <Image src={product.images[0]} alt={title} fill priority className="object-cover" />
-            ) : (
-              <ProductImagePlaceholder label={locale === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"} />
-            )}
-          </div>
-          {product.images.length > 1 && (
-            <div className="grid grid-cols-4 gap-3">
-              {product.images.slice(1).map((url) => (
-                <div key={url} className="relative aspect-square overflow-hidden rounded-lg bg-secondary/40">
-                  <Image src={url} alt="" fill className="object-cover" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <ProductGallery
+          images={product.images}
+          title={title}
+          noPhotoLabel={locale === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"}
+          categorySlug={product.category}
+        />
 
         <div>
           <div className="flex items-center gap-3">
@@ -102,6 +97,13 @@ export default async function ProductDetailPage({
                 {statusLabels[locale as Locale][product.status]}
               </span>
             )}
+            <InterestToggleButton
+              slug={product.slug}
+              titleAr={product.titleAr}
+              titleEn={product.titleEn}
+              locale={locale as "ar" | "en"}
+              className="ms-auto"
+            />
           </div>
 
           <p className="mt-4 text-2xl font-bold text-primary">
@@ -118,33 +120,32 @@ export default async function ProductDetailPage({
 
           <p className="mt-6 leading-relaxed text-muted-foreground">{description}</p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {isAvailable ? (
-              <Button size="lg" nativeButton={false} render={<Link href={`/store/checkout?product=${product.slug}`} />}>
-                <ShoppingCart className="size-4" />
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            {/* WhatsApp is always the primary, most prominent CTA. Cash-on-delivery
+                checkout only makes sense when a firm price exists — for
+                "price on request" items it's hidden entirely and WhatsApp is
+                the sole option (per site owner decision, 2026-09-05). */}
+            <ProductWhatsAppCta
+              productId={product.id}
+              productTitleAr={product.titleAr}
+              message={
+                locale === "en"
+                  ? `Hi, I'm interested in: ${title}`
+                  : `مرحباً، بدي أستفسر عن: ${title}`
+              }
+              label={locale === "en" ? "Ask on WhatsApp" : "استفسار عبر واتساب"}
+            />
+            {isAvailable && product.price != null ? (
+              <Button
+                size="sm"
+                variant="outline"
+                nativeButton={false}
+                render={<Link href={`/store/checkout?product=${product.slug}`} />}
+              >
+                <ShoppingCart className="size-3.5" />
                 {locale === "en" ? "Order (Cash on Delivery)" : "اطلب الآن (دفع عند الاستلام)"}
               </Button>
             ) : null}
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-[#25D366] text-[#1ebe57] hover:bg-[#25D366]/10"
-              nativeButton={false}
-              render={
-                <a
-                  href={buildWhatsAppLink(
-                    locale === "en"
-                      ? `Hi, I'm interested in: ${title}`
-                      : `مرحباً، بدي أستفسر عن: ${title}`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              }
-            >
-              <MessageCircle className="size-4" />
-              {locale === "en" ? "Ask on WhatsApp" : "استفسار عبر واتساب"}
-            </Button>
           </div>
         </div>
       </section>

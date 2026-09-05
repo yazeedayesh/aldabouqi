@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import { CheckCircle2, Clock, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
+import { Reveal } from "@/components/ui/reveal";
 import { FaqSection } from "@/components/sections/faq-section";
 import { JsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
@@ -183,12 +184,14 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
             {c.valuesTitle}
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {c.values.map((value) => (
-              <div key={value.title} className="rounded-xl bg-background p-6 text-center shadow-sm">
-                <CheckCircle2 className="mx-auto size-8 text-primary" />
-                <h3 className="mt-3 font-heading font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.body}</p>
-              </div>
+            {c.values.map((value, i) => (
+              <Reveal key={value.title} delayMs={(i % 4) * 100}>
+                <div className="rounded-xl bg-background p-6 text-center shadow-sm">
+                  <CheckCircle2 className="mx-auto size-8 text-primary" />
+                  <h3 className="mt-3 font-heading font-semibold text-foreground">{value.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.body}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -203,15 +206,17 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
           {c.features.map((feature, index) => {
             const Icon = featureIcons[index];
             return (
-              <div key={feature.title} className="flex gap-4 rounded-xl border border-border p-6">
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <Icon className="size-5" />
+              <Reveal key={feature.title} delayMs={(index % 2) * 100}>
+                <div className="flex gap-4 rounded-xl border border-border p-6">
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Icon className="size-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-foreground">{feature.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-foreground">{feature.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
-                </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

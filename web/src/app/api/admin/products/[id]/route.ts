@@ -3,6 +3,7 @@ import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { productSchema } from "@/lib/validation";
 import { requireAdmin } from "@/lib/require-admin";
+import { pingIndexNow } from "@/lib/indexnow";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { response } = await requireAdmin();
@@ -22,6 +23,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     .returning();
 
   if (!row) return Response.json({ error: "Not found" }, { status: 404 });
+  if (row.status !== "draft") {
+    pingIndexNow([`/store/${row.slug}`, `/en/store/${row.slug}`]);
+  }
   return Response.json(row);
 }
 

@@ -7,5 +7,5 @@ import { auth } from "@/auth";
 // middleware (see proxy.ts) and isn't part of the [locale] tree at all.
 export default async function AdminIndexPage() {
   const session = await auth();
-  redirect(session ? "/admin/products" : "/admin/login");
+  redirect(session ? "/admin/dashboard" : "/admin/login");
 }

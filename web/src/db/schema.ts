@@ -80,9 +80,22 @@ export const orders = pgTable("orders", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+// Logged when a visitor clicks a WhatsApp CTA on a product, purely so the
+// admin dashboard's "recent inquiries" list is real data. Deliberately no
+// customer name/phone/message — that conversation happens inside WhatsApp
+// itself, this table only records that interest happened.
+export const inquiries = pgTable("inquiries", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  productId: uuid("product_id").references(() => products.id, { onDelete: "set null" }),
+  productTitleAr: text("product_title_ar").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 export type Category = typeof categories.$inferSelect;
 export type NewCategory = typeof categories.$inferInsert;
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
 export type Order = typeof orders.$inferSelect;
 export type NewOrder = typeof orders.$inferInsert;
+export type Inquiry = typeof inquiries.$inferSelect;
+export type NewInquiry = typeof inquiries.$inferInsert;

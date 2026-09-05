@@ -14,6 +14,7 @@ import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/layout/page-hero";
 import { FaqSection } from "@/components/sections/faq-section";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { JsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL, buildWhatsAppLink } from "@/lib/constants";
@@ -168,35 +169,34 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {c.services.map((service) => (
-            <div
-              key={service.title}
-              className="flex flex-col rounded-2xl border border-border p-6 transition-shadow hover:shadow-md"
-            >
-              <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <service.icon className="size-6" />
+          {c.services.map((service, i) => (
+            <Reveal key={service.title} delayMs={(i % 3) * 100} className="h-full">
+              <div className="flex h-full flex-col rounded-2xl border border-border p-6 transition-all hover:-translate-y-1 hover:shadow-md">
+                <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <service.icon className="size-6" />
+                </div>
+                <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{service.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
+                <Button
+                  variant="link"
+                  className="mt-4 h-auto justify-start p-0"
+                  nativeButton={false}
+                  render={
+                    "href" in service ? (
+                      <Link href={service.href} />
+                    ) : (
+                      <a
+                        href={buildWhatsAppLink(service.whatsapp)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    )
+                  }
+                >
+                  {c.requestCta}
+                </Button>
               </div>
-              <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{service.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
-              <Button
-                variant="link"
-                className="mt-4 h-auto justify-start p-0"
-                nativeButton={false}
-                render={
-                  "href" in service ? (
-                    <Link href={service.href} />
-                  ) : (
-                    <a
-                      href={buildWhatsAppLink(service.whatsapp)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    />
-                  )
-                }
-              >
-                {c.requestCta}
-              </Button>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

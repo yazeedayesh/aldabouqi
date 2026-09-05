@@ -220,6 +220,8 @@ export function ProductJsonLd({
         description,
         ...(images.length > 0 ? { image: images } : {}),
         url,
+        // Aldabouqi sells only used furniture — never NewCondition.
+        itemCondition: "https://schema.org/UsedCondition",
         ...(price != null
           ? {
               offers: {

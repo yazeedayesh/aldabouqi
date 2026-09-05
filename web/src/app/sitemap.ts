@@ -48,13 +48,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entries.push({ url: arUrl(`/buy-used-furniture-${area.slug}`) });
   }
 
-  const liveProducts = await getDb()
-    .select({ slug: products.slug, updatedAt: products.updatedAt })
-    .from(products)
-    .where(ne(products.status, "draft"));
+  // The 44 static links above must reach Google even if Neon is briefly
+  // unreachable — a transient DB outage must never take the whole sitemap
+  // (and the build that generates it) down with it.
+  try {
+    const liveProducts = await getDb()
+      .select({ slug: products.slug, updatedAt: products.updatedAt })
+      .from(products)
+      .where(ne(products.status, "draft"));
 
-  for (const product of liveProducts) {
-    entries.push(...bilingualEntry(`/store/${product.slug}`, product.updatedAt));
+    for (const product of liveProducts) {
+      entries.push(...bilingualEntry(`/store/${product.slug}`, product.updatedAt));
+    }
+  } catch (error) {
+    console.error("sitemap: failed to load products from the database, serving static routes only", error);
   }
 
   return entries;

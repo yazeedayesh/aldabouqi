@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { Button } from "@/components/ui/button";
+import { DeleteProductButton } from "./delete-product-button";
 
 const statusLabels: Record<string, string> = {
   available: "متوفر",
@@ -72,12 +73,15 @@ export default async function AdminProductsPage() {
                   </span>
                 </td>
                 <td className="p-3 text-end">
-                  <Link
-                    href={`/admin/products/${product.id}`}
-                    className="text-sm font-medium text-primary hover:underline"
-                  >
-                    تعديل
-                  </Link>
+                  <div className="flex items-center justify-end gap-3">
+                    <Link
+                      href={`/admin/products/${product.id}`}
+                      className="text-sm font-medium text-primary hover:underline"
+                    >
+                      تعديل
+                    </Link>
+                    <DeleteProductButton id={product.id} />
+                  </div>
                 </td>
               </tr>
             ))}

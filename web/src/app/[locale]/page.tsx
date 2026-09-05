@@ -14,6 +14,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { FaqSection } from "@/components/sections/faq-section";
 import { ContactForm } from "@/components/forms/contact-form";
 import { LocalBusinessJsonLd } from "@/components/seo/json-ld";
@@ -205,7 +206,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             <div className="flex flex-wrap gap-3">
               <Button
                 size="lg"
-                className="bg-[#25D366] text-white hover:bg-[#1ebe57]"
+                className="bg-whatsapp text-white hover:bg-whatsapp-dark"
                 nativeButton={false}
                 render={
                   <a
@@ -244,14 +245,16 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       {/* Highlights */}
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 sm:grid-cols-3 lg:px-8">
-        {c.highlights.map((item) => (
-          <div key={item.title} className="rounded-2xl border border-border p-6">
-            <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <item.icon className="size-5" />
+        {c.highlights.map((item, i) => (
+          <Reveal key={item.title} delayMs={i * 100}>
+            <div className="rounded-2xl border border-border p-6">
+              <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <item.icon className="size-5" />
+              </div>
+              <h3 className="mt-4 font-heading font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
             </div>
-            <h3 className="mt-4 font-heading font-semibold text-foreground">{item.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-          </div>
+          </Reveal>
         ))}
       </section>
 
@@ -281,16 +284,17 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           </Link>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {c.services.map((service) => (
-            <Link
-              key={service.title}
-              href={service.href}
-              className="rounded-2xl border border-border p-6 transition-shadow hover:shadow-md"
-            >
-              <Sparkles className="size-6 text-primary" />
-              <h3 className="mt-4 font-heading font-semibold text-foreground">{service.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
-            </Link>
+          {c.services.map((service, i) => (
+            <Reveal key={service.title} delayMs={(i % 4) * 100}>
+              <Link
+                href={service.href}
+                className="block h-full rounded-2xl border border-border p-6 transition-all hover:-translate-y-1 hover:shadow-md"
+              >
+                <Sparkles className="size-6 text-primary" />
+                <h3 className="mt-4 font-heading font-semibold text-foreground">{service.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -306,11 +310,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             {c.why.map((item, index) => {
               const Icon = whyIcons[index];
               return (
-                <div key={item.title} className="rounded-xl bg-background p-6 text-center shadow-sm">
-                  <Icon className="mx-auto size-7 text-primary" />
-                  <h3 className="mt-3 font-heading font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-                </div>
+                <Reveal key={item.title} delayMs={(index % 4) * 100}>
+                  <div className="rounded-xl bg-background p-6 text-center shadow-sm">
+                    <Icon className="mx-auto size-7 text-primary" />
+                    <h3 className="mt-3 font-heading font-semibold text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                  </div>
+                </Reveal>
               );
             })}
           </div>
@@ -338,15 +344,17 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {c.reviews.map((review, index) => (
-            <div key={index} className="rounded-xl border border-border p-6">
-              <div className="flex text-primary">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="size-3.5 fill-current" />
-                ))}
+            <Reveal key={index} delayMs={(index % 2) * 100}>
+              <div className="h-full rounded-xl border border-border p-6">
+                <div className="flex text-primary">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-3.5 fill-current" />
+                  ))}
+                </div>
+                <p className="mt-3 leading-relaxed text-foreground">&ldquo;{review}&rdquo;</p>
+                <p className="mt-3 text-sm text-muted-foreground">{c.reviewLabel}</p>
               </div>
-              <p className="mt-3 leading-relaxed text-foreground">&ldquo;{review}&rdquo;</p>
-              <p className="mt-3 text-sm text-muted-foreground">{c.reviewLabel}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

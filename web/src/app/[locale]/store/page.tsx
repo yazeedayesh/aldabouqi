@@ -6,6 +6,8 @@ import { getDb } from "@/db";
 import { categories as categoriesTable, products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
 import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
+import { InterestToggleButton } from "@/components/store/interest-toggle-button";
+import { Reveal } from "@/components/ui/reveal";
 import { getCategoryIcon } from "@/lib/category-icons";
 import { buildMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -100,39 +102,47 @@ export default async function StorePage({
           <p className="py-16 text-center text-muted-foreground">{c.empty}</p>
         ) : (
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {rows.map((product) => {
+            {rows.map((product, i) => {
               const title = locale === "en" ? product.titleEn : product.titleAr;
               return (
-                <Link
-                  key={product.id}
-                  href={`/store/${product.slug}`}
-                  className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="relative aspect-square overflow-hidden bg-secondary">
-                    {product.images[0] ? (
-                      <Image
-                        src={product.images[0]}
-                        alt={title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                <Reveal key={product.id} delayMs={(i % 6) * 90}>
+                  <Link
+                    href={`/store/${product.slug}`}
+                    className="group relative block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg"
+                  >
+                    <div className="relative aspect-square overflow-hidden bg-secondary">
+                      {product.images[0] ? (
+                        <Image
+                          src={product.images[0]}
+                          alt={title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                      ) : (
+                        <ProductImagePlaceholder label={c.noPhotoYet} categorySlug={product.category} />
+                      )}
+                      <span className="absolute bottom-3 start-3 rounded-full bg-ink/90 px-3 py-1 text-xs font-semibold text-ink-foreground backdrop-blur-sm">
+                        {product.price ? `${product.price} ${locale === "en" ? "JOD" : "د.أ"}` : c.priceOnRequest}
+                      </span>
+                      <InterestToggleButton
+                        slug={product.slug}
+                        titleAr={product.titleAr}
+                        titleEn={product.titleEn}
+                        locale={locale as "ar" | "en"}
+                        className="absolute end-3 top-3"
                       />
-                    ) : (
-                      <ProductImagePlaceholder label={c.noPhotoYet} />
-                    )}
-                    <span className="absolute bottom-3 start-3 rounded-full bg-ink/90 px-3 py-1 text-xs font-semibold text-ink-foreground backdrop-blur-sm">
-                      {product.price ? `${product.price} ${locale === "en" ? "JOD" : "د.أ"}` : c.priceOnRequest}
-                    </span>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs font-medium text-primary">
-                      {conditionLabels[locale as Locale][product.condition]}
-                    </p>
-                    <h3 className="mt-1 font-heading font-semibold text-foreground transition-colors group-hover:text-primary">
-                      {title}
-                    </h3>
-                  </div>
-                </Link>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-xs font-medium text-primary">
+                        {conditionLabels[locale as Locale][product.condition]}
+                      </p>
+                      <h3 className="mt-1 font-heading font-semibold text-foreground transition-colors group-hover:text-primary">
+                        {title}
+                      </h3>
+                    </div>
+                  </Link>
+                </Reveal>
               );
             })}
           </div>

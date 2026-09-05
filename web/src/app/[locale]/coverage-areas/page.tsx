@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { JsonLd, BreadcrumbJsonLd, HowToJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL, buildWhatsAppLink } from "@/lib/constants";
@@ -111,27 +112,28 @@ export default async function CoverageAreasPage({ params }: PageProps<"/[locale]
         </p>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {areas.map((area) => (
-            <Link
-              key={area.slug}
-              href={`/buy-used-furniture-${area.slug}`}
-              className="group flex items-center justify-between rounded-xl border border-border p-5 transition-colors hover:border-primary hover:bg-primary/5"
-            >
-              <span className="flex items-center gap-3 font-heading font-semibold text-foreground">
-                <MapPin className="size-4 text-primary" />
-                {locale === "en" ? area.nameEn : area.nameAr}
-              </span>
-              <span className="text-sm text-muted-foreground group-hover:text-primary">
-                {c.linkLabel}
-              </span>
-            </Link>
+          {areas.map((area, i) => (
+            <Reveal key={area.slug} delayMs={(i % 6) * 80}>
+              <Link
+                href={`/buy-used-furniture-${area.slug}`}
+                className="group flex items-center justify-between rounded-xl border border-border p-5 transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary/5"
+              >
+                <span className="flex items-center gap-3 font-heading font-semibold text-foreground">
+                  <MapPin className="size-4 text-primary" />
+                  {locale === "en" ? area.nameEn : area.nameAr}
+                </span>
+                <span className="text-sm text-muted-foreground group-hover:text-primary">
+                  {c.linkLabel}
+                </span>
+              </Link>
+            </Reveal>
           ))}
         </div>
 
         <div className="mt-12 rounded-2xl border border-dashed border-border p-8 text-center">
           <p className="font-heading font-semibold text-foreground">{c.notListed}</p>
           <Button
-            className="mt-4 bg-[#25D366] text-white hover:bg-[#1ebe57]"
+            className="mt-4 bg-whatsapp text-white hover:bg-whatsapp-dark"
             nativeButton={false}
             render={
               <a

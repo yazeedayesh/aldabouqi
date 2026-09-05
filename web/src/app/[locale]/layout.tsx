@@ -8,6 +8,8 @@ import { routing } from "@/i18n/routing";
 import { bodyFont, headingFont } from "@/lib/fonts";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { FloatingActions } from "@/components/layout/floating-actions";
+import { InterestBar } from "@/components/store/interest-bar";
 import { ANALYTICS, BUSINESS, SITE_URL } from "@/lib/constants";
 import "../globals.css";
 
@@ -68,6 +70,8 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FloatingActions locale={locale as "ar" | "en"} />
+          <InterestBar locale={locale as "ar" | "en"} />
         </NextIntlClientProvider>
 
         <Script

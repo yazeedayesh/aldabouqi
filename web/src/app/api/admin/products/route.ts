@@ -3,6 +3,7 @@ import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { productSchema } from "@/lib/validation";
 import { requireAdmin } from "@/lib/require-admin";
+import { pingIndexNow } from "@/lib/indexnow";
 
 export async function GET() {
   const { response } = await requireAdmin();
@@ -23,5 +24,8 @@ export async function POST(request: Request) {
   }
 
   const [row] = await getDb().insert(products).values(parsed.data).returning();
+  if (row.status !== "draft") {
+    pingIndexNow([`/store/${row.slug}`, `/en/store/${row.slug}`]);
+  }
   return Response.json(row, { status: 201 });
 }

@@ -42,7 +42,7 @@ export default async function OrderConfirmationPage({
       {whatsappLink && (
         <Button
           size="lg"
-          className="mt-8 bg-[#25D366] text-white hover:bg-[#1ebe57]"
+          className="mt-8 bg-whatsapp text-white hover:bg-whatsapp-dark"
           nativeButton={false}
           render={<a href={whatsappLink} target="_blank" rel="noopener noreferrer" />}
         >

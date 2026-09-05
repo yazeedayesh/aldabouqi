@@ -64,7 +64,7 @@ export function MobileNav({ links }: { links: readonly NavLink[] }) {
             {cta("call")}
           </Button>
           <Button
-            className="bg-[#25D366] text-white hover:bg-[#1ebe57]"
+            className="bg-whatsapp text-white hover:bg-whatsapp-dark"
             nativeButton={false}
             render={
               <a

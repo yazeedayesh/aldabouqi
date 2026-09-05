@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { PageHero } from "@/components/layout/page-hero";
 import { FaqSection } from "@/components/sections/faq-section";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { BUSINESS } from "@/lib/constants";
 
 type Step = { title: string; subtitle: string; body: string };
@@ -65,11 +66,13 @@ export function CategoryPageTemplate({
 
       <section className="bg-secondary/30 py-16">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
-          {features.map((feature) => (
-            <div key={feature.title} className="rounded-xl bg-background p-6 text-center shadow-sm">
-              <h3 className="font-heading font-semibold text-foreground">{feature.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
-            </div>
+          {features.map((feature, i) => (
+            <Reveal key={feature.title} delayMs={i * 100}>
+              <div className="rounded-xl bg-background p-6 text-center shadow-sm">
+                <h3 className="font-heading font-semibold text-foreground">{feature.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -81,7 +84,12 @@ export function CategoryPageTemplate({
         </div>
         <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <li key={step.title} className="rounded-xl border border-border p-6">
+            <Reveal
+              key={step.title}
+              as="li"
+              delayMs={(index % 4) * 100}
+              className="rounded-xl border border-border p-6"
+            >
               <span className="font-heading text-3xl font-bold text-primary/40">
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -89,7 +97,7 @@ export function CategoryPageTemplate({
                 {step.title} <span className="block font-normal text-muted-foreground">{step.subtitle}</span>
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </section>

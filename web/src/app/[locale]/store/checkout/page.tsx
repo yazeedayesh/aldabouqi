@@ -32,7 +32,9 @@ export default async function CheckoutPage({
   if (typeof slug !== "string") notFound();
 
   const [product] = await getDb().select().from(products).where(eq(products.slug, slug));
-  if (!product || product.status !== "available") notFound();
+  // COD checkout requires a known price — "price on request" items only
+  // ever offer the WhatsApp CTA, so direct/stale links here 404 too.
+  if (!product || product.status !== "available" || product.price == null) notFound();
 
   const title = locale === "en" ? "Checkout" : "إتمام الطلب";
   const productTitle = locale === "en" ? product.titleEn : product.titleAr;

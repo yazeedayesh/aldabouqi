@@ -1,4 +1,14 @@
-import { Armchair, Bed, Briefcase, Package, Zap, type LucideIcon } from "lucide-react";
+import {
+  Armchair,
+  Bed,
+  BedSingle,
+  Briefcase,
+  Package,
+  Smartphone,
+  UtensilsCrossed,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 
 // Icon shown per category on the store's "shop by category" chips. Falls
 // back to a generic box icon for any slug an admin adds that isn't one of
@@ -9,6 +19,9 @@ const categoryIcons: Record<string, LucideIcon> = {
   offices: Briefcase,
   appliances: Zap,
   other: Package,
+  "bedrooms-no-wardrobe": BedSingle,
+  "dining-tables": UtensilsCrossed,
+  electronics: Smartphone,
 };
 
 export function getCategoryIcon(slug: string): LucideIcon {
