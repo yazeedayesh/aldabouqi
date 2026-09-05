@@ -1,3 +1,4 @@
+import { asc, desc, eq } from "drizzle-orm";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
@@ -7,6 +8,7 @@ import {
   Clock,
   MessageCircle,
   Phone,
+  ShoppingBag,
   Sofa,
   Sparkles,
   Star,
@@ -18,6 +20,11 @@ import { Reveal } from "@/components/ui/reveal";
 import { FaqSection } from "@/components/sections/faq-section";
 import { ContactForm } from "@/components/forms/contact-form";
 import { LocalBusinessJsonLd } from "@/components/seo/json-ld";
+import { ProductCard } from "@/components/store/product-card";
+import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
+import { getDb } from "@/db";
+import { categories as categoriesTable, products } from "@/db/schema";
+import { categoryContent } from "@/lib/category-content";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL, buildWhatsAppLink } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
@@ -36,6 +43,20 @@ const content = {
     heroBadgeLabel: "عميل موثوق من جميع أنحاء المملكة",
     heroBody:
       "الدابوقي لشراء الأثاث المستعمل في الأردن، ونعطيك أعلى الأسعار وأسرع خدمة. لا تضيع وقتك مع خيارات أخرى، تواصل مع الدابوقي اليوم واستمتع بتقييم فوري وعادل لأثاثك مع خدمة مباشرة إلى موقعك في كل مكان في عمان.",
+    browseStoreCta: "تصفّح المتجر",
+    categoriesHeading: "تسوّق حسب الفئة",
+    featuredHeading: "منتجات مختارة",
+    featuredCta: "تصفح كل المتجر",
+    sellHeading: "بيع عفشك إلنا",
+    sellIntro:
+      "نحن نسهل عليك عملية بيع أثاثك المستعمل من خلال أربع خطوات بسيطة وسريعة، مع الحفاظ على الشفافية الكاملة والمصداقية في التعامل.",
+    sellSteps: [
+      { title: "اتصل بنا أو", subtitle: "أرسل صور الأثاث", body: "اتصل على رقمنا 0796983994 أو أرسل لنا صوراً للأثاث عبر الواتساب. سنقوم بالرد عليك فوراً لتحديد موعد المعاينة" },
+      { title: "معاينة مجانية", subtitle: "في موقعك", body: "يزورك أحد خبرائنا في الموعد المحدد لمعاينة الأثاث بشكل شامل وتقديم تقييم دقيق ومنصف" },
+      { title: "عرض السعر", subtitle: "والتفاوض", body: "بعد المعاينة، نقدم لك السعر المناسب بناءً على حالة الأثاث وجودته مع إمكانية التفاوض" },
+      { title: "الدفع الفوري", subtitle: "ونقل الأثاث", body: "بعد الاتفاق على السعر، نقوم بالدفع نقداً مباشرة ونتولى عملية نقل الأثاث دون أي تكلفة إضافية" },
+    ],
+    sellCta: "أرسل صور أثاثك الآن",
     highlights: [
       { icon: Banknote, title: "أفضل الأسعار في السوق", body: "نقدم لك أسعارًا عادلة مقابل أثاثك المستعمل، مع تقييم مجاني وشفاف" },
       { icon: Sofa, title: "نشتري جميع أنواع الأثاث", body: "من غرف المعيشة، غرف النوم، المكاتب، والأثاث المكتبي وحتى الأجهزة الكهربائية" },
@@ -106,6 +127,20 @@ const content = {
     heroBadgeLabel: "trusted customers across the Kingdom",
     heroBody:
       "Aldabouqi buys used furniture across Jordan, offering you the best prices and fastest service. Don't waste time with other options — contact Aldabouqi today and enjoy a fair, instant valuation with service delivered directly to your location anywhere in Amman.",
+    browseStoreCta: "Browse the Store",
+    categoriesHeading: "Shop by Category",
+    featuredHeading: "Featured Products",
+    featuredCta: "Browse the Full Store",
+    sellHeading: "Sell Your Furniture to Us",
+    sellIntro:
+      "We make selling your used furniture easy with four simple, fast steps, while maintaining complete transparency and integrity.",
+    sellSteps: [
+      { title: "Call us or", subtitle: "Send Furniture Photos", body: "Call us at 0796983994 or send us photos via WhatsApp. We'll reply right away to schedule an inspection" },
+      { title: "Free Inspection", subtitle: "at your location", body: "One of our experts visits at the agreed time for a thorough inspection and an accurate, fair valuation" },
+      { title: "Price Offer", subtitle: "and Negotiation", body: "After the inspection, we offer a fair price based on the furniture's condition and quality, with room to negotiate" },
+      { title: "Instant Payment", subtitle: "and Furniture Moving", body: "Once we agree on a price, we pay cash immediately and handle moving the furniture at no extra cost" },
+    ],
+    sellCta: "Send Your Furniture Photos Now",
     highlights: [
       { icon: Banknote, title: "Best Prices in the Market", body: "We offer fair prices for your used furniture, with a free, transparent valuation" },
       { icon: Sofa, title: "We buy all types of furniture", body: "From living rooms, bedrooms, and offices to office furniture and used appliances" },
@@ -167,6 +202,8 @@ const content = {
 
 const whyIcons = [Clock, ThumbsUp, TrendingUp, BadgeCheck];
 
+export const revalidate = 300;
+
 export async function generateMetadata({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   const c = content[locale as Locale];
@@ -184,6 +221,17 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const c = content[locale as Locale];
+  const loc = locale as "ar" | "en";
+
+  const [categoryRows, featuredProducts] = await Promise.all([
+    getDb().select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder)),
+    getDb()
+      .select()
+      .from(products)
+      .where(eq(products.status, "available"))
+      .orderBy(desc(products.createdAt))
+      .limit(8),
+  ]);
 
   return (
     <>
@@ -233,6 +281,10 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                 <Phone className="size-5" />
                 {locale === "en" ? "Call Now" : "اتصل الآن"}
               </Button>
+              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/store" />}>
+                <ShoppingBag className="size-5" />
+                {c.browseStoreCta}
+              </Button>
             </div>
           </div>
 
@@ -262,6 +314,120 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             </div>
           </Reveal>
         ))}
+      </section>
+
+      {/* Browse by category — the store's actual entry point on the
+          homepage (site owner follow-up, 2026-09-05: the store existed
+          with 16 products and zero discoverability from the homepage). */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          {c.categoriesHeading}
+        </h2>
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {categoryRows.map((cat, i) => {
+            const name = loc === "en" ? cat.nameEn : cat.nameAr;
+            const extra = categoryContent[cat.slug];
+            return (
+              <Reveal key={cat.slug} delayMs={(i % 4) * 100}>
+                <Link
+                  href={`/store/${cat.slug}`}
+                  className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="relative aspect-square overflow-hidden bg-secondary">
+                    {extra?.heroImage ? (
+                      <Image
+                        src={extra.heroImage.src}
+                        alt={loc === "en" ? extra.heroImage.altEn : extra.heroImage.altAr}
+                        fill
+                        loading="lazy"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(min-width: 640px) 25vw, 50vw"
+                      />
+                    ) : (
+                      <ProductImagePlaceholder label={name} categorySlug={cat.slug} />
+                    )}
+                  </div>
+                  <div className="p-3 text-center">
+                    <h3 className="font-heading text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
+                      {name}
+                    </h3>
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Featured products — real DB data, hidden entirely if there are none. */}
+      {featuredProducts.length > 0 && (
+        <section className="bg-secondary/30 py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.featuredHeading}</h2>
+              <Button variant="outline" nativeButton={false} render={<Link href="/store" />}>
+                {c.featuredCta}
+              </Button>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {featuredProducts.map((product, i) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  locale={loc}
+                  delayMs={(i % 4) * 100}
+                  noPhotoLabel={loc === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"}
+                  priceOnRequestLabel={loc === "en" ? "Price on request" : "السعر عند التواصل"}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Sell us your furniture — the site's original core business, which
+          had no dedicated homepage section at all (site owner follow-up,
+          2026-09-05: "هاد قلب النشاط الأصلي"). Steps/intro reused verbatim
+          from the existing category pages' HowTo content. */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.sellHeading}</h2>
+          <p className="mt-4 leading-relaxed text-muted-foreground">{c.sellIntro}</p>
+        </div>
+        <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {c.sellSteps.map((step, index) => (
+            <Reveal key={step.title} as="li" delayMs={(index % 4) * 100} className="rounded-xl border border-border p-6">
+              <span className="font-heading text-3xl font-bold text-primary/40">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-3 font-heading font-semibold text-foreground">
+                {step.title} <span className="block font-normal text-muted-foreground">{step.subtitle}</span>
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+            </Reveal>
+          ))}
+        </ol>
+        <div className="mt-10 text-center">
+          <Button
+            size="lg"
+            className="bg-whatsapp text-white hover:bg-whatsapp-dark"
+            nativeButton={false}
+            render={
+              <a
+                href={buildWhatsAppLink(
+                  locale === "en"
+                    ? "Hi, I'd like to sell my used furniture"
+                    : "مرحباً، بدي أبيع أثاثي المستعمل"
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            }
+          >
+            <MessageCircle className="size-5" />
+            {c.sellCta}
+          </Button>
+        </div>
       </section>
 
       {/* About teaser */}

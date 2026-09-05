@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import { MessageCircle, Phone } from "lucide-react";
+import { MessageCircle, Phone, Store } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/layout/mobile-nav";
@@ -59,6 +59,17 @@ export function Header() {
           >
             {t("switchLanguage")}
           </Link>
+          {/* Always visible, even on mobile — the store was disappearing
+              entirely behind the hamburger menu (site owner follow-up,
+              2026-09-05): a visitor must see it without opening any menu. */}
+          <Button
+            size="sm"
+            nativeButton={false}
+            render={<Link href="/store" aria-label={t("store")} />}
+          >
+            <Store className="size-4" />
+            {t("store")}
+          </Button>
           <Button
             variant="outline"
             size="sm"
