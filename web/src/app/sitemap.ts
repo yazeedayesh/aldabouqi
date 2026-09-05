@@ -53,12 +53,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // (and the build that generates it) down with it.
   try {
     const liveProducts = await getDb()
-      .select({ slug: products.slug, updatedAt: products.updatedAt })
+      .select({ slug: products.slug, category: products.category, updatedAt: products.updatedAt })
       .from(products)
       .where(ne(products.status, "draft"));
 
     for (const product of liveProducts) {
-      entries.push(...bilingualEntry(`/store/${product.slug}`, product.updatedAt));
+      entries.push(...bilingualEntry(`/store/${product.category}/${product.slug}`, product.updatedAt));
     }
   } catch (error) {
     console.error("sitemap: failed to load products from the database, serving static routes only", error);

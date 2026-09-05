@@ -107,7 +107,7 @@ export default async function StorePage({
               return (
                 <Reveal key={product.id} delayMs={(i % 6) * 90}>
                   <Link
-                    href={`/store/${product.slug}`}
+                    href={`/store/${product.category}/${product.slug}`}
                     className="group relative block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg"
                   >
                     <div className="relative aspect-square overflow-hidden bg-secondary">
@@ -127,6 +127,7 @@ export default async function StorePage({
                       </span>
                       <InterestToggleButton
                         slug={product.slug}
+                        categorySlug={product.category}
                         titleAr={product.titleAr}
                         titleEn={product.titleEn}
                         locale={locale as "ar" | "en"}

@@ -24,7 +24,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
   if (!row) return Response.json({ error: "Not found" }, { status: 404 });
   if (row.status !== "draft") {
-    pingIndexNow([`/store/${row.slug}`, `/en/store/${row.slug}`]);
+    pingIndexNow([`/store/${row.category}/${row.slug}`, `/en/store/${row.category}/${row.slug}`]);
   }
   return Response.json(row);
 }

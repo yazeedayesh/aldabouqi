@@ -11,12 +11,14 @@ const label = {
 
 export function InterestToggleButton({
   slug,
+  categorySlug,
   titleAr,
   titleEn,
   locale,
   className,
 }: {
   slug: string;
+  categorySlug: string;
   titleAr: string;
   titleEn: string;
   locale: "ar" | "en";
@@ -33,7 +35,7 @@ export function InterestToggleButton({
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        toggle({ slug, titleAr, titleEn });
+        toggle({ slug, category: categorySlug, titleAr, titleEn });
       }}
       className={cn(
         "flex size-9 items-center justify-center rounded-full border border-border bg-background/90 text-muted-foreground backdrop-blur-sm transition-colors hover:text-primary",

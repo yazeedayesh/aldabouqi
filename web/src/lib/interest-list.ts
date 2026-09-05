@@ -6,6 +6,7 @@
 
 export type InterestItem = {
   slug: string;
+  category: string;
   titleAr: string;
   titleEn: string;
 };

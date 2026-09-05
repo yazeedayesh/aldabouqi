@@ -45,7 +45,7 @@ export default async function CheckoutPage({
         title={title}
         crumbs={[
           { href: "/store", label: locale === "en" ? "Store" : "المتجر" },
-          { href: `/store/${slug}`, label: productTitle },
+          { href: `/store/${product.category}/${slug}`, label: productTitle },
           { href: `/store/checkout?product=${slug}`, label: title },
         ]}
       />

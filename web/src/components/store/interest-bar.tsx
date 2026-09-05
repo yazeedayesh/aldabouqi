@@ -31,7 +31,10 @@ export function InterestBar({ locale }: { locale: "ar" | "en" }) {
 
   const message = [
     c.intro,
-    ...items.map((item) => `- ${locale === "en" ? item.titleEn : item.titleAr} — ${SITE_URL}/${locale === "en" ? "en/" : ""}store/${item.slug}`),
+    ...items.map(
+      (item) =>
+        `- ${locale === "en" ? item.titleEn : item.titleAr} — ${SITE_URL}/${locale === "en" ? "en/" : ""}store/${item.category}/${item.slug}`
+    ),
   ].join("\n");
 
   return (

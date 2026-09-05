@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
   const [row] = await getDb().insert(products).values(parsed.data).returning();
   if (row.status !== "draft") {
-    pingIndexNow([`/store/${row.slug}`, `/en/store/${row.slug}`]);
+    pingIndexNow([`/store/${row.category}/${row.slug}`, `/en/store/${row.category}/${row.slug}`]);
   }
   return Response.json(row, { status: 201 });
 }
