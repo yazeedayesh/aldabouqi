@@ -19,6 +19,8 @@ const content = {
     serviceDescription:
       "نشتري جميع أنواع الأثاث المكتبي المستعمل: مكاتب إدارية وتنفيذية، كراسي مكتبية بجميع أنواعها، خزائن ملفات، طاولات اجتماعات، ريسبشن، كاونترات، بارتيشن، أرفف، خزائن معدنية، وكل ما يتعلق بتجهيز المكاتب والشركات بأفضل الأسعار في السوق الأردني",
     offerDescription: "معاينة مجانية وتقييم احترافي للأثاث المكتبي المستعمل",
+    heroImageAlt: "مكاتب إدارية مستعملة",
+    introImageAlt: "شراء أثاث مكتبي مستعمل عمان",
     introTitle: "شراء جميع أنواع الأثاث المكتبي المستعمل في عمان - مكاتب، كراسي، خزائن",
     introBody:
       "نحن في شركة الدابوقي متخصصون في شراء الأثاث المكتبي المستعمل بجميع أنواعه وأحجامه. مع خبرة تمتد لأكثر من 60 عاماً في السوق الأردني، نقدم أفضل الأسعار للشركات والمكاتب التي ترغب في بيع أثاثها المكتبي أو تجديد تجهيزاتها. نشتري جميع أنواع الأثاث المكتبي: مكاتب إدارية وتنفيذية، مكاتب موظفين، كراسي مكتبية، خزائن ملفات، طاولات اجتماعات، ريسبشن، كاونترات استقبال، بارتيشن، أرفف، خزائن معدنية، وحدات تخزين، وكل ما يتعلق بتجهيز المكاتب والشركات.",
@@ -76,6 +78,8 @@ const content = {
     serviceDescription:
       "We buy all types of office furniture: executive and staff desks, office chairs, filing cabinets, meeting tables, reception desks, counters, partitions, shelving, metal cabinets, and everything related to office fit-outs at the best prices in the Jordanian market",
     offerDescription: "Free inspection and professional valuation of used office furniture",
+    heroImageAlt: "Used Executive Desks",
+    introImageAlt: "Used Office Furniture Amman",
     introTitle: "Buying All Types of Used Office Furniture in Amman - Desks, Chairs, Cabinets",
     introBody:
       "At Aldabouqi we specialize in buying used office furniture of every kind and size. With over 60 years of experience in the Jordanian market, we offer the best prices for companies and offices looking to sell their furniture or refresh their fit-out. We buy all types of office furniture: executive and staff desks, office chairs, filing cabinets, meeting tables, reception desks, counters, partitions, shelving, metal cabinets, storage units, and everything related to office fit-outs.",
@@ -170,8 +174,10 @@ export default async function BuyUsedOfficeFurniturePage({
           { href: "/services", label: c.breadcrumbServices },
           { href: "/buy-used-office-furniture", label: c.pageTitle },
         ]}
+        heroImage={{ src: "/img/service/aldabouqi6.webp", alt: c.heroImageAlt }}
         introTitle={c.introTitle}
         introBody={c.introBody}
+        introImage={{ src: "/img/service/aldabouqi3.webp", alt: c.introImageAlt }}
         bullets={[...c.bullets]}
         features={[...c.features]}
         howToTitle={c.howToTitle}

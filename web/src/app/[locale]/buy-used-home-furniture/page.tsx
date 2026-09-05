@@ -19,6 +19,9 @@ const content = {
     serviceDescription:
       "نشتري جميع أنواع الأثاث المنزلي المستعمل: غرف نوم، صالونات، طاولات طعام، كنب، خزائن ملابس، مكتبات، ديكورات منزلية وكل ما يتعلق بالمنزل بأفضل الأسعار في السوق الأردني",
     offerDescription: "معاينة مجانية وتقييم احترافي للأثاث المنزلي المستعمل",
+    heroImageAlt: "شراء أثاث منزلي مستعمل عمان",
+    introImageAlt: "شراء اثاث مستعمل",
+    featuresImageAlt: "شراء أجهزة كهربائية مستعملة",
     introTitle: "شراء جميع أنواع الأثاث المنزلي المستعمل في عمان",
     introBody:
       "نحن في شركة الدابوقي نقدم خدمات شراء الأثاث المنزلي المستعمل بأفضل الأسعار في السوق الأردني. مع خبرة تمتد لأكثر من 60 عاماً، أصبحنا الخيار الأول لآلاف العائلات في عمان الذين يرغبون ببيع أثاثهم المستعمل بطريقة سريعة وآمنة ومربحة. نشتري جميع أنواع الأثاث المنزلي بغض النظر عن حالته: غرف نوم كاملة، صالونات وأطقم جلوس، طاولات طعام، خزائن ملابس، مكتبات، أسرّة، مراتب، ستائر، سجاد، ديكورات منزلية وكل ما يتعلق بالمنزل. فريقنا المتخصص يقوم بمعاينة الأثاث في موقعك، تقديم تقييم عادل ومنصف، والدفع نقداً فوراً بعد الاتفاق.",
@@ -75,6 +78,9 @@ const content = {
     serviceDescription:
       "We buy all types of used home furniture: bedrooms, sofas, dining tables, cabinets, bookshelves, home decor and everything related to the home at the best prices in the Jordanian market",
     offerDescription: "Free inspection and professional valuation of used home furniture",
+    heroImageAlt: "Used Home Furniture Amman",
+    introImageAlt: "Buy Used Furniture",
+    featuresImageAlt: "Used Appliances",
     introTitle: "Buying All Types of Used Home Furniture in Amman",
     introBody:
       "At Aldabouqi we offer used home furniture buying services at the best prices in the Jordanian market. With over 60 years of experience, we've become the first choice for thousands of families in Amman looking to sell their furniture quickly, safely, and profitably. We buy all types of home furniture regardless of condition: complete bedrooms, sofas and seating sets, dining tables, wardrobes, bookshelves, beds, mattresses, curtains, carpets, home decor and everything related to the home.",
@@ -168,10 +174,13 @@ export default async function BuyUsedHomeFurniturePage({
           { href: "/services", label: c.breadcrumbServices },
           { href: "/buy-used-home-furniture", label: c.pageTitle },
         ]}
+        heroImage={{ src: "/img/service/aldabouqi6.webp", alt: c.heroImageAlt }}
         introTitle={c.introTitle}
         introBody={c.introBody}
+        introImage={{ src: "/img/service/aldabouqi2.webp", alt: c.introImageAlt }}
         bullets={[...c.bullets]}
         features={[...c.features]}
+        featuresImage={{ src: "/img/service/aldabouqi1.webp", alt: c.featuresImageAlt }}
         howToTitle={c.howToTitle}
         howToIntro={c.howToIntro}
         steps={[...c.steps]}

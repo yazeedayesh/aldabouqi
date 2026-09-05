@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 import {
   Armchair,
   BedDouble,
@@ -48,13 +49,13 @@ const content = {
       { question: "ما هي مناطق الخدمة؟", answer: "نغطي جميع مناطق عمان: غرب عمان، شرق عمان، جنوب عمان، وشمال عمان." },
     ],
     services: [
-      { icon: Home, title: "شراء أثاث منزلي مستعمل", body: "نشتري جميع أنواع الأثاث المنزلي المستعمل: غرف نوم، صالونات، طاولات، كنب، خزائن وكل ما تحتاج بأفضل الأسعار في عمان", href: "/buy-used-home-furniture" as const },
-      { icon: BedDouble, title: "شراء غرف نوم مستعملة", body: "نشتري غرف نوم مستعملة بجميع أنواعها: خشب، MDF، تركي، صيني بأعلى الأسعار في الأردن مع معاينة فورية ودفع نقدي", href: "/buy-used-bedrooms" as const },
-      { icon: Building2, title: "شراء أثاث مكتبي مستعمل", body: "نشتري جميع أنواع الأثاث المكتبي: مكاتب، كراسي، خزائن ملفات، طاولات اجتماعات، ومعدات مكتبية بأسعار ممتازة", href: "/buy-used-office-furniture" as const },
-      { icon: Plug, title: "شراء أجهزة كهربائية مستعملة", body: "نشتري كافة الأجهزة الكهربائية: ثلاجات، غسالات، مكيفات، تلفزيونات، أفران وجميع الإلكترونيات المنزلية", whatsapp: "بدي أستفسر عن بيع أجهزة كهربائية مستعملة" },
-      { icon: Warehouse, title: "إفراغ منازل بالكامل", body: "خدمة شاملة لإفراغ المنازل والشقق: شراء كامل محتويات المنزل دفعة واحدة بسعر عادل وخدمة سريعة", whatsapp: "بدي أستفسر عن خدمة إفراغ منزل بالكامل" },
-      { icon: Gem, title: "شراء أنتيكات وتحف", body: "نشتري القطع النادرة والأنتيكات: تحف قديمة، لوحات فنية، مشغولات تراثية وجميع المقتنيات الثمينة بتقييم دقيق", whatsapp: "بدي أستفسر عن بيع أنتيكات وتحف" },
-      { icon: Sofa, title: "شراء صالونات مستعملة", body: "نشتري الصالونات والكنب المستعمل: أمريكي، تركي، محلي بجميع الأحجام والأنواع بأفضل الأسعار في السوق", whatsapp: "بدي أستفسر عن بيع صالون مستعمل" },
+      { icon: Home, title: "شراء أثاث منزلي مستعمل", body: "نشتري جميع أنواع الأثاث المنزلي المستعمل: غرف نوم، صالونات، طاولات، كنب، خزائن وكل ما تحتاج بأفضل الأسعار في عمان", href: "/buy-used-home-furniture" as const, image: { src: "/img/service/aldabouqi1.webp", alt: "شراء أثاث منزلي مستعمل عمان" } },
+      { icon: BedDouble, title: "شراء غرف نوم مستعملة", body: "نشتري غرف نوم مستعملة بجميع أنواعها: خشب، MDF، تركي، صيني بأعلى الأسعار في الأردن مع معاينة فورية ودفع نقدي", href: "/buy-used-bedrooms" as const, image: { src: "/img/service/aldabouqi2.webp", alt: "شراء غرف نوم مستعملة عمان" } },
+      { icon: Building2, title: "شراء أثاث مكتبي مستعمل", body: "نشتري جميع أنواع الأثاث المكتبي: مكاتب، كراسي، خزائن ملفات، طاولات اجتماعات، ومعدات مكتبية بأسعار ممتازة", href: "/buy-used-office-furniture" as const, image: { src: "/img/service/aldabouqi3.webp", alt: "شراء أثاث مكتبي مستعمل عمان" } },
+      { icon: Plug, title: "شراء أجهزة كهربائية مستعملة", body: "نشتري كافة الأجهزة الكهربائية: ثلاجات، غسالات، مكيفات، تلفزيونات، أفران وجميع الإلكترونيات المنزلية", whatsapp: "بدي أستفسر عن بيع أجهزة كهربائية مستعملة", image: { src: "/img/service/aldabouqi4.webp", alt: "شراء أجهزة كهربائية مستعملة عمان" } },
+      { icon: Warehouse, title: "إفراغ منازل بالكامل", body: "خدمة شاملة لإفراغ المنازل والشقق: شراء كامل محتويات المنزل دفعة واحدة بسعر عادل وخدمة سريعة", whatsapp: "بدي أستفسر عن خدمة إفراغ منزل بالكامل", image: { src: "/img/service/aldabouqi5.webp", alt: "إفراغ منازل بالكامل عمان" } },
+      { icon: Gem, title: "شراء أنتيكات وتحف", body: "نشتري القطع النادرة والأنتيكات: تحف قديمة، لوحات فنية، مشغولات تراثية وجميع المقتنيات الثمينة بتقييم دقيق", whatsapp: "بدي أستفسر عن بيع أنتيكات وتحف", image: { src: "/img/service/aldabouqi6.webp", alt: "شراء أنتيكات وتحف عمان" } },
+      { icon: Sofa, title: "شراء صالونات مستعملة", body: "نشتري الصالونات والكنب المستعمل: أمريكي، تركي، محلي بجميع الأحجام والأنواع بأفضل الأسعار في السوق", whatsapp: "بدي أستفسر عن بيع صالون مستعمل", image: { src: "/img/service/aldabouqi7.webp", alt: "شراء صالونات مستعملة عمان" } },
       { icon: UtensilsCrossed, title: "شراء مطابخ مستعملة", body: "نشتري المطابخ المستعملة: خشب، ألمنيوم، فورمايكا بكافة الأحجام والتصاميم مع تقييم فوري وسعر عادل", whatsapp: "بدي أستفسر عن بيع مطبخ مستعمل" },
       { icon: Armchair, title: "شراء كنب وطقم جلوس", body: "نشتري أطقم الجلوس والكنب المستعمل: جلد، قماش، شامواه بجميع الأنواع والأحجام بأسعار منافسة جداً", whatsapp: "بدي أستفسر عن بيع طقم جلوس مستعمل" },
     ],
@@ -86,13 +87,13 @@ const content = {
       { question: "What areas do you serve?", answer: "Every area of Amman — west, east, south, and north Amman." },
     ],
     services: [
-      { icon: Home, title: "Used Home Furniture", body: "We buy all types of used home furniture: bedrooms, living rooms, tables, sofas, cabinets and everything you need, at the best prices in Amman", href: "/buy-used-home-furniture" as const },
-      { icon: BedDouble, title: "Used Bedrooms", body: "We buy used bedrooms of every kind: wood, MDF, Turkish, Chinese, at the best prices in Jordan with an instant inspection and cash payment", href: "/buy-used-bedrooms" as const },
-      { icon: Building2, title: "Used Office Furniture", body: "We buy all types of office furniture: desks, chairs, filing cabinets, meeting tables, and office equipment at excellent prices", href: "/buy-used-office-furniture" as const },
-      { icon: Plug, title: "Used Appliances", body: "We buy all appliances: refrigerators, washing machines, air conditioners, TVs, ovens and all home electronics", whatsapp: "I'd like to ask about selling used appliances" },
-      { icon: Warehouse, title: "Full House Clearance", body: "A complete house and apartment clearance service: we buy your entire home's contents in one go, at a fair price with fast service", whatsapp: "I'd like to ask about a full house clearance" },
-      { icon: Gem, title: "Antiques & Artifacts", body: "We buy rare pieces and antiques: old artifacts, paintings, heritage crafts and all valuables, with an accurate valuation", whatsapp: "I'd like to ask about selling antiques" },
-      { icon: Sofa, title: "Used Sofas", body: "We buy used sofas and living room sets: American, Turkish, local — every size and type, at the best market prices", whatsapp: "I'd like to ask about selling a used sofa" },
+      { icon: Home, title: "Used Home Furniture", body: "We buy all types of used home furniture: bedrooms, living rooms, tables, sofas, cabinets and everything you need, at the best prices in Amman", href: "/buy-used-home-furniture" as const, image: { src: "/img/service/aldabouqi1.webp", alt: "Used Home Furniture Amman" } },
+      { icon: BedDouble, title: "Used Bedrooms", body: "We buy used bedrooms of every kind: wood, MDF, Turkish, Chinese, at the best prices in Jordan with an instant inspection and cash payment", href: "/buy-used-bedrooms" as const, image: { src: "/img/service/aldabouqi2.webp", alt: "Used Bedrooms Amman" } },
+      { icon: Building2, title: "Used Office Furniture", body: "We buy all types of office furniture: desks, chairs, filing cabinets, meeting tables, and office equipment at excellent prices", href: "/buy-used-office-furniture" as const, image: { src: "/img/service/aldabouqi3.webp", alt: "Used Office Furniture Amman" } },
+      { icon: Plug, title: "Used Appliances", body: "We buy all appliances: refrigerators, washing machines, air conditioners, TVs, ovens and all home electronics", whatsapp: "I'd like to ask about selling used appliances", image: { src: "/img/service/aldabouqi4.webp", alt: "Used Appliances Amman" } },
+      { icon: Warehouse, title: "Full House Clearance", body: "A complete house and apartment clearance service: we buy your entire home's contents in one go, at a fair price with fast service", whatsapp: "I'd like to ask about a full house clearance", image: { src: "/img/service/aldabouqi5.webp", alt: "Full House Clearance Amman" } },
+      { icon: Gem, title: "Antiques & Artifacts", body: "We buy rare pieces and antiques: old artifacts, paintings, heritage crafts and all valuables, with an accurate valuation", whatsapp: "I'd like to ask about selling antiques", image: { src: "/img/service/aldabouqi6.webp", alt: "Antiques Amman" } },
+      { icon: Sofa, title: "Used Sofas", body: "We buy used sofas and living room sets: American, Turkish, local — every size and type, at the best market prices", whatsapp: "I'd like to ask about selling a used sofa", image: { src: "/img/service/aldabouqi7.webp", alt: "Used Sofas Amman" } },
       { icon: UtensilsCrossed, title: "Used Kitchens", body: "We buy used kitchens: wood, aluminum, formica — every size and design, with an instant valuation and fair price", whatsapp: "I'd like to ask about selling a used kitchen" },
       { icon: Armchair, title: "Sofas & Seating Sets", body: "We buy used sofa and seating sets: leather, fabric, suede — every type and size at very competitive prices", whatsapp: "I'd like to ask about selling a seating set" },
     ],
@@ -171,7 +172,20 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {c.services.map((service, i) => (
             <Reveal key={service.title} delayMs={(i % 3) * 100} className="h-full">
-              <div className="flex h-full flex-col rounded-2xl border border-border p-6 transition-all hover:-translate-y-1 hover:shadow-md">
+              <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-border transition-all hover:-translate-y-1 hover:shadow-md">
+                {"image" in service && (
+                  <div className="relative aspect-video">
+                    <Image
+                      src={service.image.src}
+                      alt={service.image.alt}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="flex h-full flex-col p-6">
                 <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <service.icon className="size-6" />
                 </div>
@@ -195,6 +209,7 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
                 >
                   {c.requestCta}
                 </Button>
+                </div>
               </div>
             </Reveal>
           ))}

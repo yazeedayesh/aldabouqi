@@ -19,6 +19,8 @@ const content = {
     serviceDescription:
       "نشتري جميع أنواع غرف النوم المستعملة: غرف نوم خشب طبيعي، MDF، تركي، صيني، إيطالي. نقدم أفضل الأسعار في السوق الأردني مع معاينة مجانية فورية وتقييم احترافي دقيق لحالة الغرفة وجودة الخشب والتصنيع",
     offerDescription: "معاينة مجانية وتقييم احترافي لغرف النوم المستعملة",
+    heroImageAlt: "غرف نوم خشب مستعملة",
+    introImageAlt: "شراء غرف نوم مستعملة عمان",
     introTitle: "شراء جميع أنواع غرف النوم المستعملة في عمان بأعلى الأسعار",
     introBody:
       "نحن في شركة الدابوقي متخصصون في شراء غرف النوم المستعملة بجميع أنواعها وأشكالها. مع خبرة تمتد لأكثر من 60 عاماً في السوق الأردني، أصبحنا الخيار الأول لآلاف العائلات التي ترغب ببيع غرف نومها بطريقة سريعة وآمنة ومربحة. نشتري جميع أنواع غرف النوم بغض النظر عن نوع الخشب أو بلد المنشأ: غرف نوم خشب طبيعي (زان، سنديان، جوز)، غرف نوم MDF بجميع أنواعه، غرف نوم تركي الصنع، صيني، إيطالي، ألماني ومحلي.",
@@ -76,6 +78,8 @@ const content = {
     serviceDescription:
       "We buy all types of used bedrooms: solid wood, MDF, Turkish, Chinese, Italian. We offer the best prices in the Jordanian market with an instant free inspection and accurate professional valuation of the room's condition and craftsmanship quality",
     offerDescription: "Free inspection and professional valuation of used bedrooms",
+    heroImageAlt: "Used Wooden Bedrooms",
+    introImageAlt: "Used Bedrooms Amman",
     introTitle: "Buying All Types of Used Bedrooms in Amman at the Best Prices",
     introBody:
       "At Aldabouqi we specialize in used bedrooms of every kind and style. With over 60 years of experience in the Jordanian market, we've become the first choice for thousands of families looking to sell their bedroom quickly, safely, and profitably. We buy all types of bedrooms regardless of wood type or country of origin: solid wood (beech, oak, walnut), all kinds of MDF, Turkish-made, Chinese, Italian, German and local.",
@@ -168,8 +172,10 @@ export default async function BuyUsedBedroomsPage({ params }: PageProps<"/[local
           { href: "/services", label: c.breadcrumbServices },
           { href: "/buy-used-bedrooms", label: c.pageTitle },
         ]}
+        heroImage={{ src: "/img/service/aldabouqi6.webp", alt: c.heroImageAlt }}
         introTitle={c.introTitle}
         introBody={c.introBody}
+        introImage={{ src: "/img/service/aldabouqi2.webp", alt: c.introImageAlt }}
         bullets={[...c.bullets]}
         features={[...c.features]}
         howToTitle={c.howToTitle}

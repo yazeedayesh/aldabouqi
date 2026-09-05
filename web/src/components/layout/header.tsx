@@ -28,7 +28,7 @@ export function Header() {
         <Link href="/" className="shrink-0">
           <Image
             src="/img/logo/aldabouqi-black.webp"
-            alt={BUSINESS.nameAr}
+            alt={t("logoAlt")}
             width={200}
             height={98}
             priority

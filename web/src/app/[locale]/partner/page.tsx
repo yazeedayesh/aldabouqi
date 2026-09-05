@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 import { CheckCircle2, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -25,6 +26,7 @@ const content = {
       "شراء غرف نوم ومجالس ومطابخ مستعملة",
     ],
     aboutTitle: "من نحن",
+    aboutImageAlt: "معرض عايش لشراء الاثاث المستعمل",
     about:
       "يُعد معرض عايش لشراء الأثاث المستعمل من الجهات المتخصصة في شراء الأثاث المستعمل في الأردن، حيث نقدم خدمات احترافية وسريعة لكل من يرغب ببيع أثاثه بأفضل سعر ممكن. نمتلك خبرة واسعة في تقييم الأثاث ومعرفة قيمته الحقيقية، مما يضمن للعملاء عروض أسعار عادلة وفورية دون تأخير. نهدف إلى تسهيل عملية بيع الأثاث بالكامل بدءاً من المعاينة المجانية وحتى النقل، مع الالتزام بالمصداقية والاحترافية في جميع مراحل العمل.",
     faqTitle: "أسئلة شائعة",
@@ -51,6 +53,7 @@ const content = {
       "Buying used bedrooms, living rooms, and kitchens",
     ],
     aboutTitle: "About Us",
+    aboutImageAlt: "Ayesh Showroom for Buying Used Furniture",
     about:
       "Ayesh Showroom for buying used furniture is a specialist in the used-furniture business in Jordan, offering fast, professional service to anyone who wants to sell their furniture for the best possible price. We have extensive experience valuing furniture and understanding its real worth, ensuring customers get fair, instant price offers without delay. Our goal is to make the entire furniture-selling process easy, from the free inspection through to pickup, while maintaining credibility and professionalism at every stage.",
     faqTitle: "Frequently Asked Questions",
@@ -143,9 +146,21 @@ export default async function PartnerPage({ params }: PageProps<"/[locale]/partn
           </ul>
         </div>
 
-        <div className="mt-10">
-          <h2 className="font-heading text-xl font-bold text-foreground">{c.aboutTitle}</h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{c.about}</p>
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 sm:items-center">
+          <div>
+            <h2 className="font-heading text-xl font-bold text-foreground">{c.aboutTitle}</h2>
+            <p className="mt-4 leading-relaxed text-muted-foreground">{c.about}</p>
+          </div>
+          <div className="relative aspect-4/3 overflow-hidden rounded-2xl">
+            <Image
+              src="/img/hero/ayesh.webp"
+              alt={c.aboutImageAlt}
+              fill
+              loading="lazy"
+              sizes="(min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 

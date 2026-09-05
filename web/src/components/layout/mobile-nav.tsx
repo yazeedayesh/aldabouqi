@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Menu, MessageCircle, Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -37,7 +38,14 @@ export function MobileNav({ links }: { links: readonly NavLink[] }) {
       </SheetTrigger>
       <SheetContent side="right">
         <SheetHeader>
-          <SheetTitle>{BUSINESS.nameAr}</SheetTitle>
+          <Image
+            src="/img/logo/aldabouqi-black.webp"
+            alt={t("logoAlt")}
+            width={200}
+            height={98}
+            className="h-9 w-auto"
+          />
+          <SheetTitle className="sr-only">{BUSINESS.nameAr}</SheetTitle>
         </SheetHeader>
         <nav aria-label="القائمة الرئيسية" className="flex-1 px-4">
           <ul className="flex flex-col gap-1">

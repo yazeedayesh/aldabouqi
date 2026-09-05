@@ -42,11 +42,13 @@ const content = {
       { icon: Clock, title: "خدمة سريعة وموثوقة", body: "عملية البيع تتم بسرعة وسهولة دون أي تعقيد. نصل إليك أينما كنت في عمان" },
     ],
     aboutKicker: "من نحن",
+    aboutImageAlt: "شراء أثاث مستعمل بأسعار مغرية في عمان",
     aboutTitle: "نحن شركة الدابوقي لشراء الأثاث المستعمل في عمان",
     aboutBody:
       "إذا كنت تبحث عن شراء الأثاث المستعمل في عمان بأسعار تنافسية وعادلة، فأنت في المكان الصحيح. تقدم شركة الدابوقي خدمة شراء جميع أنواع الأثاث المستعمل في مختلف مناطق عمان وضواحيها، بالإضافة إلى خدمات شراء الأجهزة الكهربائية المستعملة بأسعار مغرية.",
     aboutCta: "المزيد عنا",
     servicesKicker: "خدماتنا",
+    servicesImageAlt: "خدمات شراء الأثاث المستعمل في عمان",
     servicesTitle: "نحن هنا لنبني معكم مستقبلكم من خلال بيع الأثاث المستعمل بأفضل الأسعار",
     servicesCta: "عرض جميع خدماتنا",
     services: [
@@ -56,6 +58,7 @@ const content = {
       { title: "شراء المكاتب المستعملة", body: "خدمات شراء المكاتب المستعملة في عمان بكل سهولة، مع تقييم دقيق وضمان أفضل الأسعار.", href: "/buy-used-office-furniture" as const },
     ],
     whyKicker: "لماذا تختارنا؟",
+    whyImageAlt: "اختار أثاث مستعمل عالي الجودة",
     whyTitle: "نساعدك على بناء مستقبلك باستخدام الأثاث المستعمل بأفضل الأسعار",
     why: [
       { title: "استجابة سريعة", body: "نقدم لك استجابة سريعة لجميع استفساراتك حول شراء وبيع الأثاث المستعمل، وتقديم أفضل الأسعار." },
@@ -109,11 +112,13 @@ const content = {
       { icon: Clock, title: "Fast & Reliable Service", body: "The selling process is fast and hassle-free. We come to you wherever you are in Amman" },
     ],
     aboutKicker: "About Us",
+    aboutImageAlt: "Buy used furniture at great prices in Amman",
     aboutTitle: "We are Aldabouqi, buyers of used furniture in Amman",
     aboutBody:
       "If you're looking to sell used furniture in Amman for competitive, fair prices, you're in the right place. Aldabouqi buys all types of used furniture across Amman and its suburbs, as well as used appliances at attractive prices.",
     aboutCta: "More About Us",
     servicesKicker: "Services",
+    servicesImageAlt: "Used furniture buying services in Amman",
     servicesTitle: "We're here to build your future together by buying your used furniture at the best prices",
     servicesCta: "View All Our Services",
     services: [
@@ -123,6 +128,7 @@ const content = {
       { title: "Used Office Furniture", body: "Used office furniture buying services made easy, with an accurate valuation and guaranteed best prices.", href: "/buy-used-office-furniture" as const },
     ],
     whyKicker: "Why Choose Us?",
+    whyImageAlt: "Choose high-quality used furniture",
     whyTitle: "We help you build your future by getting the best prices for your used furniture.",
     why: [
       { title: "Fast Response", body: "We offer a fast response to all your inquiries about buying and selling used furniture, with the best prices." },
@@ -260,28 +266,52 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       {/* About teaser */}
       <section className="bg-secondary/30 py-16">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="font-medium text-primary">{c.aboutKicker}</p>
-          <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.aboutTitle}</h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">{c.aboutBody}</p>
-          <Button variant="outline" className="mt-6" nativeButton={false} render={<Link href="/about" />}>
-            {c.aboutCta}
-          </Button>
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 sm:grid-cols-2 sm:items-center lg:px-8">
+          <div className="relative aspect-4/3 overflow-hidden rounded-2xl">
+            <Image
+              src="/img/about/aldabouqi.webp"
+              alt={c.aboutImageAlt}
+              fill
+              loading="lazy"
+              sizes="(min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <p className="font-medium text-primary">{c.aboutKicker}</p>
+            <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.aboutTitle}</h2>
+            <p className="mt-4 leading-relaxed text-muted-foreground">{c.aboutBody}</p>
+            <Button variant="outline" className="mt-6" nativeButton={false} render={<Link href="/about" />}>
+              {c.aboutCta}
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Services teaser */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="font-medium text-primary">{c.servicesKicker}</p>
-            <h2 className="mt-2 max-w-xl font-heading text-2xl font-bold text-foreground sm:text-3xl">
-              {c.servicesTitle}
-            </h2>
+        <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-medium text-primary">{c.servicesKicker}</p>
+              <h2 className="mt-2 max-w-xl font-heading text-2xl font-bold text-foreground sm:text-3xl">
+                {c.servicesTitle}
+              </h2>
+            </div>
+            <Link href="/services" className="font-medium text-primary hover:underline">
+              {c.servicesCta}
+            </Link>
           </div>
-          <Link href="/services" className="font-medium text-primary hover:underline">
-            {c.servicesCta}
-          </Link>
+          <div className="relative hidden aspect-video overflow-hidden rounded-2xl lg:block">
+            <Image
+              src="/img/service/aldabouqi2.webp"
+              alt={c.servicesImageAlt}
+              fill
+              loading="lazy"
+              sizes="320px"
+              className="object-cover"
+            />
+          </div>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {c.services.map((service, i) => (
@@ -302,9 +332,21 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       {/* Why choose us */}
       <section className="bg-secondary/30 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="font-medium text-primary">{c.whyKicker}</p>
-            <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.whyTitle}</h2>
+          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-[auto_1fr] sm:items-center sm:text-start text-center">
+            <div className="relative mx-auto aspect-square w-32 shrink-0 overflow-hidden rounded-full sm:mx-0 sm:w-28">
+              <Image
+                src="/img/choose/thumb-4-1.webp"
+                alt={c.whyImageAlt}
+                fill
+                loading="lazy"
+                sizes="128px"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <p className="font-medium text-primary">{c.whyKicker}</p>
+              <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.whyTitle}</h2>
+            </div>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {c.why.map((item, index) => {

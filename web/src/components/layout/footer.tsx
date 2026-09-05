@@ -24,7 +24,7 @@ export function Footer() {
         <div className="space-y-4">
           <Image
             src="/img/logo/aldabouqi.webp"
-            alt={BUSINESS.nameAr}
+            alt={nav("logoAlt")}
             width={200}
             height={98}
             className="h-10 w-auto brightness-0 invert"

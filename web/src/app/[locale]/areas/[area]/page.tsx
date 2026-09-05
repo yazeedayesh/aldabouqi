@@ -114,10 +114,13 @@ export default async function LocationPage({
           { href: "/services", label: "خدماتنا" },
           { href: `/buy-used-furniture-${area.slug}`, label: pageTitle },
         ]}
+        heroImage={{ src: "/img/service/aldabouqi6.webp", alt: `شراء أثاث مستعمل في ${area.nameAr} عمان` }}
         introTitle={`شراء جميع أنواع الأثاث المستعمل في ${area.nameAr}`}
         introBody={area.intro}
+        introImage={{ src: "/img/service/aldabouqi2.webp", alt: "شراء اثاث مستعمل" }}
         bullets={bullets}
         features={features}
+        featuresImage={{ src: "/img/service/aldabouqi1.webp", alt: "شراء أجهزة كهربائية مستعملة" }}
         howToTitle="كيف تتم عملية الشراء؟"
         howToIntro="نحن نسهل عليك عملية بيع أثاثك المستعمل من خلال أربع خطوات بسيطة وسريعة، مع الحفاظ على الشفافية الكاملة والمصداقية في التعامل."
         steps={howToSteps}

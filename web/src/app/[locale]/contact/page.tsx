@@ -16,6 +16,7 @@ const content = {
       "تواصل شركة الدابوقي, رقم شراء أثاث مستعمل عمان, بيع أثاث مستعمل, تقييم أثاث مجاني, موقع شركة الدابوقي, اتصل بنا",
     pageTitle: "معلومات الاتصال",
     breadcrumbLabel: "اتصل بنا",
+    heroAlt: "تواصل مع شركة الدابوقي لشراء الأثاث المستعمل في عمان",
     infoTitle: "معلومات الاتصال",
     phoneLabel: "رقم الهاتف",
     phoneHint: "يمكنكم الاتصال بنا في أي وقت",
@@ -35,6 +36,7 @@ const content = {
       "contact Aldabouqi, used furniture buyer number Amman, sell used furniture, free furniture valuation, Aldabouqi location, contact us",
     pageTitle: "Contact Information",
     breadcrumbLabel: "Contact Us",
+    heroAlt: "Contact Aldabouqi Used Furniture Buying Company in Amman",
     infoTitle: "Contact Information",
     phoneLabel: "Phone Number",
     phoneHint: "You can call us anytime",
@@ -112,7 +114,11 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
       />
       <BreadcrumbJsonLd items={[{ name: c.breadcrumbLabel, path: "/contact" }]} />
 
-      <PageHero title={c.pageTitle} crumbs={[{ href: "/contact", label: c.breadcrumbLabel }]} />
+      <PageHero
+        title={c.pageTitle}
+        crumbs={[{ href: "/contact", label: c.breadcrumbLabel }]}
+        image={{ src: "/img/breadcrumb/aldabouqi-contact.webp", alt: c.heroAlt }}
+      />
 
       <section className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div className="space-y-6 lg:col-span-2">

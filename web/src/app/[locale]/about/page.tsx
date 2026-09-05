@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import Image from "next/image";
 import { CheckCircle2, Clock, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { Reveal } from "@/components/ui/reveal";
@@ -19,6 +20,7 @@ const content = {
     intro: {
       heading: "نحن شركة الدابوقي لشراء الأثاث المستعمل في عمان",
       body: "إذا كنت تبحث عن شراء الأثاث المستعمل في عمان بأسعار تنافسية وعادلة، فأنت في المكان الصحيح. تقدم شركة الدابوقي خدمة شراء جميع أنواع الأثاث المستعمل في مختلف مناطق عمان وضواحيها، بالإضافة إلى خدمات شراء الأجهزة الكهربائية المستعملة بأسعار مغرية. نحن هنا لنجعل عملية بيع الأثاث القديم سريعة وآمنة.",
+      imageAlt: "شراء الأثاث المستعمل في الاردن - شركة الدابوقي",
     },
     mission: {
       title: "مهمتنا",
@@ -28,6 +30,7 @@ const content = {
       title: "رؤيتنا",
       body: "رؤيتنا في شركة الدابوقي هي أن نكون الرائدين في شراء الأثاث المستعمل في الأردن، وأن نقدم حلولًا مبتكرة تساهم في تحسين بيئة الأثاث المستعمل، مع الالتزام بالاستدامة.",
     },
+    missionVisionImageAlt: "شراء الأثاث المستعمل في عمان - شركة الدابوقي",
     valuesTitle: "قيمنا",
     values: [
       { title: "الجودة", body: "نلتزم بتقديم خدمات ذات جودة عالية في كل جوانب عملنا" },
@@ -61,6 +64,7 @@ const content = {
     intro: {
       heading: "We are Aldabouqi, buyers of used furniture in Amman",
       body: "If you're looking to sell used furniture in Amman at competitive, fair prices, you're in the right place. Aldabouqi buys all types of used furniture across Amman and its suburbs, plus used appliances at attractive prices. We're here to make selling old furniture fast and secure.",
+      imageAlt: "Buy Used Furniture in Jordan - Aldabouqi Company",
     },
     mission: {
       title: "Our Mission",
@@ -70,6 +74,7 @@ const content = {
       title: "Our Vision",
       body: "Our vision is to be the leader in buying used furniture in Jordan, offering innovative solutions that improve the used-furniture ecosystem while committing to sustainability.",
     },
+    missionVisionImageAlt: "Buy Used Furniture in Amman - Aldabouqi Company",
     valuesTitle: "Our Values",
     values: [
       { title: "Quality", body: "We're committed to high-quality service in every aspect of our work" },
@@ -162,12 +167,34 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
 
       <PageHero title={c.pageTitle} crumbs={[{ href: "/about", label: c.pageTitle }]} />
 
-      <section className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
-        <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.intro.heading}</h2>
-        <p className="mt-4 leading-relaxed text-muted-foreground">{c.intro.body}</p>
+      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 sm:grid-cols-2 sm:items-center lg:px-8">
+        <div className="relative aspect-4/3 overflow-hidden rounded-2xl sm:order-2">
+          <Image
+            src="/img/about/about-4-1.jpg"
+            alt={c.intro.imageAlt}
+            fill
+            loading="lazy"
+            sizes="(min-width: 640px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="sm:order-1">
+          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.intro.heading}</h2>
+          <p className="mt-4 leading-relaxed text-muted-foreground">{c.intro.body}</p>
+        </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-16 sm:px-6 sm:grid-cols-2 lg:px-8">
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-16 sm:px-6 lg:grid-cols-3 lg:px-8">
+        <div className="relative aspect-4/3 overflow-hidden rounded-2xl lg:aspect-auto">
+          <Image
+            src="/img/choose/thumb-4-1.webp"
+            alt={c.missionVisionImageAlt}
+            fill
+            loading="lazy"
+            sizes="(min-width: 1024px) 33vw, 100vw"
+            className="object-cover"
+          />
+        </div>
         <div className="rounded-2xl border border-border p-8">
           <h3 className="font-heading text-xl font-bold text-foreground">{c.mission.title}</h3>
           <p className="mt-3 leading-relaxed text-muted-foreground">{c.mission.body}</p>
