@@ -24,7 +24,10 @@ export const productSchema = z.object({
   price: z.coerce.number().int().positive().nullable(),
   area: z.string().nullable(),
   status: z.enum(productStatuses),
-  images: z.array(z.string().url()),
+  // alt may arrive empty from the form — the API route fills a generated
+  // default before insert/update, so an empty string is valid input here
+  // but never what ends up stored.
+  images: z.array(z.object({ url: z.string().url(), alt: z.string() })),
 });
 
 export type ProductInput = z.infer<typeof productSchema>;

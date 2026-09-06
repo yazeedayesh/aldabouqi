@@ -78,8 +78,12 @@ export default async function AdminCategoriesPage() {
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-muted-foreground">
-                  لا يوجد فئات بعد
+                <td colSpan={5} className="p-10 text-center">
+                  <p className="text-muted-foreground">لا يوجد فئات بعد</p>
+                  <Button className="mt-4" nativeButton={false} render={<Link href="/admin/categories/new" />}>
+                    <Plus className="size-4" />
+                    إضافة أول فئة
+                  </Button>
                 </td>
               </tr>
             )}

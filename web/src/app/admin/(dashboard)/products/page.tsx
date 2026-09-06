@@ -51,8 +51,8 @@ export default async function AdminProductsPage() {
                 <td className="p-3">
                   {product.images[0] ? (
                     <Image
-                      src={product.images[0]}
-                      alt=""
+                      src={product.images[0].url}
+                      alt={product.images[0].alt}
                       width={48}
                       height={48}
                       className="size-12 rounded-lg object-cover"
@@ -87,8 +87,12 @@ export default async function AdminProductsPage() {
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-muted-foreground">
-                  لا يوجد منتجات بعد
+                <td colSpan={5} className="p-10 text-center">
+                  <p className="text-muted-foreground">لا يوجد منتجات بعد</p>
+                  <Button className="mt-4" nativeButton={false} render={<Link href="/admin/products/new" />}>
+                    <Plus className="size-4" />
+                    إضافة أول منتج
+                  </Button>
                 </td>
               </tr>
             )}

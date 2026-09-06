@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/store/[c
     description,
     path: `/store/${category}/${slug}`,
     locale: locale as Locale,
-    ogImage: product.images[0],
+    ogImage: product.images[0]?.url,
   });
 }
 
@@ -76,7 +76,7 @@ export default async function ProductDetailPage({
       <ProductJsonLd
         name={title}
         description={description}
-        images={product.images}
+        images={product.images.map((img) => img.url)}
         price={product.price}
         status={product.status}
         path={productPath}

@@ -39,8 +39,8 @@ export function ProductCard({
         <div className="relative aspect-square overflow-hidden bg-secondary">
           {product.images[0] ? (
             <Image
-              src={product.images[0]}
-              alt={title}
+              src={product.images[0].url}
+              alt={product.images[0].alt || title}
               fill
               loading="lazy"
               className="object-cover transition-transform duration-500 group-hover:scale-105"

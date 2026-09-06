@@ -6,6 +6,7 @@ import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
+import type { ProductImage } from "@/db/schema";
 
 /**
  * Product image gallery (brief §6.3): main image + clickable thumbnails,
@@ -17,7 +18,7 @@ export function ProductGallery({
   noPhotoLabel,
   categorySlug,
 }: {
-  images: string[];
+  images: ProductImage[];
   title: string;
   noPhotoLabel: string;
   categorySlug?: string;
@@ -41,21 +42,21 @@ export function ProductGallery({
         className="relative block aspect-4/3 w-full overflow-hidden rounded-2xl bg-secondary/40"
         aria-label={title}
       >
-        <Image src={images[index]} alt={title} fill priority className="object-cover" />
+        <Image src={images[index].url} alt={images[index].alt || title} fill priority className="object-cover" />
       </button>
 
       {images.length > 1 && (
         <div className="grid grid-cols-4 gap-3">
-          {images.map((url, i) => (
+          {images.map((img, i) => (
             <button
-              key={url}
+              key={img.url}
               type="button"
               onClick={() => setIndex(i)}
               className={`relative aspect-square overflow-hidden rounded-lg bg-secondary/40 ring-2 transition-colors ${
                 i === index ? "ring-primary" : "ring-transparent"
               }`}
             >
-              <Image src={url} alt="" fill className="object-cover" />
+              <Image src={img.url} alt={img.alt || title} fill className="object-cover" />
             </button>
           ))}
         </div>
@@ -66,7 +67,7 @@ export function ProductGallery({
         close={() => setOpen(false)}
         index={index}
         on={{ view: ({ index: i }) => setIndex(i) }}
-        slides={images.map((src) => ({ src }))}
+        slides={images.map((img) => ({ src: img.url, alt: img.alt || title }))}
         plugins={[Zoom]}
       />
     </div>

@@ -9,7 +9,8 @@
     "lint": "eslint",
     "db:push": "dotenv -e .env.local -- drizzle-kit push",
     "db:studio": "dotenv -e .env.local -- drizzle-kit studio",
-    "db:seed": "dotenv -e .env.local -- tsx scripts/seed.ts"
+    "db:seed": "dotenv -e .env.local -- tsx scripts/seed.ts",
+    "db:migrate-image-alts": "dotenv -e .env.local -- tsx scripts/migrate-image-alts.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

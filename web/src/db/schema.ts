@@ -28,6 +28,8 @@ export const orderStatusEnum = pgEnum("order_status", [
   "cancelled",
 ]);
 
+export type ProductImage = { url: string; alt: string };
+
 export const categories = pgTable("categories", {
   id: uuid("id").primaryKey().defaultRandom(),
   slug: text("slug").notNull().unique(),
@@ -60,8 +62,9 @@ export const products = pgTable("products", {
   /** One of lib/areas.ts's slugs, optional. */
   area: text("area"),
   status: productStatusEnum("status").notNull().default("available"),
-  /** Vercel Blob URLs, in display order. */
-  images: jsonb("images").$type<string[]>().notNull().default([]),
+  /** Vercel Blob URLs with per-image alt text, in display order — the first
+   * entry is the primary/display image everywhere on the site. */
+  images: jsonb("images").$type<ProductImage[]>().notNull().default([]),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });

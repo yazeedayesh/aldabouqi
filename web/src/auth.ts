@@ -3,6 +3,12 @@ import Credentials from "next-auth/providers/credentials";
 import { verifyPassword } from "@/lib/password";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  // Vercel Preview URLs change on every deploy, and `next start` locally has
+  // no fixed host either — Auth.js's default host-trust check rejects both,
+  // throwing UntrustedHost on every login attempt (found while QA-testing
+  // login locally via `next start`, 2026-09-06). Safe here since this is a
+  // single-tenant admin login, not a multi-tenant host-routing scenario.
+  trustHost: true,
   providers: [
     Credentials({
       credentials: {

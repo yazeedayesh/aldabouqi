@@ -1,9 +1,10 @@
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { getDb } from "@/db";
-import { products } from "@/db/schema";
+import { categories, products } from "@/db/schema";
 import { productSchema } from "@/lib/validation";
 import { requireAdmin } from "@/lib/require-admin";
 import { pingIndexNow } from "@/lib/indexnow";
+import { fillImageAlts } from "@/lib/generate-alt";
 
 export async function GET() {
   const { response } = await requireAdmin();
@@ -23,7 +24,10 @@ export async function POST(request: Request) {
     return Response.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const [row] = await getDb().insert(products).values(parsed.data).returning();
+  const [categoryRow] = await getDb().select().from(categories).where(eq(categories.slug, parsed.data.category));
+  const images = fillImageAlts(parsed.data.images, parsed.data.titleAr, categoryRow?.nameAr ?? "");
+
+  const [row] = await getDb().insert(products).values({ ...parsed.data, images }).returning();
   if (row.status !== "draft") {
     pingIndexNow([`/store/${row.category}/${row.slug}`, `/en/store/${row.category}/${row.slug}`]);
   }

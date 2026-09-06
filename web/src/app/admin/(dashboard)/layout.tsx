@@ -17,9 +17,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
     .where(gte(inquiries.createdAt, weekAgo));
 
   return (
-    <div className="flex min-h-full">
+    <div className="flex min-h-full flex-col lg:flex-row">
       <AdminNav inquiriesThisWeek={recentInquiries.length} />
-      <main className="min-w-0 flex-1 p-6 lg:p-8">{children}</main>
+      <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
     </div>
   );
 }

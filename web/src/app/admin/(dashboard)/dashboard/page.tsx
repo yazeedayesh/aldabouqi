@@ -6,6 +6,7 @@ import { getDb } from "@/db";
 import { categories, inquiries, products } from "@/db/schema";
 import { daysAgo } from "@/lib/utils";
 import { ProductForm } from "../products/product-form";
+import { DeleteProductButton } from "../products/delete-product-button";
 
 const statusLabels: Record<string, string> = {
   available: "متوفر",
@@ -24,7 +25,7 @@ export default async function AdminDashboardPage() {
       db.select().from(categories).orderBy(asc(categories.sortOrder)),
       db.select({ count: sql<number>`count(*)::int` }).from(inquiries).where(gte(inquiries.createdAt, weekAgo)),
       db.select().from(products).orderBy(desc(products.createdAt)).limit(5),
-      db.select().from(inquiries).orderBy(desc(inquiries.createdAt)).limit(5),
+      db.select().from(inquiries).orderBy(desc(inquiries.createdAt)).limit(10),
     ]);
 
   const productCountsByCategory = await db
@@ -95,23 +96,28 @@ export default async function AdminDashboardPage() {
             <div className="divide-y divide-border rounded-2xl border border-border bg-card shadow-sm">
               {recentProducts.length === 0 && <p className="p-5 text-sm text-muted-foreground">لا يوجد منتجات بعد</p>}
               {recentProducts.map((product) => (
-                <Link
-                  key={product.id}
-                  href={`/admin/products/${product.id}`}
-                  className="flex items-center gap-3 p-3 transition-colors hover:bg-secondary/30"
-                >
-                  {product.images[0] ? (
-                    <Image src={product.images[0]} alt="" width={44} height={44} className="size-11 rounded-lg object-cover" />
-                  ) : (
-                    <div className="size-11 rounded-lg bg-secondary" />
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-foreground">{product.titleAr}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {product.price ? `${product.price} د.أ` : "عند المعاينة"} · {statusLabels[product.status]}
-                    </p>
-                  </div>
-                </Link>
+                <div key={product.id} className="flex items-center gap-3 p-3 transition-colors hover:bg-secondary/30">
+                  <Link href={`/admin/products/${product.id}`} className="flex min-w-0 flex-1 items-center gap-3">
+                    {product.images[0] ? (
+                      <Image
+                        src={product.images[0].url}
+                        alt={product.images[0].alt}
+                        width={44}
+                        height={44}
+                        className="size-11 rounded-lg object-cover"
+                      />
+                    ) : (
+                      <div className="size-11 rounded-lg bg-secondary" />
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-foreground">{product.titleAr}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {product.price ? `${product.price} د.أ` : "عند المعاينة"} · {statusLabels[product.status]}
+                      </p>
+                    </div>
+                  </Link>
+                  <DeleteProductButton id={product.id} />
+                </div>
               ))}
             </div>
           </section>
