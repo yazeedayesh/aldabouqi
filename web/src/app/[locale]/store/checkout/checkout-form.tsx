@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { areas } from "@/lib/areas";
-import { buildWhatsAppLink, BUSINESS } from "@/lib/constants";
+import { buildStoreWhatsAppLink, STORE_PHONE_DISPLAY } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
 type Product = {
@@ -73,7 +73,7 @@ export function CheckoutForm({ product, locale }: { product: Product; locale: Lo
         : `مرحباً، بدي أطلب: ${title}\n${priceLine}\nالاسم: ${payload.customerName}\nالهاتف: ${payload.customerPhone}\nالعنوان: ${payload.deliveryAddress}`;
 
     router.push(
-      `/store/order-confirmation/${order.id}?whatsapp=${encodeURIComponent(buildWhatsAppLink(message))}`
+      `/store/order-confirmation/${order.id}?whatsapp=${encodeURIComponent(buildStoreWhatsAppLink(message))}`
     );
   }
 
@@ -126,8 +126,8 @@ export function CheckoutForm({ product, locale }: { product: Product; locale: Lo
       </Button>
       <p className="text-xs text-muted-foreground">
         {locale === "en"
-          ? `You'll be redirected to WhatsApp to confirm with us — no online payment, cash on delivery only. ${BUSINESS.phoneDisplay}`
-          : `رح ننقلك لواتساب لتأكيد الطلب معنا — الدفع نقداً عند الاستلام فقط. ${BUSINESS.phoneDisplay}`}
+          ? `You'll be redirected to WhatsApp to confirm with us — no online payment, cash on delivery only. ${STORE_PHONE_DISPLAY}`
+          : `رح ننقلك لواتساب لتأكيد الطلب معنا — الدفع نقداً عند الاستلام فقط. ${STORE_PHONE_DISPLAY}`}
       </p>
     </form>
   );

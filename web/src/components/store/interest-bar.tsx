@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { useInterestList } from "@/hooks/use-interest-list";
-import { buildWhatsAppLink, SITE_URL } from "@/lib/constants";
+import { buildStoreWhatsAppLink, SITE_URL } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 
 const content = {
@@ -64,7 +64,7 @@ export function InterestBar({ locale }: { locale: "ar" | "en" }) {
           <Button
             className="mt-3 w-full bg-whatsapp text-white hover:bg-whatsapp-dark"
             nativeButton={false}
-            render={<a href={buildWhatsAppLink(message)} target="_blank" rel="noopener noreferrer" />}
+            render={<a href={buildStoreWhatsAppLink(message)} target="_blank" rel="noopener noreferrer" />}
           >
             <MessageCircle className="size-4" strokeWidth={1.7} />
             {c.cta}

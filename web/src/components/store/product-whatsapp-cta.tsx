@@ -2,7 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { buildWhatsAppLink } from "@/lib/constants";
+import { buildStoreWhatsAppLink } from "@/lib/constants";
 
 /**
  * Primary CTA on every product page (brief: WhatsApp is always the biggest,
@@ -39,7 +39,7 @@ export function ProductWhatsAppCta({
       nativeButton={false}
       render={
         <a
-          href={buildWhatsAppLink(message)}
+          href={buildStoreWhatsAppLink(message)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={logInquiry}

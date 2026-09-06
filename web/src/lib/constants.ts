@@ -36,6 +36,17 @@ export function buildWhatsAppLink(message: string) {
   return `https://wa.me/${BUSINESS.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
+// The store (product pages, checkout) uses a separate call/WhatsApp number
+// from the rest of the site (site owner request, 2026-09-06) — everything
+// outside /store, including JSON-LD/NAP data above, keeps BUSINESS.phone*.
+export const STORE_PHONE_DISPLAY = "+962 78 581 8603";
+export const STORE_PHONE_E164 = "+962785818603";
+const STORE_WHATSAPP_NUMBER = "962785818603"; // no leading + for wa.me links
+
+export function buildStoreWhatsAppLink(message: string) {
+  return `https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
 export const ANALYTICS = {
   ga4MeasurementId: "G-9FH7PMRW14",
   metaPixelId: "2346895512405626",

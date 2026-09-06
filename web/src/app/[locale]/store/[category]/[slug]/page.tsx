@@ -12,7 +12,7 @@ import { ProductWhatsAppCta } from "@/components/store/product-whatsapp-cta";
 import { InterestToggleButton } from "@/components/store/interest-toggle-button";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
-import { BUSINESS } from "@/lib/constants";
+import { BUSINESS, STORE_PHONE_E164 } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 300;
@@ -162,7 +162,7 @@ export default async function ProductDetailPage({
               nativeButton={false}
               render={
                 <a
-                  href={`tel:${BUSINESS.phoneE164}`}
+                  href={`tel:${STORE_PHONE_E164}`}
                   aria-label={locale === "en" ? "Call now" : "اتصل الآن"}
                 />
               }
