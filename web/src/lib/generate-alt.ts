@@ -9,10 +9,19 @@ export function generateDefaultAlt(titleAr: string, categoryNameAr: string): str
   return `${titleAr} ${categoryNameAr} مستعمل في عمان`;
 }
 
-/** Fills any blank/whitespace-only alt with the generated default, in place semantics (returns a new array). */
-export function fillImageAlts(images: ProductImage[], titleAr: string, categoryNameAr: string): ProductImage[] {
-  return images.map((img) => ({
+/**
+ * Fills any blank/whitespace-only alt with the generated default and stamps
+ * order from array position — order is never trusted from the client, the
+ * array's position when saved is the single source of truth for ordering.
+ */
+export function fillImageAlts(
+  images: { url: string; alt: string }[],
+  titleAr: string,
+  categoryNameAr: string
+): ProductImage[] {
+  return images.map((img, index) => ({
     url: img.url,
     alt: img.alt.trim() || generateDefaultAlt(titleAr, categoryNameAr),
+    order: index,
   }));
 }

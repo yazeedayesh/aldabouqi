@@ -28,7 +28,13 @@ export const orderStatusEnum = pgEnum("order_status", [
   "cancelled",
 ]);
 
-export type ProductImage = { url: string; alt: string };
+/** order is stamped by the server from array position on every save — the
+ * lowest order value is the primary/display image everywhere on the site.
+ * Not user-editable directly; reordering in the admin form just reorders
+ * the array, and the API recomputes order to match before saving. */
+export type ProductImage = { url: string; alt: string; order: number };
+
+export type ProductSpec = { labelAr: string; labelEn: string; valueAr: string; valueEn: string };
 
 export const categories = pgTable("categories", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -65,6 +71,9 @@ export const products = pgTable("products", {
   /** Vercel Blob URLs with per-image alt text, in display order — the first
    * entry is the primary/display image everywhere on the site. */
   images: jsonb("images").$type<ProductImage[]>().notNull().default([]),
+  /** (label, value) pairs, ar/en — the spec table is hidden entirely on the
+   * product page when this is empty, never shown with placeholder rows. */
+  specs: jsonb("specs").$type<ProductSpec[]>().notNull().default([]),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });

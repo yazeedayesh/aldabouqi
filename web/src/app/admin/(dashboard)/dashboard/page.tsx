@@ -58,7 +58,11 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* AI photo-to-room feature — Phase 2, deliberately shipped disabled
-          until the site owner explicitly approves the ongoing API cost. */}
+          until the site owner explicitly approves the ongoing API cost.
+          Tried activating it (2026-09-06): both Vercel AI Gateway and
+          Google's direct API require real billing on file before serving
+          any image-generation request — no free path exists for this
+          specific capability. Site owner decided to defer, not pay yet. */}
       <div className="rounded-2xl border border-primary/20 bg-gold-tint p-5">
         <div className="flex items-center gap-2 text-foreground">
           <Sparkles className="size-5 text-primary" strokeWidth={1.7} />

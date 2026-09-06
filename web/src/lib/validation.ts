@@ -26,8 +26,17 @@ export const productSchema = z.object({
   status: z.enum(productStatuses),
   // alt may arrive empty from the form — the API route fills a generated
   // default before insert/update, so an empty string is valid input here
-  // but never what ends up stored.
+  // but never what ends up stored. order is not accepted from the client —
+  // the API route stamps it from array position before insert/update.
   images: z.array(z.object({ url: z.string().url(), alt: z.string() })),
+  specs: z.array(
+    z.object({
+      labelAr: z.string().min(1),
+      labelEn: z.string().min(1),
+      valueAr: z.string().min(1),
+      valueEn: z.string().min(1),
+    })
+  ),
 });
 
 export type ProductInput = z.infer<typeof productSchema>;

@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Star, Trash2, Upload } from "lucide-react";
+import { ArrowLeft, ArrowRight, Plus, Star, Trash2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -13,12 +13,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import type { Category, Product, ProductImage } from "@/db/schema";
+import type { Category, Product, ProductSpec } from "@/db/schema";
 
+// Labels match the redesigned store's condition taxonomy (site owner
+// follow-up, 2026-09-07) — the underlying DB values (excellent/good/fair)
+// are unchanged, only the Arabic display labels for "good" and "fair" moved.
 const conditions = [
   { value: "excellent", label: "ممتازة" },
-  { value: "good", label: "جيدة" },
-  { value: "fair", label: "مقبولة" },
+  { value: "good", label: "جيدة جدًا" },
+  { value: "fair", label: "جيدة" },
 ];
 
 const statuses = [
@@ -57,7 +60,8 @@ function uploadFile(file: File, onProgress: (pct: number) => void): Promise<{ ur
 
 export function ProductForm({ product, categories }: { product?: Product; categories: Category[] }) {
   const router = useRouter();
-  const [images, setImages] = useState<ProductImage[]>(product?.images ?? []);
+  const [images, setImages] = useState<{ url: string; alt: string }[]>(product?.images ?? []);
+  const [specs, setSpecs] = useState<ProductSpec[]>(product?.specs ?? []);
   const [pending, setPending] = useState<PendingUpload[]>([]);
   const [dragOver, setDragOver] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -120,6 +124,18 @@ export function ProductForm({ product, categories }: { product?: Product; catego
     setImages((prev) => prev.filter((_, i) => i !== index));
   }
 
+  function addSpec() {
+    setSpecs((prev) => [...prev, { labelAr: "", labelEn: "", valueAr: "", valueEn: "" }]);
+  }
+
+  function updateSpec(index: number, field: keyof ProductSpec, value: string) {
+    setSpecs((prev) => prev.map((spec, i) => (i === index ? { ...spec, [field]: value } : spec)));
+  }
+
+  function removeSpec(index: number) {
+    setSpecs((prev) => prev.filter((_, i) => i !== index));
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSaving(true);
@@ -139,6 +155,7 @@ export function ProductForm({ product, categories }: { product?: Product; catego
       price: priceRaw ? Number(priceRaw) : null,
       area: data.get("area") || null,
       images,
+      specs: specs.filter((s) => s.labelAr.trim() && s.labelEn.trim() && s.valueAr.trim() && s.valueEn.trim()),
     };
 
     const url = product ? `/api/admin/products/${product.id}` : "/api/admin/products";
@@ -373,6 +390,58 @@ export function ProductForm({ product, categories }: { product?: Product; catego
             }}
           />
         </label>
+      </Field>
+
+      <Field label="المواصفات (اختياري)">
+        <p className="mb-2 text-xs text-muted-foreground">
+          لو تركت هذا القسم فاضي، جدول المواصفات ما رح يظهر إطلاقًا بصفحة المنتج.
+        </p>
+        {specs.length > 0 && (
+          <div className="mb-3 space-y-3">
+            {specs.map((spec, i) => (
+              <div key={i} className="flex items-start gap-2 rounded-xl border border-border p-3">
+                <div className="grid flex-1 grid-cols-2 gap-2">
+                  <input
+                    value={spec.labelAr}
+                    onChange={(e) => updateSpec(i, "labelAr", e.target.value)}
+                    placeholder="اسم المواصفة (عربي)"
+                    className="input"
+                  />
+                  <input
+                    value={spec.labelEn}
+                    onChange={(e) => updateSpec(i, "labelEn", e.target.value)}
+                    placeholder="Spec name (English)"
+                    className="input"
+                  />
+                  <input
+                    value={spec.valueAr}
+                    onChange={(e) => updateSpec(i, "valueAr", e.target.value)}
+                    placeholder="القيمة (عربي)"
+                    className="input"
+                  />
+                  <input
+                    value={spec.valueEn}
+                    onChange={(e) => updateSpec(i, "valueEn", e.target.value)}
+                    placeholder="Value (English)"
+                    className="input"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeSpec(i)}
+                  title="حذف الصف"
+                  className="flex size-9 shrink-0 items-center justify-center rounded-md border border-border text-destructive transition-colors hover:border-destructive hover:bg-destructive/10"
+                >
+                  <Trash2 className="size-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+        <Button type="button" variant="outline" onClick={addSpec}>
+          <Plus className="size-4" />
+          إضافة مواصفة
+        </Button>
       </Field>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
