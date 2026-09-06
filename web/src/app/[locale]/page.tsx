@@ -370,16 +370,20 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               </Button>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {featuredProducts.map((product, i) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  locale={loc}
-                  delayMs={(i % 4) * 100}
-                  noPhotoLabel={loc === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"}
-                  priceOnRequestLabel={loc === "en" ? "Price on request" : "السعر عند التواصل"}
-                />
-              ))}
+              {featuredProducts.map((product, i) => {
+                const cat = categoryRows.find((c) => c.slug === product.category);
+                return (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    categoryName={(loc === "en" ? cat?.nameEn : cat?.nameAr) ?? ""}
+                    locale={loc}
+                    delayMs={(i % 4) * 100}
+                    noPhotoLabel={loc === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"}
+                    priceOnRequestLabel={loc === "en" ? "Price on request" : "السعر عند التواصل"}
+                  />
+                );
+              })}
             </div>
           </div>
         </section>

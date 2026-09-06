@@ -1,15 +1,17 @@
-import { and, asc, desc, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { permanentRedirect } from "@/i18n/navigation";
 import { getDb } from "@/db";
 import { categories as categoriesTable, products } from "@/db/schema";
 import { PageHero } from "@/components/layout/page-hero";
-import { StoreGridSection } from "@/components/store/store-grid-section";
+import { StorePageContent } from "@/components/store/store-page-content";
 import { FaqSection } from "@/components/sections/faq-section";
 import { BreadcrumbJsonLd, FaqJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { categoryContent } from "@/lib/category-content";
+import { getStoreData } from "@/lib/store-data";
+import { parseStoreFilters } from "@/lib/store-query";
 import { SITE_URL } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
@@ -35,23 +37,68 @@ export const revalidate = 300;
 
 const content = {
   ar: {
-    priceOnRequest: "السعر عند المعاينة",
-    empty: "لا يوجد منتجات بهذا القسم حالياً، تابعنا قريباً",
+    priceOnRequest: "السعر عند التواصل",
+    empty: "لا يوجد منتجات مطابقة لهذا الفلتر بهذا القسم حاليًا",
     noPhotoYet: "الصورة قيد الإضافة",
-    shopByCategory: "تسوّق حسب الفئة",
-    all: "الكل",
+    categoriesTitle: "الأقسام",
+    allCategories: "كل الأقسام",
+    conditionTitle: "الحالة",
+    priceTitle: "السعر (د.أ)",
+    from: "من",
+    to: "إلى",
+    availabilityTitle: "التوفّر",
+    availableOnly: "متوفّر الآن فقط",
+    includeSold: "يشمل المباع",
+    sellTitle: "عندك عفش للبيع؟",
+    sellBody: "ابعتلنا صور القطع على واتساب ومنعطيك سعر عادل بسرعة.",
+    sellCta: "أرسل صور أثاثك",
+    filterButton: "فلترة",
+    resultsPrefix: "عرض",
+    resultsOf: "من",
+    resultsUnit: "قطعة",
+    sortLabel: "ترتيب حسب",
+    sortOptions: [
+      { value: "newest" as const, label: "الأحدث" },
+      { value: "cheapest" as const, label: "الأرخص" },
+      { value: "priciest" as const, label: "الأغلى" },
+    ],
     storeLabel: "المتجر",
     faqTitle: "أسئلة شائعة",
   },
   en: {
     priceOnRequest: "Price on request",
-    empty: "No products in this category right now, check back soon",
+    empty: "No products match this filter in this category right now",
     noPhotoYet: "Photo coming soon",
-    shopByCategory: "Shop by Category",
-    all: "All",
+    categoriesTitle: "Categories",
+    allCategories: "All Categories",
+    conditionTitle: "Condition",
+    priceTitle: "Price (JOD)",
+    from: "From",
+    to: "To",
+    availabilityTitle: "Availability",
+    availableOnly: "Available now only",
+    includeSold: "Include sold",
+    sellTitle: "Have furniture to sell?",
+    sellBody: "Send us photos on WhatsApp and we'll give you a fair price fast.",
+    sellCta: "Send Your Furniture Photos",
+    filterButton: "Filter",
+    resultsPrefix: "Showing",
+    resultsOf: "of",
+    resultsUnit: "items",
+    sortLabel: "Sort by",
+    sortOptions: [
+      { value: "newest" as const, label: "Newest" },
+      { value: "cheapest" as const, label: "Cheapest" },
+      { value: "priciest" as const, label: "Most Expensive" },
+    ],
     storeLabel: "Store",
     faqTitle: "Frequently Asked Questions",
   },
+} as const;
+
+const conditionLabels = {
+  ar: { excellent: "ممتازة", good: "جيدة جدًا", fair: "جيدة" },
+  en: { excellent: "Excellent", good: "Very Good", fair: "Good" },
 } as const;
 
 export async function generateStaticParams() {
@@ -77,7 +124,10 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/store/[c
   return buildMetadata({ title, description, path: `/store/${slug}`, locale: locale as Locale });
 }
 
-export default async function CategoryPage({ params }: PageProps<"/[locale]/store/[category]">) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: PageProps<"/[locale]/store/[category]">) {
   const { locale, category: slug } = await params;
 
   const [categoryRow] = await getDb().select().from(categoriesTable).where(eq(categoriesTable.slug, slug));
@@ -93,19 +143,15 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
   }
 
   setRequestLocale(locale);
-  const c = content[locale as Locale];
+  const loc = locale as Locale;
+  const c = content[loc];
   const name = locale === "en" ? categoryRow.nameEn : categoryRow.nameAr;
   const extra = categoryContent[categoryRow.slug];
   const canonicalUrl = `${SITE_URL}${locale === "en" ? "/en" : ""}/store/${slug}`;
 
-  const [allCategories, rows] = await Promise.all([
-    getDb().select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder)),
-    getDb()
-      .select()
-      .from(products)
-      .where(and(eq(products.status, "available"), eq(products.category, categoryRow.slug)))
-      .orderBy(desc(products.createdAt)),
-  ]);
+  const sp = await searchParams;
+  const filters = parseStoreFilters(sp);
+  const data = await getStoreData({ categorySlug: categoryRow.slug, filters });
 
   const faq = extra ? (locale === "en" ? extra.faqEn : extra.faqAr) : [];
 
@@ -127,7 +173,7 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
             description: locale === "en" ? extra.introEn : extra.introAr,
             mainEntity: {
               "@type": "ItemList",
-              itemListElement: rows.map((product, i) => ({
+              itemListElement: data.products.map((product, i) => ({
                 "@type": "ListItem",
                 position: i + 1,
                 url: `${SITE_URL}${locale === "en" ? "/en" : ""}/store/${categoryRow.slug}/${product.slug}`,
@@ -155,13 +201,30 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/stor
           <p className="leading-relaxed text-muted-foreground">{locale === "en" ? extra.introEn : extra.introAr}</p>
         </section>
       )}
-      <StoreGridSection
-        locale={locale as Locale}
-        categories={allCategories}
-        activeCategorySlug={categoryRow.slug}
-        products={rows}
-        content={c}
-      />
+      <div className="py-14">
+        <StorePageContent
+          locale={loc}
+          pathname={`/store/${slug}`}
+          activeCategorySlug={categoryRow.slug}
+          categories={data.categories.map((cat) => ({
+            slug: cat.slug,
+            name: loc === "en" ? cat.nameEn : cat.nameAr,
+            count: cat.count,
+          }))}
+          products={data.products}
+          totalCount={data.totalCount}
+          allCategoriesCount={data.baseTotalCount}
+          totalPages={data.totalPages}
+          conditions={(["excellent", "good", "fair"] as const).map((value) => ({
+            value,
+            label: conditionLabels[loc][value],
+            count: data.countByCondition.get(value) ?? 0,
+          }))}
+          filters={filters}
+          priceBounds={data.priceBounds}
+          content={c}
+        />
+      </div>
       {faq.length > 0 && <FaqSection title={c.faqTitle} items={faq} />}
     </>
   );

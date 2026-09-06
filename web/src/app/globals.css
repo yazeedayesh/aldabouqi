@@ -206,3 +206,34 @@
     transition: none;
   }
 }
+
+/* Dual-thumb price range slider (store filter rail): two overlapping
+   <input type="range"> stacked on the same track. The inputs themselves
+   are pointer-events:none (so clicking the track doesn't grab whichever
+   input happens to be on top) while each thumb re-enables pointer events,
+   so both stay independently draggable. */
+.range-thumb::-webkit-slider-thumb {
+  appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2.5px solid var(--primary);
+  cursor: pointer;
+}
+
+.range-thumb::-moz-range-thumb {
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2.5px solid var(--primary);
+  cursor: pointer;
+}
+
+.range-thumb::-webkit-slider-runnable-track,
+.range-thumb::-moz-range-track {
+  background: transparent;
+}

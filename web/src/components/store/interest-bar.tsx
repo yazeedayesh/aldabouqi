@@ -3,8 +3,16 @@
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { useInterestList } from "@/hooks/use-interest-list";
+import { usePathname } from "@/i18n/navigation";
 import { buildStoreWhatsAppLink, SITE_URL } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+/** /store/{category}/{slug} — the one page with its own fixed bottom action
+ * bar on mobile (site owner rule, 2026-09-07: "شريط المنتج له الأولوية"). */
+function isProductDetailPath(pathname: string) {
+  return pathname.startsWith("/store/") && pathname.split("/").filter(Boolean).length === 3;
+}
 
 const content = {
   ar: {
@@ -25,9 +33,11 @@ const content = {
 export function InterestBar({ locale }: { locale: "ar" | "en" }) {
   const { items, remove, hydrated } = useInterestList();
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const c = content[locale];
 
   if (!hydrated || items.length === 0) return null;
+  const onProductPage = isProductDetailPath(pathname);
 
   const message = [
     c.intro,
@@ -38,7 +48,7 @@ export function InterestBar({ locale }: { locale: "ar" | "en" }) {
   ].join("\n");
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className={cn("fixed bottom-8 right-8 z-50", onProductPage && "hidden lg:block")}>
       {open && (
         <div className="mb-3 w-72 rounded-2xl border border-border bg-card p-4 shadow-xl">
           <div className="mb-2 flex items-center justify-between">

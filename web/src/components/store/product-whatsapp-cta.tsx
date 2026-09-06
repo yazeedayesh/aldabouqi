@@ -3,6 +3,7 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { buildStoreWhatsAppLink } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 /**
  * Primary CTA on every product page (brief: WhatsApp is always the biggest,
@@ -17,11 +18,16 @@ export function ProductWhatsAppCta({
   productTitleAr,
   message,
   label,
+  compact = false,
+  className,
 }: {
   productId: string;
   productTitleAr: string;
   message: string;
   label: string;
+  /** Small pill sized to sit inside a product card's hover-action row, instead of the full-size purchase-panel CTA. */
+  compact?: boolean;
+  className?: string;
 }) {
   function logInquiry() {
     fetch("/api/inquiries", {
@@ -34,8 +40,12 @@ export function ProductWhatsAppCta({
 
   return (
     <Button
-      size="lg"
-      className="h-13 bg-whatsapp px-6 text-base text-white hover:bg-whatsapp-dark"
+      size={compact ? "sm" : "lg"}
+      className={cn(
+        "rounded-full bg-whatsapp text-white hover:bg-whatsapp-dark",
+        compact ? "h-[38px] flex-1 gap-1.5 text-[13px] font-bold" : "h-13 px-6 text-base",
+        className
+      )}
       nativeButton={false}
       render={
         <a
@@ -46,7 +56,7 @@ export function ProductWhatsAppCta({
         />
       }
     >
-      <MessageCircle className="size-5" strokeWidth={1.7} />
+      <MessageCircle className={compact ? "size-[15px]" : "size-5"} strokeWidth={compact ? 1.9 : 1.7} />
       {label}
     </Button>
   );
