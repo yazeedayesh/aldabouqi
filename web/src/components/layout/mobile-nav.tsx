@@ -154,6 +154,7 @@ export function MobileNav({ storeCount }: { storeCount: number }) {
           </a>
           <a
             href={`tel:${BUSINESS.phoneE164}`}
+            dir="ltr"
             onClick={() => setOpen(false)}
             className="flex h-[54px] items-center justify-center gap-2.5 rounded-full border-[1.5px] border-white/26 text-base font-bold text-ink-foreground"
           >
