@@ -137,7 +137,6 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
             logo: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
             image: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
             description: c.intro.body,
-            foundingDate: "2015",
             telephone: BUSINESS.phoneE164,
             email: BUSINESS.email,
             address: {

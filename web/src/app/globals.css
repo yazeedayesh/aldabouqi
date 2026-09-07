@@ -39,66 +39,77 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-  /* Warm "dark section" pair (footer, deep-toned bands) — deliberately
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+  --radius-4xl: 48px;
+  /* Dark section pair (footer, deep-toned bands, mobile menu) — deliberately
      separate from --background/--foreground rather than reusing .dark,
-     since this site has no dark-mode toggle; it's one specific warm-dark
-     surface used in a handful of places, not a whole alternate theme. */
+     since this site has no dark-mode toggle; it's one specific dark surface
+     used in a handful of places, not a whole alternate theme. Under the v2
+     identity --ink is literally the same value as --foreground (both #101012). */
   --color-ink: var(--ink);
   --color-ink-foreground: var(--ink-foreground);
   --color-ink-muted: var(--ink-muted);
   --color-ink-border: var(--ink-border);
-  --color-gold-tint: var(--gold-tint);
-  --color-gold-dark: var(--gold-dark);
+  --color-primary-dark: var(--primary-dark);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-dark: var(--whatsapp-dark);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  /* Same literal value as --whatsapp, kept as its own token: the mockup's
+     "vivid" #14C48A is used for non-WhatsApp accents too (e.g. the mobile
+     menu's "المتجر" highlight), and those shouldn't read as WhatsApp buttons. */
+  --color-vivid: var(--whatsapp);
+  --color-vivid-light: var(--vivid-light);
+  --color-mint: var(--mint);
+  --color-mint-foreground: var(--mint-foreground);
 }
 
 :root {
-  /* Warm neutral palette — literal oklch() values from the approved mockup
-     (brief §5), not approximated. cream/cream-2 back --background/--secondary
-     (& --muted), ink/ink-soft back text and the dark header/footer band,
-     gold is the single accent, line backs every border. */
-  --background: oklch(97.3% 0.014 85); /* cream */
-  --foreground: oklch(24% 0.02 55); /* ink */
-  --card: oklch(99% 0.004 85); /* white */
-  --card-foreground: oklch(24% 0.02 55); /* ink */
-  --popover: oklch(99% 0.004 85); /* white */
-  --popover-foreground: oklch(24% 0.02 55); /* ink */
-  --primary: oklch(56% 0.11 70); /* gold */
-  --primary-foreground: oklch(99% 0.004 85); /* white */
-  --secondary: oklch(94% 0.02 80); /* cream-2 */
-  --secondary-foreground: oklch(24% 0.02 55); /* ink */
-  --muted: oklch(94% 0.02 80); /* cream-2 */
-  --muted-foreground: oklch(46% 0.025 55); /* ink-soft */
-  --accent: oklch(92% 0.035 75); /* gold-tint */
-  --accent-foreground: oklch(24% 0.02 55); /* ink */
+  /* v2 brand identity (2026-09-07) — emerald green, literal hex values from
+     the approved mockup (design-reference/v2-home-*.html), not approximated.
+     Replaces the earlier cream/gold palette entirely; no old token survives. */
+  --background: #f7f7f5;
+  --foreground: #101012;
+  --card: #ffffff;
+  --card-foreground: #101012;
+  --popover: #ffffff;
+  --popover-foreground: #101012;
+  --primary: #0b7a5a; /* emerald */
+  --primary-foreground: #ffffff;
+  --primary-dark: #095f46; /* mockup's a:hover color — darker emerald for hover/active states */
+  --secondary: #f7f7f5;
+  --secondary-foreground: #101012;
+  --muted: #f7f7f5;
+  --muted-foreground: #63636a;
+  --accent: #e9f6f0; /* light emerald tint 1 */
+  --accent-foreground: #0b7a5a;
+  --mint: #d6f5e7; /* light emerald tint 2 — deeper than --accent, for stat/rating cards */
+  --mint-foreground: #3e6656;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(89% 0.018 75); /* line */
-  --input: oklch(89% 0.018 75); /* line */
-  --ring: oklch(56% 0.11 70); /* gold */
-  --ink: oklch(24% 0.02 55);
-  --ink-foreground: oklch(97.3% 0.014 85); /* cream, for text on the dark ink band */
-  /* Not given literal values in the brief's palette — derived from ink/cream
-     so the dark band's muted text and hairline stay in the same family. */
-  --ink-muted: color-mix(in oklch, var(--ink-foreground) 65%, var(--ink));
-  --ink-border: color-mix(in oklch, var(--ink-foreground) 20%, var(--ink));
-  --gold-tint: oklch(92% 0.035 75);
-  --gold-dark: oklch(46% 0.11 70);
-  --whatsapp: #25d366;
-  --whatsapp-dark: #1da851;
+  --border: #efefec;
+  --input: #efefec;
+  --ring: #0b7a5a;
+  --ink: #101012;
+  --ink-foreground: #ffffff; /* white, for text on the dark ink band */
+  /* Not given literal single values in the brief's palette — derived from the
+     mockup's repeated opacity conventions on dark surfaces (rgba(255,255,255,.6)
+     for muted body text, .1-.12 for hairline dividers between list items). */
+  --ink-muted: rgb(255 255 255 / 60%);
+  --ink-border: rgb(255 255 255 / 12%);
+  --whatsapp: #14c48a; /* vivid green — the mockup's WhatsApp CTAs use the brand's
+     own vivid green, not the WhatsApp-brand green, for every WA button. */
+  --whatsapp-dark: color-mix(in oklch, var(--whatsapp) 82%, black);
+  --whatsapp-foreground: #06301f;
+  --vivid-light: #a8f0d0; /* the sell section's "نشاطنا الأساسي" badge text on --ink */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -165,10 +176,10 @@
    call button next to it stays static. 2.2s cycle, transform/opacity only. */
 @keyframes whatsapp-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(37 211 102 / 0.55);
+    box-shadow: 0 0 0 0 rgb(20 196 138 / 0.55);
   }
   100% {
-    box-shadow: 0 0 0 18px rgb(37 211 102 / 0);
+    box-shadow: 0 0 0 18px rgb(20 196 138 / 0);
   }
 }
 

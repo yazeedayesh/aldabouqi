@@ -1,4 +1,4 @@
-import { and, asc, count, desc, eq, gte, inArray, lte, max, min, sql } from "drizzle-orm";
+import { and, asc, count, desc, eq, gte, ilike, inArray, lte, max, min, or, sql } from "drizzle-orm";
 import { getDb } from "@/db";
 import { categories as categoriesTable, products } from "@/db/schema";
 import { PAGE_SIZE, type StoreFilters } from "@/lib/store-query";
@@ -27,6 +27,10 @@ export async function getStoreData({ categorySlug, filters }: { categorySlug?: s
   if (filters.conditions.length > 0) fullConditions.push(inArray(products.condition, filters.conditions));
   if (filters.minPrice != null) fullConditions.push(gte(products.price, filters.minPrice));
   if (filters.maxPrice != null) fullConditions.push(lte(products.price, filters.maxPrice));
+  if (filters.q) {
+    const pattern = `%${filters.q}%`;
+    fullConditions.push(or(ilike(products.titleAr, pattern), ilike(products.titleEn, pattern))!);
+  }
 
   const orderBy =
     filters.sort === "cheapest"

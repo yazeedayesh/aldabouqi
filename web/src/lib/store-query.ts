@@ -9,6 +9,9 @@ export type StoreFilters = {
   includeSold: boolean;
   sort: StoreSort;
   page: number;
+  /** Free-text search over product titles (v2 identity brief, 2026-09-07 —
+   * the homepage hero search bar). */
+  q?: string;
 };
 
 const PAGE_SIZE = 12;
@@ -35,6 +38,8 @@ export function parseStoreFilters(searchParams: SearchParams): StoreFilters {
   const pageRaw = Number(first(searchParams.page));
   const page = Number.isFinite(pageRaw) && pageRaw > 0 ? Math.floor(pageRaw) : 1;
 
+  const qRaw = first(searchParams.q)?.trim();
+
   return {
     conditions,
     minPrice: Number.isFinite(minPrice) ? minPrice : undefined,
@@ -42,6 +47,7 @@ export function parseStoreFilters(searchParams: SearchParams): StoreFilters {
     includeSold: first(searchParams.sold) === "1",
     sort,
     page,
+    q: qRaw ? qRaw : undefined,
   };
 }
 
@@ -56,6 +62,7 @@ export function buildStoreQuery(filters: StoreFilters, overrides: Partial<StoreF
   if (next.maxPrice != null) params.set("maxPrice", String(next.maxPrice));
   if (next.includeSold) params.set("sold", "1");
   if (next.sort !== "newest") params.set("sort", next.sort);
+  if (next.q) params.set("q", next.q);
   if (next.page !== 1) params.set("page", String(next.page));
 
   const qs = params.toString();

@@ -1,33 +1,30 @@
-import { asc, desc, eq } from "drizzle-orm";
+import { asc, count, eq } from "drizzle-orm";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
-  BadgeCheck,
   Banknote,
-  Clock,
+  ChevronLeft,
   MessageCircle,
   Phone,
-  ShoppingBag,
-  Sofa,
-  Sparkles,
+  Search,
+  ShieldCheck,
   Star,
-  ThumbsUp,
-  TrendingUp,
+  Truck,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { FaqSection } from "@/components/sections/faq-section";
 import { ContactForm } from "@/components/forms/contact-form";
-import { LocalBusinessJsonLd } from "@/components/seo/json-ld";
-import { ProductCard } from "@/components/store/product-card";
-import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
+import { FaqJsonLd, LocalBusinessJsonLd } from "@/components/seo/json-ld";
+import { getCategoryIcon } from "@/lib/category-icons";
 import { getDb } from "@/db";
 import { categories as categoriesTable, products } from "@/db/schema";
-import { categoryContent } from "@/lib/category-content";
+import { areas } from "@/lib/areas";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL, buildWhatsAppLink } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
+
+const AREAS_PREVIEW_COUNT = 18;
 
 const content = {
   ar: {
@@ -36,83 +33,63 @@ const content = {
       "شركة الدابوقي لشراء وبيع العفش والأثاث المستعمل في عمان وكل مناطق الأردن: غرف نوم، صالونات، مكاتب، أجهزة كهربائية. معاينة ودفع نقدي فوري. اتصل: 0796983994",
     keywords:
       "شراء الأثاث المستعمل في عمان, بيع الأثاث المستعمل, عفش مستعمل للبيع, أثاث مستعمل بأسعار جيدة, شراء غرف النوم المستعملة, بيع الأثاث في عمان",
-    heroKicker: "تبحث عن الخيار الأفضل لبيع أثاثك المستعمل؟",
-    heroTitleLine1: "شراء الأثاث المستعمل في عمان",
-    heroTitleLine2: "بأعلى الأسعار وأسرع خدمة",
-    heroBadgeValue: "+50 ألف",
-    heroBadgeLabel: "عميل موثوق من جميع أنحاء المملكة",
+    heroBadge: "متاحين الآن · نرد خلال دقائق",
+    heroTitleStart: "شراء الأثاث المستعمل في عمّان ",
+    heroTitleAccent: "بأعلى الأسعار",
     heroBody:
-      "الدابوقي لشراء الأثاث المستعمل في الأردن، ونعطيك أعلى الأسعار وأسرع خدمة. لا تضيع وقتك مع خيارات أخرى، تواصل مع الدابوقي اليوم واستمتع بتقييم فوري وعادل لأثاثك مع خدمة مباشرة إلى موقعك في كل مكان في عمان.",
-    browseStoreCta: "تصفّح المتجر",
-    categoriesHeading: "تسوّق حسب الفئة",
-    featuredHeading: "منتجات مختارة",
-    featuredCta: "تصفح كل المتجر",
-    sellHeading: "بيع عفشك إلنا",
-    sellIntro:
-      "نحن نسهل عليك عملية بيع أثاثك المستعمل من خلال أربع خطوات بسيطة وسريعة، مع الحفاظ على الشفافية الكاملة والمصداقية في التعامل.",
+      "الدابوقي لشراء وبيع الأثاث المستعمل والعفش في عمان — خبرة تتجاوز ٦٠ سنة، تقييم فوري مجاني، دفع نقدي، ونقل بدون أي تكلفة.",
+    heroSearchPlaceholder: "دوّر على غرفة نوم، كنب، ثلاجة…",
+    heroSearchCta: "ابحث",
+    heroWorkCta: "شوف شغلنا على الأرض",
+    heroWorkAlt: "شراء أثاث مستعمل بأسعار مغرية في عمان",
+    statExperienceValue: "+٦٠",
+    statExperienceLabel: "سنة خبرة بسوق الأثاث المستعمل",
+    statRatingLabel: "تقييم خرائط جوجل من عملاء حقيقيين",
+    categoriesKicker: "الــمــتــجــر",
+    categoriesHeading: "تصفّح الأثاث المستعمل حسب القسم",
+    categoriesCountPill: "الأقسام الثمانية",
+    categoryPieceUnit: "قطعة",
+    categorySummarySuffix: "قطعة معروضة الآن بالمتجر",
+    categorySummaryCta: "شوف الكل",
+    sellBadge: "نشاطنا الأساسي منذ أكثر من ٦٠ سنة",
+    sellHeading: "عندك عفش بدك تبيعه؟",
+    sellIntro: "قطعة وحدة أو بيت كامل — منجيك، منقيّم، وبندفع نقدًا بنفس اليوم. بدون وسطاء ولا مواعيد ضايعة.",
     sellSteps: [
-      { title: "اتصل بنا أو", subtitle: "أرسل صور الأثاث", body: "اتصل على رقمنا 0796983994 أو أرسل لنا صوراً للأثاث عبر الواتساب. سنقوم بالرد عليك فوراً لتحديد موعد المعاينة" },
-      { title: "معاينة مجانية", subtitle: "في موقعك", body: "يزورك أحد خبرائنا في الموعد المحدد لمعاينة الأثاث بشكل شامل وتقديم تقييم دقيق ومنصف" },
-      { title: "عرض السعر", subtitle: "والتفاوض", body: "بعد المعاينة، نقدم لك السعر المناسب بناءً على حالة الأثاث وجودته مع إمكانية التفاوض" },
-      { title: "الدفع الفوري", subtitle: "ونقل الأثاث", body: "بعد الاتفاق على السعر، نقوم بالدفع نقداً مباشرة ونتولى عملية نقل الأثاث دون أي تكلفة إضافية" },
+      { number: "٠١", title: "ابعت الصور", body: "على واتساب، بأي وقت" },
+      { number: "٠٢", title: "معاينة مجانية", body: "بموقعك، بموعد يناسبك" },
+      { number: "٠٣", title: "عرض سعر واضح", body: "وقابل للتفاوض" },
+      { number: "٠٤", title: "دفع نقدي ونقل", body: "بنفس الزيارة، والنقل علينا" },
     ],
-    sellCta: "أرسل صور أثاثك الآن",
-    highlights: [
-      { icon: Banknote, title: "أفضل الأسعار في السوق", body: "نقدم لك أسعارًا عادلة مقابل أثاثك المستعمل، مع تقييم مجاني وشفاف" },
-      { icon: Sofa, title: "نشتري جميع أنواع الأثاث", body: "من غرف المعيشة، غرف النوم، المكاتب، والأثاث المكتبي وحتى الأجهزة الكهربائية" },
-      { icon: Clock, title: "خدمة سريعة وموثوقة", body: "عملية البيع تتم بسرعة وسهولة دون أي تعقيد. نصل إليك أينما كنت في عمان" },
-    ],
-    aboutKicker: "من نحن",
-    aboutImageAlt: "شراء أثاث مستعمل بأسعار مغرية في عمان",
-    aboutTitle: "نحن شركة الدابوقي لشراء الأثاث المستعمل في عمان",
-    aboutBody:
-      "إذا كنت تبحث عن شراء الأثاث المستعمل في عمان بأسعار تنافسية وعادلة، فأنت في المكان الصحيح. تقدم شركة الدابوقي خدمة شراء جميع أنواع الأثاث المستعمل في مختلف مناطق عمان وضواحيها، بالإضافة إلى خدمات شراء الأجهزة الكهربائية المستعملة بأسعار مغرية.",
-    aboutCta: "المزيد عنا",
-    servicesKicker: "خدماتنا",
-    servicesImageAlt: "خدمات شراء الأثاث المستعمل في عمان",
-    servicesTitle: "نحن هنا لنبني معكم مستقبلكم من خلال بيع الأثاث المستعمل بأفضل الأسعار",
-    servicesCta: "عرض جميع خدماتنا",
-    services: [
-      { title: "شراء الأثاث المستعمل في عمان", body: "خدمة شراء الأثاث المستعمل بأسعار مناسبة لجميع الأنواع، سواء غرف المعيشة أو غرف النوم أو المكاتب.", href: "/services" as const },
-      { title: "بيع الأثاث المستعمل بسهولة وأمان", body: "خدمة بيع الأثاث المستعمل بأعلى درجة من الأمان والسهولة، مع تقييم دقيق وشفاف.", href: "/services" as const },
-      { title: "شراء غرف النوم المستعملة", body: "خدمة شراء غرف النوم المستعملة في عمان، مع ضمان أفضل الأسعار للجودة الممتازة.", href: "/buy-used-bedrooms" as const },
-      { title: "شراء المكاتب المستعملة", body: "خدمات شراء المكاتب المستعملة في عمان بكل سهولة، مع تقييم دقيق وضمان أفضل الأسعار.", href: "/buy-used-office-furniture" as const },
-    ],
-    whyKicker: "لماذا تختارنا؟",
-    whyImageAlt: "اختار أثاث مستعمل عالي الجودة",
-    whyTitle: "نساعدك على بناء مستقبلك باستخدام الأثاث المستعمل بأفضل الأسعار",
+    sellCta: "ابعت صور أثاثك",
+    whyKicker: "لــيــش الــدابــوقــي",
+    whyTitle: "ليش تختار الدابوقي لشراء وبيع أثاثك المستعمل",
     why: [
-      { title: "استجابة سريعة", body: "نقدم لك استجابة سريعة لجميع استفساراتك حول شراء وبيع الأثاث المستعمل، وتقديم أفضل الأسعار." },
-      { title: "توصيات عالية", body: "نتميز بتقديم خدمات شراء وبيع الأثاث المستعمل بنجاح كامل، مع توصيات من العملاء السعداء." },
-      { title: "نجاح مضمون", body: "خدماتنا معتمدة على النجاح التام في بيع وشراء الأثاث المستعمل بجودة ممتازة." },
-      { title: "مهندسون محترفون", body: "فريقنا من المهندسين المحترفين يضمن لك خدمات عالية الجودة عند شراء أو بيع الأثاث المستعمل." },
+      { title: "تصنيف حالة صادق", body: "ممتازة، جيدة جدًا، جيدة — بمعايير مكتوبة ومنشورة. بتعرف بالضبط شو رح يوصلك قبل ما تشتري." },
+      { title: "دفع نقدي فوري", body: "بنفس زيارة المعاينة، بدون شيكات ولا تأجيل ولا خصومات مفاجئة على السعر المتفق عليه." },
+      { title: "النقل علينا", body: "فريق وسيارة نقل، بدون أي تكلفة إضافية — حتى للطوابق العليا وبدون مصعد." },
     ],
-    testimonialsKicker: "آراء عملائنا",
-    testimonialsTitle: "موثوقين من زباين حقيقيين بعمان",
-    ratingValue: "4.9",
-    ratingLabel: "تقييم خرائط جوجل",
+    ratingValue: "٤٫٩",
+    ratingBody: "تقييم خرائط جوجل من عملاء حقيقيين تعاملوا معنا.",
+    ratingCta: "قيّمنا على جوجل",
     reviewLabel: "تقييم من خرائط جوجل",
     reviews: [
       "هاي شهادة رح أُسأل عنها يوم القيامة - ناس محترمين، الله يعطيهم الصحة.",
       "من أحسن الأثاث المستعمل، وعملية البيع والشراء تمام - من تجربة شخصية. بالتوفيق وعقبال المزيد 💪",
-      "خدمة ممتازة.",
-      "ممتاز.",
     ],
-    stats: [
-      { value: "+9", label: "سنوات خبرة" },
-      { value: "36", label: "منطقة نغطيها بعمان" },
-      { value: "24/7", label: "متاحين على مدار الساعة" },
-      { value: "نقدًا", label: "دفع فوري بدون تأجيل" },
-    ],
+    areasHeading: "مناطق شراء الأثاث المستعمل في عمّان",
+    areasBody: "كل منطقة إلها صفحتها مع تفاصيل الخدمة فيها. ما لقيت منطقتك؟ اتصل فينا — الأغلب منغطيها.",
+    areasMoreSuffix: "منطقة إضافية",
     faqKicker: "كيف يمكننا مساعدتك؟",
-    faqTitle: "اكتشف الأسئلة الشائعة",
+    faqTitle: "أكتر شي بينسألونا عنه",
     faq: [
-      { question: "أين يجب أن أبدأ مشروع شراء الأثاث المستعمل؟", answer: "ابدأ بتحديد المكان الذي تريد شراء الأثاث المستعمل منه، وابحث عن الأماكن الموثوقة التي تضمن لك الأثاث الجيد بأفضل الأسعار." },
-      { question: "ما هي أنواع الأثاث المستعمل التي يمكنني شراءها؟", answer: "يمكنك شراء أثاث من مختلف الأنواع مثل غرف النوم، غرف المعيشة، المكاتب، والكراسي والطاولات بأسعار مميزة وجودة عالية." },
-      { question: "كيف يمكنني ضمان أن الأثاث المستعمل بحالة جيدة؟", answer: "تأكد من فحص الأثاث جيدًا قبل شراءه، والتحقق من حالته، وعمره، ومدى إمكانية إصلاح أي تلف موجود." },
+      { question: "كيف بتحددوا سعر الأثاث المستعمل؟", answer: "بننظر لثلاث أشياء: حالة القطعة الفعلية، نوع الخامة وعمرها، وسعر السوق اليوم لقطع مشابهة. منعرضلك السعر ومنشرحلك على شو مبني، والتفاوض مفتوح." },
+      { question: "بتشتروا قطعة وحدة ولا بس بيت كامل؟", answer: "الاثنين. منشتري قطعة وحدة زي ما منشتري أثاث بيت كامل، وما في حد أدنى للطلب. لو عندك قطعة وحدة بس، ابعتلنا صورها على واتساب ومنقيّمها ومنعطيك سعر — نفس الطريقة بالضبط." },
+      { question: "المعاينة والنقل عليّ ولا عليكم؟", answer: "الاثنين علينا. المعاينة مجانية تمامًا — بيوصلك أحد خبرائنا لموقعك بموعد يناسبك بدون أي رسوم، حتى لو ما اتفقنا على سعر بالآخر. والنقل كمان علينا: عنا فريق وسيارة نقل، وما منحمّلك أي تكلفة إضافية — حتى للطوابق العليا وبدون مصعد." },
+      { question: "كيف أتأكد إنه القطعة بحالة كويسة قبل ما أشتري؟", answer: "بثلاث طرق. أولًا، كل قطعة بالمتجر مصنّفة بوضوح (ممتازة / جيدة جدًا / جيدة) حسب معايير مكتوبة ومنشورة — بتعرف بالضبط شو يعني كل تصنيف. ثانيًا، صور القطعة حقيقية للقطعة نفسها ومنوضح فيها أي أثر استخدام بدل ما نخبيه. ثالثًا، فيك تعاينها على أرض الواقع قبل ما تأكّد الشراء — اسألنا على واتساب ومنرتّبلك معاينة." },
     ],
-    contactKicker: "استفسر الآن",
-    contactBody: "سوف نرد عليك في غضون 24 ساعة.",
+    contactKicker: "تواصل معنا",
+    contactBody: "أسرع طريقة هي واتساب — منرد خلال دقائق، ٢٤ ساعة، ٧ أيام.",
+    contactWhatsappCta: "راسلنا على واتساب",
   },
   en: {
     metaTitle: "Buy Used Furniture in Amman at the Best Prices | Aldabouqi",
@@ -120,87 +97,65 @@ const content = {
       "Aldabouqi specializes in buying used furniture in Amman at the best prices. We buy bedrooms, office furniture, and used appliances. Call now for an instant, free valuation!",
     keywords:
       "buy used furniture Amman, sell used furniture Jordan, cash for furniture Amman, sell my furniture Amman, used living room furniture buyer",
-    heroKicker: "Looking for the best way to sell your used furniture?",
-    heroTitleLine1: "Buy Used Furniture in Amman",
-    heroTitleLine2: "At the Best Prices & Fastest Service",
-    heroBadgeValue: "50k+",
-    heroBadgeLabel: "trusted customers across the Kingdom",
+    heroBadge: "Available now · we reply in minutes",
+    heroTitleStart: "Buy Used Furniture in Amman ",
+    heroTitleAccent: "at the Best Prices",
     heroBody:
-      "Aldabouqi buys used furniture across Jordan, offering you the best prices and fastest service. Don't waste time with other options — contact Aldabouqi today and enjoy a fair, instant valuation with service delivered directly to your location anywhere in Amman.",
-    browseStoreCta: "Browse the Store",
-    categoriesHeading: "Shop by Category",
-    featuredHeading: "Featured Products",
-    featuredCta: "Browse the Full Store",
-    sellHeading: "Sell Your Furniture to Us",
-    sellIntro:
-      "We make selling your used furniture easy with four simple, fast steps, while maintaining complete transparency and integrity.",
+      "Aldabouqi buys and sells used furniture in Amman — over 60 years of experience, an instant free valuation, cash payment, and free moving at no extra cost.",
+    heroSearchPlaceholder: "Search for a bedroom, sofa, fridge…",
+    heroSearchCta: "Search",
+    heroWorkCta: "See our work on the ground",
+    heroWorkAlt: "Buy used furniture at great prices in Amman",
+    statExperienceValue: "60+",
+    statExperienceLabel: "years of experience in the used-furniture market",
+    statRatingLabel: "Google Maps rating from real customers",
+    categoriesKicker: "THE STORE",
+    categoriesHeading: "Browse Used Furniture by Category",
+    categoriesCountPill: "8 Categories",
+    categoryPieceUnit: "items",
+    categorySummarySuffix: "items live in the store right now",
+    categorySummaryCta: "See All",
+    sellBadge: "Our core business for over 60 years",
+    sellHeading: "Have Furniture You Want to Sell?",
+    sellIntro: "A single piece or a whole household — we come, we value it, and we pay cash the same day. No middlemen, no wasted appointments.",
     sellSteps: [
-      { title: "Call us or", subtitle: "Send Furniture Photos", body: "Call us at 0796983994 or send us photos via WhatsApp. We'll reply right away to schedule an inspection" },
-      { title: "Free Inspection", subtitle: "at your location", body: "One of our experts visits at the agreed time for a thorough inspection and an accurate, fair valuation" },
-      { title: "Price Offer", subtitle: "and Negotiation", body: "After the inspection, we offer a fair price based on the furniture's condition and quality, with room to negotiate" },
-      { title: "Instant Payment", subtitle: "and Furniture Moving", body: "Once we agree on a price, we pay cash immediately and handle moving the furniture at no extra cost" },
+      { number: "01", title: "Send Photos", body: "On WhatsApp, any time" },
+      { number: "02", title: "Free Inspection", body: "At your place, at a time that suits you" },
+      { number: "03", title: "A Clear Offer", body: "And open to negotiation" },
+      { number: "04", title: "Cash & Moving", body: "Same visit — moving is on us" },
     ],
-    sellCta: "Send Your Furniture Photos Now",
-    highlights: [
-      { icon: Banknote, title: "Best Prices in the Market", body: "We offer fair prices for your used furniture, with a free, transparent valuation" },
-      { icon: Sofa, title: "We buy all types of furniture", body: "From living rooms, bedrooms, and offices to office furniture and used appliances" },
-      { icon: Clock, title: "Fast & Reliable Service", body: "The selling process is fast and hassle-free. We come to you wherever you are in Amman" },
-    ],
-    aboutKicker: "About Us",
-    aboutImageAlt: "Buy used furniture at great prices in Amman",
-    aboutTitle: "We are Aldabouqi, buyers of used furniture in Amman",
-    aboutBody:
-      "If you're looking to sell used furniture in Amman for competitive, fair prices, you're in the right place. Aldabouqi buys all types of used furniture across Amman and its suburbs, as well as used appliances at attractive prices.",
-    aboutCta: "More About Us",
-    servicesKicker: "Services",
-    servicesImageAlt: "Used furniture buying services in Amman",
-    servicesTitle: "We're here to build your future together by buying your used furniture at the best prices",
-    servicesCta: "View All Our Services",
-    services: [
-      { title: "Buy Used Furniture in Amman", body: "A used furniture buying service at fair prices for all furniture types, whether living rooms, bedrooms, or offices.", href: "/services" as const },
-      { title: "Sell used furniture easily and safely", body: "A used furniture selling service with the highest level of safety and ease, with an accurate valuation.", href: "/services" as const },
-      { title: "Used Bedrooms", body: "A used bedroom buying service in Amman, with guaranteed best prices for excellent quality.", href: "/buy-used-bedrooms" as const },
-      { title: "Used Office Furniture", body: "Used office furniture buying services made easy, with an accurate valuation and guaranteed best prices.", href: "/buy-used-office-furniture" as const },
-    ],
-    whyKicker: "Why Choose Us?",
-    whyImageAlt: "Choose high-quality used furniture",
-    whyTitle: "We help you build your future by getting the best prices for your used furniture.",
+    sellCta: "Send Your Furniture Photos",
+    whyKicker: "WHY ALDABOUQI",
+    whyTitle: "Why Choose Aldabouqi to Buy and Sell Your Used Furniture",
     why: [
-      { title: "Fast Response", body: "We offer a fast response to all your inquiries about buying and selling used furniture, with the best prices." },
-      { title: "Highly Recommended", body: "We pride ourselves on successfully buying and selling used furniture, backed by recommendations from happy customers." },
-      { title: "Guaranteed Success", body: "Our services are built on a proven track record of buying and selling used furniture with excellent quality." },
-      { title: "Professional Team", body: "Our team of professionals ensures high-quality service whenever you buy or sell used furniture." },
+      { title: "Honest Condition Grading", body: "Excellent, very good, good — by written, published standards. You know exactly what you'll get before you buy." },
+      { title: "Instant Cash Payment", body: "At the same inspection visit, no checks, no delays, no surprise discounts off the agreed price." },
+      { title: "Moving Is On Us", body: "Our own team and truck, at no extra cost — even for upper floors with no elevator." },
     ],
-    testimonialsKicker: "Customer Reviews",
-    testimonialsTitle: "Trusted by real customers in Amman",
     ratingValue: "4.9",
-    ratingLabel: "Google Maps Rating",
+    ratingBody: "Google Maps rating from real customers we've worked with.",
+    ratingCta: "Rate us on Google",
     reviewLabel: "Google Maps Review",
     reviews: [
       "This is a testimony I'll be asked about on Judgment Day - respectable people, God grant them good health.",
       "Some of the finest used furniture around, and the buying/selling process is excellent - from personal experience. Best of luck and onward! 💪",
-      "Excellent service.",
-      "Excellent.",
     ],
-    stats: [
-      { value: "9+", label: "Years of Experience" },
-      { value: "36", label: "Areas Covered in Amman" },
-      { value: "24/7", label: "Available Around the Clock" },
-      { value: "Cash", label: "Instant Payment, No Delay" },
-    ],
+    areasHeading: "Used Furniture Buying Areas in Amman",
+    areasBody: "Every area has its own page with service details. Can't find your area? Call us — we cover most of them.",
+    areasMoreSuffix: "more areas",
     faqKicker: "How can we help you?",
-    faqTitle: "Explore our FAQ",
+    faqTitle: "Frequently Asked Questions",
     faq: [
-      { question: "Where do I start selling my used furniture?", answer: "Start by identifying where you want to sell your used furniture, and look for a trusted buyer who guarantees a fair price for quality furniture." },
-      { question: "What types of used furniture do you buy?", answer: "We buy furniture of all kinds — bedrooms, living rooms, offices, chairs and tables — at great prices with a fair assessment of quality." },
-      { question: "How do you ensure the furniture is in good condition?", answer: "We carefully inspect the furniture on-site, checking its condition, age, and whether any damage can be repaired — before giving you a fair offer." },
+      { question: "How do you determine the price of used furniture?", answer: "We look at three things: the piece's actual condition, the material type and age, and today's market price for similar pieces. We'll show you the price and explain what it's based on, and negotiation is always open." },
+      { question: "Do you buy single pieces, or only full households?", answer: "Both. We buy a single piece just as we buy furniture from a whole household, and there's no minimum order. If you only have one piece, send us photos on WhatsApp and we'll value it and give you a price — the exact same way." },
+      { question: "Is the inspection and moving on me or on you?", answer: "Both are on us. The inspection is completely free — one of our experts comes to your location at a time that suits you, with no fees, even if we don't agree on a price in the end. Moving is on us too: we have our own team and truck, and we don't charge any extra cost — even for upper floors with no elevator." },
+      { question: "How do I make sure a piece is in good condition before I buy?", answer: "Three ways. First, every piece in the store is clearly graded (excellent / very good / good) by written, published standards — you know exactly what each grade means. Second, the photos are real photos of the actual piece, showing any wear honestly instead of hiding it. Third, you can inspect it in person before you commit to buying — ask us on WhatsApp and we'll arrange a viewing." },
     ],
-    contactKicker: "Inquire Now",
-    contactBody: "We'll get back to you within 24 hours.",
+    contactKicker: "Get in Touch",
+    contactBody: "The fastest way is WhatsApp — we reply within minutes, 24/7.",
+    contactWhatsappCta: "Message Us on WhatsApp",
   },
 } as const;
-
-const whyIcons = [Clock, ThumbsUp, TrendingUp, BadgeCheck];
 
 export const revalidate = 300;
 
@@ -222,16 +177,23 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   setRequestLocale(locale);
   const c = content[locale as Locale];
   const loc = locale as "ar" | "en";
+  const isEn = loc === "en";
 
-  const [categoryRows, featuredProducts] = await Promise.all([
+  const [categoryRows, categoryCounts, [{ value: totalAvailable }]] = await Promise.all([
     getDb().select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder)),
     getDb()
-      .select()
+      .select({ category: products.category, value: count() })
       .from(products)
       .where(eq(products.status, "available"))
-      .orderBy(desc(products.createdAt))
-      .limit(8),
+      .groupBy(products.category),
+    getDb().select({ value: count() }).from(products).where(eq(products.status, "available")),
   ]);
+  const countByCategory = new Map(categoryCounts.map((r) => [r.category, r.value]));
+
+  const areasPreview = areas.slice(0, AREAS_PREVIEW_COUNT);
+  const areasMoreCount = areas.length - areasPreview.length;
+
+  const searchAction = isEn ? "/en/store" : "/store";
 
   return (
     <>
@@ -239,362 +201,401 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         description={c.metaDescription}
         aggregateRating={{ ratingValue: "4.9", reviewCount: "10" }}
       />
+      <FaqJsonLd items={c.faq} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-secondary/30">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
-          <div className="space-y-6">
-            <p className="font-medium text-primary">{c.heroKicker}</p>
-            <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-              {c.heroTitleLine1}
-              <br />
-              {c.heroTitleLine2}
+      <section className="mx-auto max-w-7xl px-3 pt-3 sm:px-5 sm:pt-5">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_468px]">
+          <div className="flex min-h-[420px] flex-col justify-center rounded-[22px] bg-card p-6 sm:min-h-[520px] sm:rounded-[32px] sm:p-13">
+            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-xs font-bold text-primary sm:text-[13px]">
+              <span className="size-1.5 rounded-full bg-vivid" />
+              {c.heroBadge}
+            </span>
+            <h1 className="font-heading text-[32px] font-black leading-[1.24] tracking-tight text-foreground sm:text-[62px] sm:leading-[1.16]">
+              {c.heroTitleStart}
+              <span className="text-primary">{c.heroTitleAccent}</span>
             </h1>
-            <div className="flex items-center gap-3">
-              <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-primary/10 font-heading text-sm font-bold text-primary">
-                {c.heroBadgeValue}
-              </span>
-              <span className="text-sm text-muted-foreground">{c.heroBadgeLabel}</span>
-            </div>
-            <p className="max-w-xl leading-relaxed text-muted-foreground">{c.heroBody}</p>
-            <div className="flex flex-wrap gap-3">
-              <Button
-                size="lg"
-                className="bg-whatsapp text-white hover:bg-whatsapp-dark"
-                nativeButton={false}
-                render={
-                  <a
-                    href={buildWhatsAppLink(
-                      locale === "en"
-                        ? "Hi, I'd like to ask about selling used furniture"
-                        : "مرحباً، بدي أستفسر عن شراء الأثاث المستعمل"
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
+            <p className="mt-3.5 max-w-xl text-[14.5px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-[17.5px] sm:leading-[1.85]">
+              {c.heroBody}
+            </p>
+
+            <form
+              action={searchAction}
+              method="GET"
+              className="mt-6 flex h-[58px] items-center gap-2.5 rounded-full bg-secondary px-1.5 ps-4.5 sm:mt-9.5 sm:h-18"
+            >
+              <Search className="size-[19px] shrink-0 text-muted-foreground" strokeWidth={2} />
+              <input
+                type="search"
+                name="q"
+                placeholder={c.heroSearchPlaceholder}
+                className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground sm:text-[15px]"
+              />
+              <button
+                type="submit"
+                className="h-11 shrink-0 rounded-full bg-ink px-5 text-[13.5px] font-bold text-ink-foreground sm:h-14 sm:px-7 sm:text-[15px]"
               >
-                <MessageCircle className="size-5" />
-                WhatsApp
-              </Button>
-              <Button size="lg" variant="outline" nativeButton={false} render={<a href={`tel:${BUSINESS.phoneE164}`} />}>
-                <Phone className="size-5" />
-                {locale === "en" ? "Call Now" : "اتصل الآن"}
-              </Button>
-              <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/store" />}>
-                <ShoppingBag className="size-5" />
-                {c.browseStoreCta}
-              </Button>
+                {c.heroSearchCta}
+              </button>
+            </form>
+          </div>
+
+          <div className="hidden flex-col gap-4 lg:flex">
+            <div className="relative min-h-[344px] flex-1 overflow-hidden rounded-[32px]">
+              <Image
+                src="/img/hero/furntuer.webp"
+                alt={c.heroWorkAlt}
+                fill
+                priority
+                className="object-cover"
+                sizes="468px"
+              />
+              <div className="absolute inset-x-4 bottom-4 flex h-[62px] items-center justify-between rounded-full bg-card/92 ps-5.5 pe-2">
+                <span className="text-sm font-semibold text-foreground">{c.heroWorkCta}</span>
+                <span className="flex size-11.5 items-center justify-center rounded-full bg-ink text-ink-foreground">
+                  <ChevronLeft className="size-4.5 rtl:rotate-0 ltr:rotate-180" strokeWidth={2.2} />
+                </span>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col justify-center rounded-[28px] bg-ink p-6 text-ink-foreground">
+                <div className="font-heading text-[44px] font-black leading-none tracking-tight">
+                  {c.statExperienceValue}
+                </div>
+                <div className="mt-2 text-[13.5px] leading-relaxed text-ink-muted">{c.statExperienceLabel}</div>
+              </div>
+              <div className="flex flex-col justify-center rounded-[28px] bg-mint p-6">
+                <div className="mb-2 flex items-baseline gap-1.5">
+                  <span className="font-heading text-[44px] font-black leading-none tracking-tight text-primary">
+                    {c.ratingValue}
+                  </span>
+                  <Star className="size-4.5 fill-primary text-primary" />
+                </div>
+                <div className="text-[13.5px] leading-relaxed text-mint-foreground">{c.statRatingLabel}</div>
+              </div>
             </div>
           </div>
 
-          <div className="relative aspect-4/3 overflow-hidden rounded-2xl shadow-xl">
-            <Image
-              src="/img/hero/furntuer.webp"
-              alt=""
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
+          {/* Mobile stat pills — same data, stacked layout */}
+          <div className="grid grid-cols-2 gap-3 lg:hidden">
+            <div className="rounded-[22px] bg-ink p-[18px] text-ink-foreground">
+              <div className="font-heading text-[30px] font-black leading-none tracking-tight">
+                {c.statExperienceValue}
+              </div>
+              <div className="mt-1.5 text-xs leading-snug text-ink-muted">{c.statExperienceLabel}</div>
+            </div>
+            <div className="rounded-[22px] bg-mint p-[18px]">
+              <div className="mb-1.5 flex items-baseline gap-1">
+                <span className="font-heading text-[30px] font-black leading-none tracking-tight text-primary">
+                  {c.ratingValue}
+                </span>
+                <Star className="size-3.5 fill-primary text-primary" />
+              </div>
+              <div className="text-xs leading-snug text-mint-foreground">{c.statRatingLabel}</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 sm:grid-cols-3 lg:px-8">
-        {c.highlights.map((item, i) => (
-          <Reveal key={item.title} delayMs={i * 100}>
-            <div className="rounded-2xl border border-border p-6">
-              <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <item.icon className="size-5" />
-              </div>
-              <h3 className="mt-4 font-heading font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-            </div>
-          </Reveal>
-        ))}
-      </section>
+      {/* Categories */}
+      <section className="mx-auto max-w-7xl px-3 pt-14 sm:px-5 sm:pt-19">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-4 px-1 sm:mb-6.5 sm:px-5">
+          <div>
+            <div className="mb-2.5 text-xs font-bold tracking-[2px] text-primary sm:mb-3">{c.categoriesKicker}</div>
+            <h2 className="font-heading text-[26px] font-black tracking-tight text-foreground sm:text-[42px]">
+              {c.categoriesHeading}
+            </h2>
+          </div>
+          <div className="hidden h-13 items-center rounded-full bg-card px-6.5 text-[15px] font-bold text-foreground shadow-sm sm:flex">
+            {c.categoriesCountPill}
+            <ChevronLeft className="ms-2.5 size-4 text-primary rtl:rotate-0 ltr:rotate-180" strokeWidth={2.2} />
+          </div>
+        </div>
 
-      {/* Browse by category — the store's actual entry point on the
-          homepage (site owner follow-up, 2026-09-05: the store existed
-          with 16 products and zero discoverability from the homepage). */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="text-center font-heading text-2xl font-bold text-foreground sm:text-3xl">
-          {c.categoriesHeading}
-        </h2>
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {categoryRows.map((cat, i) => {
-            const name = loc === "en" ? cat.nameEn : cat.nameAr;
-            const extra = categoryContent[cat.slug];
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+          {categoryRows.map((cat) => {
+            const name = isEn ? cat.nameEn : cat.nameAr;
+            const catCount = countByCategory.get(cat.slug) ?? 0;
             return (
-              <Reveal key={cat.slug} delayMs={(i % 4) * 100}>
+              <Reveal key={cat.slug}>
                 <Link
                   href={`/store/${cat.slug}`}
-                  className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                  className="group relative block h-[168px] overflow-hidden rounded-[22px] sm:h-[300px] sm:rounded-[28px]"
                 >
-                  <div className="relative aspect-square overflow-hidden bg-secondary">
-                    {extra?.heroImage ? (
+                  {cat.image ? (
+                    <>
                       <Image
-                        src={extra.heroImage.src}
-                        alt={loc === "en" ? extra.heroImage.altEn : extra.heroImage.altAr}
+                        src={cat.image}
+                        alt={isEn ? `Used ${name} for sale in Amman` : `${name} مستعملة للبيع في عمّان`}
                         fill
                         loading="lazy"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(min-width: 640px) 25vw, 50vw"
                       />
-                    ) : (
-                      <ProductImagePlaceholder label={name} categorySlug={cat.slug} />
-                    )}
-                  </div>
-                  <div className="p-3 text-center">
-                    <h3 className="font-heading text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
-                      {name}
-                    </h3>
-                  </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/86 via-ink/5 to-transparent" />
+                      <span className="absolute start-3.5 top-3.5 hidden h-[30px] items-center rounded-full bg-card/94 px-3.5 text-[12.5px] font-bold text-foreground sm:flex">
+                        {catCount} {c.categoryPieceUnit}
+                      </span>
+                      <div className="absolute inset-x-3.5 bottom-3 flex items-center justify-between sm:inset-x-5 sm:bottom-[18px]">
+                        <div className="text-white sm:hidden">
+                          <div className="mb-1 text-[11px] opacity-80">
+                            {catCount} {c.categoryPieceUnit}
+                          </div>
+                          <div className="font-heading text-base font-extrabold">{name}</div>
+                        </div>
+                        <span className="hidden font-heading text-xl font-extrabold text-white sm:block">
+                          {name}
+                        </span>
+                        <span className="hidden size-10 items-center justify-center rounded-full bg-card sm:flex">
+                          <ChevronLeft className="size-[17px] text-foreground rtl:rotate-0 ltr:rotate-180" strokeWidth={2.2} />
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex size-full flex-col justify-between bg-card p-4 transition-colors group-hover:bg-accent sm:p-6">
+                      {(() => {
+                        const Icon = getCategoryIcon(cat.slug);
+                        return <Icon className="size-6 text-primary sm:size-[30px]" strokeWidth={1.5} />;
+                      })()}
+                      <div>
+                        <div className="mb-1 text-[11px] text-muted-foreground sm:text-[11.5px]">
+                          {catCount} {c.categoryPieceUnit}
+                        </div>
+                        <div className="font-heading text-base font-extrabold text-foreground sm:text-lg">{name}</div>
+                      </div>
+                    </div>
+                  )}
                 </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal>
+          <Link
+            href="/store"
+            className="mt-3 flex flex-col items-start justify-between gap-4 rounded-[22px] bg-primary p-6 text-primary-foreground sm:mt-4 sm:flex-row sm:items-center sm:rounded-[28px] sm:p-8"
+          >
+            <div className="flex items-baseline gap-2.5">
+              <span className="font-heading text-3xl font-black tracking-tight sm:text-[40px]">{totalAvailable}</span>
+              <span className="text-sm opacity-90 sm:text-[15px]">{c.categorySummarySuffix}</span>
+            </div>
+            <span className="inline-flex h-10 items-center gap-2 rounded-full bg-card px-4.5 text-[13.5px] font-bold text-primary">
+              {c.categorySummaryCta}
+              <ChevronLeft className="size-[15px] rtl:rotate-0 ltr:rotate-180" strokeWidth={2.3} />
+            </span>
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* Sell to us */}
+      <section className="mx-auto max-w-7xl px-3 pt-14 sm:px-5 sm:pt-19">
+        <div className="overflow-hidden rounded-[28px] bg-ink text-ink-foreground sm:rounded-[40px]">
+          <div className="grid gap-8 p-6 sm:grid-cols-2 sm:items-center sm:p-13">
+            <div>
+              <span className="mb-5 inline-flex h-8.5 items-center rounded-full bg-white/10 px-4 text-xs font-bold text-vivid-light sm:mb-6.5">
+                {c.sellBadge}
+              </span>
+              <h2 className="font-heading text-[32px] font-black leading-[1.15] tracking-tight sm:text-[50px]">
+                {c.sellHeading}
+              </h2>
+              <p className="mt-4 max-w-md text-[15px] leading-[1.8] text-ink-muted sm:mt-5 sm:text-[17px] sm:leading-[1.9]">
+                {c.sellIntro}
+              </p>
+
+              <div className="mt-8 grid grid-cols-2 gap-3.5 sm:mt-9">
+                {c.sellSteps.map((step) => (
+                  <div key={step.number} className="rounded-[20px] bg-white/6 p-5">
+                    <div className="mb-2 font-heading text-sm font-black text-vivid">{step.number}</div>
+                    <div className="mb-1 text-[15px] font-bold text-ink-foreground">{step.title}</div>
+                    <div className="text-[13px] text-ink-muted">{step.body}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2.5 sm:mt-9">
+                <a
+                  href={buildWhatsAppLink(isEn ? "Hi, I'd like to sell my used furniture" : "مرحباً، بدي أبيع أثاثي المستعمل")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-[54px] items-center gap-2.5 rounded-full bg-vivid px-7 text-[16px] font-extrabold text-whatsapp-foreground sm:h-[58px] sm:px-7.5 sm:text-[16.5px]"
+                >
+                  <MessageCircle className="size-5" strokeWidth={2} />
+                  {c.sellCta}
+                </a>
+                <a
+                  href={`tel:${BUSINESS.phoneE164}`}
+                  dir="ltr"
+                  className="flex h-[54px] items-center gap-2.5 rounded-full border-[1.5px] border-white/28 px-6.5 text-[15.5px] font-bold text-ink-foreground sm:h-[58px] sm:px-7"
+                >
+                  <Phone className="size-[18px]" strokeWidth={1.8} />
+                  {BUSINESS.phoneDisplay}
+                </a>
+              </div>
+            </div>
+
+            <div className="relative hidden min-h-[300px] overflow-hidden rounded-[28px] sm:block">
+              <Image
+                src="/img/service/aldabouqi2.webp"
+                alt={c.sellHeading}
+                fill
+                loading="lazy"
+                className="object-cover"
+                sizes="(min-width: 1024px) 40vw, 0px"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why us */}
+      <section className="mx-auto max-w-7xl px-3 pt-14 sm:px-5 sm:pt-19">
+        <div className="mb-5 px-1 sm:mb-7 sm:px-5">
+          <div className="mb-2.5 text-xs font-bold tracking-[2px] text-primary sm:mb-3">{c.whyKicker}</div>
+          <h2 className="max-w-2xl font-heading text-[26px] font-black leading-[1.25] tracking-tight text-foreground sm:text-[42px]">
+            {c.whyTitle}
+          </h2>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+          {c.why.map((item, i) => {
+            const Icon = [ShieldCheck, Banknote, Truck][i];
+            return (
+              <Reveal key={item.title} delayMs={i * 100}>
+                <div className="rounded-[22px] bg-card p-6 sm:rounded-[28px] sm:p-8.5">
+                  <div className="mb-5 flex size-[54px] items-center justify-center rounded-[18px] bg-accent sm:mb-6">
+                    <Icon className="size-6" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="mb-3 font-heading text-lg font-extrabold text-foreground sm:text-[21px]">
+                    {item.title}
+                  </h3>
+                  <p className="text-[15px] leading-[1.9] text-muted-foreground">{item.body}</p>
+                </div>
               </Reveal>
             );
           })}
         </div>
       </section>
 
-      {/* Featured products — real DB data, hidden entirely if there are none. */}
-      {featuredProducts.length > 0 && (
-        <section className="bg-secondary/30 py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.featuredHeading}</h2>
-              <Button variant="outline" nativeButton={false} render={<Link href="/store" />}>
-                {c.featuredCta}
-              </Button>
-            </div>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {featuredProducts.map((product, i) => {
-                const cat = categoryRows.find((c) => c.slug === product.category);
-                return (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    categoryName={(loc === "en" ? cat?.nameEn : cat?.nameAr) ?? ""}
-                    locale={loc}
-                    delayMs={(i % 4) * 100}
-                    noPhotoLabel={loc === "en" ? "Photo coming soon" : "الصورة قيد الإضافة"}
-                    priceOnRequestLabel={loc === "en" ? "Price on request" : "السعر عند التواصل"}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Sell us your furniture — the site's original core business, which
-          had no dedicated homepage section at all (site owner follow-up,
-          2026-09-05: "هاد قلب النشاط الأصلي"). Steps/intro reused verbatim
-          from the existing category pages' HowTo content. */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.sellHeading}</h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">{c.sellIntro}</p>
-        </div>
-        <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {c.sellSteps.map((step, index) => (
-            <Reveal key={step.title} as="li" delayMs={(index % 4) * 100} className="rounded-xl border border-border p-6">
-              <span className="font-heading text-3xl font-bold text-primary/40">
-                {String(index + 1).padStart(2, "0")}
+      {/* Reviews */}
+      <section className="mx-auto max-w-7xl px-3 pt-14 sm:px-5 sm:pt-19">
+        <div className="grid gap-3 sm:grid-cols-[420px_minmax(0,1fr)] sm:gap-4">
+          <div className="flex flex-col justify-between gap-6 rounded-[24px] bg-mint p-6 sm:rounded-[32px] sm:p-10">
+            <div>
+              <span className="font-heading text-[44px] font-black leading-none tracking-tight text-primary sm:text-[64px]">
+                {c.ratingValue}
               </span>
-              <h3 className="mt-3 font-heading font-semibold text-foreground">
-                {step.title} <span className="block font-normal text-muted-foreground">{step.subtitle}</span>
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-            </Reveal>
-          ))}
-        </ol>
-        <div className="mt-10 text-center">
-          <Button
-            size="lg"
-            className="bg-whatsapp text-white hover:bg-whatsapp-dark"
-            nativeButton={false}
-            render={
-              <a
-                href={buildWhatsAppLink(
-                  locale === "en"
-                    ? "Hi, I'd like to sell my used furniture"
-                    : "مرحباً، بدي أبيع أثاثي المستعمل"
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            }
-          >
-            <MessageCircle className="size-5" />
-            {c.sellCta}
-          </Button>
-        </div>
-      </section>
-
-      {/* About teaser */}
-      <section className="bg-secondary/30 py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 sm:grid-cols-2 sm:items-center lg:px-8">
-          <div className="relative aspect-4/3 overflow-hidden rounded-2xl">
-            <Image
-              src="/img/about/aldabouqi.webp"
-              alt={c.aboutImageAlt}
-              fill
-              loading="lazy"
-              sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </div>
-          <div>
-            <p className="font-medium text-primary">{c.aboutKicker}</p>
-            <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.aboutTitle}</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{c.aboutBody}</p>
-            <Button variant="outline" className="mt-6" nativeButton={false} render={<Link href="/about" />}>
-              {c.aboutCta}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Services teaser */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="font-medium text-primary">{c.servicesKicker}</p>
-              <h2 className="mt-2 max-w-xl font-heading text-2xl font-bold text-foreground sm:text-3xl">
-                {c.servicesTitle}
-              </h2>
-            </div>
-            <Link href="/services" className="font-medium text-primary hover:underline">
-              {c.servicesCta}
-            </Link>
-          </div>
-          <div className="relative hidden aspect-video overflow-hidden rounded-2xl lg:block">
-            <Image
-              src="/img/service/aldabouqi2.webp"
-              alt={c.servicesImageAlt}
-              fill
-              loading="lazy"
-              sizes="320px"
-              className="object-cover"
-            />
-          </div>
-        </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {c.services.map((service, i) => (
-            <Reveal key={service.title} delayMs={(i % 4) * 100}>
-              <Link
-                href={service.href}
-                className="block h-full rounded-2xl border border-border p-6 transition-all hover:-translate-y-1 hover:shadow-md"
-              >
-                <Sparkles className="size-6 text-primary" />
-                <h3 className="mt-4 font-heading font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.body}</p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Why choose us */}
-      <section className="bg-secondary/30 py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-[auto_1fr] sm:items-center sm:text-start text-center">
-            <div className="relative mx-auto aspect-square w-32 shrink-0 overflow-hidden rounded-full sm:mx-0 sm:w-28">
-              <Image
-                src="/img/choose/thumb-4-1.webp"
-                alt={c.whyImageAlt}
-                fill
-                loading="lazy"
-                sizes="128px"
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <p className="font-medium text-primary">{c.whyKicker}</p>
-              <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.whyTitle}</h2>
-            </div>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {c.why.map((item, index) => {
-              const Icon = whyIcons[index];
-              return (
-                <Reveal key={item.title} delayMs={(index % 4) * 100}>
-                  <div className="rounded-xl bg-background p-6 text-center shadow-sm">
-                    <Icon className="mx-auto size-7 text-primary" />
-                    <h3 className="mt-3 font-heading font-semibold text-foreground">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <div>
-            <p className="font-medium text-primary">{c.testimonialsKicker}</p>
-            <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
-              {c.testimonialsTitle}
-            </h2>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex text-primary">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="size-4 fill-current" />
-              ))}
-            </div>
-            <span className="font-heading font-bold text-foreground">{c.ratingValue}</span>
-            <span className="text-sm text-muted-foreground">{c.ratingLabel}</span>
-          </div>
-        </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          {c.reviews.map((review, index) => (
-            <Reveal key={index} delayMs={(index % 2) * 100}>
-              <div className="h-full rounded-xl border border-border p-6">
-                <div className="flex text-primary">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-3.5 fill-current" />
-                  ))}
-                </div>
-                <p className="mt-3 leading-relaxed text-foreground">&ldquo;{review}&rdquo;</p>
-                <p className="mt-3 text-sm text-muted-foreground">{c.reviewLabel}</p>
+              <div className="mt-2.5 mb-4 flex gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="size-4.5 fill-primary text-primary" />
+                ))}
               </div>
-            </Reveal>
-          ))}
+              <p className="text-[15px] leading-[1.9] text-mint-foreground">{c.ratingBody}</p>
+            </div>
+            <a
+              href="https://g.page/r/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-primary text-[15px] font-bold text-primary-foreground"
+            >
+              <Star className="size-[17px] fill-current" />
+              {c.ratingCta}
+            </a>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+            {c.reviews.map((review, index) => (
+              <Reveal key={index} delayMs={index * 100}>
+                <div className="flex h-full flex-col justify-center rounded-[22px] bg-card p-6 sm:rounded-[28px] sm:p-8">
+                  <p className="font-heading text-lg font-bold leading-[1.65] tracking-tight text-foreground sm:text-xl">
+                    &ldquo;{review}&rdquo;
+                  </p>
+                  <p className="mt-4 text-[13px] text-muted-foreground">{c.reviewLabel}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-y border-border bg-secondary/30 py-12">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {c.stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="font-heading text-3xl font-bold text-primary sm:text-4xl">{stat.value}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
+      {/* Areas */}
+      <section className="mx-auto max-w-7xl px-3 pt-14 sm:px-5 sm:pt-19">
+        <div className="rounded-[28px] bg-card p-6 sm:rounded-[40px] sm:p-12">
+          <div className="grid gap-6 sm:grid-cols-[380px_minmax(0,1fr)] sm:items-start sm:gap-13">
+            <div>
+              <h2 className="font-heading text-2xl font-black leading-[1.25] tracking-tight text-foreground sm:text-[34px]">
+                {c.areasHeading}
+              </h2>
+              <p className="mt-3.5 text-[15px] leading-[1.9] text-muted-foreground">{c.areasBody}</p>
             </div>
-          ))}
+            <div className="flex flex-wrap gap-2">
+              {areasPreview.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="flex h-10 items-center rounded-full bg-secondary px-4 text-sm font-semibold text-foreground hover:bg-accent hover:text-primary sm:h-10.5 sm:px-4.5 sm:text-[14.5px]"
+                >
+                  {isEn ? area.nameEn : area.nameAr}
+                </Link>
+              ))}
+              {areasMoreCount > 0 && (
+                <Link
+                  href="/coverage-areas"
+                  className="flex h-10 items-center gap-2 rounded-full bg-ink px-4 text-sm font-bold text-ink-foreground sm:h-10.5 sm:px-4.5 sm:text-[14.5px]"
+                >
+                  {isEn ? `+${areasMoreCount} ${c.areasMoreSuffix}` : `و${areasMoreCount} ${c.areasMoreSuffix}`}
+                  <ChevronLeft className="size-[15px] rtl:rotate-0 ltr:rotate-180" strokeWidth={2.2} />
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* FAQ + Contact */}
-      <section className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
-          <p className="font-medium text-primary">{c.faqKicker}</p>
-          <h2 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">{c.faqTitle}</h2>
-          <div className="mt-4">
+      <section className="mx-auto max-w-7xl px-3 pt-14 pb-14 sm:px-5 sm:pt-19 sm:pb-19">
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_440px] sm:items-start sm:gap-4">
+          <div className="rounded-[24px] bg-card p-6 sm:rounded-[32px] sm:p-11">
+            <h2 className="mb-5 font-heading text-2xl font-black tracking-tight text-foreground sm:mb-6.5 sm:text-[34px]">
+              {c.faqTitle}
+            </h2>
             <FaqSection items={c.faq} />
           </div>
+          <div className="rounded-[24px] bg-ink p-6 text-ink-foreground sm:rounded-[32px] sm:p-10">
+            <h3 className="mb-3 font-heading text-xl font-black tracking-tight sm:text-[28px]">{c.contactKicker}</h3>
+            <p className="mb-6 text-[15px] leading-[1.9] text-ink-muted sm:mb-7">{c.contactBody}</p>
+            <a
+              href={buildWhatsAppLink(c.contactWhatsappCta)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-2.5 flex h-[54px] items-center justify-center gap-2.5 rounded-full bg-vivid text-[16px] font-extrabold text-whatsapp-foreground sm:h-[58px] sm:text-[16.5px]"
+            >
+              <MessageCircle className="size-5" strokeWidth={2} />
+              {c.contactWhatsappCta}
+            </a>
+            <a
+              href={`tel:${BUSINESS.phoneE164}`}
+              dir="ltr"
+              className="mb-7 flex h-[50px] items-center justify-center gap-2.5 rounded-full border-[1.5px] border-white/24 text-[15px] font-bold sm:h-[54px] sm:text-base"
+            >
+              <Phone className="size-[18px]" strokeWidth={1.8} />
+              {BUSINESS.phoneDisplay}
+            </a>
+            <div className="space-y-3.5 border-t border-white/12 pt-6 text-sm text-ink-muted sm:text-[14.5px]">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="size-[18px] shrink-0 text-vivid" strokeWidth={1.8} />
+                {isEn
+                  ? `${BUSINESS.address.localityAr}, Jordan`
+                  : `${BUSINESS.address.streetAddressAr}، ${BUSINESS.address.localityAr}`}
+              </div>
+              <div className="flex items-center gap-3">
+                <MessageCircle className="size-[18px] shrink-0 text-vivid" strokeWidth={1.8} />
+                <a href={`mailto:${BUSINESS.email}`} className="hover:text-white">
+                  {BUSINESS.email}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="h-fit rounded-2xl border border-border bg-secondary/20 p-6 sm:p-8">
-          <p className="font-medium text-primary">{c.contactKicker}</p>
-          <p className="mt-2 mb-6 text-sm text-muted-foreground">{c.contactBody}</p>
+        <div className="mt-3 rounded-[24px] bg-card p-6 sm:mt-4 sm:rounded-[32px] sm:p-8">
           <ContactForm />
         </div>
       </section>

@@ -146,7 +146,7 @@ export function ProductCard({
                 </span>
               </div>
             ) : (
-              <p className="font-heading text-[13.5px] font-extrabold text-gold-dark lg:text-base">
+              <p className="font-heading text-[13.5px] font-extrabold text-primary-dark lg:text-base">
                 {priceOnRequestLabel}
               </p>
             )}

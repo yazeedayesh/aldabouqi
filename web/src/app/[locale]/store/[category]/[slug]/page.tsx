@@ -192,7 +192,7 @@ export default async function ProductDetailPage({
             <h1 className="font-heading mb-3.5 text-2xl leading-snug font-black lg:text-[28px]">{title}</h1>
 
             <div className="mb-5 flex flex-wrap items-center gap-2">
-              <span className="flex h-[30px] items-center rounded-full bg-accent px-3 text-[12.5px] font-bold text-gold-dark">
+              <span className="flex h-[30px] items-center rounded-full bg-accent px-3 text-[12.5px] font-bold text-primary-dark">
                 {conditionLabels[loc][product.condition]}
               </span>
               <span className="flex h-[30px] items-center gap-1.5 rounded-full border border-border px-3 text-[12.5px] font-semibold text-muted-foreground">
@@ -211,7 +211,7 @@ export default async function ProductDetailPage({
                   <span className="ms-auto text-[12.5px] text-muted-foreground">{content.negotiable}</span>
                 </>
               ) : (
-                <span className="font-heading text-2xl font-black text-gold-dark">{content.priceOnRequest}</span>
+                <span className="font-heading text-2xl font-black text-primary-dark">{content.priceOnRequest}</span>
               )}
             </div>
 
@@ -297,7 +297,7 @@ export default async function ProductDetailPage({
             <div className="flex flex-col gap-2.5 text-[13.5px] text-muted-foreground">
               {otherConditions.map((c) => (
                 <div key={c} className="flex gap-2.5">
-                  <span className="min-w-[74px] font-bold text-gold-dark">{conditionLabels[loc][c]}</span>
+                  <span className="min-w-[74px] font-bold text-primary-dark">{conditionLabels[loc][c]}</span>
                   <span>{conditionExplainer[loc][c]}</span>
                 </div>
               ))}

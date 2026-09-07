@@ -133,7 +133,7 @@ export default async function CoverageAreasPage({ params }: PageProps<"/[locale]
         <div className="mt-12 rounded-2xl border border-dashed border-border p-8 text-center">
           <p className="font-heading font-semibold text-foreground">{c.notListed}</p>
           <Button
-            className="mt-4 bg-whatsapp text-white hover:bg-whatsapp-dark"
+            className="mt-4 bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp-dark"
             nativeButton={false}
             render={
               <a

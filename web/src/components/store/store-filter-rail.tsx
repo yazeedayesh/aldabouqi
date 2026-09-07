@@ -69,7 +69,7 @@ export function StoreFilterRail({
             onClick={() => onNavigate?.()}
             className={cn(
               "flex h-[38px] items-center justify-between rounded-[10px] px-3 text-sm",
-              !activeCategorySlug ? "bg-accent font-bold text-gold-dark" : "text-muted-foreground"
+              !activeCategorySlug ? "bg-accent font-bold text-primary-dark" : "text-muted-foreground"
             )}
           >
             <span>{content.allCategories}</span>
@@ -82,7 +82,7 @@ export function StoreFilterRail({
               onClick={() => onNavigate?.()}
               className={cn(
                 "flex h-[38px] items-center justify-between rounded-[10px] px-3 text-sm",
-                activeCategorySlug === cat.slug ? "bg-accent font-bold text-gold-dark" : "text-muted-foreground"
+                activeCategorySlug === cat.slug ? "bg-accent font-bold text-primary-dark" : "text-muted-foreground"
               )}
             >
               <span>{cat.name}</span>
@@ -134,7 +134,7 @@ export function StoreFilterRail({
           )}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-[42px] items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-bold text-white"
+          className="flex h-[42px] items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-bold text-whatsapp-foreground"
         >
           <MessageCircle className="size-4" strokeWidth={1.9} />
           {content.sellCta}

@@ -99,7 +99,7 @@ export function StorePageContent({
         </button>
         <Link
           href="/store"
-          className={`flex h-10 shrink-0 items-center rounded-full px-3.5 text-[13.5px] font-bold ${!activeCategorySlug ? "bg-accent text-gold-dark" : "border border-border text-muted-foreground"}`}
+          className={`flex h-10 shrink-0 items-center rounded-full px-3.5 text-[13.5px] font-bold ${!activeCategorySlug ? "bg-accent text-primary-dark" : "border border-border text-muted-foreground"}`}
         >
           {content.allCategories}
         </Link>
@@ -107,7 +107,7 @@ export function StorePageContent({
           <Link
             key={cat.slug}
             href={`/store/${cat.slug}`}
-            className={`flex h-10 shrink-0 items-center rounded-full px-3.5 text-[13.5px] ${activeCategorySlug === cat.slug ? "bg-accent font-bold text-gold-dark" : "border border-border text-muted-foreground"}`}
+            className={`flex h-10 shrink-0 items-center rounded-full px-3.5 text-[13.5px] ${activeCategorySlug === cat.slug ? "bg-accent font-bold text-primary-dark" : "border border-border text-muted-foreground"}`}
           >
             {cat.name}
           </Link>

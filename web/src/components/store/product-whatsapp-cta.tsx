@@ -42,7 +42,7 @@ export function ProductWhatsAppCta({
     <Button
       size={compact ? "sm" : "lg"}
       className={cn(
-        "rounded-full bg-whatsapp text-white hover:bg-whatsapp-dark",
+        "rounded-full bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp-dark",
         compact ? "h-[38px] flex-1 gap-1.5 text-[13px] font-bold" : "h-13 px-6 text-base",
         className
       )}

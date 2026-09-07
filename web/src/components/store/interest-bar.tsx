@@ -72,7 +72,7 @@ export function InterestBar({ locale }: { locale: "ar" | "en" }) {
             ))}
           </ul>
           <Button
-            className="mt-3 w-full bg-whatsapp text-white hover:bg-whatsapp-dark"
+            className="mt-3 w-full bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp-dark"
             nativeButton={false}
             render={<a href={buildStoreWhatsAppLink(message)} target="_blank" rel="noopener noreferrer" />}
           >

@@ -63,7 +63,7 @@ export default async function AdminDashboardPage() {
           Google's direct API require real billing on file before serving
           any image-generation request — no free path exists for this
           specific capability. Site owner decided to defer, not pay yet. */}
-      <div className="rounded-2xl border border-primary/20 bg-gold-tint p-5">
+      <div className="rounded-2xl border border-primary/20 bg-accent p-5">
         <div className="flex items-center gap-2 text-foreground">
           <Sparkles className="size-5 text-primary" strokeWidth={1.7} />
           <h2 className="font-heading font-bold">تحويل صورة المنتج تلقائياً لغرفة منزلية حقيقية بالذكاء الاصطناعي</h2>

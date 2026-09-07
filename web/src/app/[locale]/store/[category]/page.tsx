@@ -191,8 +191,14 @@ export default async function CategoryPage({
           { href: `/store/${slug}`, label: name },
         ]}
         image={
-          extra?.heroImage
-            ? { src: extra.heroImage.src, alt: locale === "en" ? extra.heroImage.altEn : extra.heroImage.altAr }
+          categoryRow.image
+            ? {
+                src: categoryRow.image,
+                alt:
+                  locale === "en"
+                    ? `Used ${name} for sale in Amman`
+                    : `${name} مستعملة للبيع في عمّان`,
+              }
             : undefined
         }
       />
