@@ -4,6 +4,8 @@ import { StorePageContent } from "@/components/store/store-page-content";
 import { buildMetadata } from "@/lib/seo";
 import { getStoreData } from "@/lib/store-data";
 import { parseStoreFilters } from "@/lib/store-query";
+import { getDefaultContactNumber } from "@/lib/business";
+import { STORE_PHONE_E164 } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 300;
@@ -92,7 +94,7 @@ export default async function StorePage({ params, searchParams }: PageProps<"/[l
 
   const sp = await searchParams;
   const filters = parseStoreFilters(sp);
-  const data = await getStoreData({ filters });
+  const [data, defaultNumber] = await Promise.all([getStoreData({ filters }), getDefaultContactNumber()]);
 
   return (
     <>
@@ -104,6 +106,7 @@ export default async function StorePage({ params, searchParams }: PageProps<"/[l
         <StorePageContent
           locale={loc}
           pathname="/store"
+          defaultPhoneE164={defaultNumber?.phoneE164 ?? STORE_PHONE_E164}
           categories={data.categories.map((cat) => ({
             slug: cat.slug,
             name: loc === "en" ? cat.nameEn : cat.nameAr,

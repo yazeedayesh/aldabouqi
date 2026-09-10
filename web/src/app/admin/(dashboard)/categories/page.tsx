@@ -16,6 +16,7 @@ export default async function AdminCategoriesPage() {
       nameEn: categories.nameEn,
       image: categories.image,
       sortOrder: categories.sortOrder,
+      hidden: categories.hidden,
       productCount: count(products.id),
     })
     .from(categories)
@@ -60,7 +61,16 @@ export default async function AdminCategoriesPage() {
                     <div className="size-10 rounded-lg bg-secondary" />
                   )}
                 </td>
-                <td className="p-3 font-medium text-foreground">{category.nameAr}</td>
+                <td className="p-3 font-medium text-foreground">
+                  <div className="flex items-center gap-2">
+                    {category.nameAr}
+                    {category.hidden && (
+                      <span className="rounded-full bg-secondary px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
+                        مخفي
+                      </span>
+                    )}
+                  </div>
+                </td>
                 <td className="p-3 text-muted-foreground">{category.slug}</td>
                 <td className="p-3 text-muted-foreground">{category.productCount}</td>
                 <td className="p-3 text-end">

@@ -1,15 +1,19 @@
 import { asc } from "drizzle-orm";
 import { getDb } from "@/db";
-import { categories } from "@/db/schema";
+import { categories, contactNumbers } from "@/db/schema";
+import { AdminPageHeader } from "../../admin-page-header";
 import { ProductForm } from "../product-form";
 
 export default async function NewProductPage() {
-  const categoryRows = await getDb().select().from(categories).orderBy(asc(categories.sortOrder));
+  const [categoryRows, contactNumberRows] = await Promise.all([
+    getDb().select().from(categories).orderBy(asc(categories.sortOrder)),
+    getDb().select().from(contactNumbers).orderBy(asc(contactNumbers.sortOrder)),
+  ]);
 
   return (
     <div>
-      <h1 className="mb-6 font-heading text-2xl font-bold text-foreground">إضافة منتج جديد</h1>
-      <ProductForm categories={categoryRows} />
+      <AdminPageHeader title="إضافة منتج" subtitle="منتج جديد" />
+      <ProductForm categories={categoryRows} contactNumbers={contactNumberRows} />
     </div>
   );
 }

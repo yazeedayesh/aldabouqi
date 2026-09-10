@@ -1,4 +1,5 @@
 import { BUSINESS, SITE_URL } from "@/lib/constants";
+import { getBusinessSettings, getDefaultContactNumber } from "@/lib/business";
 
 /**
  * Typed JSON-LD helpers mirroring the current site's structured data
@@ -15,23 +16,16 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
   );
 }
 
-const defaultAddress = {
-  "@type": "PostalAddress",
-  streetAddress: BUSINESS.address.streetAddressAr,
-  addressLocality: BUSINESS.address.localityAr,
-  addressRegion: BUSINESS.address.localityAr,
-  postalCode: BUSINESS.address.postalCode,
-  addressCountry: BUSINESS.address.countryCode,
-};
-
 const defaultGeo = {
   "@type": "GeoCoordinates",
   latitude: BUSINESS.geo.latitude,
   longitude: BUSINESS.geo.longitude,
 };
 
-/** Standalone LocalBusiness block — homepage, about, contact. */
-export function LocalBusinessJsonLd({
+/** Standalone LocalBusiness block — homepage, about, contact. Async: reads
+ * the admin-editable business_settings row + default contact number
+ * (admin v2 brief, 2026-09-08 — "تنعكس على... الـschema"). */
+export async function LocalBusinessJsonLd({
   description,
   image = `${SITE_URL}/img/logo/aldabouqi.webp`,
   openingHours = { opens: "00:00", closes: "23:59" },
@@ -42,18 +36,27 @@ export function LocalBusinessJsonLd({
   openingHours?: { opens: string; closes: string };
   aggregateRating?: { ratingValue: string; reviewCount: string };
 }) {
+  const [settings, defaultNumber] = await Promise.all([getBusinessSettings(), getDefaultContactNumber()]);
+
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        name: BUSINESS.nameAr,
+        name: settings.nameAr,
         image,
         "@id": SITE_URL,
         url: SITE_URL,
-        telephone: BUSINESS.phoneE164,
-        email: BUSINESS.email,
-        address: defaultAddress,
+        telephone: defaultNumber?.phoneE164 ?? BUSINESS.phoneE164,
+        email: settings.email,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: settings.addressAr,
+          addressLocality: BUSINESS.address.localityAr,
+          addressRegion: BUSINESS.address.localityAr,
+          postalCode: BUSINESS.address.postalCode,
+          addressCountry: BUSINESS.address.countryCode,
+        },
         geo: defaultGeo,
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
@@ -84,7 +87,7 @@ export function LocalBusinessJsonLd({
  * Service block wrapping LocalBusiness as `provider` — used on services.html
  * and every buy-used-furniture-[area] page.
  */
-export function ServiceJsonLd({
+export async function ServiceJsonLd({
   serviceType,
   name,
   description,
@@ -99,6 +102,8 @@ export function ServiceJsonLd({
   offerDescription: string;
   openingHours?: { opens: string; closes: string };
 }) {
+  const [settings, defaultNumber] = await Promise.all([getBusinessSettings(), getDefaultContactNumber()]);
+
   return (
     <JsonLd
       data={{
@@ -109,11 +114,18 @@ export function ServiceJsonLd({
         description,
         provider: {
           "@type": "LocalBusiness",
-          name: BUSINESS.nameAr,
+          name: settings.nameAr,
           image: `${SITE_URL}/img/logo/aldabouqi.webp`,
-          telephone: BUSINESS.phoneE164,
-          email: BUSINESS.email,
-          address: defaultAddress,
+          telephone: defaultNumber?.phoneE164 ?? BUSINESS.phoneE164,
+          email: settings.email,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: settings.addressAr,
+            addressLocality: BUSINESS.address.localityAr,
+            addressRegion: BUSINESS.address.localityAr,
+            postalCode: BUSINESS.address.postalCode,
+            addressCountry: BUSINESS.address.countryCode,
+          },
           geo: defaultGeo,
           url: SITE_URL,
           priceRange: "$$",

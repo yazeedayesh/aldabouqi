@@ -10,6 +10,7 @@ import type { Category } from "@/db/schema";
 export function CategoryForm({ category }: { category?: Category }) {
   const router = useRouter();
   const [image, setImage] = useState<string | null>(category?.image ?? null);
+  const [hidden, setHidden] = useState(category?.hidden ?? false);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +47,7 @@ export function CategoryForm({ category }: { category?: Category }) {
       nameEn: data.get("nameEn"),
       sortOrder: Number(data.get("sortOrder") ?? 0),
       image,
+      hidden,
     };
 
     const url = category ? `/api/admin/categories/${category.id}` : "/api/admin/categories";
@@ -119,6 +121,24 @@ export function CategoryForm({ category }: { category?: Category }) {
           )}
         </div>
       </Field>
+
+      <div className="flex items-start justify-between gap-3 rounded-lg border border-border p-3.5">
+        <div>
+          <div className="text-sm font-medium text-foreground">إخفاء القسم من الموقع</div>
+          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+            بينشال من القائمة والصفحة الرئيسية وفلاتر المتجر فورًا، بس منتجاته وصفحته تضل موجودة وما تنكسر روابطها.
+          </p>
+        </div>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={hidden}
+          onClick={() => setHidden((v) => !v)}
+          className={`flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-colors ${hidden ? "justify-end bg-primary" : "justify-start bg-muted"}`}
+        >
+          <span className="size-5 rounded-full bg-white shadow" />
+        </button>
+      </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
 

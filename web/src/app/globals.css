@@ -66,33 +66,55 @@
   --color-vivid-light: var(--vivid-light);
   --color-mint: var(--mint);
   --color-mint-foreground: var(--mint-foreground);
+  /* Admin panel (admin v2 brief, 2026-09-08) — literal values from the
+     admin-*.html mockups, distinct from the public site's own tokens since
+     the two are never visible together and the mockup's exact greys don't
+     match the public site's warmer neutrals. */
+  --color-admin-sidebar: var(--admin-sidebar);
+  --color-admin-sidebar-border: var(--admin-sidebar-border);
+  --color-admin-sidebar-muted: var(--admin-sidebar-muted);
+  --color-admin-sidebar-subtle: var(--admin-sidebar-subtle);
+  --color-admin-bg: var(--admin-bg);
+  --color-admin-input: var(--admin-input);
+  --color-admin-border: var(--admin-border);
+  --color-admin-divider: var(--admin-divider);
+  --color-admin-muted: var(--admin-muted);
+  --color-admin-muted-2: var(--admin-muted-2);
+  --color-admin-faint: var(--admin-faint);
+  --color-admin-danger-bg: var(--admin-danger-bg);
+  --color-admin-danger: var(--admin-danger);
 }
 
 :root {
   /* v2 brand identity (2026-09-07) — emerald green, literal hex values from
      the approved mockup (design-reference/v2-home-*.html), not approximated.
      Replaces the earlier cream/gold palette entirely; no old token survives. */
-  --background: #f7f7f5;
+  --background: #fafaf8;
   --foreground: #101012;
   --card: #ffffff;
   --card-foreground: #101012;
   --popover: #ffffff;
   --popover-foreground: #101012;
-  --primary: #0b7a5a; /* emerald */
+  /* v3 animated canvas (2026-09-09, artifact aab4d6d5) — literal values from
+     Main.dc.html/Mobile.dc.html, not approximated. Base emerald #0FA36B with
+     #0B7A5A as its own a:hover — kept as --primary-dark below, which already
+     matched this exactly before this pass (only --primary itself was too
+     dark, using the hover shade as the base). */
+  --primary: #0fa36b;
   --primary-foreground: #ffffff;
-  --primary-dark: #095f46; /* mockup's a:hover color — darker emerald for hover/active states */
+  --primary-dark: #0b7a5a;
   --secondary: #f7f7f5;
   --secondary-foreground: #101012;
   --muted: #f7f7f5;
-  --muted-foreground: #63636a;
-  --accent: #e9f6f0; /* light emerald tint 1 */
-  --accent-foreground: #0b7a5a;
+  --muted-foreground: #5a5f66;
+  --accent: #e4f7ee; /* light emerald tint 1 */
+  --accent-foreground: #0fa36b;
   --mint: #d6f5e7; /* light emerald tint 2 — deeper than --accent, for stat/rating cards */
   --mint-foreground: #3e6656;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #efefec;
-  --input: #efefec;
-  --ring: #0b7a5a;
+  --border: #e2e4e1;
+  --input: #e2e4e1;
+  --ring: #0fa36b;
   --ink: #101012;
   --ink-foreground: #ffffff; /* white, for text on the dark ink band */
   /* Not given literal single values in the brief's palette — derived from the
@@ -105,6 +127,19 @@
   --whatsapp-dark: color-mix(in oklch, var(--whatsapp) 82%, black);
   --whatsapp-foreground: #06301f;
   --vivid-light: #a8f0d0; /* the sell section's "نشاطنا الأساسي" badge text on --ink */
+  --admin-sidebar: #16181c;
+  --admin-sidebar-border: #262a31;
+  --admin-sidebar-muted: #a9afb8;
+  --admin-sidebar-subtle: #6b7280;
+  --admin-bg: #f4f5f6;
+  --admin-input: #f7f8f9;
+  --admin-border: #ecedef;
+  --admin-divider: #f0f1f2;
+  --admin-muted: #8a9099;
+  --admin-muted-2: #4b5158;
+  --admin-faint: #a3a8ae;
+  --admin-danger-bg: #fbebe7;
+  --admin-danger: #b4462f;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -170,6 +205,17 @@
   .input {
     @apply w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50;
   }
+
+  /* Admin panel form controls (admin v2 brief, 2026-09-08) — literal
+     mockup values: 50px height, 14px radius, filled #F7F8F9 background,
+     no border (depth via the fill color alone, matching the mockup). */
+  .admin-input {
+    @apply flex h-[50px] w-full items-center rounded-[14px] bg-admin-input px-4 text-[14.5px] text-foreground outline-none placeholder:text-admin-faint focus-visible:ring-2 focus-visible:ring-ring/40;
+  }
+
+  .admin-select-trigger {
+    @apply flex h-[50px] w-full items-center justify-between rounded-[14px] bg-admin-input px-4 text-[14.5px] font-semibold text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/40;
+  }
 }
 
 /* Floating WhatsApp button's halo pulse (brief §5/§9) — WhatsApp only, the
@@ -190,6 +236,102 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-whatsapp-pulse {
     animation: none;
+  }
+}
+
+/* v3 animation vocabulary (2026-09-09, artifact aab4d6d5) — literal keyframe
+   definitions copied from the approved canvas's Main.dc.html/Mobile.dc.html,
+   not approximated. Utility classes match the canvas's own naming so markup
+   ported from the canvas needs no translation. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marqueeR {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes kenburns {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.09) translate(1.5%, -1.5%); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-13px); }
+}
+@keyframes floaty2 {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-18px) rotate(-1deg); }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(38px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes drawLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes glow {
+  0%, 100% { box-shadow: 0 18px 50px -22px rgb(15 163 107 / 55%); }
+  50% { box-shadow: 0 24px 70px -18px rgb(15 163 107 / 85%); }
+}
+
+.rise { animation: riseIn 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.rise.d1 { animation-delay: 0.10s; }
+.rise.d2 { animation-delay: 0.20s; }
+.rise.d3 { animation-delay: 0.30s; }
+.rise.d4 { animation-delay: 0.42s; }
+.rise.d5 { animation-delay: 0.54s; }
+.rise.d6 { animation-delay: 0.66s; }
+.rise.d7 { animation-delay: 0.80s; }
+.rise.d8 { animation-delay: 0.95s; }
+
+.mq { display: flex; width: max-content; animation: marquee 26s linear infinite; }
+.mq-r { display: flex; width: max-content; animation: marqueeR 32s linear infinite; }
+.kb { animation: kenburns 22s ease-in-out infinite; }
+.fl { animation: floaty 6s ease-in-out infinite; }
+.fl-2 { animation: floaty2 7.5s ease-in-out infinite; }
+.spin-slow { animation: spinSlow 26s linear infinite; }
+.glow { animation: glow 4.5s ease-in-out infinite; }
+
+.shine {
+  background: linear-gradient(100deg, #101012 35%, #0fa36b 50%, #101012 65%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5.5s linear infinite;
+}
+
+.draw-line {
+  transform-origin: right;
+  animation: drawLine 1.6s 0.4s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .mq, .mq-r, .kb, .fl, .fl-2, .spin-slow, .glow, .shine, .draw-line {
+    animation: none !important;
+  }
+  .rise {
+    opacity: 1;
+    transform: none;
+  }
+  .draw-line {
+    transform: scaleX(1);
+  }
+  .shine {
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: inherit;
+    background: none;
   }
 }
 

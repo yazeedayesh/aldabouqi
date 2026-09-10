@@ -12,7 +12,8 @@ import { buildMetadata } from "@/lib/seo";
 import { categoryContent } from "@/lib/category-content";
 import { getStoreData } from "@/lib/store-data";
 import { parseStoreFilters } from "@/lib/store-query";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, STORE_PHONE_E164 } from "@/lib/constants";
+import { getDefaultContactNumber } from "@/lib/business";
 import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 300;
@@ -151,7 +152,10 @@ export default async function CategoryPage({
 
   const sp = await searchParams;
   const filters = parseStoreFilters(sp);
-  const data = await getStoreData({ categorySlug: categoryRow.slug, filters });
+  const [data, defaultNumber] = await Promise.all([
+    getStoreData({ categorySlug: categoryRow.slug, filters }),
+    getDefaultContactNumber(),
+  ]);
 
   const faq = extra ? (locale === "en" ? extra.faqEn : extra.faqAr) : [];
 
@@ -211,6 +215,7 @@ export default async function CategoryPage({
         <StorePageContent
           locale={loc}
           pathname={`/store/${slug}`}
+          defaultPhoneE164={defaultNumber?.phoneE164 ?? STORE_PHONE_E164}
           activeCategorySlug={categoryRow.slug}
           categories={data.categories.map((cat) => ({
             slug: cat.slug,

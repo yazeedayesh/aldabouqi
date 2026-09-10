@@ -5,6 +5,7 @@ import { productSchema } from "@/lib/validation";
 import { requireAdmin } from "@/lib/require-admin";
 import { pingIndexNow } from "@/lib/indexnow";
 import { fillImageAlts } from "@/lib/generate-alt";
+import { generateUniqueProductSlug } from "@/lib/slug";
 
 export async function GET() {
   const { response } = await requireAdmin();
@@ -26,9 +27,10 @@ export async function POST(request: Request) {
 
   const [categoryRow] = await getDb().select().from(categories).where(eq(categories.slug, parsed.data.category));
   const images = fillImageAlts(parsed.data.images, parsed.data.titleAr, categoryRow?.nameAr ?? "");
+  const slug = await generateUniqueProductSlug(parsed.data.slug || parsed.data.titleEn);
 
-  const [row] = await getDb().insert(products).values({ ...parsed.data, images }).returning();
-  if (row.status !== "draft") {
+  const [row] = await getDb().insert(products).values({ ...parsed.data, slug, images }).returning();
+  if (row.visibility === "published") {
     pingIndexNow([`/store/${row.category}/${row.slug}`, `/en/store/${row.category}/${row.slug}`]);
   }
   return Response.json(row, { status: 201 });

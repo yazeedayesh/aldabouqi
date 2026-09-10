@@ -4,7 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import { Phone, ShieldCheck, ShoppingCart, Truck } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { getDb } from "@/db";
-import { categories as categoriesTable, products } from "@/db/schema";
+import { categories as categoriesTable, contactNumbers, products } from "@/db/schema";
+import { getDefaultContactNumber } from "@/lib/business";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
 import { ProductGallery } from "@/components/store/product-gallery";
@@ -49,6 +50,10 @@ const statusDot = {
   available: "#25d366",
   reserved: "var(--muted-foreground)",
   sold: "",
+  // "draft" is still a valid Postgres value on this column for backward
+  // compatibility (see schema.ts) even though the app never writes it here
+  // anymore — this entry only exists to satisfy the type, never renders.
+  draft: "",
 } as const;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/store/[category]/[slug]">) {
@@ -85,18 +90,42 @@ export default async function ProductDetailPage({
   // A product under the wrong category in the URL 404s instead of rendering
   // normally — letting it through would give every product two indexable
   // URLs (its real category and any other slug someone types), which is
-  // duplicate content, not a convenience.
-  if (!product || product.status === "draft" || product.category !== category) notFound();
+  // duplicate content, not a convenience. A "draft" product 404s too
+  // ("ما انعرض أبدًا") but "hidden" deliberately does NOT — its direct URL
+  // keeps working, it's just excluded from listings (admin v2 brief,
+  // 2026-09-08: "بتضل موجودة وما بتنكسر روابطها").
+  if (!product || product.visibility === "draft" || product.category !== category) notFound();
 
-  const [categoryRow, relatedProducts] = await Promise.all([
+  const [categoryRow, relatedProducts, whatsappNumber, callNumber, defaultNumber] = await Promise.all([
     getDb().select().from(categoriesTable).where(eq(categoriesTable.slug, category)).then((r) => r[0]),
     getDb()
       .select()
       .from(products)
-      .where(and(eq(products.category, category), eq(products.status, "available"), ne(products.id, product.id)))
+      .where(
+        and(
+          eq(products.category, category),
+          eq(products.status, "available"),
+          eq(products.visibility, "published"),
+          ne(products.id, product.id)
+        )
+      )
       .orderBy(desc(products.createdAt))
       .limit(4),
+    product.whatsappContactNumberId
+      ? getDb().select().from(contactNumbers).where(eq(contactNumbers.id, product.whatsappContactNumberId)).then((r) => r[0])
+      : Promise.resolve(undefined),
+    product.callContactNumberId
+      ? getDb().select().from(contactNumbers).where(eq(contactNumbers.id, product.callContactNumberId)).then((r) => r[0])
+      : Promise.resolve(undefined),
+    getDefaultContactNumber(),
   ]);
+
+  // Resolution order matches the admin form's own stated fallback chain:
+  // WhatsApp -> its own override, else the site default. Call -> its own
+  // override, else "same number as WhatsApp" (per the product form's
+  // placeholder text), else the site default.
+  const resolvedWhatsapp = whatsappNumber?.phoneE164 ?? defaultNumber?.phoneE164 ?? BUSINESS.phoneE164;
+  const resolvedCall = callNumber?.phoneE164 ?? whatsappNumber?.phoneE164 ?? defaultNumber?.phoneE164 ?? STORE_PHONE_E164;
 
   const title = loc === "en" ? product.titleEn : product.titleAr;
   const description = loc === "en" ? product.descriptionEn : product.descriptionAr;
@@ -208,7 +237,9 @@ export default async function ProductDetailPage({
                 <>
                   <span className="font-heading text-4xl font-black text-primary lg:text-[40px]">{product.price}</span>
                   <span className="text-base font-semibold text-muted-foreground">{loc === "en" ? "JOD" : "د.أ"}</span>
-                  <span className="ms-auto text-[12.5px] text-muted-foreground">{content.negotiable}</span>
+                  {product.negotiable && (
+                    <span className="ms-auto text-[12.5px] text-muted-foreground">{content.negotiable}</span>
+                  )}
                 </>
               ) : (
                 <span className="font-heading text-2xl font-black text-primary-dark">{content.priceOnRequest}</span>
@@ -227,6 +258,7 @@ export default async function ProductDetailPage({
                 productTitleAr={product.titleAr}
                 message={loc === "en" ? `Hi, I'm interested in: ${title}` : `مرحباً، بدي أستفسر عن: ${title}`}
                 label={content.whatsappCta}
+                whatsappPhoneE164={resolvedWhatsapp}
                 className="h-[54px] w-full text-[16.5px] font-extrabold"
               />
               <div className="grid grid-cols-2 gap-2.5">
@@ -235,7 +267,7 @@ export default async function ProductDetailPage({
                   variant="outline"
                   className="h-12 rounded-full border-[1.5px] border-ink text-[14.5px] font-bold"
                   nativeButton={false}
-                  render={<a href={`tel:${STORE_PHONE_E164}`} aria-label={content.call} />}
+                  render={<a href={`tel:${resolvedCall}`} aria-label={content.call} />}
                 >
                   <Phone className="size-[18px]" strokeWidth={1.7} />
                   {content.call}
@@ -327,6 +359,7 @@ export default async function ProductDetailPage({
                 locale={loc}
                 noPhotoLabel={content.noPhotoYet}
                 priceOnRequestLabel={content.priceOnRequest}
+                callPhoneE164={defaultNumber?.phoneE164 ?? STORE_PHONE_E164}
               />
             ))}
           </div>
@@ -344,10 +377,11 @@ export default async function ProductDetailPage({
           productTitleAr={product.titleAr}
           message={loc === "en" ? `Hi, I'm interested in: ${title}` : `مرحباً، بدي أستفسر عن: ${title}`}
           label={content.whatsappCta}
+          whatsappPhoneE164={resolvedWhatsapp}
           className="h-[54px] flex-1 text-base font-extrabold"
         />
         <a
-          href={`tel:${STORE_PHONE_E164}`}
+          href={`tel:${resolvedCall}`}
           aria-label={content.call}
           className="flex size-[54px] shrink-0 items-center justify-center rounded-full border-[1.5px] border-ink"
         >

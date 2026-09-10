@@ -5,6 +5,7 @@ import { productSchema } from "@/lib/validation";
 import { requireAdmin } from "@/lib/require-admin";
 import { pingIndexNow } from "@/lib/indexnow";
 import { fillImageAlts } from "@/lib/generate-alt";
+import { generateUniqueProductSlug } from "@/lib/slug";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { response } = await requireAdmin();
@@ -17,7 +18,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     return Response.json({ error: parsed.error.flatten() }, { status: 400 });
   }
 
-  const { images: rawImages, ...restUpdates } = parsed.data;
+  const { images: rawImages, slug: rawSlug, ...restUpdates } = parsed.data;
   let images: ProductImage[] | undefined;
   if (rawImages) {
     const [existing] = await getDb().select().from(products).where(eq(products.id, id));
@@ -29,14 +30,19 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     images = fillImageAlts(rawImages, titleAr, categoryRow?.nameAr ?? "");
   }
 
+  // Only touch the slug when the admin explicitly opted into manual editing
+  // (form's "تعديل يدوي" toggle) — otherwise the existing slug is preserved
+  // so published links never silently break from a routine edit.
+  const slug = rawSlug !== undefined ? await generateUniqueProductSlug(rawSlug, id) : undefined;
+
   const [row] = await getDb()
     .update(products)
-    .set({ ...restUpdates, ...(images ? { images } : {}), updatedAt: new Date() })
+    .set({ ...restUpdates, ...(slug ? { slug } : {}), ...(images ? { images } : {}), updatedAt: new Date() })
     .where(eq(products.id, id))
     .returning();
 
   if (!row) return Response.json({ error: "Not found" }, { status: 404 });
-  if (row.status !== "draft") {
+  if (row.visibility === "published") {
     pingIndexNow([`/store/${row.category}/${row.slug}`, `/en/store/${row.category}/${row.slug}`]);
   }
   return Response.json(row);

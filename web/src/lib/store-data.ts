@@ -19,7 +19,11 @@ export async function getStoreData({ categorySlug, filters }: { categorySlug?: s
   const db = getDb();
   const statuses = filters.includeSold ? (["available", "sold"] as const) : (["available"] as const);
 
-  const statusConditions = [inArray(products.status, statuses)];
+  // visibility='published' is required on every customer-facing query —
+  // "hidden" and "draft" products must never appear in listings (admin v2
+  // brief, 2026-09-08), even though a hidden product's own direct URL
+  // still resolves (see the product detail page's own notFound() check).
+  const statusConditions = [inArray(products.status, statuses), eq(products.visibility, "published")];
   const categoryScopedConditions = [...statusConditions];
   if (categorySlug) categoryScopedConditions.push(eq(products.category, categorySlug));
 
@@ -57,7 +61,11 @@ export async function getStoreData({ categorySlug, filters }: { categorySlug?: s
         .select({ min: min(products.price), max: max(products.price) })
         .from(products)
         .where(and(...categoryScopedConditions)),
-      db.select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder)),
+      db
+        .select()
+        .from(categoriesTable)
+        .where(eq(categoriesTable.hidden, false))
+        .orderBy(asc(categoriesTable.sortOrder)),
       db
         .select()
         .from(products)

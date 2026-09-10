@@ -1,10 +1,11 @@
-import { asc } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { getDb } from "@/db";
 import { categories as categoriesTable } from "@/db/schema";
 import { BUSINESS } from "@/lib/constants";
+import { getBusinessSettings, getDefaultContactNumber } from "@/lib/business";
 import { FacebookIcon, InstagramIcon, XIcon } from "./social-icons";
 
 /**
@@ -17,15 +18,20 @@ import { FacebookIcon, InstagramIcon, XIcon } from "./social-icons";
  * change instead of drifting from actual store data.
  */
 export async function Footer() {
-  const [t, nav, locale] = await Promise.all([
+  const [t, nav, locale, settings, defaultNumber] = await Promise.all([
     getTranslations("footer"),
     getTranslations("nav"),
     getLocale(),
+    getBusinessSettings(),
+    getDefaultContactNumber(),
   ]);
+  const phoneE164 = defaultNumber?.phoneE164 ?? BUSINESS.phoneE164;
+  const phoneDisplay = phoneE164.replace(/^(\+\d{3})(\d{1,2})(\d{3})(\d{4})$/, "$1 $2 $3 $4");
 
   const categoryRows = await getDb()
     .select()
     .from(categoriesTable)
+    .where(eq(categoriesTable.hidden, false))
     .orderBy(asc(categoriesTable.sortOrder))
     .limit(5);
 
@@ -43,7 +49,9 @@ export async function Footer() {
         <div className="grid gap-10 pb-10 sm:grid-cols-2 sm:border-b sm:border-border lg:grid-cols-[1.7fr_1fr_1fr_1fr]">
           <div className="space-y-5">
             <SiteLogo imgClassName="h-10 w-auto" />
-            <p className="max-w-sm text-[14.5px] leading-relaxed text-muted-foreground">{t("tagline")}</p>
+            <p className="max-w-sm text-[14.5px] leading-relaxed text-muted-foreground">
+              {t("tagline", { years: settings.experienceYears.replace("+", "") })}
+            </p>
             <div className="flex items-center gap-2 pt-2">
               <a
                 href={BUSINESS.social.facebook}
@@ -107,16 +115,16 @@ export async function Footer() {
             <h3 className="mb-[18px] font-heading text-[15px] font-extrabold text-foreground">{t("contactUs")}</h3>
             <ul className="space-y-3 text-[14.5px] text-muted-foreground">
               <li>
-                <a href={`tel:${BUSINESS.phoneE164}`} dir="ltr" className="hover:text-primary">
-                  {BUSINESS.phoneDisplay}
+                <a href={`tel:${phoneE164}`} dir="ltr" className="hover:text-primary">
+                  {phoneDisplay}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${BUSINESS.email}`} className="hover:text-primary">
-                  {BUSINESS.email}
+                <a href={`mailto:${settings.email}`} className="hover:text-primary">
+                  {settings.email}
                 </a>
               </li>
-              <li>{locale === "en" ? "All areas of Amman" : "جميع مناطق عمان"}</li>
+              <li>{locale === "en" ? "All areas of Amman" : settings.addressAr}</li>
               <li>
                 <Link href="/privacy-policy" className="hover:text-primary">
                   {nav("privacyPolicy")}
@@ -127,7 +135,7 @@ export async function Footer() {
         </div>
 
         <div className="pt-6 text-center text-[13.5px] text-muted-foreground">
-          © {new Date().getFullYear()} {BUSINESS.nameAr} — {t("rights")}
+          © {new Date().getFullYear()} {settings.nameAr} — {t("rights")}
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { ne } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
 import { categories, products } from "@/db/schema";
 import { areas } from "@/lib/areas";
@@ -18,6 +18,11 @@ const bilingualPaths = [
   "/buy-used-bedrooms",
   "/buy-used-home-furniture",
   "/buy-used-office-furniture",
+  "/buy-used-appliances",
+  "/house-clearance",
+  "/buy-antiques",
+  "/buy-used-sofas",
+  "/buy-used-kitchens",
   "/store",
 ];
 
@@ -53,11 +58,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // (and the build that generates it) down with it.
   try {
     const [categoryRows, liveProducts] = await Promise.all([
-      getDb().select({ slug: categories.slug, updatedAt: categories.updatedAt }).from(categories),
+      getDb()
+        .select({ slug: categories.slug, updatedAt: categories.updatedAt })
+        .from(categories)
+        .where(eq(categories.hidden, false)),
       getDb()
         .select({ slug: products.slug, category: products.category, updatedAt: products.updatedAt })
         .from(products)
-        .where(ne(products.status, "draft")),
+        .where(eq(products.visibility, "published")),
     ]);
 
     // The 8 category landing pages (/store/{category}) — real indexed

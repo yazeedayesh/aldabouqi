@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { JsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL } from "@/lib/constants";
+import { getBusinessSettings, getDefaultContactNumber } from "@/lib/business";
 import type { Locale } from "@/i18n/routing";
 
 const content = {
@@ -119,6 +120,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
   const { locale } = await params;
   setRequestLocale(locale);
   const c = content[locale as Locale];
+  const [settings, defaultNumber] = await Promise.all([getBusinessSettings(), getDefaultContactNumber()]);
 
   return (
     <>
@@ -126,22 +128,22 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         data={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
-          name: `${c.pageTitle} - ${BUSINESS.nameAr}`,
+          name: `${c.pageTitle} - ${settings.nameAr}`,
           description: c.metaDescription,
           url: `${SITE_URL}${locale === "en" ? "/en" : ""}/about`,
           mainEntity: {
             "@type": "Organization",
-            name: BUSINESS.nameAr,
-            legalName: BUSINESS.nameAr,
+            name: settings.nameAr,
+            legalName: settings.nameAr,
             url: SITE_URL,
             logo: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
             image: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
             description: c.intro.body,
-            telephone: BUSINESS.phoneE164,
-            email: BUSINESS.email,
+            telephone: defaultNumber?.phoneE164 ?? BUSINESS.phoneE164,
+            email: settings.email,
             address: {
               "@type": "PostalAddress",
-              streetAddress: BUSINESS.address.streetAddressAr,
+              streetAddress: settings.addressAr,
               addressLocality: BUSINESS.address.localityAr,
               addressRegion: BUSINESS.address.localityAr,
               postalCode: BUSINESS.address.postalCode,

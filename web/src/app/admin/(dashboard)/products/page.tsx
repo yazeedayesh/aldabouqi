@@ -1,104 +1,53 @@
 import Link from "next/link";
-import Image from "next/image";
-import { desc } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 import { Plus } from "lucide-react";
 import { getDb } from "@/db";
-import { products } from "@/db/schema";
-import { Button } from "@/components/ui/button";
-import { DeleteProductButton } from "./delete-product-button";
+import { categories } from "@/db/schema";
+import { getAdminProductsData } from "@/lib/admin-products-data";
+import { parseAdminProductFilters } from "@/lib/admin-products-query";
+import { AdminPageHeader } from "../admin-page-header";
+import { ProductsTable } from "./products-table";
 
-const statusLabels: Record<string, string> = {
-  available: "متوفر",
-  reserved: "محجوز",
-  sold: "مباع",
-  draft: "مسودة",
-};
+export default async function AdminProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = await searchParams;
+  const filters = parseAdminProductFilters(sp);
 
-const statusColors: Record<string, string> = {
-  available: "bg-green-100 text-green-700",
-  reserved: "bg-yellow-100 text-yellow-700",
-  sold: "bg-gray-200 text-gray-600",
-  draft: "bg-blue-100 text-blue-700",
-};
+  const [categoryRows, data] = await Promise.all([
+    getDb().select().from(categories).orderBy(asc(categories.sortOrder)),
+    getAdminProductsData(filters),
+  ]);
 
-export default async function AdminProductsPage() {
-  const rows = await getDb().select().from(products).orderBy(desc(products.createdAt));
+  const inquiryCounts = Object.fromEntries(
+    Array.from(data.inquiryCountByProduct.entries()).filter(([id]) => id != null) as [string, number][]
+  );
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <h1 className="font-heading text-2xl font-bold text-foreground">المنتجات</h1>
-        <Button nativeButton={false} render={<Link href="/admin/products/new" />}>
-          <Plus className="size-4" />
-          إضافة منتج
-        </Button>
-      </div>
-
-      <div className="mt-6 overflow-x-auto rounded-xl border border-border bg-background">
-        <table className="w-full text-sm">
-          <thead className="border-b border-border bg-secondary/40 text-start">
-            <tr>
-              <th className="p-3 text-start font-medium">الصورة</th>
-              <th className="p-3 text-start font-medium">العنوان</th>
-              <th className="p-3 text-start font-medium">السعر</th>
-              <th className="p-3 text-start font-medium">الحالة</th>
-              <th className="p-3 text-start font-medium"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((product) => (
-              <tr key={product.id} className="border-b border-border last:border-0">
-                <td className="p-3">
-                  {product.images[0] ? (
-                    <Image
-                      src={product.images[0].url}
-                      alt={product.images[0].alt}
-                      width={48}
-                      height={48}
-                      className="size-12 rounded-lg object-cover"
-                    />
-                  ) : (
-                    <div className="size-12 rounded-lg bg-secondary" />
-                  )}
-                </td>
-                <td className="p-3 font-medium text-foreground">{product.titleAr}</td>
-                <td className="p-3 text-muted-foreground">
-                  {product.price ? `${product.price} د.أ` : "عند المعاينة"}
-                </td>
-                <td className="p-3">
-                  <span
-                    className={`rounded-full px-2.5 py-1 text-xs font-medium ${statusColors[product.status]}`}
-                  >
-                    {statusLabels[product.status]}
-                  </span>
-                </td>
-                <td className="p-3 text-end">
-                  <div className="flex items-center justify-end gap-3">
-                    <Link
-                      href={`/admin/products/${product.id}`}
-                      className="text-sm font-medium text-primary hover:underline"
-                    >
-                      تعديل
-                    </Link>
-                    <DeleteProductButton id={product.id} />
-                  </div>
-                </td>
-              </tr>
-            ))}
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={5} className="p-10 text-center">
-                  <p className="text-muted-foreground">لا يوجد منتجات بعد</p>
-                  <Button className="mt-4" nativeButton={false} render={<Link href="/admin/products/new" />}>
-                    <Plus className="size-4" />
-                    إضافة أول منتج
-                  </Button>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      <AdminPageHeader
+        title="المنتجات"
+        subtitle={`${data.allProductsTotal} منتج · ${data.allProductsPublished} منشور · ${data.allProductsHidden} مخفي`}
+        actions={
+          <Link
+            href="/admin/products/new"
+            className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-primary px-4.5 text-[13.5px] font-bold text-primary-foreground"
+          >
+            <Plus className="size-4" />
+            أضف منتج
+          </Link>
+        }
+      />
+      <ProductsTable
+        products={data.products}
+        categories={categoryRows}
+        inquiryCounts={inquiryCounts}
+        filters={filters}
+        totalCount={data.totalCount}
+        totalPages={data.totalPages}
+      />
     </div>
   );
 }

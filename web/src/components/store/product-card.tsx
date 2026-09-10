@@ -47,6 +47,7 @@ export function ProductCard({
   delayMs = 0,
   noPhotoLabel,
   priceOnRequestLabel,
+  callPhoneE164 = STORE_PHONE_E164,
 }: {
   product: Product;
   /** Display name of product.category, resolved by the caller (which already has the category list in hand). */
@@ -55,6 +56,12 @@ export function ProductCard({
   delayMs?: number;
   noPhotoLabel: string;
   priceOnRequestLabel: string;
+  /** The card's hover-action call button uses the site's default contact
+   * number, not each product's own per-product override — that override
+   * only applies on the product's own detail page (admin v2 brief,
+   * 2026-09-08 scopes it to "صفحة المنتج"). Callers pass the resolved
+   * default so this stays live-editable instead of a hardcoded constant. */
+  callPhoneE164?: string;
 }) {
   const title = locale === "en" ? product.titleEn : product.titleAr;
   const c = content[locale];
@@ -116,9 +123,10 @@ export function ProductCard({
                     : `مرحباً، بدي أستفسر عن: ${title}`
                 }
                 label={c.whatsapp}
+                whatsappPhoneE164={callPhoneE164}
               />
               <a
-                href={`tel:${STORE_PHONE_E164}`}
+                href={`tel:${callPhoneE164}`}
                 aria-label={c.call}
                 className="flex size-[38px] shrink-0 items-center justify-center rounded-full bg-ink text-ink-foreground transition-transform hover:scale-105"
               >

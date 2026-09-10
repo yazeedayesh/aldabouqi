@@ -27,6 +27,7 @@ export function StorePageContent({
   filters,
   priceBounds,
   content,
+  defaultPhoneE164,
 }: {
   locale: "ar" | "en";
   pathname: string;
@@ -39,6 +40,9 @@ export function StorePageContent({
   conditions: ConditionCount[];
   filters: StoreFilters;
   priceBounds: { min: number; max: number };
+  /** Resolved server-side from the admin-managed default contact number —
+   * see ProductCard's own callPhoneE164 doc comment. */
+  defaultPhoneE164: string;
   content: {
     categoriesTitle: string;
     allCategories: string;
@@ -141,6 +145,7 @@ export function StorePageContent({
                   delayMs={(i % 6) * 90}
                   noPhotoLabel={content.noPhotoYet}
                   priceOnRequestLabel={content.priceOnRequest}
+                  callPhoneE164={defaultPhoneE164}
                 />
               ))}
             </div>

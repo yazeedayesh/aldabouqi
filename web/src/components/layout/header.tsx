@@ -1,5 +1,5 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { count, eq } from "drizzle-orm";
+import { and, count, eq } from "drizzle-orm";
 import { MessageCircle, Phone, Store } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { SiteLogo } from "@/components/layout/site-logo";
@@ -26,7 +26,7 @@ export async function Header() {
   const [{ value: storeCount }] = await getDb()
     .select({ value: count() })
     .from(products)
-    .where(eq(products.status, "available"));
+    .where(and(eq(products.status, "available"), eq(products.visibility, "published")));
 
   const navLinks = [
     { href: "/about" as const, label: t("about") },

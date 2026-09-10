@@ -1,4 +1,4 @@
-import { asc, count, eq } from "drizzle-orm";
+import { and, asc, count, eq } from "drizzle-orm";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
@@ -45,6 +45,7 @@ const content = {
     statExperienceValue: "+٦٠",
     statExperienceLabel: "سنة خبرة بسوق الأثاث المستعمل",
     statRatingLabel: "تقييم خرائط جوجل من عملاء حقيقيين",
+    trustBadges: ["تقييم مجاني", "دفع نقدي فوري", "النقل علينا", "معاينة بموقعك", "٣٦ منطقة بعمّان", "خبرة +٦٠ سنة"],
     categoriesKicker: "الــمــتــجــر",
     categoriesHeading: "تصفّح الأثاث المستعمل حسب القسم",
     categoriesCountPill: "الأقسام الثمانية",
@@ -109,6 +110,7 @@ const content = {
     statExperienceValue: "60+",
     statExperienceLabel: "years of experience in the used-furniture market",
     statRatingLabel: "Google Maps rating from real customers",
+    trustBadges: ["Free Valuation", "Instant Cash", "Free Moving", "On-Site Inspection", "36 Areas in Amman", "60+ Years Experience"],
     categoriesKicker: "THE STORE",
     categoriesHeading: "Browse Used Furniture by Category",
     categoriesCountPill: "8 Categories",
@@ -180,13 +182,20 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const isEn = loc === "en";
 
   const [categoryRows, categoryCounts, [{ value: totalAvailable }]] = await Promise.all([
-    getDb().select().from(categoriesTable).orderBy(asc(categoriesTable.sortOrder)),
+    getDb()
+      .select()
+      .from(categoriesTable)
+      .where(eq(categoriesTable.hidden, false))
+      .orderBy(asc(categoriesTable.sortOrder)),
     getDb()
       .select({ category: products.category, value: count() })
       .from(products)
-      .where(eq(products.status, "available"))
+      .where(and(eq(products.status, "available"), eq(products.visibility, "published")))
       .groupBy(products.category),
-    getDb().select({ value: count() }).from(products).where(eq(products.status, "available")),
+    getDb()
+      .select({ value: count() })
+      .from(products)
+      .where(and(eq(products.status, "available"), eq(products.visibility, "published"))),
   ]);
   const countByCategory = new Map(categoryCounts.map((r) => [r.category, r.value]));
 
@@ -207,22 +216,22 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <section className="mx-auto max-w-7xl px-3 pt-3 sm:px-5 sm:pt-5">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_468px]">
           <div className="flex min-h-[420px] flex-col justify-center rounded-[22px] bg-card p-6 sm:min-h-[520px] sm:rounded-[32px] sm:p-13">
-            <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-xs font-bold text-primary sm:text-[13px]">
-              <span className="size-1.5 rounded-full bg-vivid" />
+            <span className="rise d1 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-xs font-bold text-primary sm:text-[13px]">
+              <span className="animate-whatsapp-pulse size-1.5 rounded-full bg-vivid" />
               {c.heroBadge}
             </span>
-            <h1 className="font-heading text-[32px] font-black leading-[1.24] tracking-tight text-foreground sm:text-[62px] sm:leading-[1.16]">
+            <h1 className="rise d2 font-heading text-[32px] font-black leading-[1.24] tracking-tight text-foreground sm:text-[62px] sm:leading-[1.16]">
               {c.heroTitleStart}
-              <span className="text-primary">{c.heroTitleAccent}</span>
+              <span className="shine">{c.heroTitleAccent}</span>
             </h1>
-            <p className="mt-3.5 max-w-xl text-[14.5px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-[17.5px] sm:leading-[1.85]">
+            <p className="rise d3 mt-3.5 max-w-xl text-[14.5px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-[17.5px] sm:leading-[1.85]">
               {c.heroBody}
             </p>
 
             <form
               action={searchAction}
               method="GET"
-              className="mt-6 flex h-[58px] items-center gap-2.5 rounded-full bg-secondary px-1.5 ps-4.5 sm:mt-9.5 sm:h-18"
+              className="rise d4 mt-6 flex h-[58px] items-center gap-2.5 rounded-full bg-secondary px-1.5 ps-4.5 sm:mt-9.5 sm:h-18"
             >
               <Search className="size-[19px] shrink-0 text-muted-foreground" strokeWidth={2} />
               <input
@@ -241,15 +250,17 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           </div>
 
           <div className="hidden flex-col gap-4 lg:flex">
-            <div className="relative min-h-[344px] flex-1 overflow-hidden rounded-[32px]">
-              <Image
-                src="/img/hero/furntuer.webp"
-                alt={c.heroWorkAlt}
-                fill
-                priority
-                className="object-cover"
-                sizes="468px"
-              />
+            <div className="rise d5 relative min-h-[344px] flex-1 overflow-hidden rounded-[32px]">
+              <div className="kb absolute inset-0">
+                <Image
+                  src="/img/hero/furntuer.webp"
+                  alt={c.heroWorkAlt}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="468px"
+                />
+              </div>
               <div className="absolute inset-x-4 bottom-4 flex h-[62px] items-center justify-between rounded-full bg-card/92 ps-5.5 pe-2">
                 <span className="text-sm font-semibold text-foreground">{c.heroWorkCta}</span>
                 <span className="flex size-11.5 items-center justify-center rounded-full bg-ink text-ink-foreground">
@@ -258,13 +269,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col justify-center rounded-[28px] bg-ink p-6 text-ink-foreground">
+              <div className="rise d6 flex flex-col justify-center rounded-[28px] bg-ink p-6 text-ink-foreground">
                 <div className="font-heading text-[44px] font-black leading-none tracking-tight">
                   {c.statExperienceValue}
                 </div>
                 <div className="mt-2 text-[13.5px] leading-relaxed text-ink-muted">{c.statExperienceLabel}</div>
               </div>
-              <div className="flex flex-col justify-center rounded-[28px] bg-mint p-6">
+              <div className="rise d7 fl flex flex-col justify-center rounded-[28px] bg-mint p-6">
                 <div className="mb-2 flex items-baseline gap-1.5">
                   <span className="font-heading text-[44px] font-black leading-none tracking-tight text-primary">
                     {c.ratingValue}
@@ -293,6 +304,38 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               </div>
               <div className="text-xs leading-snug text-mint-foreground">{c.statRatingLabel}</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Crossing marquee bands */}
+      <section className="relative mt-10 h-[140px] overflow-hidden sm:mt-14 sm:h-[190px]" aria-hidden="true">
+        <div className="absolute inset-x-[-10%] top-[10%] -rotate-2 overflow-hidden bg-ink py-3 sm:py-4">
+          <div className="mq gap-0">
+            {[0, 1].map((rep) => (
+              <span key={rep} className="flex shrink-0 gap-6 pe-6 whitespace-nowrap font-heading text-base font-extrabold text-ink-foreground sm:gap-8 sm:pe-8 sm:text-xl">
+                {categoryRows.map((cat) => (
+                  <span key={cat.slug} className="flex items-center gap-6 sm:gap-8">
+                    {isEn ? cat.nameEn : cat.nameAr}
+                    <span className="text-vivid">◆</span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="absolute inset-x-[-10%] top-[54%] rotate-2 overflow-hidden bg-primary py-2.5 sm:py-3.5">
+          <div className="mq-r gap-0">
+            {[0, 1].map((rep) => (
+              <span key={rep} className="flex shrink-0 gap-6 pe-6 whitespace-nowrap text-sm font-extrabold text-white sm:gap-8 sm:pe-8 sm:text-lg">
+                {c.trustBadges.map((badge) => (
+                  <span key={badge} className="flex items-center gap-6 sm:gap-8">
+                    {badge}
+                    <span>✦</span>
+                  </span>
+                ))}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -390,8 +433,13 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
       {/* Sell to us */}
       <section className="mx-auto max-w-7xl px-3 pt-14 sm:px-5 sm:pt-19">
-        <div className="overflow-hidden rounded-[28px] bg-ink text-ink-foreground sm:rounded-[40px]">
-          <div className="grid gap-8 p-6 sm:grid-cols-2 sm:items-center sm:p-13">
+        <div className="relative overflow-hidden rounded-[28px] bg-ink text-ink-foreground sm:rounded-[40px]">
+          <div
+            className="spin-slow pointer-events-none absolute -top-40 -start-40 size-115 rounded-full"
+            style={{ background: "radial-gradient(circle, rgb(15 163 107 / 28%), transparent 68%)" }}
+            aria-hidden="true"
+          />
+          <div className="relative grid gap-8 p-6 sm:grid-cols-2 sm:items-center sm:p-13">
             <div>
               <span className="mb-5 inline-flex h-8.5 items-center rounded-full bg-white/10 px-4 text-xs font-bold text-vivid-light sm:mb-6.5">
                 {c.sellBadge}
@@ -418,7 +466,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                   href={buildWhatsAppLink(isEn ? "Hi, I'd like to sell my used furniture" : "مرحباً، بدي أبيع أثاثي المستعمل")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-[54px] items-center gap-2.5 rounded-full bg-vivid px-7 text-[16px] font-extrabold text-whatsapp-foreground sm:h-[58px] sm:px-7.5 sm:text-[16.5px]"
+                  className="glow flex h-[54px] items-center gap-2.5 rounded-full bg-vivid px-7 text-[16px] font-extrabold text-whatsapp-foreground sm:h-[58px] sm:px-7.5 sm:text-[16.5px]"
                 >
                   <MessageCircle className="size-5" strokeWidth={2} />
                   {c.sellCta}
