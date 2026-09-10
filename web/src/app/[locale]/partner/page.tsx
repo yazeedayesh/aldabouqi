@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/partner"
     keywords: c.keywords,
     path: "/partner",
     locale: locale as Locale,
-    ogImage: `${SITE_URL}/img/logo/aldabouqi-black.webp`,
+    ogImage: `${SITE_URL}/img/logo/aldabouqi-logo.webp`,
   });
 }
 

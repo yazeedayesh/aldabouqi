@@ -36,6 +36,11 @@ export function buildMetadata({
   keywords,
 }: BuildMetadataInput): Metadata {
   const canonical = localizedUrl(path, locale);
+  // Falls back to the exact source photo the favicon is generated from
+  // (src/app/icon.png etc.) so a shared link's preview image matches the
+  // browser-tab icon (site owner request, 2026-09-10) — pages with a more
+  // relevant photo (a product, a specific service) still pass their own.
+  const resolvedOgImage = ogImage ?? `${SITE_URL}/img/logo/aldabouqi-logo.webp`;
 
   const languages: Record<string, string> = hasEnglishVariant
     ? {
@@ -67,13 +72,13 @@ export function buildMetadata({
       siteName: BUSINESS.nameAr,
       locale: locale === "ar" ? "ar_JO" : "en_US",
       type: "website",
-      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+      images: [{ url: resolvedOgImage }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(ogImage ? { images: [ogImage] } : {}),
+      images: [resolvedOgImage],
     },
   };
 }
