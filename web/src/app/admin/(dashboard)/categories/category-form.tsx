@@ -102,7 +102,7 @@ export function CategoryForm({ category }: { category?: Category }) {
         <div className="flex items-center gap-3">
           {image && (
             <div className="relative size-20 overflow-hidden rounded-lg border border-border">
-              <Image src={image} alt="" fill className="object-cover" />
+              <Image src={image} alt="" fill sizes="80px" className="object-cover" />
               <button
                 type="button"
                 onClick={() => setImage(null)}

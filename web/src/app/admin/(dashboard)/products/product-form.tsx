@@ -336,7 +336,13 @@ export function ProductForm({
                     )}
                   >
                     <div className="relative mb-2.5 aspect-4/3 overflow-hidden rounded-xl bg-secondary">
-                      <Image src={img.url} alt={img.alt || ""} fill className="object-cover" />
+                      <Image
+                        src={img.url}
+                        alt={img.alt || ""}
+                        fill
+                        sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                        className="object-cover"
+                      />
                       {i === 0 ? (
                         <>
                           <span className="absolute start-2 top-2 flex size-[30px] items-center justify-center rounded-full bg-primary">

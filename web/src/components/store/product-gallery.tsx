@@ -1,15 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
 import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
 import { useSwipeIndex } from "@/hooks/use-swipe-index";
 import type { ProductImage } from "@/db/schema";
 import { cn } from "@/lib/utils";
+
+// Deferred and only mounted once the lightbox is actually opened — this
+// library's CSS was previously imported at the top of this file, which
+// Next.js bundles into the page's render-blocking stylesheet on every
+// product page even though almost nobody opens the zoom view (SEO audit
+// finding, 2026-09-10).
+const ProductLightbox = dynamic(
+  () => import("@/components/store/product-lightbox").then((m) => m.ProductLightbox)
+);
 
 const THUMB_SLOTS = 5;
 
@@ -153,14 +160,15 @@ export function ProductGallery({
         </div>
       )}
 
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        index={index}
-        on={{ view: ({ index: i }) => scrollToIndex(i) }}
-        slides={images.map((img) => ({ src: img.url, alt: img.alt || title }))}
-        plugins={[Zoom]}
-      />
+      {open && (
+        <ProductLightbox
+          open={open}
+          close={() => setOpen(false)}
+          index={index}
+          onView={scrollToIndex}
+          slides={images.map((img) => ({ src: img.url, alt: img.alt || title }))}
+        />
+      )}
     </div>
   );
 }
