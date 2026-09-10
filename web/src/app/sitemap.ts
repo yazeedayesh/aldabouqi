@@ -47,10 +47,10 @@ function bilingualEntry(path: string, lastModified?: Date): MetadataRoute.Sitema
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = bilingualPaths.flatMap((path) => bilingualEntry(path));
 
-  // The 36 neighborhood pages are Arabic-only — /en/buy-used-furniture-*
-  // redirects into these via vercel.json, it isn't separate content.
+  // The 36 neighborhood pages now have real English content too
+  // (site owner request, 2026-09-10).
   for (const area of areas) {
-    entries.push({ url: arUrl(`/buy-used-furniture-${area.slug}`) });
+    entries.push(...bilingualEntry(`/buy-used-furniture-${area.slug}`));
   }
 
   // The 44 static links above must reach Google even if Neon is briefly

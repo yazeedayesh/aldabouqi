@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ChevronLeft, MessageCircle, Phone, X } from "lucide-react";
 import { Menu as MenuIcon } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { SiteLogo } from "@/components/layout/site-logo";
 import {
   Sheet,
@@ -31,6 +31,7 @@ export function MobileNav({ storeCount }: { storeCount: number }) {
   const t = useTranslations("nav");
   const cta = useTranslations("cta");
   const locale = useLocale();
+  const pathname = usePathname();
 
   const rows = [
     { href: "/" as const, label: t("home") },
@@ -67,71 +68,71 @@ export function MobileNav({ storeCount }: { storeCount: number }) {
             of being pushed off-screen by a long link list (brief §5: "ثابتين
             بأسفل القائمة دايمًا ظاهرين"). */}
         <div className="min-h-0 flex-1 overflow-y-auto">
-          <div className="flex items-center justify-between px-[22px] pt-[22px]">
-            <SiteLogo variant="white" imgClassName="h-[26px] w-auto" />
+          <div className="flex items-center justify-between px-5 pt-4">
+            <SiteLogo variant="white" imgClassName="h-6 w-auto" />
             <SheetClose
               render={
                 <button
                   type="button"
                   aria-label={t("closeMenu")}
-                  className="flex size-11 items-center justify-center rounded-full bg-white/10 text-ink-foreground transition-colors hover:bg-white/15"
+                  className="flex size-10 items-center justify-center rounded-full bg-white/10 text-ink-foreground transition-colors hover:bg-white/15"
                 />
               }
             >
-              <X className="size-[19px]" strokeWidth={2.2} />
+              <X className="size-[18px]" strokeWidth={2.2} />
             </SheetClose>
           </div>
 
-          <nav aria-label={t("home")} className="flex flex-col px-[22px] pt-[34px]">
+          <nav aria-label={t("home")} className="flex flex-col px-5 pt-3">
             {rows.map((row) => (
               <Link
                 key={row.href}
                 href={row.href}
                 onClick={() => setOpen(false)}
-                className="flex min-h-[44px] items-center justify-between border-b border-ink-border py-[17px] last:border-b-0"
+                className="flex h-11 items-center justify-between border-b border-ink-border last:border-b-0"
               >
                 <span
                   className={
-                    "font-heading text-2xl font-extrabold " +
+                    "font-heading text-lg font-extrabold " +
                     (row.variant === "store" ? "text-vivid" : "text-ink-foreground")
                   }
                 >
                   {row.label}
                 </span>
                 {row.variant === "store" ? (
-                  <span className="flex h-7 items-center rounded-full bg-vivid/16 px-3 text-xs font-bold text-vivid">
+                  <span className="flex h-6 items-center rounded-full bg-vivid/16 px-2.5 text-[11px] font-bold text-vivid">
                     {storeCount} {locale === "en" ? "items" : "قطعة"}
                   </span>
                 ) : row.variant === "areas" ? (
-                  <span className="text-[12.5px] text-ink-muted">
+                  <span className="text-[12px] text-ink-muted">
                     {areas.length} {locale === "en" ? "areas" : "منطقة"}
                   </span>
                 ) : (
-                  <ChevronLeft className="size-5 text-ink-muted rtl:rotate-0 ltr:rotate-180" />
+                  <ChevronLeft className="size-4.5 text-ink-muted rtl:rotate-0 ltr:rotate-180" />
                 )}
               </Link>
             ))}
           </nav>
 
-          <div className="px-[22px] pt-[22px]">
-            <div className="flex h-13 items-center rounded-full bg-white/7 p-[5px]">
+          <div className="px-5 pt-3">
+            <div className="flex h-10 items-center rounded-full bg-white/7 p-[4px]">
               <Link
-                href="/"
+                href={pathname}
                 locale="ar"
                 onClick={() => setOpen(false)}
                 className={
-                  "flex h-full flex-1 items-center justify-center rounded-full text-[14.5px] font-bold transition-colors " +
+                  "flex h-full flex-1 items-center justify-center rounded-full text-[13.5px] font-bold transition-colors " +
                   (locale === "ar" ? "bg-white text-ink" : "text-ink-foreground/60")
                 }
               >
                 العربية
               </Link>
               <Link
-                href="/"
+                href={pathname}
                 locale="en"
                 onClick={() => setOpen(false)}
                 className={
-                  "flex h-full flex-1 items-center justify-center rounded-full text-[14.5px] font-semibold transition-colors " +
+                  "flex h-full flex-1 items-center justify-center rounded-full text-[13.5px] font-semibold transition-colors " +
                   (locale === "en" ? "bg-white text-ink" : "text-ink-foreground/60")
                 }
               >
@@ -141,24 +142,24 @@ export function MobileNav({ storeCount }: { storeCount: number }) {
           </div>
         </div>
 
-        <div className="flex shrink-0 flex-col gap-2.5 px-[22px] pt-4 pb-[22px]">
+        <div className="flex shrink-0 flex-col gap-2 px-5 pt-3 pb-4">
           <a
             href={buildWhatsAppLink(cta("whatsappDefaultMessage"))}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="flex h-[58px] items-center justify-center gap-2.5 rounded-full bg-whatsapp text-[16.5px] font-extrabold text-whatsapp-foreground"
+            className="flex h-13 items-center justify-center gap-2.5 rounded-full bg-whatsapp text-[15px] font-extrabold text-whatsapp-foreground"
           >
-            <MessageCircle className="size-[21px]" strokeWidth={2} />
+            <MessageCircle className="size-[19px]" strokeWidth={2} />
             {cta("whatsapp")}
           </a>
           <a
             href={`tel:${BUSINESS.phoneE164}`}
             dir="ltr"
             onClick={() => setOpen(false)}
-            className="flex h-[54px] items-center justify-center gap-2.5 rounded-full border-[1.5px] border-white/26 text-base font-bold text-ink-foreground"
+            className="flex h-12 items-center justify-center gap-2.5 rounded-full border-[1.5px] border-white/26 text-[15px] font-bold text-ink-foreground"
           >
-            <Phone className="size-[19px]" strokeWidth={1.8} />
+            <Phone className="size-[18px]" strokeWidth={1.8} />
             {BUSINESS.phoneDisplay}
           </a>
         </div>

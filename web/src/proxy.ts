@@ -1,4 +1,5 @@
 import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import { getAreaBySlug } from "./lib/areas";
 import type { NextRequest } from "next/server";
@@ -10,15 +11,27 @@ const intlMiddleware = createMiddleware(routing);
 // treated as a literal, non-dynamic path (confirmed empirically: it built
 // as a static "○" route, not a per-param SSG one, and every real slug
 // 404'd). The actual page lives at the internal path /areas/[area]; this
-// rewrites the public URL to that internal path before next-intl's own
-// locale routing runs, so the /ar prefix it adds internally still resolves
-// against the real file-system route.
-const AREA_URL_PATTERN = /^\/buy-used-furniture-([a-z0-9-]+)$/;
+// rewrites the public URL to that internal path, with an explicit locale
+// segment always spelled out (both "/en" and the unprefixed default "ar"
+// case). The English variant now has real content (site owner request,
+// 2026-09-10), hence the optional "/en" prefix.
+//
+// Rewritten directly with NextResponse.rewrite rather than mutating
+// request.nextUrl.pathname and delegating to intlMiddleware: for ar,
+// intlMiddleware needs to ADD a prefix, so it emits a real
+// x-middleware-rewrite header — but for en, a pre-mutated pathname
+// already matches what it considers canonical, so it just calls next()
+// on the ORIGINAL unrewritten request, which 404s (confirmed empirically:
+// the x-middleware-rewrite header is present for ar, absent for en).
+// Issuing the rewrite ourselves sidesteps that asymmetry entirely.
+const AREA_URL_PATTERN = /^(\/en)?\/buy-used-furniture-([a-z0-9-]+)$/;
 
 export default function middleware(request: NextRequest) {
   const match = AREA_URL_PATTERN.exec(request.nextUrl.pathname);
-  if (match && getAreaBySlug(match[1])) {
-    request.nextUrl.pathname = `/areas/${match[1]}`;
+  if (match && getAreaBySlug(match[2])) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${match[1] ? "en" : "ar"}/areas/${match[2]}`;
+    return NextResponse.rewrite(url);
   }
   return intlMiddleware(request);
 }

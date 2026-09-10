@@ -4,6 +4,7 @@ import { MessageCircle, Phone, Store } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { LocaleSwitchLink } from "@/components/layout/locale-switch-link";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { BUSINESS, buildWhatsAppLink } from "@/lib/constants";
@@ -54,21 +55,16 @@ export async function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-2.5">
-          <Link
-            href="/"
-            locale={otherLocale}
-            aria-label={otherLocaleShortLabel}
+          <LocaleSwitchLink
+            otherLocale={otherLocale}
+            label={otherLocaleShortLabel}
             className="flex size-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-border text-[11.5px] font-bold text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:hidden"
-          >
-            {otherLocaleShortLabel}
-          </Link>
-          <Link
-            href="/"
-            locale={otherLocale}
+          />
+          <LocaleSwitchLink
+            otherLocale={otherLocale}
+            label={otherLocaleShortLabel}
             className="hidden text-[13px] font-bold text-muted-foreground hover:text-primary sm:inline"
-          >
-            {otherLocaleShortLabel}
-          </Link>
+          />
           <Link
             href="/store"
             aria-label={t("store")}
