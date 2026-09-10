@@ -560,7 +560,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               <p className="text-[15px] leading-[1.9] text-mint-foreground">{c.ratingBody}</p>
             </div>
             <a
-              href="https://g.page/r/review"
+              href="https://g.page/r/Cc4ncrtuxPGHEBM/review"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-primary text-[15px] font-bold text-primary-foreground"
