@@ -212,45 +212,59 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       />
       <FaqJsonLd items={c.faq} />
 
-      {/* Hero */}
-      <section className="mx-auto max-w-7xl px-3 pt-3 sm:px-5 sm:pt-5">
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_468px]">
-          <div className="flex min-h-[420px] flex-col justify-center rounded-[22px] bg-card p-6 sm:min-h-[520px] sm:rounded-[32px] sm:p-13">
-            <span className="rise d1 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-xs font-bold text-primary sm:text-[13px]">
-              <span className="animate-whatsapp-pulse size-1.5 rounded-full bg-vivid" />
+      {/* Hero — asymmetric, overlapping (v3 canvas composition) */}
+      <section className="relative mx-auto max-w-7xl px-3 pt-8 sm:px-5 sm:pt-14">
+        {/* floating rotating trust seal — bridges the two columns, desktop only */}
+        <div className="fl pointer-events-none absolute top-6 z-30 hidden size-28 lg:block" style={{ insetInlineStart: "calc(100% - 468px - 56px)" }}>
+          <svg className="spin-slow absolute inset-0" width="112" height="112" viewBox="0 0 112 112" fill="none">
+            <circle cx="56" cy="56" r="52" stroke="var(--primary)" strokeWidth="2" strokeDasharray="4 9" strokeLinecap="round" />
+          </svg>
+          <div className="absolute inset-6 flex items-center justify-center rounded-full bg-ink shadow-lg">
+            <ShieldCheck className="size-6 text-vivid" strokeWidth={1.8} />
+          </div>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_468px] lg:items-start">
+          <div className="pt-2 lg:pt-6">
+            <span className="rise d1 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-4.5 py-2.5 text-xs font-bold text-ink-foreground sm:text-[13.5px]">
+              <span className="animate-whatsapp-pulse size-2 rounded-full bg-vivid" />
               {c.heroBadge}
             </span>
-            <h1 className="rise d2 font-heading text-[32px] font-black leading-[1.24] tracking-tight text-foreground sm:text-[62px] sm:leading-[1.16]">
-              {c.heroTitleStart}
-              <span className="shine">{c.heroTitleAccent}</span>
+
+            <h1 className="font-heading text-[34px] font-black leading-[1.14] tracking-tight text-foreground sm:text-[64px] sm:leading-[1.1]">
+              <span className="rise d2 block">{c.heroTitleStart}</span>
+              <span className="rise d3 shine block">{c.heroTitleAccent}</span>
             </h1>
-            <p className="rise d3 mt-3.5 max-w-xl text-[14.5px] leading-relaxed text-muted-foreground sm:mt-5 sm:text-[17.5px] sm:leading-[1.85]">
+
+            <p className="rise d4 mt-4 max-w-lg text-[15px] leading-relaxed text-muted-foreground sm:mt-6 sm:text-[17.5px] sm:leading-[1.9]">
               {c.heroBody}
             </p>
 
             <form
               action={searchAction}
               method="GET"
-              className="rise d4 mt-6 flex h-[58px] items-center gap-2.5 rounded-full bg-secondary px-1.5 ps-4.5 sm:mt-9.5 sm:h-18"
+              className="rise d5 mt-6 flex h-[60px] items-center gap-2.5 rounded-full bg-card px-1.5 ps-5 shadow-[0_2px_4px_rgba(16,16,18,.05),0_22px_54px_-26px_rgba(16,16,18,.35)] sm:mt-9 sm:h-[78px]"
             >
-              <Search className="size-[19px] shrink-0 text-muted-foreground" strokeWidth={2} />
+              <Search className="size-[19px] shrink-0 text-muted-foreground sm:size-[22px]" strokeWidth={2} />
               <input
                 type="search"
                 name="q"
                 placeholder={c.heroSearchPlaceholder}
-                className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground sm:text-[15px]"
+                className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground sm:text-[16.5px]"
               />
               <button
                 type="submit"
-                className="h-11 shrink-0 rounded-full bg-ink px-5 text-[13.5px] font-bold text-ink-foreground sm:h-14 sm:px-7 sm:text-[15px]"
+                className="glow flex h-11 shrink-0 items-center gap-2 rounded-full bg-primary px-5 text-[13.5px] font-extrabold text-primary-foreground sm:h-15 sm:px-8 sm:text-[16px]"
               >
+                <Search className="hidden size-[17px] sm:block" strokeWidth={2.2} />
                 {c.heroSearchCta}
               </button>
             </form>
           </div>
 
-          <div className="hidden flex-col gap-4 lg:flex">
-            <div className="rise d5 relative min-h-[344px] flex-1 overflow-hidden rounded-[32px]">
+          {/* overlapping image stack */}
+          <div className="rise d6 relative hidden h-[560px] lg:block">
+            <div className="absolute inset-0 overflow-hidden rounded-[32px] shadow-[0_40px_90px_-40px_rgba(16,16,18,.5)]">
               <div className="kb absolute inset-0">
                 <Image
                   src="/img/hero/furntuer.webp"
@@ -261,48 +275,54 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                   sizes="468px"
                 />
               </div>
-              <div className="absolute inset-x-4 bottom-4 flex h-[62px] items-center justify-between rounded-full bg-card/92 ps-5.5 pe-2">
-                <span className="text-sm font-semibold text-foreground">{c.heroWorkCta}</span>
-                <span className="flex size-11.5 items-center justify-center rounded-full bg-ink text-ink-foreground">
-                  <ChevronLeft className="size-4.5 rtl:rotate-0 ltr:rotate-180" strokeWidth={2.2} />
-                </span>
-              </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rise d6 flex flex-col justify-center rounded-[28px] bg-ink p-6 text-ink-foreground">
-                <div className="font-heading text-[44px] font-black leading-none tracking-tight">
-                  {c.statExperienceValue}
+
+            <div className="fl-2 absolute bottom-24 w-56 rounded-[22px] bg-card p-5 shadow-[0_26px_60px_-26px_rgba(16,16,18,.4)]" style={{ insetInlineStart: "-64px" }}>
+              <div className="mb-2 flex items-baseline gap-1.5">
+                <span className="font-heading text-4xl font-black leading-none tracking-tight text-primary">
+                  {c.ratingValue}
+                </span>
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-3.5 fill-primary text-primary" />
+                  ))}
                 </div>
-                <div className="mt-2 text-[13.5px] leading-relaxed text-ink-muted">{c.statExperienceLabel}</div>
               </div>
-              <div className="rise d7 fl flex flex-col justify-center rounded-[28px] bg-mint p-6">
-                <div className="mb-2 flex items-baseline gap-1.5">
-                  <span className="font-heading text-[44px] font-black leading-none tracking-tight text-primary">
-                    {c.ratingValue}
-                  </span>
-                  <Star className="size-4.5 fill-primary text-primary" />
-                </div>
-                <div className="text-[13.5px] leading-relaxed text-mint-foreground">{c.statRatingLabel}</div>
-              </div>
+              <div className="text-[13px] leading-[1.6] text-muted-foreground">{c.statRatingLabel}</div>
+            </div>
+
+            <div className="absolute -top-4 flex h-13 items-center gap-2.5 rounded-full bg-ink px-5 text-sm font-bold text-ink-foreground shadow-[0_16px_40px_-20px_rgba(16,16,18,.6)]" style={{ insetInlineEnd: "-14px" }}>
+              <span className="animate-whatsapp-pulse size-2 rounded-full bg-vivid" />
+              {isEn ? `${totalAvailable} items available now` : `${totalAvailable} قطعة متوفّرة الآن`}
             </div>
           </div>
 
-          {/* Mobile stat pills — same data, stacked layout */}
-          <div className="grid grid-cols-2 gap-3 lg:hidden">
-            <div className="rounded-[22px] bg-ink p-[18px] text-ink-foreground">
-              <div className="font-heading text-[30px] font-black leading-none tracking-tight">
-                {c.statExperienceValue}
-              </div>
-              <div className="mt-1.5 text-xs leading-snug text-ink-muted">{c.statExperienceLabel}</div>
-            </div>
-            <div className="rounded-[22px] bg-mint p-[18px]">
-              <div className="mb-1.5 flex items-baseline gap-1">
-                <span className="font-heading text-[30px] font-black leading-none tracking-tight text-primary">
+          {/* Mobile: plain image + stat pills */}
+          <div className="lg:hidden">
+            <div className="relative h-[240px] overflow-hidden rounded-[24px]">
+              <Image src="/img/hero/furntuer.webp" alt={c.heroWorkAlt} fill priority className="object-cover" sizes="100vw" />
+              <div className="fl-2 absolute bottom-3 flex items-center gap-2 rounded-2xl bg-card px-3.5 py-2.5 shadow-lg" style={{ insetInlineStart: "12px" }}>
+                <span className="font-heading text-2xl font-black leading-none tracking-tight text-primary">
                   {c.ratingValue}
                 </span>
-                <Star className="size-3.5 fill-primary text-primary" />
+                <span className="text-[11px] leading-tight text-muted-foreground">{c.statRatingLabel}</span>
               </div>
-              <div className="text-xs leading-snug text-mint-foreground">{c.statRatingLabel}</div>
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-3">
+              <div className="rounded-[22px] bg-ink p-[18px] text-ink-foreground">
+                <div className="font-heading text-[30px] font-black leading-none tracking-tight">
+                  {c.statExperienceValue}
+                </div>
+                <div className="mt-1.5 text-xs leading-snug text-ink-muted">{c.statExperienceLabel}</div>
+              </div>
+              <div className="rounded-[22px] bg-mint p-[18px]">
+                <div className="mb-1.5 flex items-baseline gap-1">
+                  <span className="font-heading text-[30px] font-black leading-none tracking-tight text-primary">
+                    {totalAvailable}
+                  </span>
+                </div>
+                <div className="text-xs leading-snug text-mint-foreground">{c.categorySummarySuffix}</div>
+              </div>
             </div>
           </div>
         </div>
