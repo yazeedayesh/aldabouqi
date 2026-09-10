@@ -3,6 +3,12 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "aldabouqi.com" }],
+      "destination": "https://www.aldabouqi.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/en/buy-used-furniture-abdali.html",
       "destination": "/en/buy-used-furniture-abdali",
       "permanent": true
