@@ -30,7 +30,7 @@ const content = {
   ar: {
     metaTitle: "شراء وبيع الأثاث المستعمل في عمان | أفضل الأسعار - الدابوقي",
     metaDescription:
-      "شركة الدابوقي لشراء وبيع العفش والأثاث المستعمل في عمان وكل مناطق الأردن: غرف نوم، صالونات، مكاتب، أجهزة كهربائية. معاينة ودفع نقدي فوري. اتصل: 0796983994",
+      "شركة الدابوقي لشراء وبيع الأثاث المستعمل في عمان: غرف نوم، صالونات، مكاتب، أجهزة كهربائية. معاينة ودفع نقدي فوري. اتصل: 0796983994",
     keywords:
       "شراء الأثاث المستعمل في عمان, بيع الأثاث المستعمل, عفش مستعمل للبيع, أثاث مستعمل بأسعار جيدة, شراء غرف النوم المستعملة, بيع الأثاث في عمان",
     heroBadge: "متاحين الآن · نرد خلال دقائق",
@@ -95,7 +95,7 @@ const content = {
   en: {
     metaTitle: "Buy Used Furniture in Amman at the Best Prices | Aldabouqi",
     metaDescription:
-      "Aldabouqi specializes in buying used furniture in Amman at the best prices. We buy bedrooms, office furniture, and used appliances. Call now for an instant, free valuation!",
+      "Aldabouqi buys used furniture in Amman at the best prices: bedrooms, office furniture, appliances. Call now for an instant, free valuation!",
     keywords:
       "buy used furniture Amman, sell used furniture Jordan, cash for furniture Amman, sell my furniture Amman, used living room furniture buyer",
     heroBadge: "Available now · we reply in minutes",

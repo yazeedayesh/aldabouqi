@@ -14,7 +14,7 @@ const content = {
   ar: {
     metaTitle: "مناطق التغطية | شركة الدابوقي لشراء الأثاث المستعمل في عمان",
     metaDescription:
-      "شركة الدابوقي تغطي كل مناطق عمان: خلدا، شفا بدران، تلاع العلي، الشميساني، عبدون، الجبيهة، صويلح، العبدلي وغيرها. اختر منطقتك وتواصل معنا مباشرة.",
+      "شركة الدابوقي تغطي كل مناطق عمان: خلدا، شفا بدران، تلاع العلي، الشميساني، عبدون، الجبيهة وغيرها. اختر منطقتك وتواصل معنا مباشرة.",
     keywords:
       "مناطق شراء اثاث مستعمل عمان, شراء اثاث مستعمل خلدا, شراء اثاث مستعمل تلاع العلي, شراء اثاث مستعمل عبدون, الدابوقي",
     pageTitle: "مناطق التغطية",
@@ -34,7 +34,7 @@ const content = {
   en: {
     metaTitle: "Coverage Areas | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Aldabouqi covers all Amman areas: Khalda, Shafa Badran, Tlaa Al Ali, Shmeisani, Abdoun, Jubaiha, Sweileh, Abdali and more. Pick your area and contact us directly.",
+      "Aldabouqi covers all Amman areas: Khalda, Shafa Badran, Tlaa Al Ali, Shmeisani, Abdoun, Jubaiha and more. Pick your area and contact us.",
     keywords:
       "used furniture buyer Amman areas, sell furniture Khalda, sell furniture Tlaa Al Ali, sell furniture Abdoun, Aldabouqi",
     pageTitle: "Coverage Areas",

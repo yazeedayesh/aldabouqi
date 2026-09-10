@@ -12,9 +12,9 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "من نحن | شركة الدابوقي لشراء الأثاث المستعمل في عمان - خبرة وثقة منذ سنوات",
+    metaTitle: "من نحن | شركة الدابوقي لشراء الأثاث المستعمل في عمان",
     metaDescription:
-      "تعرف على شركة الدابوقي الرائدة في شراء الأثاث المستعمل بعمان. نقدم خدمات احترافية وأسعار عادلة وثقة مطلقة في التعامل. خبرة طويلة في تقييم وشراء جميع أنواع الأثاث المنزلي والمكتبي.",
+      "تعرف على شركة الدابوقي الرائدة في شراء الأثاث المستعمل بعمان. خدمات احترافية، أسعار عادلة، وخبرة طويلة بتقييم وشراء الأثاث المنزلي والمكتبي.",
     keywords:
       "من نحن الدابوقي, شركة شراء أثاث مستعمل عمان, تاريخ شركة الدابوقي, خدمات شراء الأثاث, شركة موثوقة لشراء الأثاث, رؤية ورسالة الدابوقي, قيمنا, فريق عمل محترف",
     pageTitle: "من نحن",
@@ -56,9 +56,9 @@ const content = {
     ],
   },
   en: {
-    metaTitle: "About Us | Aldabouqi - Buying Used Furniture in Amman, Trusted for Years",
+    metaTitle: "About Us | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Get to know Aldabouqi, the leading used-furniture buyer in Amman. We offer professional service, fair prices, and complete trust. Years of experience valuing and buying all types of home and office furniture.",
+      "Get to know Aldabouqi, the leading used-furniture buyer in Amman — professional service, fair prices, and years of experience buying furniture.",
     keywords:
       "about Aldabouqi, used furniture buying company Amman, Aldabouqi history, furniture buying services, trusted furniture buyer, Aldabouqi vision and mission, our values, professional team",
     pageTitle: "About Us",

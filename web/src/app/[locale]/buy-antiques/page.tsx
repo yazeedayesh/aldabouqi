@@ -64,9 +64,9 @@ const content = {
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Buy Antiques & Artifacts in Amman | Accurate Valuation - Aldabouqi",
+    metaTitle: "Buy Antiques & Artifacts in Amman | Aldabouqi",
     metaDescription:
-      "We buy antiques and old artifacts in Amman: heritage crafts, paintings, and rare pieces. Accurate, professional valuation with instant cash payment. Call: 0796983994",
+      "We buy antiques and old artifacts in Amman: heritage crafts, paintings, rare pieces. Accurate valuation, instant cash payment. Call: 0796983994",
     keywords:
       "buy antiques Amman, sell old artifacts, buy antique pieces, sell heritage items Jordan, antique buying shops Amman, antique valuation",
     pageTitle: "Antiques & Artifacts",

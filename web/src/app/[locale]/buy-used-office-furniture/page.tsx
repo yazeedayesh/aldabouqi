@@ -7,9 +7,9 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شراء أثاث مكتبي مستعمل للبيع في عمان | مكاتب وكراسي - الدابوقي",
+    metaTitle: "شراء أثاث مكتبي مستعمل في عمان | الدابوقي",
     metaDescription:
-      "نشتري جميع أنواع الأثاث المكتبي المستعمل للبيع في عمان: مكاتب إدارية، كراسي، خزائن ملفات، طاولات اجتماعات. معاينة مجانية ودفع نقدي فوري. اتصل: 0796983994",
+      "نشتري الأثاث المكتبي المستعمل في عمان: مكاتب، كراسي، خزائن ملفات، طاولات اجتماعات. معاينة مجانية ودفع نقدي فوري. اتصل: 0796983994",
     keywords:
       "شراء أثاث مكتبي مستعمل عمان, بيع اثاث مكاتب, شراء مكاتب مستعملة, كراسي مكتبية للبيع, خزائن ملفات مستعملة, اثاث شركات للبيع, طاولات اجتماعات مستعملة, ريسبشن للبيع, الدابوقي, اثاث مكتبي عمان",
     pageTitle: "شراء أثاث مكتبي مستعمل",
@@ -56,19 +56,19 @@ const content = {
     otherServices: [
       { label: "شراء أثاث منزلي مستعمل", href: "/buy-used-home-furniture" as const },
       { label: "شراء غرف نوم مستعملة", href: "/buy-used-bedrooms" as const },
-      { label: "شراء أجهزة كهربائية مستعملة" },
-      { label: "إفراغ منازل بالكامل" },
-      { label: "شراء أنتيكات وتحف" },
-      { label: "شراء مطابخ مستعملة" },
+      { label: "شراء أجهزة كهربائية مستعملة", href: "/buy-used-appliances" as const },
+      { label: "إفراغ منازل بالكامل", href: "/house-clearance" as const },
+      { label: "شراء أنتيكات وتحف", href: "/buy-antiques" as const },
+      { label: "شراء مطابخ مستعملة", href: "/buy-used-kitchens" as const },
     ],
     experienceLabel: "خبرة +60 سنة",
     ctaTitle: "احصل على أفضل سعر لأثاثك المكتبي",
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Used Office Furniture in Amman | Desks, Chairs, Cabinets | Aldabouqi",
+    metaTitle: "Used Office Furniture in Amman | Aldabouqi",
     metaDescription:
-      "We buy all types of used office furniture in Amman: executive desks, chairs, filing cabinets, meeting tables, partitions. Free inspection and instant cash payment. Call: 0796983994",
+      "We buy used office furniture in Amman: executive desks, chairs, filing cabinets, meeting tables. Free inspection, instant cash payment. Call: 0796983994",
     keywords:
       "used office furniture Amman, sell office furniture, buy used desks, office chairs for sale, used filing cabinets, company furniture for sale, used meeting tables, reception desks for sale, Aldabouqi, office furniture Amman",
     pageTitle: "Used Office Furniture",
@@ -115,10 +115,10 @@ const content = {
     otherServices: [
       { label: "Used Home Furniture", href: "/buy-used-home-furniture" as const },
       { label: "Used Bedrooms", href: "/buy-used-bedrooms" as const },
-      { label: "Used Appliances" },
-      { label: "Full House Clearance" },
-      { label: "Antiques & Artifacts" },
-      { label: "Used Kitchens" },
+      { label: "Used Appliances", href: "/buy-used-appliances" as const },
+      { label: "Full House Clearance", href: "/house-clearance" as const },
+      { label: "Antiques & Artifacts", href: "/buy-antiques" as const },
+      { label: "Used Kitchens", href: "/buy-used-kitchens" as const },
     ],
     experienceLabel: "60+ Years of Experience",
     ctaTitle: "Get the best price for your office furniture",

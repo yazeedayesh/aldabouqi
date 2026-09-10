@@ -11,9 +11,9 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شريكنا معرض عايش | شركة الدابوقي لشراء الأثاث المستعمل في عمان",
+    metaTitle: "شريكنا معرض عايش | شركة الدابوقي - عمان",
     metaDescription:
-      "معرض عايش شريك الدابوقي الموثوق - نقدم خدمة شراء الأثاث المستعمل بالتعاون مع معرض عايش في عمان. أسعار تنافسية، تقييم فوري، ودفع نقدي. اتصل الآن للاستفسار.",
+      "معرض عايش شريك الدابوقي الموثوق لشراء الأثاث المستعمل في عمان. أسعار تنافسية، تقييم فوري، ودفع نقدي. اتصل الآن.",
     keywords:
       "خدمات شراء أثاث عمان, شراء أثاث منزلي مستعمل, شراء أثاث مكتبي, شراء أجهزة كهربائية مستعملة, شراء أنتيكات عمان, إفراغ منازل عمان, تقييم أثاث مستعمل, خدمات عايش",
     pageTitle: "معرض عايش لشراء الأثاث المستعمل",
@@ -38,9 +38,9 @@ const content = {
     ],
   },
   en: {
-    metaTitle: "Our Partner Ayesh Showroom | Aldabouqi - Buying Used Furniture in Amman",
+    metaTitle: "Our Partner Ayesh Showroom | Aldabouqi",
     metaDescription:
-      "Ayesh Showroom, Aldabouqi's trusted partner - we buy used furniture in partnership with Ayesh Showroom in Amman. Competitive prices, instant valuation, and cash payment. Call now to inquire.",
+      "Ayesh Showroom, Aldabouqi's trusted partner for buying used furniture in Amman. Competitive prices, instant valuation, cash payment.",
     keywords:
       "furniture buying services Amman, buy used home furniture, buy office furniture, buy used appliances, buy antiques Amman, house clearance Amman, used furniture valuation, Ayesh services",
     pageTitle: "Ayesh Showroom for Buying Used Furniture",

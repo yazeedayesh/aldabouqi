@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شراء مطابخ مستعملة في عمان | خشب، ألمنيوم، فورمايكا - الدابوقي",
+    metaTitle: "شراء مطابخ مستعملة في عمان | الدابوقي",
     metaDescription:
       "نشتري المطابخ المستعملة في عمان بجميع الأحجام والتصاميم: خشب، ألمنيوم، فورمايكا. تقييم فوري وسعر عادل، فك ونقل مجاني. اتصل: 0796983994",
     keywords:
@@ -66,7 +66,7 @@ const content = {
   en: {
     metaTitle: "Used Kitchens in Amman | Wood, Aluminum, Formica - Aldabouqi",
     metaDescription:
-      "We buy used kitchens in Amman, every size and design: wood, aluminum, formica. Instant valuation and a fair price, free disassembly and moving. Call: 0796983994",
+      "We buy used kitchens in Amman, every size and design: wood, aluminum, formica. Instant valuation, free disassembly and moving. Call: 0796983994",
     keywords:
       "sell used kitchen Amman, buy used kitchen cabinets, formica kitchen buying, sell wooden kitchen used, kitchen buying shops Amman, used kitchen disassembly",
     pageTitle: "Used Kitchens",

@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شراء عفش وأثاث منزلي مستعمل في عمان | أفضل الأسعار - الدابوقي",
+    metaTitle: "شراء عفش وأثاث منزلي مستعمل في عمان - الدابوقي",
     metaDescription:
       "نشتري العفش والأثاث المنزلي المستعمل في عمان: غرف نوم، صالونات، طاولات، كنب، خزائن. معاينة مجانية وتقييم فوري ودفع نقدي في موقعك. اتصل الآن: 0796983994",
     keywords:
@@ -56,19 +56,19 @@ const content = {
     otherServices: [
       { label: "شراء غرف نوم مستعملة", href: "/buy-used-bedrooms" as const },
       { label: "شراء أثاث مكتبي مستعمل", href: "/buy-used-office-furniture" as const },
-      { label: "شراء أجهزة كهربائية مستعملة" },
-      { label: "إفراغ منازل بالكامل" },
-      { label: "شراء أنتيكات وتحف" },
-      { label: "شراء مطابخ مستعملة" },
+      { label: "شراء أجهزة كهربائية مستعملة", href: "/buy-used-appliances" as const },
+      { label: "إفراغ منازل بالكامل", href: "/house-clearance" as const },
+      { label: "شراء أنتيكات وتحف", href: "/buy-antiques" as const },
+      { label: "شراء مطابخ مستعملة", href: "/buy-used-kitchens" as const },
     ],
     experienceLabel: "خبرة +60 سنة",
     ctaTitle: "احصل على أفضل سعر الآن",
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Used Home Furniture in Amman | Aldabouqi - Best Prices, Instant Service",
+    metaTitle: "Used Home Furniture in Amman | Aldabouqi",
     metaDescription:
-      "We buy all types of used home furniture in Amman: bedrooms, sofas, tables, cabinets. Free inspection, professional valuation, instant cash payment. Call now: 0796983994",
+      "We buy used home furniture in Amman: bedrooms, sofas, tables, cabinets. Free inspection, instant cash payment. Call now: 0796983994",
     keywords:
       "used home furniture Amman, sell used furniture, buy used furniture Jordan, furniture buying shops Amman, home furniture for sale, used bedrooms, used sofas, Aldabouqi, sell used sofa, used furniture Amman",
     pageTitle: "Used Home Furniture",
@@ -115,10 +115,10 @@ const content = {
     otherServices: [
       { label: "Used Bedrooms", href: "/buy-used-bedrooms" as const },
       { label: "Used Office Furniture", href: "/buy-used-office-furniture" as const },
-      { label: "Used Appliances" },
-      { label: "Full House Clearance" },
-      { label: "Antiques & Artifacts" },
-      { label: "Used Kitchens" },
+      { label: "Used Appliances", href: "/buy-used-appliances" as const },
+      { label: "Full House Clearance", href: "/house-clearance" as const },
+      { label: "Antiques & Artifacts", href: "/buy-antiques" as const },
+      { label: "Used Kitchens", href: "/buy-used-kitchens" as const },
     ],
     experienceLabel: "60+ Years of Experience",
     ctaTitle: "Get the best price now",

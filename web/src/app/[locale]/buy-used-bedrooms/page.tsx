@@ -7,9 +7,9 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شراء غرف نوم مستعملة في عمان | أفضل الأسعار - خشب، MDF، تركي | الدابوقي",
+    metaTitle: "شراء غرف نوم مستعملة في عمان | أفضل الأسعار - الدابوقي",
     metaDescription:
-      "نشتري غرف نوم مستعملة بجميع أنواعها في عمان: خشب، MDF، تركي، صيني بأعلى الأسعار. معاينة مجانية فورية، تقييم احترافي، دفع نقدي. اتصل: 0796983994",
+      "نشتري غرف نوم مستعملة بجميع أنواعها في عمان: خشب، MDF، تركي، صيني بأعلى الأسعار. معاينة مجانية ودفع نقدي فوري. اتصل: 0796983994",
     keywords:
       "شراء غرف نوم مستعملة عمان, بيع غرف نوم مستعملة, شراء غرف نوم خشب, غرف نوم تركي للبيع, غرف نوم MDF مستعملة, شراء اثاث غرف نوم, محلات شراء غرف نوم عمان, غرف نوم صيني مستعملة, الدابوقي غرف نوم",
     pageTitle: "شراء غرف نوم مستعملة",
@@ -56,19 +56,19 @@ const content = {
     otherServices: [
       { label: "شراء أثاث منزلي مستعمل", href: "/buy-used-home-furniture" as const },
       { label: "شراء أثاث مكتبي مستعمل", href: "/buy-used-office-furniture" as const },
-      { label: "شراء أجهزة كهربائية مستعملة" },
-      { label: "إفراغ منازل بالكامل" },
-      { label: "شراء أنتيكات وتحف" },
-      { label: "شراء مطابخ مستعملة" },
+      { label: "شراء أجهزة كهربائية مستعملة", href: "/buy-used-appliances" as const },
+      { label: "إفراغ منازل بالكامل", href: "/house-clearance" as const },
+      { label: "شراء أنتيكات وتحف", href: "/buy-antiques" as const },
+      { label: "شراء مطابخ مستعملة", href: "/buy-used-kitchens" as const },
     ],
     experienceLabel: "خبرة +60 سنة",
     ctaTitle: "احصل على أفضل سعر لغرفتك الآن",
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Used Bedrooms in Amman | Best Prices - Wood, MDF, Turkish | Aldabouqi",
+    metaTitle: "Used Bedrooms in Amman | Best Prices | Aldabouqi",
     metaDescription:
-      "We buy used bedrooms of every kind in Amman: wood, MDF, Turkish, Chinese, at the best prices. Instant free inspection, professional valuation, cash payment. Call: 0796983994",
+      "We buy used bedrooms of every kind in Amman: wood, MDF, Turkish, Chinese, at the best prices. Free inspection, cash payment. Call: 0796983994",
     keywords:
       "used bedrooms Amman, sell used bedrooms, buy wooden bedrooms, Turkish bedrooms for sale, used MDF bedrooms, buy bedroom furniture, bedroom buying shops Amman, used Chinese bedrooms, Aldabouqi bedrooms",
     pageTitle: "Used Bedrooms",
@@ -115,10 +115,10 @@ const content = {
     otherServices: [
       { label: "Used Home Furniture", href: "/buy-used-home-furniture" as const },
       { label: "Used Office Furniture", href: "/buy-used-office-furniture" as const },
-      { label: "Used Appliances" },
-      { label: "Full House Clearance" },
-      { label: "Antiques & Artifacts" },
-      { label: "Used Kitchens" },
+      { label: "Used Appliances", href: "/buy-used-appliances" as const },
+      { label: "Full House Clearance", href: "/house-clearance" as const },
+      { label: "Antiques & Artifacts", href: "/buy-antiques" as const },
+      { label: "Used Kitchens", href: "/buy-used-kitchens" as const },
     ],
     experienceLabel: "60+ Years of Experience",
     ctaTitle: "Get the best price for your room now",

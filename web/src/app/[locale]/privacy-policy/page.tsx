@@ -9,7 +9,7 @@ const content = {
   ar: {
     metaTitle: "سياسة الخصوصية | شركة الدابوقي لشراء الأثاث المستعمل في عمان",
     metaDescription:
-      "سياسة الخصوصية لموقع شركة الدابوقي: كيف نجمع بياناتك ونستخدمها ونحميها عند تواصلك معنا عبر النموذج أو واتساب أو الهاتف، وسياسة ملفات تعريف الارتباط (Cookies) وأدوات التحليل.",
+      "سياسة الخصوصية لموقع شركة الدابوقي: كيف نجمع بياناتك ونستخدمها ونحميها عند تواصلك معنا، وسياسة ملفات تعريف الارتباط (Cookies).",
     pageTitle: "سياسة الخصوصية",
     lastUpdated: "آخر تحديث: 21 أغسطس 2026",
     intro:
@@ -31,7 +31,7 @@ const content = {
   en: {
     metaTitle: "Privacy Policy | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Aldabouqi's privacy policy: how we collect, use and protect your data when you contact us through our form, WhatsApp or phone, and our cookie and analytics policy.",
+      "Aldabouqi's privacy policy: how we collect, use, and protect your data when you contact us, and our cookie policy.",
     pageTitle: "Privacy Policy",
     lastUpdated: "Last updated: August 21, 2026",
     intro:

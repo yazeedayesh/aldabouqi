@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شراء صالونات وكنب مستعمل في عمان | أمريكي، تركي، محلي - الدابوقي",
+    metaTitle: "شراء صالونات وكنب مستعمل في عمان | الدابوقي",
     metaDescription:
       "نشتري الصالونات وأطقم الجلوس المستعملة في عمان: أمريكي، تركي، محلي، بجميع الأحجام. معاينة مجانية، تقييم عادل، دفع نقدي فوري. اتصل: 0796983994",
     keywords:
@@ -64,7 +64,7 @@ const content = {
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Used Sofas & Living Room Sets in Amman | American, Turkish, Local - Aldabouqi",
+    metaTitle: "Used Sofas & Seating Sets in Amman | Aldabouqi",
     metaDescription:
       "We buy used sofas and seating sets in Amman: American, Turkish, local, every size. Free inspection, fair valuation, instant cash payment. Call: 0796983994",
     keywords:

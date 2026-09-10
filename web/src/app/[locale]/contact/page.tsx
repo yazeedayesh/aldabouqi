@@ -11,7 +11,7 @@ const content = {
   ar: {
     metaTitle: "تواصل معنا | شركة الدابوقي لشراء الأثاث المستعمل في عمان",
     metaDescription:
-      "تواصل مع شركة الدابوقي لشراء الأثاث المستعمل في عمان. اتصل بنا على 0796983994 أو أرسل رسالة للحصول على تقييم مجاني وسريع لأثاثك. نخدم جميع مناطق عمان.",
+      "تواصل مع شركة الدابوقي لشراء الأثاث المستعمل في عمان. اتصل على 0796983994 أو أرسل رسالة لتقييم مجاني وسريع. نخدم جميع مناطق عمان.",
     keywords:
       "تواصل شركة الدابوقي, رقم شراء أثاث مستعمل عمان, بيع أثاث مستعمل, تقييم أثاث مجاني, موقع شركة الدابوقي, اتصل بنا",
     pageTitle: "معلومات الاتصال",
@@ -31,7 +31,7 @@ const content = {
   en: {
     metaTitle: "Contact Us | Aldabouqi - Buying Used Furniture in Amman",
     metaDescription:
-      "Get in touch with Aldabouqi, buyers of used furniture in Amman. Call us at 0796983994 or send a message for a fast, free valuation of your furniture. We serve every area of Amman.",
+      "Get in touch with Aldabouqi, buyers of used furniture in Amman. Call 0796983994 or send a message for a fast, free valuation. We serve every area.",
     keywords:
       "contact Aldabouqi, used furniture buyer number Amman, sell used furniture, free furniture valuation, Aldabouqi location, contact us",
     pageTitle: "Contact Information",

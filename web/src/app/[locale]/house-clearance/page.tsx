@@ -7,9 +7,9 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "إفراغ منازل بالكامل في عمان | شراء محتويات المنزل كاملة - الدابوقي",
+    metaTitle: "إفراغ منازل بالكامل في عمان | الدابوقي",
     metaDescription:
-      "خدمة إفراغ منازل وشقق بالكامل في عمان: نشتري محتويات المنزل دفعة واحدة بسعر عادل وخدمة سريعة. مناسب للسفر، البيع، أو تجديد المنزل. اتصل: 0796983994",
+      "خدمة إفراغ منازل وشقق بالكامل في عمان: نشتري محتويات المنزل دفعة واحدة بسعر عادل وخدمة سريعة. اتصل: 0796983994",
     keywords:
       "افراغ منازل عمان, شراء اثاث منزل كامل, تخليص شقة اثاث, بيع اثاث منزل بالكامل, افراغ شقة عمان, شراء عفش منزل كامل",
     pageTitle: "إفراغ منازل بالكامل",
@@ -64,9 +64,9 @@ const content = {
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Full House Clearance in Amman | Buy Your Entire Home's Contents - Aldabouqi",
+    metaTitle: "Full House Clearance in Amman | Aldabouqi",
     metaDescription:
-      "Full house and apartment clearance service in Amman: we buy your entire home's contents in one visit, at a fair price with fast service. Ideal for moving abroad, selling, or renovating. Call: 0796983994",
+      "Full house and apartment clearance in Amman: we buy your entire home's contents in one visit, at a fair price with fast service. Call: 0796983994",
     keywords:
       "house clearance Amman, buy entire home furniture, apartment clearance Amman, sell whole house furniture, home clearance service Amman",
     pageTitle: "Full House Clearance",

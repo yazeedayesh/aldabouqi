@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/routing";
 
 const content = {
   ar: {
-    metaTitle: "شراء أجهزة كهربائية مستعملة في عمان | ثلاجات، غسالات، مكيفات - الدابوقي",
+    metaTitle: "شراء أجهزة كهربائية مستعملة في عمان | الدابوقي",
     metaDescription:
       "نشتري الأجهزة الكهربائية المستعملة في عمان: ثلاجات، غسالات، مكيفات، تلفزيونات، أفران. معاينة مجانية، تقييم فوري، دفع نقدي. اتصل: 0796983994",
     keywords:
@@ -64,9 +64,9 @@ const content = {
     callCta: "اتصل بنا الآن",
   },
   en: {
-    metaTitle: "Used Appliances in Amman | Fridges, Washers, AC Units - Aldabouqi",
+    metaTitle: "Used Appliances in Amman | Aldabouqi",
     metaDescription:
-      "We buy used appliances in Amman: refrigerators, washing machines, air conditioners, TVs, ovens. Free inspection, instant valuation, cash payment. Call: 0796983994",
+      "We buy used appliances in Amman: fridges, washing machines, AC units, TVs, ovens. Free inspection, instant valuation, cash payment. Call: 0796983994",
     keywords:
       "used appliances Amman, sell used fridge, sell used washing machine, buy used AC units, sell used TV, buy used electronics Amman",
     pageTitle: "Used Appliances",

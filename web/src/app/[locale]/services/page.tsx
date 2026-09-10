@@ -25,7 +25,7 @@ const content = {
   ar: {
     metaTitle: "خدماتنا | الدابوقي لشراء الأثاث المستعمل - عمان",
     metaDescription:
-      "اكتشف خدمات الدابوقي الشاملة لشراء الأثاث المستعمل في عمان: أثاث منزلي ومكتبي، أجهزة كهربائية، أنتيكات، وإفراغ منازل كامل. تقييم مجاني واحترافي في جميع المناطق.",
+      "اكتشف خدمات الدابوقي لشراء الأثاث المستعمل في عمان: أثاث منزلي ومكتبي، أجهزة كهربائية، أنتيكات، وإفراغ منازل. تقييم مجاني بجميع المناطق.",
     keywords:
       "خدمات شراء أثاث عمان, شراء أثاث منزلي مستعمل, شراء أثاث مكتبي, شراء أجهزة كهربائية مستعملة, شراء أنتيكات عمان, إفراغ منازل عمان, تقييم أثاث مستعمل, خدمات الدابوقي",
     pageTitle: "خدماتنا",
@@ -63,7 +63,7 @@ const content = {
   en: {
     metaTitle: "Our Services | Aldabouqi - Buying Used Furniture, Amman",
     metaDescription:
-      "Discover Aldabouqi's complete used-furniture buying services in Amman: home and office furniture, appliances, antiques, and full house clearance. Free, professional valuation in every area.",
+      "Discover Aldabouqi's used-furniture buying services in Amman: home and office furniture, appliances, antiques, house clearance. Free valuation.",
     keywords:
       "furniture buying services Amman, buy used home furniture, buy office furniture, buy used appliances, buy antiques Amman, house clearance Amman, used furniture valuation, Aldabouqi services",
     pageTitle: "Our Services",
