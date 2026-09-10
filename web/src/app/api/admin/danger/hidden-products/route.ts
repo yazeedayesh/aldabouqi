@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { requireAdmin } from "@/lib/require-admin";
@@ -9,5 +10,6 @@ export async function DELETE() {
   if (response) return response;
 
   const deleted = await getDb().delete(products).where(eq(products.visibility, "hidden")).returning({ id: products.id });
+  revalidatePath("/", "layout");
   return Response.json({ ok: true, count: deleted.length });
 }

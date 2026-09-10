@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { getDb } from "@/db";
 import { businessSettings } from "@/db/schema";
 import { businessSettingsSchema } from "@/lib/validation";
@@ -21,5 +22,6 @@ export async function PATCH(request: Request) {
     .returning();
 
   if (!row) return Response.json({ error: "Not found" }, { status: 404 });
+  revalidatePath("/", "layout");
   return Response.json(row);
 }

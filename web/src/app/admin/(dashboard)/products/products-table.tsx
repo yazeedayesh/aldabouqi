@@ -114,7 +114,7 @@ export function ProductsTable({
         <select
           value={filters.category ?? ""}
           onChange={(e) => navigate({ category: e.target.value || undefined })}
-          className="h-[50px] rounded-full bg-white px-5 text-sm font-semibold text-foreground outline-none"
+          className="h-[50px] min-w-0 flex-1 rounded-full bg-white px-4 text-sm font-semibold text-foreground outline-none sm:flex-none sm:px-5"
         >
           <option value="">كل الأقسام</option>
           {categories.map((c) => (
@@ -125,7 +125,7 @@ export function ProductsTable({
         <select
           value={filters.visibility ?? ""}
           onChange={(e) => navigate({ visibility: (e.target.value || undefined) as AdminProductFilters["visibility"] })}
-          className="h-[50px] rounded-full bg-white px-5 text-sm font-semibold text-foreground outline-none"
+          className="h-[50px] min-w-0 flex-1 rounded-full bg-white px-4 text-sm font-semibold text-foreground outline-none sm:flex-none sm:px-5"
         >
           <option value="">كل الحالات</option>
           <option value="published">منشور</option>
@@ -136,7 +136,7 @@ export function ProductsTable({
         <select
           value={filters.sort}
           onChange={(e) => navigate({ sort: e.target.value as AdminProductFilters["sort"] })}
-          className="h-[50px] rounded-full bg-white px-5 text-sm font-semibold text-foreground outline-none"
+          className="h-[50px] min-w-0 flex-1 rounded-full bg-white px-4 text-sm font-semibold text-foreground outline-none sm:flex-none sm:px-5"
         >
           <option value="newest">الأحدث</option>
           <option value="cheapest">الأرخص</option>
@@ -187,15 +187,71 @@ export function ProductsTable({
         </div>
       )}
 
-      <div className="rounded-[22px] bg-white p-6.5">
-        {products.length === 0 ? (
+      {products.length === 0 ? (
+        <div className="rounded-[22px] bg-white p-6.5">
           <div className="py-16 text-center">
             <p className="mb-4 text-admin-muted">لا يوجد منتجات مطابقة</p>
             <Link href="/admin/products/new" className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground">
               أضف منتج
             </Link>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <>
+          {/* Mobile card list — the 9-column table below is desktop-only;
+              a min-width grid forced into an overflow-x-auto strip was
+              unusable on a phone (site owner report, 2026-09-10). */}
+          <div className="space-y-3 lg:hidden">
+            {products.map((product) => {
+              const isSelected = selected.has(product.id);
+              return (
+                <div key={product.id} className="rounded-[20px] bg-white p-4">
+                  <div className="flex items-start gap-3">
+                    <button
+                      type="button"
+                      onClick={() => toggleOne(product.id)}
+                      aria-label="تحديد"
+                      className={cn("mt-1 size-5 shrink-0 rounded-[7px] border-[1.6px]", isSelected ? "border-primary bg-primary" : "border-admin-border")}
+                    >
+                      {isSelected && <CheckMark />}
+                    </button>
+                    {product.images[0] ? (
+                      <Image src={product.images[0].url} alt={product.images[0].alt} width={56} height={56} className="size-14 shrink-0 rounded-[12px] object-cover" />
+                    ) : (
+                      <div className="size-14 shrink-0 rounded-[12px] bg-admin-divider" />
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[15px] font-semibold text-foreground">{product.titleAr}</p>
+                      <p className="mt-0.5 truncate text-[12.5px] text-admin-muted-2">{categoryName.get(product.category) ?? product.category}</p>
+                      <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                        <span className="font-heading text-[14px] font-extrabold text-foreground">{product.price ? `${product.price} د.أ` : "عند التواصل"}</span>
+                        <span className={cn("flex h-[22px] items-center rounded-full px-2 text-[11px] font-bold", visibilityBadge[product.visibility])}>
+                          {visibilityLabels[product.visibility]}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between gap-2 border-t border-admin-divider pt-3">
+                    <span className="text-[12.5px] text-admin-muted">{inquiryCounts[product.id] ?? 0} استفسار</span>
+                    <div className="flex gap-1.5">
+                      <Link href={`/admin/products/${product.id}`} title="تعديل" className="flex h-9 items-center gap-1.5 rounded-[11px] bg-admin-input px-3 text-[12.5px] font-semibold text-admin-muted-2">
+                        <Pencil className="size-3.5" />
+                        تعديل
+                      </Link>
+                      <button type="button" onClick={() => toggleVisibility(product)} disabled={busy} title={product.visibility === "published" ? "إخفاء" : "نشر"} className="flex size-9 items-center justify-center rounded-[11px] bg-admin-input text-admin-muted-2">
+                        {product.visibility === "published" ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                      </button>
+                      <button type="button" onClick={() => deleteOne(product.id)} disabled={busy} title="حذف" className="flex size-9 items-center justify-center rounded-[11px] bg-admin-danger-bg text-admin-danger">
+                        {busy ? <Loader2 className="size-4 animate-spin" /> : <Trash2 className="size-4" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="hidden rounded-[22px] bg-white p-6.5 lg:block">
           <div className="overflow-x-auto">
             <div className="min-w-[880px]">
               <div className="grid grid-cols-[30px_50px_minmax(0,1fr)_120px_100px_90px_90px_70px_110px] items-center gap-3.5 pb-3 text-[12.5px] font-semibold text-admin-muted">
@@ -261,8 +317,9 @@ export function ProductsTable({
               })}
             </div>
           </div>
-        )}
-      </div>
+          </div>
+        </>
+      )}
 
       {totalCount > 0 && (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3">

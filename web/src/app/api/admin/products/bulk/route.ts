@@ -1,5 +1,6 @@
 import { inArray } from "drizzle-orm";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { requireAdmin } from "@/lib/require-admin";
@@ -36,5 +37,6 @@ export async function PATCH(request: Request) {
     await db.update(products).set({ category: parsed.data.category, updatedAt: new Date() }).where(inArray(products.id, ids));
   }
 
+  revalidatePath("/", "layout");
   return Response.json({ ok: true, count: ids.length });
 }

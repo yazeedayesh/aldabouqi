@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, LayoutGrid, LogOut, Menu, MessageCircle, Package, Phone, Settings, ShoppingCart } from "lucide-react";
+import { LayoutDashboard, LayoutGrid, LogOut, Menu, MessageCircle, Package, Settings, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -39,7 +39,6 @@ export function AdminNav({ inquiriesThisWeek, username }: { inquiriesThisWeek: n
     { href: "/admin/categories", label: "الأقسام", icon: LayoutGrid },
     { href: "/admin/inquiries", label: "طلبات واتساب", icon: MessageCircle, badge: inquiriesThisWeek },
     { href: "/admin/orders", label: "طلبات الدفع عند الاستلام", icon: ShoppingCart },
-    { href: "/admin/settings", label: "أرقام التواصل", icon: Phone },
     { href: "/admin/settings", label: "الإعدادات", icon: Settings },
   ];
 

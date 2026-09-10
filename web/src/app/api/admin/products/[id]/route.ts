@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { getDb } from "@/db";
 import { categories, products, type ProductImage } from "@/db/schema";
 import { productSchema } from "@/lib/validation";
@@ -45,6 +46,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   if (row.visibility === "published") {
     pingIndexNow([`/store/${row.category}/${row.slug}`, `/en/store/${row.category}/${row.slug}`]);
   }
+  revalidatePath("/", "layout");
   return Response.json(row);
 }
 
@@ -54,5 +56,6 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
 
   const { id } = await params;
   await getDb().delete(products).where(eq(products.id, id));
+  revalidatePath("/", "layout");
   return Response.json({ ok: true });
 }

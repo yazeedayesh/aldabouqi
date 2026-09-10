@@ -1,4 +1,5 @@
 import { asc } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { getDb } from "@/db";
 import { contactNumbers } from "@/db/schema";
 import { contactNumberSchema } from "@/lib/validation";
@@ -27,5 +28,6 @@ export async function POST(request: Request) {
   if (parsed.data.isDefault) await unsetOtherDefaults(db);
 
   const [row] = await db.insert(contactNumbers).values(parsed.data).returning();
+  revalidatePath("/", "layout");
   return Response.json(row, { status: 201 });
 }

@@ -1,44 +1,38 @@
 import { desc } from "drizzle-orm";
 import { getDb } from "@/db";
 import { inquiries } from "@/db/schema";
+import { AdminPageHeader } from "../admin-page-header";
 
 export default async function AdminInquiriesPage() {
   const rows = await getDb().select().from(inquiries).orderBy(desc(inquiries.createdAt)).limit(200);
 
   return (
     <div>
-      <h1 className="mb-2 font-heading text-2xl font-bold text-foreground">طلبات واتساب</h1>
-      <p className="mb-6 text-sm text-muted-foreground">
-        كل ضغطة على زر واتساب في صفحة منتج تُسجَّل هنا تلقائياً — بدون أي بيانات شخصية، المحادثة نفسها تتم داخل واتساب.
-      </p>
+      <AdminPageHeader
+        title="طلبات واتساب"
+        subtitle="كل ضغطة على زر واتساب بصفحة منتج تُسجَّل هنا تلقائيًا — بدون أي بيانات شخصية"
+      />
 
-      <div className="overflow-x-auto rounded-xl border border-border bg-background">
-        <table className="w-full text-sm">
-          <thead className="border-b border-border bg-secondary/40 text-start">
-            <tr>
-              <th className="p-3 text-start font-medium">المنتج</th>
-              <th className="p-3 text-start font-medium">التاريخ والوقت</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.id} className="border-b border-border last:border-0">
-                <td className="p-3 font-medium text-foreground">{row.productTitleAr}</td>
-                <td className="p-3 text-muted-foreground">
-                  {new Date(row.createdAt).toLocaleString("ar-JO", { dateStyle: "medium", timeStyle: "short" })}
-                </td>
-              </tr>
-            ))}
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={2} className="p-8 text-center text-muted-foreground">
-                  لا توجد استفسارات واتساب بعد
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      {rows.length === 0 ? (
+        <div className="rounded-[22px] bg-white p-6.5">
+          <div className="py-16 text-center text-admin-muted">لا توجد استفسارات واتساب بعد</div>
+        </div>
+      ) : (
+        <div className="rounded-[22px] bg-white p-6.5">
+          <div className="hidden grid-cols-[minmax(0,1fr)_180px] gap-3.5 pb-3 text-[12.5px] font-semibold text-admin-muted sm:grid">
+            <div>المنتج</div>
+            <div>التاريخ والوقت</div>
+          </div>
+          {rows.map((row) => (
+            <div key={row.id} className="flex flex-col gap-1 border-t border-admin-divider py-3.5 sm:grid sm:grid-cols-[minmax(0,1fr)_180px] sm:items-center sm:gap-3.5">
+              <div className="truncate text-[14.5px] font-semibold text-foreground">{row.productTitleAr}</div>
+              <div className="text-[13px] text-admin-muted-2">
+                {new Date(row.createdAt).toLocaleString("ar-JO", { dateStyle: "medium", timeStyle: "short" })}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
