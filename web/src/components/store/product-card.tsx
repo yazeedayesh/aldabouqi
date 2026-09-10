@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { ProductImagePlaceholder } from "@/components/store/product-image-placeholder";
+import { ProductCardImageCarousel } from "@/components/store/product-card-image-carousel";
 import { InterestToggleButton } from "@/components/store/interest-toggle-button";
 import { ProductWhatsAppCta } from "@/components/store/product-whatsapp-cta";
 import { Reveal } from "@/components/ui/reveal";
@@ -66,27 +65,20 @@ export function ProductCard({
   const title = locale === "en" ? product.titleEn : product.titleAr;
   const c = content[locale];
   const isSold = product.status === "sold";
-  const primaryImage = product.images.find((img) => img.order === 0) ?? product.images[0];
+  const orderedImages = [...product.images].sort((a, b) => a.order - b.order);
   const href = `/store/${product.category}/${product.slug}` as const;
 
   return (
     <Reveal delayMs={delayMs}>
       <div className="group relative overflow-hidden rounded-[16px] border border-border bg-card transition-all lg:rounded-2xl lg:hover:-translate-y-1 lg:hover:shadow-lg">
         <div className="relative aspect-square overflow-hidden bg-secondary lg:aspect-4/3">
-          <Link href={href} aria-hidden tabIndex={-1} className="absolute inset-0 z-0">
-            {primaryImage ? (
-              <Image
-                src={primaryImage.url}
-                alt={primaryImage.alt || title}
-                fill
-                loading="lazy"
-                className="object-cover transition-transform duration-500 lg:group-hover:scale-105"
-                sizes="(min-width: 1024px) 33vw, 50vw"
-              />
-            ) : (
-              <ProductImagePlaceholder label={noPhotoLabel} categorySlug={product.category} />
-            )}
-          </Link>
+          <ProductCardImageCarousel
+            href={href}
+            images={orderedImages}
+            title={title}
+            noPhotoLabel={noPhotoLabel}
+            categorySlug={product.category}
+          />
 
           {isSold && <div className="pointer-events-none absolute inset-0 bg-background/68" />}
 

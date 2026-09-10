@@ -57,6 +57,14 @@ export async function Header() {
           <Link
             href="/"
             locale={otherLocale}
+            aria-label={otherLocaleShortLabel}
+            className="flex size-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-border text-[11.5px] font-bold text-muted-foreground transition-colors hover:border-primary hover:text-primary sm:hidden"
+          >
+            {otherLocaleShortLabel}
+          </Link>
+          <Link
+            href="/"
+            locale={otherLocale}
             className="hidden text-[13px] font-bold text-muted-foreground hover:text-primary sm:inline"
           >
             {otherLocaleShortLabel}
@@ -82,9 +90,9 @@ export async function Header() {
           <a
             href={`tel:${BUSINESS.phoneE164}`}
             aria-label={cta("call")}
-            className="hidden size-12 shrink-0 items-center justify-center rounded-full border-[1.5px] border-border text-foreground transition-colors hover:border-primary hover:text-primary sm:flex"
+            className="flex size-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-border text-foreground transition-colors hover:border-primary hover:text-primary sm:size-12"
           >
-            <Phone className="size-[18px]" strokeWidth={1.8} />
+            <Phone className="size-4 sm:size-[18px]" strokeWidth={1.8} />
           </a>
           <MobileNav storeCount={storeCount} />
         </div>

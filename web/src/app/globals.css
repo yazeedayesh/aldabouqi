@@ -390,3 +390,15 @@
 .range-thumb::-moz-range-track {
   background: transparent;
 }
+
+/* Native touch-swipe image carousels (product card + product gallery,
+   2026-09-10) — real CSS scroll-snap, no carousel library. This just hides
+   the track's own scrollbar; the snap behavior lives on the elements. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
