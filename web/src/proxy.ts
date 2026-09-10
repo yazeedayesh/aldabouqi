@@ -27,6 +27,18 @@ const intlMiddleware = createMiddleware(routing);
 const AREA_URL_PATTERN = /^(\/en)?\/buy-used-furniture-([a-z0-9-]+)$/;
 
 export default function middleware(request: NextRequest) {
+  // Canonical domain is www (SITE_URL) — both aldabouqi.com and
+  // www.aldabouqi.com serve the site independently otherwise, which an
+  // SEO crawl flagged as duplicate-domain content (site owner,
+  // 2026-09-11). A vercel.json `has: [{type: "host", ...}]` redirect
+  // didn't take effect (confirmed empirically against the live domain,
+  // cache-busted), so handled here instead, where it's guaranteed to run.
+  if (request.nextUrl.hostname === "aldabouqi.com") {
+    const url = request.nextUrl.clone();
+    url.hostname = "www.aldabouqi.com";
+    return NextResponse.redirect(url, 308);
+  }
+
   const match = AREA_URL_PATTERN.exec(request.nextUrl.pathname);
   if (match && getAreaBySlug(match[2])) {
     const url = request.nextUrl.clone();
