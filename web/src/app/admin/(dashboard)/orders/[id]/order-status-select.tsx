@@ -37,7 +37,7 @@ export function OrderStatusSelect({ orderId, status }: { orderId: string; status
 
   return (
     <Select items={statuses} value={value} onValueChange={handleChange} disabled={saving}>
-      <SelectTrigger className="w-48"><SelectValue /></SelectTrigger>
+      <SelectTrigger className="w-48" aria-label="حالة الطلب"><SelectValue /></SelectTrigger>
       <SelectContent>
         {statuses.map((s) => (
           <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>

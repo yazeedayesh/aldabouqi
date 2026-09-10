@@ -100,7 +100,7 @@ export function CheckoutForm({ product, locale }: { product: Product; locale: Lo
         className="input"
       />
       <Select value={area} onValueChange={(value) => setArea(value ?? "")}>
-        <SelectTrigger className="w-full">
+        <SelectTrigger className="w-full" aria-label={locale === "en" ? "Area (optional)" : "المنطقة (اختياري)"}>
           <SelectValue placeholder={locale === "en" ? "Area (optional)" : "المنطقة (اختياري)"} />
         </SelectTrigger>
         <SelectContent>

@@ -542,7 +542,7 @@ export function ProductForm({
             <h3 className="mb-3.5 font-heading text-[17px] font-extrabold text-foreground">التصنيف والسعر</h3>
             <Field label="القسم">
               <Select items={categories.map((c) => ({ value: c.slug, label: c.nameAr }))} value={category} onValueChange={(v) => v && setCategory(v)}>
-                <SelectTrigger className="admin-select-trigger"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="admin-select-trigger" aria-label="القسم"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {categories.map((c) => (
                     <SelectItem key={c.slug} value={c.slug}>{c.nameAr}</SelectItem>
@@ -552,7 +552,7 @@ export function ProductForm({
             </Field>
             <Field label="حالة القطعة">
               <Select items={conditions} value={condition} onValueChange={(v) => v && setCondition(v)}>
-                <SelectTrigger className="admin-select-trigger"><SelectValue /></SelectTrigger>
+                <SelectTrigger className="admin-select-trigger" aria-label="حالة القطعة"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {conditions.map((c) => (
                     <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
@@ -592,6 +592,7 @@ export function ProductForm({
                 value={whatsappContactNumberId}
                 onChange={setWhatsappContactNumberId}
                 defaultLabel={defaultNumber ? `الرقم الرئيسي · ${defaultNumber.phoneE164}` : "الرقم الافتراضي"}
+                ariaLabel="رقم واتساب"
               />
             </Field>
             <Field label="رقم الاتصال">
@@ -600,6 +601,7 @@ export function ProductForm({
                 value={callContactNumberId}
                 onChange={setCallContactNumberId}
                 defaultLabel="نفس رقم واتساب"
+                ariaLabel="رقم الاتصال"
               />
             </Field>
             <div className="mt-1 rounded-[14px] bg-accent p-3.5 text-[12.5px] leading-[1.8] text-primary">
@@ -724,11 +726,13 @@ function ContactNumberSelect({
   value,
   onChange,
   defaultLabel,
+  ariaLabel,
 }: {
   numbers: ContactNumber[];
   value: string;
   onChange: (v: string) => void;
   defaultLabel: string;
+  ariaLabel: string;
 }) {
   const items = useMemo(
     () => [{ value: "", label: defaultLabel }, ...numbers.map((n) => ({ value: n.id, label: `${n.label} · ${n.phoneE164}` }))],
@@ -736,7 +740,7 @@ function ContactNumberSelect({
   );
   return (
     <Select items={items} value={value} onValueChange={(v) => onChange(v ?? "")}>
-      <SelectTrigger className="admin-select-trigger"><SelectValue /></SelectTrigger>
+      <SelectTrigger className="admin-select-trigger" aria-label={ariaLabel}><SelectValue /></SelectTrigger>
       <SelectContent>
         {items.map((item) => (
           <SelectItem key={item.value || "default"} value={item.value}>{item.label}</SelectItem>

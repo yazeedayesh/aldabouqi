@@ -80,7 +80,7 @@ export function ContactForm() {
           className="w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         />
         <Select name="subject" required>
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="w-full" aria-label={t("subject")}>
             <SelectValue placeholder={t("subject")} />
           </SelectTrigger>
           <SelectContent>
