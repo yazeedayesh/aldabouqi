@@ -37,7 +37,15 @@ export function AccountSection({ username, sessionCount }: { username: string; s
     setSaving(false);
     if (!res.ok) {
       const body = await res.json().catch(() => null);
-      setError(body?.error ?? body?.error?.formErrors?.[0] ?? "تعذر تحديث كلمة المرور");
+      // body.error is a plain string for auth/not-found failures, but a
+      // zod .flatten() object ({ formErrors, fieldErrors }) for schema
+      // validation failures — pull the first real message out of either.
+      const err = body?.error;
+      const message =
+        typeof err === "string"
+          ? err
+          : err?.formErrors?.[0] ?? Object.values(err?.fieldErrors ?? {}).flat()[0];
+      setError(message ?? "تعذر تحديث كلمة المرور");
       return;
     }
     setCurrentPassword("");
