@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { and, eq } from "drizzle-orm";
+import { and, eq, ilike } from "drizzle-orm";
 import { getDb } from "@/db";
 import { adminSessions, adminUsers } from "@/db/schema";
 import { verifyPassword } from "@/lib/password";
@@ -35,8 +35,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
+        // Case-insensitive lookup — usernames aren't meant to be a case-sensitive
+        // secret, just an identifier, so "Admin" and "admin" should log in the same.
         const db = getDb();
-        const [user] = await db.select().from(adminUsers).where(eq(adminUsers.username, username));
+        const [user] = await db.select().from(adminUsers).where(ilike(adminUsers.username, username));
         if (!user) return null;
         if (!verifyPassword(password, user.passwordHash)) return null;
 
