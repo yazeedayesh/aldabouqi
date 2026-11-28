@@ -143,7 +143,14 @@ export async function ServiceJsonLd({
             ...openingHours,
           },
         },
-        areaServed: { "@type": "Place", name: areaServedName },
+        // address.addressCountry disambiguates "عمان" (Amman, no diacritics)
+        // from Oman for any parser reading this field in isolation — the
+        // bare name alone carries no country information whatsoever.
+        areaServed: {
+          "@type": "Place",
+          name: areaServedName,
+          address: { "@type": "PostalAddress", addressCountry: BUSINESS.address.countryCode },
+        },
         offers: {
           "@type": "Offer",
           availability: "https://schema.org/InStock",
