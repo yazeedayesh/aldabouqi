@@ -1,5 +1,5 @@
 import { asc } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { categories } from "@/db/schema";
 import { categorySchema } from "@/lib/validation";
@@ -26,6 +26,8 @@ export async function POST(request: Request) {
   try {
     const [row] = await getDb().insert(categories).values(parsed.data).returning();
     revalidatePath("/", "layout");
+    revalidateTag("categories", { expire: 0 });
+    revalidateTag("store", { expire: 0 });
     return Response.json(row, { status: 201 });
   } catch (error) {
     if (isUniqueViolation(error)) {

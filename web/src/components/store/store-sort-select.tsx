@@ -1,28 +1,27 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import { usePathname, useRouter } from "@/i18n/navigation";
-import { buildStoreQuery, type StoreFilters, type StoreSort } from "@/lib/store-query";
+import type { StoreFilters, StoreSort } from "@/lib/store-query";
 
 export function StoreSortSelect({
   filters,
   label,
   options,
+  onApply,
 }: {
   filters: StoreFilters;
   label: string;
   options: readonly { value: StoreSort; label: string }[];
+  /** Applies a sort change to the in-memory product list — no navigation, no DB hit (see StorePageContent). */
+  onApply: (overrides: Partial<StoreFilters>) => void;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
-
   return (
     <div className="flex items-center gap-2.5">
       <span className="text-[13.5px] text-muted-foreground">{label}</span>
       <div className="relative">
         <select
           value={filters.sort}
-          onChange={(e) => router.push(pathname + buildStoreQuery(filters, { sort: e.target.value as StoreSort }))}
+          onChange={(e) => onApply({ sort: e.target.value as StoreSort })}
           className="h-10 min-w-[180px] appearance-none rounded-[10px] border border-border bg-card px-3.5 pe-9 text-sm font-semibold"
         >
           {options.map((o) => (

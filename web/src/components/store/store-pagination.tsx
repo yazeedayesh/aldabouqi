@@ -1,16 +1,18 @@
+"use client";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { buildStoreQuery, type StoreFilters } from "@/lib/store-query";
+import type { StoreFilters } from "@/lib/store-query";
 import { cn } from "@/lib/utils";
 
 export function StorePagination({
-  pathname,
   filters,
   totalPages,
+  onApply,
 }: {
-  pathname: string;
   filters: StoreFilters;
   totalPages: number;
+  /** Applies a page change to the in-memory product list — no navigation, no DB hit (see StorePageContent). */
+  onApply: (overrides: Partial<StoreFilters>) => void;
 }) {
   if (totalPages <= 1) return null;
 
@@ -20,38 +22,45 @@ export function StorePagination({
   return (
     <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Pagination">
       <PageArrow
-        href={page > 1 ? pathname + buildStoreQuery(filters, { page: page - 1 }) : undefined}
+        disabled={page <= 1}
+        onClick={() => onApply({ page: page - 1 })}
         icon={<ChevronRight className="size-4" strokeWidth={1.7} />}
       />
       {pages.map((p) => (
-        <Link
+        <button
           key={p}
-          href={pathname + buildStoreQuery(filters, { page: p })}
+          type="button"
+          onClick={() => onApply({ page: p })}
+          aria-current={p === page ? "page" : undefined}
           className={cn(
             "flex size-10 items-center justify-center rounded-[10px] text-sm font-semibold",
             p === page ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground"
           )}
         >
           {p}
-        </Link>
+        </button>
       ))}
       <PageArrow
-        href={page < totalPages ? pathname + buildStoreQuery(filters, { page: page + 1 }) : undefined}
+        disabled={page >= totalPages}
+        onClick={() => onApply({ page: page + 1 })}
         icon={<ChevronLeft className="size-4" strokeWidth={1.7} />}
       />
     </nav>
   );
 }
 
-function PageArrow({ href, icon }: { href?: string; icon: React.ReactNode }) {
-  const className = cn(
-    "flex size-10 items-center justify-center rounded-[10px] border border-border",
-    !href && "pointer-events-none opacity-40"
-  );
-  if (!href) return <span className={className}>{icon}</span>;
+function PageArrow({ disabled, onClick, icon }: { disabled: boolean; onClick: () => void; icon: React.ReactNode }) {
   return (
-    <Link href={href} className={className}>
+    <button
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
+      className={cn(
+        "flex size-10 items-center justify-center rounded-[10px] border border-border",
+        disabled && "pointer-events-none opacity-40"
+      )}
+    >
       {icon}
-    </Link>
+    </button>
   );
 }

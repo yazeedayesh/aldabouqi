@@ -1,5 +1,5 @@
 import { asc } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { contactNumbers } from "@/db/schema";
 import { contactNumberSchema } from "@/lib/validation";
@@ -29,5 +29,7 @@ export async function POST(request: Request) {
 
   const [row] = await db.insert(contactNumbers).values(parsed.data).returning();
   revalidatePath("/", "layout");
+  revalidateTag("contact-numbers", { expire: 0 });
+  revalidateTag("business", { expire: 0 });
   return Response.json(row, { status: 201 });
 }

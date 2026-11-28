@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { contactNumbers } from "@/db/schema";
 import { contactNumberSchema } from "@/lib/validation";
@@ -28,6 +28,8 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
   if (!row) return Response.json({ error: "Not found" }, { status: 404 });
   revalidatePath("/", "layout");
+  revalidateTag("contact-numbers", { expire: 0 });
+  revalidateTag("business", { expire: 0 });
   return Response.json(row);
 }
 
@@ -49,5 +51,7 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
 
   await db.delete(contactNumbers).where(eq(contactNumbers.id, id));
   revalidatePath("/", "layout");
+  revalidateTag("contact-numbers", { expire: 0 });
+  revalidateTag("business", { expire: 0 });
   return Response.json({ ok: true });
 }

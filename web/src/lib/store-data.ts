@@ -1,95 +1,89 @@
-import { and, asc, count, desc, eq, gte, ilike, inArray, lte, max, min, or, sql } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
+import { unstable_cache } from "next/cache";
 import { getDb } from "@/db";
 import { categories as categoriesTable, products } from "@/db/schema";
-import { PAGE_SIZE, type StoreFilters } from "@/lib/store-query";
 
 /**
- * Shared between /store and /store/[category] — identical filtering,
- * sorting, and pagination logic, the only difference being an optional
- * category constraint. Sidebar counts intentionally only respect the
- * availability filter, not condition/price — showing counts that shift
- * with every other filter change would make the rail itself confusing to
- * read while filtering. Category counts and the "all categories" total are
- * further never scoped to the current category (that would make every
- * other category in the rail show 0 while browsing one category page) —
- * only the condition counts and price bounds are category-scoped, since
- * those describe the products actually being listed on this page.
+ * The store catalog barely changes minute-to-minute (admin edits call
+ * revalidateTag/revalidatePath on save — see the admin API routes), so an
+ * hour is a safe ceiling: it bounds how stale a background-revalidate
+ * failure can leave the site, without re-querying Neon on every storefront
+ * visit. Every store-facing DB read goes through one of the two cached
+ * functions below — /store and /store/[category] no longer run their own
+ * per-request queries, they slice these two cached arrays in memory.
  */
-export async function getStoreData({ categorySlug, filters }: { categorySlug?: string; filters: StoreFilters }) {
-  const db = getDb();
-  const statuses = filters.includeSold ? (["available", "sold"] as const) : (["available"] as const);
+const STORE_REVALIDATE_SECONDS = 3600;
 
-  // visibility='published' is required on every customer-facing query —
-  // "hidden" and "draft" products must never appear in listings (admin v2
-  // brief, 2026-09-08), even though a hidden product's own direct URL
-  // still resolves (see the product detail page's own notFound() check).
-  const statusConditions = [inArray(products.status, statuses), eq(products.visibility, "published")];
-  const categoryScopedConditions = [...statusConditions];
-  if (categorySlug) categoryScopedConditions.push(eq(products.category, categorySlug));
+/**
+ * All categories, hidden ones included — callers decide whether hidden
+ * categories should be visible (same "hidden ≠ deleted" rule as products:
+ * a hidden category's own /store/{slug} page must keep resolving).
+ */
+export const getCachedCategories = unstable_cache(
+  async () => {
+    return getDb().select().from(categoriesTable);
+  },
+  ["store-categories"],
+  { revalidate: STORE_REVALIDATE_SECONDS, tags: ["categories", "store"] }
+);
 
-  const fullConditions = [...categoryScopedConditions];
-  if (filters.conditions.length > 0) fullConditions.push(inArray(products.condition, filters.conditions));
-  if (filters.minPrice != null) fullConditions.push(gte(products.price, filters.minPrice));
-  if (filters.maxPrice != null) fullConditions.push(lte(products.price, filters.maxPrice));
-  if (filters.q) {
-    const pattern = `%${filters.q}%`;
-    fullConditions.push(or(ilike(products.titleAr, pattern), ilike(products.titleEn, pattern))!);
-  }
+/**
+ * Every published product, every status, every category — filtering,
+ * sorting, and pagination all happen client-side (see lib/store-query.ts's
+ * buildStoreView) against this one array, so /store and /store/[category]
+ * can be fully static/ISR instead of re-querying per visitor per filter.
+ *
+ * Column list is deliberately narrow: this whole array ships to the
+ * browser as the listing grid's props (see StorePageContent), so every
+ * column here is weighed against every visitor's payload. Only
+ * descriptionAr/En, specs, area, visibility (always "published" after the
+ * where-clause), and the two contact-number ids are dropped — nothing
+ * ProductCard, buildStoreView, or any other caller of this function
+ * (header's count, the homepage's per-category counts, sitemap.ts) reads
+ * from this list actually needs them; they're only used on the product
+ * detail page itself, which fetches its own full row via
+ * getCachedProductBySlug below.
+ */
+export const getCachedProducts = unstable_cache(
+  async () => {
+    return getDb()
+      .select({
+        id: products.id,
+        slug: products.slug,
+        titleAr: products.titleAr,
+        titleEn: products.titleEn,
+        category: products.category,
+        condition: products.condition,
+        price: products.price,
+        negotiable: products.negotiable,
+        status: products.status,
+        images: products.images,
+        createdAt: products.createdAt,
+        updatedAt: products.updatedAt,
+      })
+      .from(products)
+      .where(eq(products.visibility, "published"))
+      .orderBy(desc(products.createdAt));
+  },
+  ["store-products"],
+  { revalidate: STORE_REVALIDATE_SECONDS, tags: ["products", "store"] }
+);
 
-  const orderBy =
-    filters.sort === "cheapest"
-      ? sql`${products.price} ASC NULLS LAST`
-      : filters.sort === "priciest"
-        ? sql`${products.price} DESC NULLS LAST`
-        : desc(products.createdAt);
+/** The narrowed row shape getCachedProducts() resolves to — derived from the query itself so the type can never drift from the actual column list above. */
+export type StoreListingProduct = Awaited<ReturnType<typeof getCachedProducts>>[number];
 
-  const [totalCountRow, baseTotalCountRow, categoryCounts, conditionCounts, priceBoundsRow, categoryRows, rows] =
-    await Promise.all([
-      db.select({ value: count() }).from(products).where(and(...fullConditions)),
-      db.select({ value: count() }).from(products).where(and(...statusConditions)),
-      db
-        .select({ category: products.category, value: count() })
-        .from(products)
-        .where(and(...statusConditions))
-        .groupBy(products.category),
-      db
-        .select({ condition: products.condition, value: count() })
-        .from(products)
-        .where(and(...categoryScopedConditions))
-        .groupBy(products.condition),
-      db
-        .select({ min: min(products.price), max: max(products.price) })
-        .from(products)
-        .where(and(...categoryScopedConditions)),
-      db
-        .select()
-        .from(categoriesTable)
-        .where(eq(categoriesTable.hidden, false))
-        .orderBy(asc(categoriesTable.sortOrder)),
-      db
-        .select()
-        .from(products)
-        .where(and(...fullConditions))
-        .orderBy(orderBy)
-        .limit(PAGE_SIZE)
-        .offset((filters.page - 1) * PAGE_SIZE),
-    ]);
-
-  const totalCount = totalCountRow[0]?.value ?? 0;
-  const baseTotalCount = baseTotalCountRow[0]?.value ?? 0;
-  const countByCategory = new Map(categoryCounts.map((r) => [r.category, r.value]));
-  const countByCondition = new Map(conditionCounts.map((r) => [r.condition, r.value]));
-
-  return {
-    products: rows,
-    totalCount,
-    baseTotalCount,
-    totalPages: Math.max(1, Math.ceil(totalCount / PAGE_SIZE)),
-    categories: categoryRows.map((c) => ({ slug: c.slug, nameAr: c.nameAr, nameEn: c.nameEn, count: countByCategory.get(c.slug) ?? 0 })),
-    countByCondition,
-    priceBounds: {
-      min: priceBoundsRow[0]?.min ?? 0,
-      max: priceBoundsRow[0]?.max ?? 1000,
-    },
-  };
-}
+/**
+ * Single-product lookup for the product detail page and the legacy
+ * /store/{old-slug} redirect check — cached per-slug (unstable_cache keys
+ * on its arguments automatically) rather than scanning getCachedProducts(),
+ * since this also needs to find non-published (draft/hidden) rows that the
+ * listing cache deliberately excludes.
+ */
+export const getCachedProductBySlug = unstable_cache(
+  async (slug: string) => {
+    const [row] = await getDb().select().from(products).where(eq(products.slug, slug));
+    return row ?? null;
+  },
+  ["store-product-by-slug"],
+  { revalidate: STORE_REVALIDATE_SECONDS, tags: ["products", "store"] }
+);

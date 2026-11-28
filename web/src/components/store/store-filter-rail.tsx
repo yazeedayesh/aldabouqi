@@ -1,9 +1,9 @@
 "use client";
 
 import { Check, MessageCircle } from "lucide-react";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { PriceRangeSlider } from "@/components/store/price-range-slider";
-import { buildStoreQuery, type StoreFilters } from "@/lib/store-query";
+import type { StoreFilters } from "@/lib/store-query";
 import { buildStoreWhatsAppLink } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +19,7 @@ export function StoreFilterRail({
   filters,
   priceBounds,
   content,
+  onApply,
   onNavigate,
 }: {
   locale: "ar" | "en";
@@ -42,14 +43,13 @@ export function StoreFilterRail({
     sellBody: string;
     sellCta: string;
   };
-  /** Called after a filter link/checkbox is applied — used to close the mobile filter sheet. */
+  /** Applies a filter change to the in-memory product list — no navigation, no DB hit (see StorePageContent). */
+  onApply: (overrides: Partial<StoreFilters>) => void;
+  /** Called after a filter control is used — used to close the mobile filter sheet. */
   onNavigate?: () => void;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
-
   function apply(overrides: Partial<StoreFilters>) {
-    router.push(pathname + buildStoreQuery(filters, overrides));
+    onApply(overrides);
     onNavigate?.();
   }
 

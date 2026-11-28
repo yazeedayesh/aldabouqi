@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { categories } from "@/db/schema";
 import { categorySchema } from "@/lib/validation";
@@ -26,6 +26,8 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
     if (!row) return Response.json({ error: "Not found" }, { status: 404 });
     revalidatePath("/", "layout");
+    revalidateTag("categories", { expire: 0 });
+    revalidateTag("store", { expire: 0 });
     return Response.json(row);
   } catch (error) {
     if (isUniqueViolation(error)) {
@@ -45,6 +47,8 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
     const [row] = await getDb().delete(categories).where(eq(categories.id, id)).returning();
     if (!row) return Response.json({ error: "Not found" }, { status: 404 });
     revalidatePath("/", "layout");
+    revalidateTag("categories", { expire: 0 });
+    revalidateTag("store", { expire: 0 });
     return Response.json({ ok: true });
   } catch (error) {
     if (isForeignKeyViolation(error)) {

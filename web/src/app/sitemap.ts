@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-import { eq } from "drizzle-orm";
-import { getDb } from "@/db";
-import { categories, products } from "@/db/schema";
+import { getCachedCategories, getCachedProducts } from "@/lib/store-data";
 import { areas } from "@/lib/areas";
 import { SITE_URL } from "@/lib/constants";
 
@@ -55,17 +53,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // The 44 static links above must reach Google even if Neon is briefly
   // unreachable — a transient DB outage must never take the whole sitemap
-  // (and the build that generates it) down with it.
+  // (and the build that generates it) down with it. Reads the same hourly
+  // cache /store itself uses (lib/store-data.ts) instead of its own
+  // per-request query.
   try {
     const [categoryRows, liveProducts] = await Promise.all([
-      getDb()
-        .select({ slug: categories.slug, updatedAt: categories.updatedAt })
-        .from(categories)
-        .where(eq(categories.hidden, false)),
-      getDb()
-        .select({ slug: products.slug, category: products.category, updatedAt: products.updatedAt })
-        .from(products)
-        .where(eq(products.visibility, "published")),
+      getCachedCategories().then((rows) => rows.filter((c) => !c.hidden)),
+      getCachedProducts(),
     ]);
 
     // The 8 category landing pages (/store/{category}) — real indexed

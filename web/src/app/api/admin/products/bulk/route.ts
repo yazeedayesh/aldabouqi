@@ -1,6 +1,6 @@
 import { inArray } from "drizzle-orm";
 import { z } from "zod";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { requireAdmin } from "@/lib/require-admin";
@@ -38,5 +38,7 @@ export async function PATCH(request: Request) {
   }
 
   revalidatePath("/", "layout");
+  revalidateTag("products", { expire: 0 });
+  revalidateTag("store", { expire: 0 });
   return Response.json({ ok: true, count: ids.length });
 }
