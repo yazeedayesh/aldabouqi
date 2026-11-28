@@ -35,7 +35,10 @@ function enUrl(path: string) {
 // Ar+en pair, each entry carrying hreflang alternates for both — same
 // pattern Next.js's own sitemap-with-alternates docs use.
 function bilingualEntry(path: string, lastModified?: Date): MetadataRoute.Sitemap {
-  const languages = { ar: arUrl(path), en: enUrl(path) };
+  // Language-region codes, matching lib/seo.ts's buildMetadata — see its
+  // comment for why ("ar" alone gives Google no country signal to prefer
+  // Jordan content over, e.g., an Omani competitor's for the same query).
+  const languages = { "ar-JO": arUrl(path), "en-JO": enUrl(path) };
   return [
     { url: arUrl(path), lastModified, alternates: { languages } },
     { url: enUrl(path), lastModified, alternates: { languages } },

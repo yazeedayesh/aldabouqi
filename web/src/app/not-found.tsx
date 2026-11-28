@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootNotFound() {
   return (
-    <html lang="ar" dir="rtl" className={`${bodyFont.variable} ${headingFont.variable} h-full antialiased`}>
+    <html lang="ar-JO" dir="rtl" className={`${bodyFont.variable} ${headingFont.variable} h-full antialiased`}>
       <body className="flex min-h-full items-center justify-center bg-background px-4 py-20 text-center">
         <div className="mx-auto max-w-md">
           <h1 className="font-heading text-[88px] leading-none font-extrabold text-primary">404</h1>

@@ -58,10 +58,13 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const dir = locale === "ar" ? "rtl" : "ltr";
+  // Region-qualified, matching lib/seo.ts's hreflang (ar-JO/en-JO) — see
+  // its comment for why plain "ar" is a missed geo-targeting signal here.
+  const htmlLang = locale === "ar" ? "ar-JO" : "en-JO";
 
   return (
     <html
-      lang={locale}
+      lang={htmlLang}
       dir={dir}
       className={`${bodyFont.variable} ${headingFont.variable} h-full antialiased`}
     >

@@ -42,10 +42,17 @@ export function buildMetadata({
   // relevant photo (a product, a specific service) still pass their own.
   const resolvedOgImage = ogImage ?? `${SITE_URL}/img/logo/aldabouqi-logo.webp`;
 
+  // Language-region codes (not bare "ar"/"en") — this site only targets
+  // Jordan, and plain "ar" hreflang gives Google no country signal at all
+  // to prefer this over, say, an Omani competitor's Arabic content for the
+  // same query (site owner report, 2026-09-xx: Search Console showing
+  // meaningful impression share from Oman — "عمان" without diacritics is
+  // identical for both "Amman" and "Oman"). "x-default" is a reserved
+  // hreflang value, not a locale, so it's left unqualified.
   const languages: Record<string, string> = hasEnglishVariant
     ? {
-        ar: localizedUrl(path, "ar"),
-        en: localizedUrl(path, "en"),
+        "ar-JO": localizedUrl(path, "ar"),
+        "en-JO": localizedUrl(path, "en"),
         "x-default": localizedUrl(path, "ar"),
       }
     : {};
