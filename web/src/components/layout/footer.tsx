@@ -1,9 +1,7 @@
-import { asc, eq } from "drizzle-orm";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SiteLogo } from "@/components/layout/site-logo";
-import { getDb } from "@/db";
-import { categories as categoriesTable } from "@/db/schema";
+import { getCachedCategories } from "@/lib/store-data";
 import { BUSINESS } from "@/lib/constants";
 import { getBusinessSettings, getDefaultContactNumber } from "@/lib/business";
 import { FacebookIcon, InstagramIcon, XIcon } from "./social-icons";
@@ -28,12 +26,18 @@ export async function Footer() {
   const phoneE164 = defaultNumber?.phoneE164 ?? BUSINESS.phoneE164;
   const phoneDisplay = phoneE164.replace(/^(\+\d{3})(\d{1,2})(\d{3})(\d{4})$/, "$1 $2 $3 $4");
 
-  const categoryRows = await getDb()
-    .select()
-    .from(categoriesTable)
-    .where(eq(categoriesTable.hidden, false))
-    .orderBy(asc(categoriesTable.sortOrder))
-    .limit(5);
+  // Rendered on every page via the root layout — reads the same hourly
+  // cache /store itself uses instead of its own per-request query. Caught
+  // separately: a DB outage with a cold cache must never take down every
+  // page on the site just to omit these 5 links.
+  const categoryRows = await getCachedCategories()
+    .then((rows) =>
+      rows
+        .filter((c) => !c.hidden)
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .slice(0, 5)
+    )
+    .catch(() => []);
 
   const quickLinks = [
     { href: "/" as const, label: nav("home") },

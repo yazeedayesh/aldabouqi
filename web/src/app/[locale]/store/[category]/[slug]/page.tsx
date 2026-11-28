@@ -1,11 +1,9 @@
-import { and, desc, eq, ne } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Phone, ShieldCheck, ShoppingCart, Truck } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { getDb } from "@/db";
-import { categories as categoriesTable, contactNumbers, products } from "@/db/schema";
-import { getDefaultContactNumber } from "@/lib/business";
+import { getCachedCategories, getCachedProductBySlug, getCachedProducts } from "@/lib/store-data";
+import { getCachedContactNumbers, getDefaultContactNumber } from "@/lib/business";
 import { PageHero } from "@/components/layout/page-hero";
 import { Button } from "@/components/ui/button";
 import { ProductGallery } from "@/components/store/product-gallery";
@@ -17,7 +15,7 @@ import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, STORE_PHONE_E164 } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 // Labels match the redesigned store's condition taxonomy (site owner
 // follow-up, 2026-09-07) — DB values (excellent/good/fair) are unchanged,
@@ -58,7 +56,7 @@ const statusDot = {
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/store/[category]/[slug]">) {
   const { locale, category, slug } = await params;
-  const [product] = await getDb().select().from(products).where(eq(products.slug, slug));
+  const product = await getCachedProductBySlug(slug).catch(() => null);
   if (!product || product.category !== category) return {};
 
   const title = locale === "en" ? product.titleEn : product.titleAr;
@@ -86,7 +84,7 @@ export default async function ProductDetailPage({
   setRequestLocale(locale);
   const loc = locale as Locale;
 
-  const [product] = await getDb().select().from(products).where(eq(products.slug, slug));
+  const product = await getCachedProductBySlug(slug);
   // A product under the wrong category in the URL 404s instead of rendering
   // normally — letting it through would give every product two indexable
   // URLs (its real category and any other slug someone types), which is
@@ -96,29 +94,24 @@ export default async function ProductDetailPage({
   // 2026-09-08: "بتضل موجودة وما بتنكسر روابطها").
   if (!product || product.visibility === "draft" || product.category !== category) notFound();
 
-  const [categoryRow, relatedProducts, whatsappNumber, callNumber, defaultNumber] = await Promise.all([
-    getDb().select().from(categoriesTable).where(eq(categoriesTable.slug, category)).then((r) => r[0]),
-    getDb()
-      .select()
-      .from(products)
-      .where(
-        and(
-          eq(products.category, category),
-          eq(products.status, "available"),
-          eq(products.visibility, "published"),
-          ne(products.id, product.id)
-        )
-      )
-      .orderBy(desc(products.createdAt))
-      .limit(4),
-    product.whatsappContactNumberId
-      ? getDb().select().from(contactNumbers).where(eq(contactNumbers.id, product.whatsappContactNumberId)).then((r) => r[0])
-      : Promise.resolve(undefined),
-    product.callContactNumberId
-      ? getDb().select().from(contactNumbers).where(eq(contactNumbers.id, product.callContactNumberId)).then((r) => r[0])
-      : Promise.resolve(undefined),
+  const [categories, relatedPool, contactNumberRows, defaultNumber] = await Promise.all([
+    getCachedCategories(),
+    getCachedProducts(),
+    getCachedContactNumbers(),
     getDefaultContactNumber(),
   ]);
+
+  const categoryRow = categories.find((c) => c.slug === category);
+  const relatedProducts = relatedPool
+    .filter((p) => p.category === category && p.status === "available" && p.id !== product.id)
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 4);
+  const whatsappNumber = product.whatsappContactNumberId
+    ? contactNumberRows.find((n) => n.id === product.whatsappContactNumberId)
+    : undefined;
+  const callNumber = product.callContactNumberId
+    ? contactNumberRows.find((n) => n.id === product.callContactNumberId)
+    : undefined;
 
   // Resolution order matches the admin form's own stated fallback chain:
   // WhatsApp -> its own override, else the site default. Call -> its own

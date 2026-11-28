@@ -1,12 +1,10 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { and, count, eq } from "drizzle-orm";
 import { MessageCircle, Phone, Store } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { LocaleSwitchLink } from "@/components/layout/locale-switch-link";
-import { getDb } from "@/db";
-import { products } from "@/db/schema";
+import { getCachedProducts } from "@/lib/store-data";
 import { BUSINESS, buildWhatsAppLink } from "@/lib/constants";
 
 /**
@@ -24,10 +22,14 @@ export async function Header() {
   const otherLocale = locale === "en" ? "ar" : "en";
   const otherLocaleShortLabel = otherLocale === "en" ? "EN" : "AR";
 
-  const [{ value: storeCount }] = await getDb()
-    .select({ value: count() })
-    .from(products)
-    .where(and(eq(products.status, "available"), eq(products.visibility, "published")));
+  // Rendered on every page via the root layout — reads the same hourly
+  // cache /store itself uses instead of its own per-request count query.
+  // Caught separately from the rest of the header: a DB outage with a cold
+  // cache must never take down every page on the site just to omit this
+  // one badge count.
+  const storeCount = await getCachedProducts()
+    .then((allProducts) => allProducts.filter((p) => p.status === "available").length)
+    .catch(() => 0);
 
   const navLinks = [
     { href: "/about" as const, label: t("about") },

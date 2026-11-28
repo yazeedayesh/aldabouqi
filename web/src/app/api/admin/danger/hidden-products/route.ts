@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { products } from "@/db/schema";
 import { requireAdmin } from "@/lib/require-admin";
@@ -11,5 +11,7 @@ export async function DELETE() {
 
   const deleted = await getDb().delete(products).where(eq(products.visibility, "hidden")).returning({ id: products.id });
   revalidatePath("/", "layout");
+  revalidateTag("products", { expire: 0 });
+  revalidateTag("store", { expire: 0 });
   return Response.json({ ok: true, count: deleted.length });
 }

@@ -5,7 +5,7 @@ import { InterestToggleButton } from "@/components/store/interest-toggle-button"
 import { ProductWhatsAppCta } from "@/components/store/product-whatsapp-cta";
 import { Reveal } from "@/components/ui/reveal";
 import { STORE_PHONE_E164 } from "@/lib/constants";
-import type { Product } from "@/db/schema";
+import type { StoreListingProduct } from "@/lib/store-data";
 
 // Labels match the redesigned store's condition taxonomy (site owner
 // follow-up, 2026-09-07) — DB values (excellent/good/fair) are unchanged,
@@ -48,7 +48,8 @@ export function ProductCard({
   priceOnRequestLabel,
   callPhoneE164 = STORE_PHONE_E164,
 }: {
-  product: Product;
+  /** Only the listing-grid fields (see lib/store-data.ts's getCachedProducts) — every field used here (images, title, price, condition, status) is present; a full Product row satisfies this too, so the detail page's "related products" can pass one straight through. */
+  product: StoreListingProduct;
   /** Display name of product.category, resolved by the caller (which already has the category list in hand). */
   categoryName: string;
   locale: "ar" | "en";

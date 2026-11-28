@@ -1,22 +1,19 @@
-import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { permanentRedirect } from "@/i18n/navigation";
-import { getDb } from "@/db";
-import { categories as categoriesTable, products } from "@/db/schema";
+import { getCachedCategories, getCachedProducts } from "@/lib/store-data";
 import { PageHero } from "@/components/layout/page-hero";
 import { StorePageContent } from "@/components/store/store-page-content";
+import { StoreUnavailable } from "@/components/store/store-unavailable";
 import { FaqSection } from "@/components/sections/faq-section";
 import { BreadcrumbJsonLd, FaqJsonLd, JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata } from "@/lib/seo";
 import { categoryContent } from "@/lib/category-content";
-import { getStoreData } from "@/lib/store-data";
-import { parseStoreFilters } from "@/lib/store-query";
 import { SITE_URL, STORE_PHONE_E164 } from "@/lib/constants";
 import { getDefaultContactNumber } from "@/lib/business";
 import type { Locale } from "@/i18n/routing";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 /**
  * Real indexed category landing page — /store/{category} — replacing
@@ -103,13 +100,21 @@ const conditionLabels = {
 } as const;
 
 export async function generateStaticParams() {
-  const rows = await getDb().select({ slug: categoriesTable.slug }).from(categoriesTable);
+  // Must never throw: an unreachable DB with a cold cache (first-ever
+  // build, or a build kicked off during an outage) would otherwise fail
+  // the entire build/deploy rather than just this route's pre-rendering.
+  // dynamicParams defaults to true, so every real category still renders
+  // on-demand the first time it's actually requested (by then the cache
+  // may be warm, or the page's own try/catch + the middleware health gate
+  // take over).
+  const rows = await getCachedCategories().catch(() => []);
   return rows.map((row) => ({ category: row.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/store/[category]">) {
   const { locale, category: slug } = await params;
-  const [categoryRow] = await getDb().select().from(categoriesTable).where(eq(categoriesTable.slug, slug));
+  const categories = await getCachedCategories().catch(() => []);
+  const categoryRow = categories.find((c) => c.slug === slug);
   if (!categoryRow) return {};
 
   const name = locale === "en" ? categoryRow.nameEn : categoryRow.nameAr;
@@ -127,16 +132,35 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/store/[c
 
 export default async function CategoryPage({
   params,
-  searchParams,
 }: PageProps<"/[locale]/store/[category]">) {
   const { locale, category: slug } = await params;
 
-  const [categoryRow] = await getDb().select().from(categoriesTable).where(eq(categoriesTable.slug, slug));
+  let categories, allProducts, defaultNumber;
+  try {
+    [categories, allProducts, defaultNumber] = await Promise.all([
+      getCachedCategories(),
+      getCachedProducts(),
+      getDefaultContactNumber(),
+    ]);
+  } catch {
+    // Cold cache + unreachable DB — see /store/page.tsx's matching catch
+    // for why this can't 404/redirect-check and just falls back directly.
+    setRequestLocale(locale);
+    const loc = locale as Locale;
+    return (
+      <>
+        <PageHero title={slug} crumbs={[{ href: `/store/${slug}`, label: slug }]} />
+        <StoreUnavailable locale={loc} />
+      </>
+    );
+  }
+
+  const categoryRow = categories.find((c) => c.slug === slug);
 
   if (!categoryRow) {
     // Not a category — check whether this is an old-shaped product URL
     // (/store/{slug}, pre-brief-§10.1) and redirect it into its real path.
-    const [product] = await getDb().select().from(products).where(eq(products.slug, slug));
+    const product = allProducts.find((p) => p.slug === slug);
     if (product) {
       permanentRedirect({ href: `/store/${product.category}/${product.slug}`, locale });
     }
@@ -150,12 +174,14 @@ export default async function CategoryPage({
   const extra = categoryContent[categoryRow.slug];
   const canonicalUrl = `${SITE_URL}${locale === "en" ? "/en" : ""}/store/${slug}`;
 
-  const sp = await searchParams;
-  const filters = parseStoreFilters(sp);
-  const [data, defaultNumber] = await Promise.all([
-    getStoreData({ categorySlug: categoryRow.slug, filters }),
-    getDefaultContactNumber(),
-  ]);
+  // Representative sample for the ItemList JSON-LD only (crawlers, not the
+  // interactive grid) — the default-filtered, newest-first, first page of
+  // this category. The actual grid gets the full catalog and does its own
+  // filtering/sorting/pagination client-side (see StorePageContent).
+  const jsonLdProducts = allProducts
+    .filter((p) => p.category === categoryRow.slug && p.status === "available")
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 12);
 
   const faq = extra ? (locale === "en" ? extra.faqEn : extra.faqAr) : [];
 
@@ -177,7 +203,7 @@ export default async function CategoryPage({
             description: locale === "en" ? extra.introEn : extra.introAr,
             mainEntity: {
               "@type": "ItemList",
-              itemListElement: data.products.map((product, i) => ({
+              itemListElement: jsonLdProducts.map((product, i) => ({
                 "@type": "ListItem",
                 position: i + 1,
                 url: `${SITE_URL}${locale === "en" ? "/en" : ""}/store/${categoryRow.slug}/${product.slug}`,
@@ -214,26 +240,15 @@ export default async function CategoryPage({
       <div className="py-14">
         <StorePageContent
           locale={loc}
-          pathname={`/store/${slug}`}
-          defaultPhoneE164={defaultNumber?.phoneE164 ?? STORE_PHONE_E164}
           activeCategorySlug={categoryRow.slug}
-          categories={data.categories.map((cat) => ({
-            slug: cat.slug,
-            name: loc === "en" ? cat.nameEn : cat.nameAr,
-            count: cat.count,
-          }))}
-          products={data.products}
-          totalCount={data.totalCount}
-          allCategoriesCount={data.baseTotalCount}
-          totalPages={data.totalPages}
-          conditions={(["excellent", "good", "fair"] as const).map((value) => ({
-            value,
-            label: conditionLabels[loc][value],
-            count: data.countByCondition.get(value) ?? 0,
-          }))}
-          filters={filters}
-          priceBounds={data.priceBounds}
+          categories={categories
+            .filter((cat) => !cat.hidden)
+            .sort((a, b) => a.sortOrder - b.sortOrder)
+            .map((cat) => ({ slug: cat.slug, nameAr: cat.nameAr, nameEn: cat.nameEn }))}
+          allProducts={allProducts}
+          defaultPhoneE164={defaultNumber?.phoneE164 ?? STORE_PHONE_E164}
           content={c}
+          conditionLabels={conditionLabels[loc]}
         />
       </div>
       {faq.length > 0 && <FaqSection title={c.faqTitle} items={faq} />}

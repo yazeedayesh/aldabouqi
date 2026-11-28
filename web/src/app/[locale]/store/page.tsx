@@ -1,14 +1,17 @@
 import { setRequestLocale } from "next-intl/server";
 import { PageHero } from "@/components/layout/page-hero";
 import { StorePageContent } from "@/components/store/store-page-content";
+import { StoreUnavailable } from "@/components/store/store-unavailable";
 import { buildMetadata } from "@/lib/seo";
-import { getStoreData } from "@/lib/store-data";
-import { parseStoreFilters } from "@/lib/store-query";
+import { getCachedCategories, getCachedProducts } from "@/lib/store-data";
 import { getDefaultContactNumber } from "@/lib/business";
 import { STORE_PHONE_E164 } from "@/lib/constants";
 import type { Locale } from "@/i18n/routing";
 
-export const revalidate = 300;
+// Matches the cached catalog's own revalidate window (lib/store-data.ts) —
+// this page no longer reads searchParams, so it's static/ISR rather than
+// forced-dynamic, and this just governs the HTML shell's own regeneration.
+export const revalidate = 3600;
 
 const content = {
   ar: {
@@ -86,15 +89,38 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/store">)
   return buildMetadata({ title: c.metaTitle, description: c.metaDescription, path: "/store", locale: locale as Locale });
 }
 
-export default async function StorePage({ params, searchParams }: PageProps<"/[locale]/store">) {
+export default async function StorePage({ params }: PageProps<"/[locale]/store">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const loc = locale as Locale;
   const c = content[loc];
 
-  const sp = await searchParams;
-  const filters = parseStoreFilters(sp);
-  const [data, defaultNumber] = await Promise.all([getStoreData({ filters }), getDefaultContactNumber()]);
+  // No searchParams here by design — filtering/sorting/pagination all run
+  // client-side against this cached catalog (see StorePageContent), which
+  // is what keeps this page static/ISR instead of forced-dynamic.
+  let allProducts, allCategories, defaultNumber;
+  try {
+    [allProducts, allCategories, defaultNumber] = await Promise.all([
+      getCachedProducts(),
+      getCachedCategories(),
+      getDefaultContactNumber(),
+    ]);
+  } catch {
+    // Cold cache + unreachable DB — the one case unstable_cache's own
+    // stale-while-revalidate behavior can't paper over, since there's no
+    // previously-cached value to serve. proxy.ts's store-health gate
+    // normally intercepts this with a real 503 before the page even
+    // renders; this is the fallback for the rare race where that gate's
+    // probe passed moments before this fetch itself failed.
+    return (
+      <>
+        <PageHero title={c.pageTitle} crumbs={[{ href: "/store", label: c.pageTitle }]} />
+        <StoreUnavailable locale={loc} />
+      </>
+    );
+  }
+
+  const visibleCategories = allCategories.filter((cat) => !cat.hidden).sort((a, b) => a.sortOrder - b.sortOrder);
 
   return (
     <>
@@ -105,25 +131,11 @@ export default async function StorePage({ params, searchParams }: PageProps<"/[l
       <div className="pb-14">
         <StorePageContent
           locale={loc}
-          pathname="/store"
+          categories={visibleCategories.map((cat) => ({ slug: cat.slug, nameAr: cat.nameAr, nameEn: cat.nameEn }))}
+          allProducts={allProducts}
           defaultPhoneE164={defaultNumber?.phoneE164 ?? STORE_PHONE_E164}
-          categories={data.categories.map((cat) => ({
-            slug: cat.slug,
-            name: loc === "en" ? cat.nameEn : cat.nameAr,
-            count: cat.count,
-          }))}
-          products={data.products}
-          totalCount={data.totalCount}
-          allCategoriesCount={data.baseTotalCount}
-          totalPages={data.totalPages}
-          conditions={(["excellent", "good", "fair"] as const).map((value) => ({
-            value,
-            label: conditionLabels[loc][value],
-            count: data.countByCondition.get(value) ?? 0,
-          }))}
-          filters={filters}
-          priceBounds={data.priceBounds}
           content={c}
+          conditionLabels={conditionLabels[loc]}
         />
       </div>
     </>

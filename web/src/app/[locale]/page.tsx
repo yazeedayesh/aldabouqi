@@ -1,4 +1,3 @@
-import { and, asc, count, eq } from "drizzle-orm";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
@@ -17,8 +16,7 @@ import { FaqSection } from "@/components/sections/faq-section";
 import { ContactForm } from "@/components/forms/contact-form";
 import { FaqJsonLd, LocalBusinessJsonLd } from "@/components/seo/json-ld";
 import { getCategoryIcon } from "@/lib/category-icons";
-import { getDb } from "@/db";
-import { categories as categoriesTable, products } from "@/db/schema";
+import { getCachedCategories, getCachedProducts } from "@/lib/store-data";
 import { areas } from "@/lib/areas";
 import { buildMetadata } from "@/lib/seo";
 import { BUSINESS, SITE_URL, buildWhatsAppLink } from "@/lib/constants";
@@ -181,23 +179,21 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const loc = locale as "ar" | "en";
   const isEn = loc === "en";
 
-  const [categoryRows, categoryCounts, [{ value: totalAvailable }]] = await Promise.all([
-    getDb()
-      .select()
-      .from(categoriesTable)
-      .where(eq(categoriesTable.hidden, false))
-      .orderBy(asc(categoriesTable.sortOrder)),
-    getDb()
-      .select({ category: products.category, value: count() })
-      .from(products)
-      .where(and(eq(products.status, "available"), eq(products.visibility, "published")))
-      .groupBy(products.category),
-    getDb()
-      .select({ value: count() })
-      .from(products)
-      .where(and(eq(products.status, "available"), eq(products.visibility, "published"))),
+  // Reads the same hourly cache /store itself uses (lib/store-data.ts)
+  // instead of its own per-request queries — and, since this renders on
+  // the homepage, falls back to empty/zero rather than ever throwing: a DB
+  // outage with a cold cache must not take the homepage down too.
+  const [categoryRows, availableProducts] = await Promise.all([
+    getCachedCategories()
+      .then((rows) => rows.filter((c) => !c.hidden).sort((a, b) => a.sortOrder - b.sortOrder))
+      .catch(() => []),
+    getCachedProducts()
+      .then((rows) => rows.filter((p) => p.status === "available"))
+      .catch(() => []),
   ]);
-  const countByCategory = new Map(categoryCounts.map((r) => [r.category, r.value]));
+  const countByCategory = new Map<string, number>();
+  for (const p of availableProducts) countByCategory.set(p.category, (countByCategory.get(p.category) ?? 0) + 1);
+  const totalAvailable = availableProducts.length;
 
   const areasPreview = areas.slice(0, AREAS_PREVIEW_COUNT);
   const areasMoreCount = areas.length - areasPreview.length;

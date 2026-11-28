@@ -1,5 +1,5 @@
 import { desc, eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { categories, products } from "@/db/schema";
 import { productSchema } from "@/lib/validation";
@@ -37,7 +37,15 @@ export async function POST(request: Request) {
   // ISR pages (store listing, product page, sitemap) otherwise wait up to
   // `revalidate` seconds to reflect admin edits — busting the whole tree
   // makes saves feel instant instead of "not working" (site owner report,
-  // 2026-09-10).
+  // 2026-09-10). revalidatePath alone only busts the page/route cache —
+  // lib/store-data.ts's getCachedProducts() is a separate Data Cache entry
+  // (unstable_cache, 1h revalidate) that revalidatePath never touches, so
+  // revalidateTag is what actually forces it to re-query. { expire: 0 }
+  // (not the recommended "max" profile) because an admin save must show
+  // up on the very next request, not serve one more round of stale data
+  // while revalidating in the background.
   revalidatePath("/", "layout");
+  revalidateTag("products", { expire: 0 });
+  revalidateTag("store", { expire: 0 });
   return Response.json(row, { status: 201 });
 }

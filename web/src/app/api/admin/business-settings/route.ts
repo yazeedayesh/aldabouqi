@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getDb } from "@/db";
 import { businessSettings } from "@/db/schema";
 import { businessSettingsSchema } from "@/lib/validation";
@@ -23,5 +23,6 @@ export async function PATCH(request: Request) {
 
   if (!row) return Response.json({ error: "Not found" }, { status: 404 });
   revalidatePath("/", "layout");
+  revalidateTag("business", { expire: 0 });
   return Response.json(row);
 }
